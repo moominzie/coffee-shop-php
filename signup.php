@@ -19,15 +19,17 @@ fputs($fp , "$hits[0]");
 fclose($fp); 
 $UserId= $hits[0];  
 $fname=$_POST['fullname']; 
+$address=($_POST['address']); 
 $username=$_POST['username'];
 $email=$_POST['email']; 
 $mobileno=$_POST['mobileno'];
 $password=($_POST['password']); 
 $status=1;
-$sql="INSERT INTO  member (UserId,Username,FullName,EmailId,MobileNumber,Password,Status) VALUES(:UserId,:username,:fname,:email,:mobileno,:password,:status)";
+$sql="INSERT INTO  member (UserId,Username,FullName,Address,EmailId,MobileNumber,Password,Status) VALUES(:UserId,:username,:fname,:address,:email,:mobileno,:password,:status)";
 $query = $dbh->prepare($sql);
 $query->bindParam(':UserId',$UserId,PDO::PARAM_STR);
 $query->bindParam(':fname',$fname,PDO::PARAM_STR);
+$query->bindParam(':address',$address,PDO::PARAM_STR);
 $query->bindParam(':username',$username,PDO::PARAM_STR);
 $query->bindParam(':email',$email,PDO::PARAM_STR);
 $query->bindParam(':mobileno',$mobileno,PDO::PARAM_STR);
@@ -62,11 +64,9 @@ echo "<script>alert('Something went wrong. Please try again');</script>";
     <link href="assets/css/style.css" rel="stylesheet" />
     <!-- GOOGLE FONT -->
     <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
-
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-
 
   <link rel="preconnect" href="https://fonts.gstatic.com">
   <link href="https://fonts.googleapis.com/css2?family=Pridi:wght@200&display=swap" rel="stylesheet">
@@ -217,41 +217,69 @@ $("#username").keyup(function(){
     
         <div class="panel-heading" style="font-size: 16px;">Register Form</div>
         <div class="panel-body" style="">
- 
 
+<div class="col-md-6">
     <div class="form-group">
-        <label style="font-family: 'Oswald', sans-serif;">Username</label>
-        <input class="form-control" type="text" name="username" id="username" autocomplete="off" required />
-        <!-- Response -->
-        <div id="uname_response" style="font-size:12px" ></div>
-    </div>
-    <div class="form-group">
-        <label style="font-family: 'Oswald', sans-serif;">Enter Full Name</label>
+        <label style="font-family: 'Oswald', sans-serif;">Enter Name</label>&nbsp;<label style="font-family: 'Oswald', sans-serif; color:red;">*</label>
         <input class="form-control" type="text" name="fullname" autocomplete="off" required />
     </div>
+</div>
+<div class="col-md-6">
     <div class="form-group">
-        <label style="font-family: 'Oswald', sans-serif;">Enter Email</label>
+        <label style="font-family: 'Oswald', sans-serif;">Enter Last Name</label>&nbsp;<label style="font-family: 'Oswald', sans-serif; color:red;">*</label>
+        <input class="form-control" type="text" name="fullname" autocomplete="off" required />
+    </div>
+</div>
+<div class="col-md-6">
+    <div class="form-group">
+        <label style="font-family: 'Oswald', sans-serif;">Enter Email</label>&nbsp;<label style="font-family: 'Oswald', sans-serif; color:red;">*</label>
         <input class="form-control" type="email" name="email" id="emailid" onBlur="checkAvailability()"  autocomplete="off" required />
         <span id="user-availability-status" style="font-size:12px;"></span> 
     </div>
+</div>
+
+<div class="col-md-6">
     <div class="form-group">
-        <label style="font-family: 'Oswald', sans-serif;">Mobile number</label>
+        <label style="font-family: 'Oswald', sans-serif;">Mobile Number</label>&nbsp;<label style="font-family: 'Oswald', sans-serif; color:red;">*</label>
         <input class="form-control" type="text" name="mobileno" id="mobilenumber" maxlength="10" autocomplete="off" required />
     </div>
+</div>
+
+<div class="col-md-12">
     <div class="form-group">
-        <label style="font-family: 'Oswald', sans-serif;">Password</label>
+        <label style="font-family: 'Oswald', sans-serif;">Username</label>&nbsp;<label style="font-family: 'Oswald', sans-serif; color:red;">*</label>
+        <input class="form-control" type="text" name="username" id="username" autocomplete="off" required />
+                <!-- Response -->
+        <div id="uname_response" style="font-size:12px" ></div>
+    </div>
+</div>
+
+<div class="col-md-6">
+    <div class="form-group">
+        <label style="font-family: 'Oswald', sans-serif;">Password</label>&nbsp;<label style="font-family: 'Oswald', sans-serif; color:red;">*</label>
         <input class="form-control" type="password" name="password" autocomplete="off" required />
     </div>
+</div>
+
+<div class="col-md-6">
     <div class="form-group">
-      <label style="font-family: 'Oswald', sans-serif;">Confirm Password </label>
+      <label style="font-family: 'Oswald', sans-serif;">Confirm Password </label>&nbsp;<label style="font-family: 'Oswald', sans-serif; color:red;">*</label>
       <input class="form-control"  type="password" name="confirmpassword" autocomplete="off" required  />
     </div>
+</div>
 
+<div class="col-md-12">
     <div class="form-group">
-    <label style="font-family: 'Montserrat', sans-serif">Verification code : </label>
-    <input type="text"  name="vercode" maxlength="5" autocomplete="off" required style="width: 150px; height: 25px;" />&nbsp;<img src="captcha.php">
+        <label style="font-family: 'Montserrat', sans-serif">Verification code : </label>&nbsp;<label style="font-family: 'Oswald', sans-serif; color:red;">*</label>
+        <input class="form-control"  type="text"  name="vercode" maxlength="5" autocomplete="off" required style="width: 150px;" /><img style="margin-top:10px" src="captcha.php">
     </div>  
-    <button type="submit" name="signup" class="btn btn-danger" id="submit" style="font-family: 'Prompt', sans-serif;"> Register </button>
+</div>
+
+<div class="col-md-12">
+    <button type="submit" name="signup" class="btn btn-danger" id="submit" style="font-family: 'Prompt', sans-serif;"> Register </button> 
+</div>
+
+    
     </div>
     <!-- REGISTER END-->
         </div>

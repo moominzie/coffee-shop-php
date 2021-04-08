@@ -69,14 +69,44 @@
       </button>
       <a class="navbar-brand" href="index.php" >Shop</a>
     </div>
-
     <?php if($_SESSION['login'])
 {
 ?>   
-    
     <div class="collapse navbar-collapse" id="myNavbar">
-    <ul class="nav navbar-nav">
-          <li><a href="dashboard.php">Dashboard</a></li>
+      <ul class="nav navbar-nav">
+      <li><a href="dashboard.php">Dashboard</a></li>
+          <li class="dropdown">
+            <a class="dropdown-toggle" data-toggle="dropdown" href="#">Beverage<span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li><a href="#">Coffee</a></li>
+              <li><a href="#">Milk</a></li>
+              <li><a href="#">Soda</a></li>
+            </ul>
+        </li>
+
+         <li class="dropdown">
+            <a class="dropdown-toggle" data-toggle="dropdown" href="#">Food<span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li><a href="#">Fresh bread</a></li>
+              <li><a href="#">Spaghetti</a></li>
+              <li><a href="#">Appetizer & Snack</a></li>
+            </ul>
+          </li>
+      </ul>
+
+      <ul class="nav navbar-nav navbar-right">
+        <li class="dropdown">
+            <a class="dropdown-toggle" data-toggle="dropdown" id="ddlmenuItem"  href="#">Account<i class="fa fa-angle-down"></i></a>
+            <ul class="dropdown-menu" role="menu" aria-labelledby="ddlmenuItem">
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="my-profile.php"> My Profile</a></li>
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="change-password.php"> Change Password </a></li>
+            </ul>
+          </li>
+          <li><a href="">Order</a></li>
+         <a href="logout.php" class="btn btn-danger pull-right" style="margin-top: 8px">Logout</a>
+        </ul>
+        <?php } else { ?>
+            <ul class="nav navbar-nav">
           <li class="dropdown">
             <a class="dropdown-toggle" data-toggle="dropdown" href="#">Beverage<span class="caret"></span></a>
             <ul class="dropdown-menu">
@@ -93,43 +123,9 @@
               <li><a href="#">Appetizer & Snack</a></li>
             </ul>
           </li>
-        </ul>
-
-        <ul class="nav navbar-nav navbar-right">
-        <li class="dropdown">
-            <a class="dropdown-toggle" data-toggle="dropdown" id="ddlmenuItem"  href="#">Account<i class="fa fa-angle-down"></i></a>
-            <ul class="dropdown-menu" role="menu" aria-labelledby="ddlmenuItem">
-                <li role="presentation"><a role="menuitem" tabindex="-1" href="my-profile.php"> My Profile</a></li>
-                <li role="presentation"><a role="menuitem" tabindex="-1" href="change-password.php"> Change Password </a></li>
-            </ul>
-          </li>
-          <li><a href="">Order</a></li>
-         <a href="logout.php" class="btn btn-danger pull-right" style="margin-top: 8px">Logout</a>
-        </ul>
-
-        <?php } else { ?>
-            <ul class="nav navbar-nav">
-          <li class="dropdown">
-            <a class="dropdown-toggle" data-toggle="dropdown" href="#">Beverage<span class="caret"></span></a>
-            <ul class="dropdown-menu">
-            <li><a href="#">Coffee</a></li>
-              <li><a href="#">Milk</a></li>
-              <li><a href="#">Soda</a></li>
-            </ul>
-          </li>
-          <li class="dropdown">
-            <a class="dropdown-toggle" data-toggle="dropdown" href="#">Food<span class="caret"></span></a>
-            <ul class="dropdown-menu">
-            <li><a href="#">Fresh bread</a></li>
-              <li><a href="#">Spaghetti</a></li>
-              <li><a href="#">Appetizer & Snack</a></li>
-            </ul>
-          </li>
           <li><a href="contactus.php">Contact Shop</a></li>
-         
         </ul>
 
-        
         <ul class="nav navbar-nav navbar-right">
           <li><a href="signup.php"><span class="glyphicon glyphicon-user"></span> Register</a></li>
           <li><a href="loginmember.php"><span class="glyphicon glyphicon-log-in"></span> Member Login</a></li>
