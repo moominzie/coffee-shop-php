@@ -46,6 +46,8 @@ header('location:loginmember.php');
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@700&display=swap" rel="stylesheet">
 
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Abel&family=Barlow:wght@200;400&family=Bebas+Neue&family=Fjalla+One&family=Fredoka+One&family=Josefin+Sans&family=Open+Sans:wght@300&family=Staatliches&display=swap" rel="stylesheet">
 
 
 </head>
@@ -86,42 +88,42 @@ foreach($results as $result)
 
 <div class="col-md-12">    
 <div class="form-group">
-<label style="font-family: 'Oswald', sans-serif;">User Id : </label>
+<label style="font-family: 'Staatliches', cursive; letter-spacing: 1px; font-size:14px;">User Id : </label>
 <?php echo htmlentities($result->id);?>
 </div>
 </div>
 
 <div class="col-md-12">  
 <div class="form-group">
-<label style="font-family: 'Oswald', sans-serif;">Username : </label>
+<label style="font-family: 'Staatliches', cursive; letter-spacing: 1px; font-size:14px;">Username : </label>
 <?php echo htmlentities($result->Username);?>
 </div>
 </div>
 
 <div class="col-md-12">  
 <div class="form-group">
-<label style="font-family: 'Oswald', sans-serif;">First Name : </label>
+<label style="font-family: 'Staatliches', cursive; letter-spacing: 1px; font-size:14px;">First Name : </label>
 <?php echo htmlentities($result->FirstName);?>
 </div>
 </div>
 
 <div class="col-md-12">  
 <div class="form-group">
-<label style="font-family: 'Oswald', sans-serif;">Last Name : </label>
+<label style="font-family: 'Staatliches', cursive; letter-spacing: 1px; font-size:14px;">Last Name : </label>
 <?php echo htmlentities($result->LastName);?>
 </div>
 </div>
 
 <div class="col-md-12">  
 <div class="form-group">
-<label style="font-family: 'Oswald', sans-serif;">Email : </label>
+<label style="font-family: 'Staatliches', cursive; letter-spacing: 1px; font-size:14px;">Email : </label>
 <?php echo htmlentities($result->EmailId);?>
 </div>
 </div>
 
 <div class="col-md-12">  
 <div class="form-group">
-<label style="font-family: 'Oswald', sans-serif;">Mobile Number : </label>
+<label style="font-family: 'Staatliches', cursive; letter-spacing: 1px; font-size:14px;">Mobile Number : </label>
 <?php echo htmlentities($result->MobileNumber);?>
 </div>
 </div>
@@ -129,14 +131,14 @@ foreach($results as $result)
 
 <div class="col-md-12">  
 <div class="form-group">
-<label style="font-family: 'Oswald', sans-serif;">Reg Date : </label>
+<label style="font-family: 'Staatliches', cursive; letter-spacing: 1px; font-size:14px;">Reg Date : </label>
 <?php
 date_default_timezone_set("Asia/Bangkok");
 echo htmlentities($result->RegDate);?>
 </div>
 <?php if($result->UpdationDate!=""){?>
 <div class="form-group">
-<label style="font-family: 'Oswald', sans-serif;">Last Updation Date : </label>
+<label style="font-family: 'Staatliches', cursive; letter-spacing: 1px; font-size:14px;">Last Updation Date : </label>
 <?php echo htmlentities($result->UpdationDate);?>
 </div>
 </div>
@@ -144,7 +146,7 @@ echo htmlentities($result->RegDate);?>
 
 <div class="col-md-12">  
 <div class="form-group">
-<label style="font-family: 'Oswald', sans-serif;">Profile Status : </label>
+<label style="font-family: 'Staatliches', cursive; letter-spacing: 1px; font-size:14px;">Profile Status : </label>
 <?php if($result->Status==1){?>
 <span style="color: green">Active</span>
 <?php } else { ?>
@@ -170,7 +172,7 @@ foreach($results as $result)
 
 <div class="col-md-12">    
 <div class="form-group">
-<label style="font-family: 'Oswald', sans-serif;">Address : </label>
+<label style="font-family: 'Staatliches', cursive; letter-spacing: 1px; font-size:14px;">Address : </label>
 <?php echo htmlentities($result->Address);?>
 </div>
 </div>
@@ -186,7 +188,7 @@ foreach($results as $result)
 {               ?>    
 <div class="col-md-12">    
 <div class="form-group">
-<label style="font-family: 'Oswald', sans-serif;">Province : </label>
+<label style="font-family: 'Staatliches', cursive; letter-spacing: 1px; font-size:14px;">Province : </label>
 <?php echo htmlentities($result->name_en);?>
 </div>
 </div>
@@ -204,7 +206,7 @@ foreach($results as $result)
 {               ?>    
 <div class="col-md-12">    
 <div class="form-group">
-<label style="font-family: 'Oswald', sans-serif;">Amphure : </label>
+<label style="font-family: 'Staatliches', cursive; letter-spacing: 1px; font-size:14px;">Amphure : </label>
 <?php echo htmlentities($result->name_en);?>
 </div>
 </div>
@@ -222,7 +224,7 @@ foreach($results as $result)
 {               ?>    
 <div class="col-md-12">    
 <div class="form-group">
-<label style="font-family: 'Oswald', sans-serif;">District : </label>
+<label style="font-family: 'Staatliches', cursive; letter-spacing: 1px; font-size:14px;">District : </label>
 <?php echo htmlentities($result->name_en);?>
 </div>
 </div>
@@ -244,7 +246,7 @@ foreach($results as $result)
 {               ?>    
 <div class="col-md-12">    
 <div class="form-group">
-<label style="font-family: 'Oswald', sans-serif;">Zip/PostalCode : </label>
+<label style="font-family: 'Staatliches', cursive; letter-spacing: 1px; font-size:14px;">Zip/PostalCode : </label>
 <?php echo htmlentities($result->PostalCode);?>
 </div>
 </div>

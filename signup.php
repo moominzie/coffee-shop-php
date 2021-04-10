@@ -76,6 +76,11 @@ echo "<script>alert('Something went wrong. Please try again');</script>";
 <link rel="preconnect" href="https://fonts.gstatic.com">
   <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@700&display=swap" rel="stylesheet">
 
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Abel&family=Barlow:wght@200;400&family=Bebas+Neue&family=Fjalla+One&family=Fredoka+One&family=Josefin+Sans&family=Open+Sans:wght@300&family=Staatliches&display=swap" rel="stylesheet">
+
+
+
   <script type="text/javascript">
 function valid()
 {
@@ -135,60 +140,6 @@ $("#username").keyup(function(){
 
 
 </head>
-<style>
-    .container {
-        margin-top: 5%;
-    }
-    table,th,td {
-        border: 1px solid black;
-        border-collapse: collapse;
-    }
-    th,td {
-        height: 50px;
-    }
-    table {
-        margin-left: 70px;
-    }
-    h1 {
-        font-family: 'Montserrat', sans-serif, 'Prompt', sans-serif, 'Abril Fatface', cursive;
-    }
-    b {
-        font-family: 'Prompt', sans-serif;
-        font-size: 18px;
-    }
-    .pad-botm {
-    padding-bottom:30px;
-    }
-    .header-line {
-        font-weight:900;
-        padding-bottom:25px;
-        border-bottom:1px solid #eeeeee;
-        text-transform:uppercase;
-        font-family: 'Montserrat', sans-serif;
-    }
-    .text_eng,a {
-        font-family: 'Montserrat', sans-serif, 'Prompt', sans-serif, 'Abril Fatface', cursive;
-        font-size: 16px;
-
-    }  
-    .header1 {
-        padding: 50px;
-        text-align: center;
-        color: white;
-        font-size: 30px;
-        margin-top: -30px;
-    }.header {
-        padding: 70px;
-        text-align: center;
-        background-image: url("assets/img/coffee.jpg") ;
-        background-size: 1290px 550px;
-        color: white;
-        font-size: 30px;
-        margin-top: -30px;
-    }
-
-</style>
-
 <body>
       <!------MENU SECTION START-->
 <?php include('includes/header.php');?>
@@ -211,19 +162,19 @@ $("#username").keyup(function(){
 
 <div class="col-md-6">
     <div class="form-group">
-        <label style="font-family: 'Oswald', sans-serif;">Enter First Name</label>&nbsp;<label style="font-family: 'Oswald', sans-serif; color:red;">*</label>
+        <label style="font-family: 'Staatliches', cursive; letter-spacing: 1px; font-size:14px;">Enter First Name</label>&nbsp;<label style="font-family: 'Oswald', sans-serif; color:red;">*</label>
         <input class="form-control" type="text" name="firstname" autocomplete="off" required />
     </div>
 </div>
 <div class="col-md-6">
     <div class="form-group">
-        <label style="font-family: 'Oswald', sans-serif;">Enter Last Name</label>&nbsp;<label style="font-family: 'Oswald', sans-serif; color:red;">*</label>
+        <label style="font-family: 'Staatliches', cursive; letter-spacing: 1px; font-size:14px;">Enter Last Name</label>&nbsp;<label style="font-family: 'Oswald', sans-serif; color:red;">*</label>
         <input class="form-control" type="text" name="lastname" autocomplete="off" required />
     </div>
 </div>
 <div class="col-md-6">
     <div class="form-group">
-        <label style="font-family: 'Oswald', sans-serif;">Enter Email</label>&nbsp;<label style="font-family: 'Oswald', sans-serif; color:red;">*</label>
+        <label style="font-family: 'Staatliches', cursive; letter-spacing: 1px; font-size:14px;">Enter Email</label>&nbsp;<label style="font-family: 'Oswald', sans-serif; color:red;">*</label>
         <input class="form-control" type="email" name="email" id="emailid" onBlur="checkAvailability()"  autocomplete="off" required />
         <span id="user-availability-status" style="font-size:12px;"></span> 
     </div>
@@ -231,14 +182,14 @@ $("#username").keyup(function(){
 
 <div class="col-md-6">
     <div class="form-group">
-        <label style="font-family: 'Oswald', sans-serif;">Mobile Number</label>&nbsp;<label style="font-family: 'Oswald', sans-serif; color:red;">*</label>
+        <label style="font-family: 'Staatliches', cursive; letter-spacing: 1px; font-size:14px;">Mobile Number</label>&nbsp;<label style="font-family: 'Oswald', sans-serif; color:red;">*</label>
         <input class="form-control" type="text" name="mobileno" id="mobilenumber" maxlength="10" autocomplete="off" required />
     </div>
 </div>
 
 <div class="col-md-12">
     <div class="form-group">
-        <label style="font-family: 'Oswald', sans-serif;">Username</label>&nbsp;<label style="font-family: 'Oswald', sans-serif; color:red;">*</label>
+        <label style="font-family: 'Staatliches', cursive; letter-spacing: 1px; font-size:14px;">Username</label>&nbsp;<label style="font-family: 'Oswald', sans-serif; color:red;">*</label>
         <input class="form-control" type="text" name="username" id="username" autocomplete="off" required />
                 <!-- Response -->
         <div id="uname_response" style="font-size:12px" ></div>
@@ -247,14 +198,14 @@ $("#username").keyup(function(){
 
 <div class="col-md-6">
     <div class="form-group">
-        <label style="font-family: 'Oswald', sans-serif;">Password</label>&nbsp;<label style="font-family: 'Oswald', sans-serif; color:red;">*</label>
+        <label style="font-family: 'Staatliches', cursive; letter-spacing: 1px; font-size:14px;">Password</label>&nbsp;<label style="font-family: 'Oswald', sans-serif; color:red;">*</label>
         <input class="form-control" type="password" name="password" autocomplete="off" required />
     </div>
 </div>
 
 <div class="col-md-6">
     <div class="form-group">
-      <label style="font-family: 'Oswald', sans-serif;">Confirm Password </label>&nbsp;<label style="font-family: 'Oswald', sans-serif; color:red;">*</label>
+      <label style="font-family: 'Staatliches', cursive; letter-spacing: 1px; font-size:14px;">Confirm Password </label>&nbsp;<label style="font-family: 'Oswald', sans-serif; color:red;">*</label>
       <input class="form-control"  type="password" name="confirmpassword" autocomplete="off" required  />
     </div>
 </div>
@@ -267,7 +218,7 @@ $("#username").keyup(function(){
 </div>
 
 <div class="col-md-12">
-    <button type="submit" name="signup" class="btn btn-danger" id="submit" style="font-family: 'Prompt', sans-serif;"> Register </button> 
+    <button type="submit" name="signup" class="btn btn-danger" id="submit" style="font-family: 'Staatliches', cursive; letter-spacing: 1px;"> Register </button> 
 </div>
 
     

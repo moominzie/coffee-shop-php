@@ -1,3 +1,7 @@
+<?php 
+session_start();
+include('includes/connection.php');
+?>
 <head>
 <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300&display=swap" rel="stylesheet">
@@ -17,10 +21,10 @@
         margin-left: 70px;
     }
     h1 {
-        font-family: 'Montserrat', sans-serif, 'Prompt', sans-serif, 'Abril Fatface', cursive;
+      font-family: 'Bebas Neue', cursive;
     }
     b {
-        font-family: 'Prompt', sans-serif;
+      font-family: 'Bebas Neue', cursive;
         font-size: 18px;
     }
     .pad-botm {
@@ -31,10 +35,11 @@
         padding-bottom:25px;
         border-bottom:1px solid #eeeeee;
         text-transform:uppercase;
-        font-family: 'Montserrat', sans-serif;
+        font-family: 'Fjalla One', sans-serif;
+        letter-spacing: 1px; 
     }
     .text_eng,a {
-        font-family: 'Montserrat', sans-serif, 'Prompt', sans-serif, 'Abril Fatface', cursive;
+        font-family: 'Open Sans', sans-serif;
         font-size: 16px;
 
     }  
@@ -55,9 +60,23 @@
     }
 
 </style>
+
+<?php
+
+$sql="SELECT * from  shop ";
+$query = $dbh -> prepare($sql);
+$query->execute();
+$results=$query->fetchAll(PDO::FETCH_OBJ);
+$cnt=1;
+if($query->rowCount() > 0)
+{
+foreach($results as $result)
+{               ?>   
 <div class="header">
-        <h1 style="font-family: 'Caveat', cursive; font-size: 64px">Coffee Shop & Coffee Store</h1>
+        <h1 style="font-family: 'Caveat', cursive; font-size: 64px"><?php echo htmlentities($result->ShopName);?></h1>
       </div>
+      <?php }} ?>
+             
 
       <nav class="navbar navbar-default" style="border-bottom: 5px solid#BC8F8F;">
   <div class="container-fluid">
@@ -67,7 +86,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>                        
       </button>
-      <a class="navbar-brand" href="index.php" >Shop</a>
+      <a class="navbar-brand" href="index.php"style="font-family: 'Caveat', cursive; font-size: 56px" >Home</a>
     </div>
     <?php if($_SESSION['login'])
 {

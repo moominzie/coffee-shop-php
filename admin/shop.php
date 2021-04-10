@@ -2,19 +2,19 @@
 session_start();
 include('includes/connection.php');
 error_reporting(0);
-if(strlen($_SESSION['login'])==0)
+if(strlen($_SESSION['alogin'])==0)
     {   
-header('location:loginmember.php');
+header('location:../loginadmin.php');
 }
 else{ 
 if(isset($_POST['update']))
-{    
+{   
 $username=$_SESSION['username'];  
 $fname=$_POST['firstname'];
 $lname=$_POST['lastname'];
 $mobileno=$_POST['mobileno'];
 
-$sql="update member set FirstName=:fname,LastName=:lname,MobileNumber=:mobileno where Username=:username";
+$sql="update employee set FirstName=:fname,LastName=:lname,MobileNumber=:mobileno where UserName=:username";
 $query = $dbh->prepare($sql);
 $query->bindParam(':username',$username,PDO::PARAM_STR);
 $query->bindParam(':fname',$fname,PDO::PARAM_STR);
@@ -37,7 +37,7 @@ echo '<script>alert("Your profile has been updated")</script>';
     <!--[if IE]>
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
         <![endif]-->
-        <title>Coffee Shop | Coffee Store</title>
+    <title>Online Library Management System | Student Signup</title>
     <!-- BOOTSTRAP CORE STYLE  -->
     <link href="assets/css/bootstrap.css" rel="stylesheet" />
     <!-- FONT AWESOME STYLE  -->
@@ -67,14 +67,11 @@ echo '<script>alert("Your profile has been updated")</script>';
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Abel&family=Barlow:wght@200;400&family=Bebas+Neue&family=Fjalla+One&family=Fredoka+One&family=Josefin+Sans&family=Open+Sans:wght@300&family=Staatliches&display=swap" rel="stylesheet">
 
-
-
-</head>
 <body>
     <!------MENU SECTION START-->
 <?php include('includes/header.php');?>
 <!-- MENU SECTION END-->
-    <div class="content-wrapper">
+<div class="content-wrapper">
          <div class="container">
         <div class="row pad-botm">
             <div class="col-md-12">
@@ -86,15 +83,15 @@ echo '<script>alert("Your profile has been updated")</script>';
              <div class="row">
            
 <div class="col-md-9 col-md-offset-1">
-               <div class="panel panel-danger">
-                        <div class="panel-heading">
+               <div class="panel panel-primary">
+                        <div class="panel-heading" style="font-size: 16px;">
                            My Profile
                         </div>
                         <div class="panel-body">
                             <form name="update" method="post">
 <?php 
 $username=$_SESSION['username'];
-$sql="SELECT id,Username,FirstName,LastName,EmailId,MobileNumber,RegDate,UpdationDate,Status from  member  where Username=:username ";
+$sql="SELECT UserName,AdminEmail,FirstName,LastName,MobileNumber from  employee  where UserName=:username ";
 $query = $dbh -> prepare($sql);
 $query-> bindParam(':username', $username, PDO::PARAM_STR);
 $query->execute();
@@ -105,75 +102,65 @@ if($query->rowCount() > 0)
 foreach($results as $result)
 {               ?>  
 
-<div class="col-md-12">    
+<div class="col-md-12">
 <div class="form-group">
-<label style="font-family: 'Staatliches', cursive; letter-spacing: 1px; font-size:14px;">User Id : </label>
-<?php echo htmlentities($result->id);?>
-</div>
-
-
-<div class="form-group">
-<label style="font-family: 'Staatliches', cursive; letter-spacing: 1px; font-size:14px;">Reg Date : </label>
-<?php
-date_default_timezone_set("Asia/Bangkok");
-echo htmlentities($result->RegDate);?>
-</div>
-<?php if($result->UpdationDate!=""){?>
-<div class="form-group">
-<label style="font-family: 'Staatliches', cursive; letter-spacing: 1px; font-size:14px;">Last Updation Date : </label>
-<?php echo htmlentities($result->UpdationDate);?>
-</div>
-<?php } ?>
-
-
-<div class="form-group">
-<label style="font-family: 'Staatliches', cursive; letter-spacing: 1px; font-size:14px;">Profile Status : </label>
-<?php if($result->Status==1){?>
-<span style="color: green">Active</span>
-<?php } else { ?>
-<span style="color: red">Blocked</span>
-<?php }?>
+<label style="font-family: 'Staatliches', cursive; letter-spacing: 1px; font-size:14px;">Username : </label>
+<?php echo htmlentities($result->UserName);?>
 </div>
 </div>
 
-<div class="col-md-6">
+<div class="col-md-12">
 <div class="form-group">
-<label style="font-family: 'Staatliches', cursive; letter-spacing: 1px; font-size:14px;">Username</label>
-<input class="form-control" type="text" name="username" id="" value="<?php echo htmlentities($result->Username);?>"  autocomplete="off" required readonly />
+<label style="font-family: 'Staatliches', cursive; letter-spacing: 1px; font-size:14px;">Full Name : </label>
+<?php echo htmlentities($result->FirstName);?>&nbsp<?php echo htmlentities($result->LastName);?>
+</div>
 </div>
 
+<div class="col-md-12">
 <div class="form-group">
-<label style="font-family: 'Staatliches', cursive; letter-spacing: 1px; font-size:14px;">Enter Email</label>
-<input class="form-control" type="email" name="email" id="emailid" value="<?php echo htmlentities($result->EmailId);?>"  autocomplete="off" required readonly />
+<label style="font-family: 'Staatliches', cursive; letter-spacing: 1px; font-size:14px;">Mobile Number : </label>
+<?php echo htmlentities($result->MobileNumber);?>
+</div>
+</div>
+
+<div class="col-md-12">
+<div class="form-group">
+<label style="font-family: 'Staatliches', cursive; letter-spacing: 1px; font-size:14px;">Email : </label>
+<?php echo htmlentities($result->AdminEmail);?>
 </div>
 </div>
 
 <div class="col-md-6">
 <div class="form-group">
 <label style="font-family: 'Staatliches', cursive; letter-spacing: 1px; font-size:14px;">Enter First Name</label>
-<input class="form-control" type="text" name="firstname" value="<?php echo htmlentities($result->FirstName);?>" autocomplete="off" required />
+<input class="form-control" type="text" name="firstname" id="" value="<?php echo htmlentities($result->FirstName);?>"  autocomplete="off" required />
 </div>
 </div>
 
 <div class="col-md-6">
 <div class="form-group">
 <label style="font-family: 'Staatliches', cursive; letter-spacing: 1px; font-size:14px;">Enter Last Name</label>
-<input class="form-control" type="text" name="lastname" value="<?php echo htmlentities($result->LastName);?>" autocomplete="off" required />
+<input class="form-control" type="text" name="lastname" id="" value="<?php echo htmlentities($result->LastName);?>"  autocomplete="off" required />
 </div>
 </div>
 
 <div class="col-md-6">
 <div class="form-group">
-<label style="font-family: 'Staatliches', cursive; letter-spacing: 1px; font-size:14px;">Mobile Number :</label>
-<input class="form-control" type="text" name="mobileno" maxlength="10" value="<?php echo htmlentities($result->MobileNumber);?>" autocomplete="off" required />
+<label style="font-family: 'Staatliches', cursive; letter-spacing: 1px; font-size:14px;">Enter Mobile Number</label>
+<input class="form-control" type="text" name="mobileno" value="<?php echo htmlentities($result->MobileNumber);?>" autocomplete="off" required  />
 </div>
-                                    
+</div>
+
+<div class="col-md-6">
+<div class="form-group">
+<label style="font-family: 'Staatliches', cursive; letter-spacing: 1px; font-size:14px;">Enter Email</label>
+<input class="form-control" type="email" name="adminemail" value="<?php echo htmlentities($result->AdminEmail);?>" autocomplete="off" required readonly />
+</div>
 </div>
 
 <?php }} ?>
-
-<div class="col-md-12">                             
-<button type="submit" name="update" class="btn btn-primary" style="font-family: 'Staatliches', cursive; letter-spacing: 1px; font-size:14px;" >Update Now </button>
+<div class="col-md-12">                   
+<button type="submit" name="update" class="btn btn-danger" style="font-family: 'Staatliches', cursive; letter-spacing: 1px;" > Update Now </button>
 </div>
                                     </form>
                             </div>
@@ -181,7 +168,7 @@ echo htmlentities($result->RegDate);?>
                             </div>
         </div>
     </div>
-    </div>
+</div>
      <!-- CONTENT-WRAPPER SECTION END-->
     <?php include('includes/footer.php');?>
     <script src="assets/js/jquery-1.10.2.js"></script>

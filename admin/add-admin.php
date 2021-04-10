@@ -16,15 +16,17 @@ if ($_POST["vercode"] != $_SESSION["vercode"] OR $_SESSION["vercode"]=='')  {
  
 $fname=$_POST['firstname']; 
 $lname=$_POST['lastname']; 
-$email=$_POST['email']; 
+$email=$_POST['email'];
+$mobileno=$_POST['mobileno']; 
 $username=$_POST['username'];
 $password=md5($_POST['password']);
 $status=1;
-$sql="INSERT INTO  employee (FirstName,LastName,AdminEmail,UserName,Password,Status) VALUES(:fname,:lname,:email,:username,:password,:status)";
+$sql="INSERT INTO  employee (FirstName,LastName,AdminEmail,MobileNumber,UserName,Password,Status) VALUES(:fname,:lname,:email,:mobileno,:username,:password,:status)";
 $query = $dbh->prepare($sql);
 $query->bindParam(':fname',$fname,PDO::PARAM_STR);
 $query->bindParam(':lname',$lname,PDO::PARAM_STR);
 $query->bindParam(':email',$email,PDO::PARAM_STR);
+$query->bindParam(':mobileno',$mobileno,PDO::PARAM_STR);
 $query->bindParam(':username',$username,PDO::PARAM_STR);
 $query->bindParam(':password',$password,PDO::PARAM_STR);
 $query->bindParam(':status',$status,PDO::PARAM_STR);
@@ -32,11 +34,10 @@ $query->execute();
 $lastInsertId = $dbh->lastInsertId();
 if($lastInsertId)
 {
-echo '<script>alert("Add the new ADMIN succesfully")</script>';
+  $msg="Add the new ADMIN successfully";
 }
-else 
-{
-echo "<script>alert('Something went wrong. Please try again');</script>";
+else {
+$error="Something went wrong. please try again";  
 }
 }
 }
@@ -79,6 +80,10 @@ echo "<script>alert('Something went wrong. Please try again');</script>";
 
 <link rel="preconnect" href="https://fonts.gstatic.com">
   <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@700&display=swap" rel="stylesheet">
+  
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Abel&family=Barlow:wght@200;400&family=Bebas+Neue&family=Fjalla+One&family=Fredoka+One&family=Josefin+Sans&family=Open+Sans:wght@300&family=Staatliches&display=swap" rel="stylesheet">
+
 
   <script type="text/javascript">
 function valid()
@@ -163,8 +168,23 @@ $("#username").keyup(function(){
 
 </head>
 <style>
-
-</style>
+    .errorWrap {
+    padding: 10px;
+    margin: 0 0 20px 0;
+    background: #fff;
+    border-left: 4px solid #dd3d36;
+    -webkit-box-shadow: 0 1px 1px 0 rgba(0,0,0,.1);
+    box-shadow: 0 1px 1px 0 rgba(0,0,0,.1);
+}
+.succWrap{
+    padding: 10px;
+    margin: 0 0 20px 0;
+    background: #fff;
+    border-left: 4px solid #5cb85c;
+    -webkit-box-shadow: 0 1px 1px 0 rgba(0,0,0,.1);
+    box-shadow: 0 1px 1px 0 rgba(0,0,0,.1);
+}
+    </style>
 
 <body>
       <!------MENU SECTION START-->
@@ -178,10 +198,11 @@ $("#username").keyup(function(){
     <div class="row pad-botm">
             <div class="col-md-12">
                 <h4 class="header-line">Manage Admin</h4>
-                
                             </div>
-
         </div>
+        <?php if($error){?><div class="errorWrap"><strong>ERROR</strong>:<?php echo htmlentities($error); ?> </div><?php } 
+				else if($msg){?><div class="succWrap"><strong>SUCCESS</strong>:<?php echo htmlentities($msg); ?> </div><?php }?>
+
     <div class="panel panel-primary" style="margin-left:20%; margin-right:20%">
     
         <div class="panel-heading" style="font-size: 16px;">Register admin</div>
@@ -189,25 +210,37 @@ $("#username").keyup(function(){
  
  <div class="col-md-6">
     <div class="form-group">
-        <label style="font-family: 'Oswald', sans-serif;">Enter First Name</label>&nbsp;<label for="" style="font-family: 'Oswald', sans-serif; color: red;">* </label>
+        <label style="font-family: 'Staatliches', cursive; letter-spacing: 1px; font-size:14px;">Enter First Name</label>&nbsp;<label for="" style="font-family: 'Oswald', sans-serif; color: red;">* </label>
         <input class="form-control" type="text" name="firstname" autocomplete="off" required />
     </div>
     </div>
+
     <div class="col-md-6">
     <div class="form-group">
-        <label style="font-family: 'Oswald', sans-serif;">Enter Last Name</label>&nbsp;<label for="" style="font-family: 'Oswald', sans-serif; color: red;">* </label>
+        <label style="font-family: 'Staatliches', cursive; letter-spacing: 1px; font-size:14px;">Enter Last Name</label>&nbsp;<label for="" style="font-family: 'Oswald', sans-serif; color: red;">* </label>
         <input class="form-control" type="text" name="lastname" autocomplete="off" required />
     </div>
     </div>
 
     <div class="col-md-6">
     <div class="form-group">
-        <label style="font-family: 'Oswald', sans-serif;">Enter Email</label>&nbsp;<label for="" style="font-family: 'Oswald', sans-serif; color: red;">* </label>
+        <label style="font-family: 'Staatliches', cursive; letter-spacing: 1px; font-size:14px;">Enter Email</label>&nbsp;<label for="" style="font-family: 'Oswald', sans-serif; color: red;">* </label>
         <input class="form-control" type="email" name="email" id="adminemail" onBlur="checkEmailAvailability()"  autocomplete="off" required />
         <span id="email-availability-status" style="font-size:12px;"></span> 
     </div>
+
     <div class="form-group">
-        <label style="font-family: 'Oswald', sans-serif;">Enter Username</label>&nbsp;<label for="" style="font-family: 'Oswald', sans-serif; color: red;">* </label>
+        <label style="font-family: 'Staatliches', cursive; letter-spacing: 1px; font-size:14px;">Enter Mobile Number</label>&nbsp;<label for="" style="font-family: 'Oswald', sans-serif; color: red;">* </label>
+        <input class="form-control" type="text" name="mobileno" id="mobileno" onBlur=""  autocomplete="off" required />
+        <span id="email-availability-status" style="font-size:12px;"></span> 
+    </div>
+</div>
+
+    
+
+    <div class="col-md-6">
+    <div class="form-group">
+        <label style="font-family: 'Staatliches', cursive; letter-spacing: 1px; font-size:14px;">Enter Username</label>&nbsp;<label for="" style="font-family: 'Oswald', sans-serif; color: red;">* </label>
         <input class="form-control" type="text" name="username" id="username" onBlur="checkUsernameAvailability()" autocomplete="off" required />
         <span id="username-availability-status" style="font-size:12px;"></span> 
           <!-- Response -->
@@ -217,21 +250,19 @@ $("#username").keyup(function(){
 
     <div class="col-md-6">
     <div class="form-group">
-        <label style="font-family: 'Oswald', sans-serif;">Password</label>&nbsp;<label for="" style="font-family: 'Oswald', sans-serif; color: red;">* </label>
+        <label style="font-family: 'Staatliches', cursive; letter-spacing: 1px; font-size:14px;">Password</label>&nbsp;<label for="" style="font-family: 'Oswald', sans-serif; color: red;">* </label>
         <input class="form-control" type="password" name="password" autocomplete="off" required />
     </div>
     <div class="form-group">
-      <label style="font-family: 'Oswald', sans-serif;">Confirm Password </label>&nbsp;<label for="" style="font-family: 'Oswald', sans-serif; color: red;">* </label>
+      <label style="font-family: 'Staatliches', cursive; letter-spacing: 1px; font-size:14px;">Confirm Password </label>&nbsp;<label for="" style="font-family: 'Oswald', sans-serif; color: red;">* </label>
       <input class="form-control"  type="password" name="confirmpassword" autocomplete="off" required  />
     </div>
-    </div>
-
-<div class="col-md-12">
+   
     <div class="form-group">
-    <label style="font-family: 'Montserrat', sans-serif">Verification code : </label>
+    <label style="font-family: 'Staatliches', cursive; letter-spacing: 1px; font-size:14px;">Verification code : </label>
     <input type="text"  name="vercode" maxlength="5" autocomplete="off" required style="width: 150px; height: 25px;" />&nbsp;<img src="captcha.php">
     </div>  
-    <button type="submit" name="regadmin" class="btn btn-danger" id="submit" style="font-family: 'Prompt', sans-serif;"> Add Admin </button>
+    <button type="submit" name="regadmin" class="btn btn-danger" id="submit" style="font-family: 'Staatliches', cursive; letter-spacing: 1px;"> Add Admin </button>
     </div>
     </div>
     <!-- REGISTER END-->

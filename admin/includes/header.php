@@ -17,10 +17,10 @@
         margin-left: 70px;
     }
     h1 {
-        font-family: 'Montserrat', sans-serif, 'Prompt', sans-serif, 'Abril Fatface', cursive;
+      font-family: 'Bebas Neue', cursive;
     }
     b {
-        font-family: 'Prompt', sans-serif;
+      font-family: 'Bebas Neue', cursive;
         font-size: 18px;
     }
     .pad-botm {
@@ -31,10 +31,12 @@
         padding-bottom:25px;
         border-bottom:1px solid #eeeeee;
         text-transform:uppercase;
-        font-family: 'Montserrat', sans-serif;
+        font-family: 'Fjalla One', sans-serif;
+        letter-spacing: 1px; 
+
     }
     .text_eng,a {
-        font-family: 'Montserrat', sans-serif, 'Prompt', sans-serif, 'Abril Fatface', cursive;
+        font-family: 'Open Sans', sans-serif;
         font-size: 16px;
 
     }  
@@ -65,7 +67,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>                        
       </button>
-      <a class="navbar-brand" href="dashboard.php" >Shop</a>
+    
     </div>
 
     <?php if($_SESSION['alogin'])
@@ -110,7 +112,7 @@
                 <li role="presentation"><a role="menuitem" tabindex="-1" href="shop-information.php">Shop Information</a></li>
             </ul>
           </li>
-         <a href="logout.php" class="btn btn-danger pull-right" style="margin-top: 8px">Logout</a>
+         <a href="logout.php" class="btn btn-danger pull-right" style="margin-top: 8px;">Logout</a>
         </ul>
 
         <?php } else { ?>

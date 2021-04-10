@@ -70,6 +70,10 @@ echo '<script>alert("Your address has been added")</script>';
 
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Abel&family=Barlow:wght@200;400&family=Bebas+Neue&family=Fjalla+One&family=Fredoka+One&family=Josefin+Sans&family=Open+Sans:wght@300&family=Staatliches&display=swap" rel="stylesheet">
+
+
 </head>
 <script>
 function getAmphure() {
@@ -126,14 +130,14 @@ foreach($results as $result)
 
 <div class="col-md-12">
 <div class="form-group">
-<label style="font-family: 'Oswald', sans-serif;">Username</label>
+<label style="font-family: 'Staatliches', cursive; letter-spacing: 1px; font-size:14px;">Username</label>
 <input class="form-control" type="text" name="username" id="" value="<?php echo htmlentities($result->Username);?>"  autocomplete="off" required readonly />
 </div>
 </div>
 
 <div class="col-md-12">
 <div class="form-group">
-<label style="font-family: 'Oswald', sans-serif;">Address</label>&nbsp;<label for="" style="font-family: 'Oswald', sans-serif; color: red;">* </label>
+<label style="font-family: 'Staatliches', cursive; letter-spacing: 1px; font-size:14px;">Address</label>&nbsp;<label for="" style="font-family: 'Oswald', sans-serif; color: red;">* </label>
 <textarea class="form-control" type="email" name="address" id="" value=""  autocomplete="off" required></textarea>
 </div>
 </div>
@@ -141,7 +145,7 @@ foreach($results as $result)
   <!-- START TITLE -->     
   
 <div class="form-group col-md-4">
-    <label style="font-family: 'Oswald', sans-serif;">Province</label>&nbsp;<label for="" style="font-family: 'Oswald', sans-serif; color: red;">* </label>
+    <label style="font-family: 'Staatliches', cursive; letter-spacing: 1px; font-size:14px;">Province</label>&nbsp;<label for="" style="font-family: 'Oswald', sans-serif; color: red;">* </label>
         <!-- END TITLE -->
     
     <select name="province" id="province_id" class="form-control" onBlur="getAmphure()" required>
@@ -160,7 +164,7 @@ foreach($results as $result)
 </div>
 
 <div class="form-group col-md-4">
-<label style="font-family: 'Oswald', sans-serif;">Amphure</label>&nbsp;<label for="" style="font-family: 'Oswald', sans-serif; color: red;">* </label>
+<label style="font-family: 'Staatliches', cursive; letter-spacing: 1px; font-size:14px;">Amphure</label>&nbsp;<label for="" style="font-family: 'Oswald', sans-serif; color: red;">* </label>
 <select name="amphure" id="amphure_id" class="form-control">
 <option value='0'> Select Amphure </option>
 
@@ -168,7 +172,7 @@ foreach($results as $result)
 </div>
 
 <div class="form-group col-md-4">
-<label style="font-family: 'Oswald', sans-serif;">District</label>&nbsp;<label for="" style="font-family: 'Oswald', sans-serif; color: red;">* </label>
+<label style="font-family: 'Staatliches', cursive; letter-spacing: 1px; font-size:14px;">District</label>&nbsp;<label for="" style="font-family: 'Oswald', sans-serif; color: red;">* </label>
 <select name="district" id="district_id" class="form-control">
 <option value='0'> Select District</option>
 
@@ -243,7 +247,7 @@ foreach($results as $result)
 
 <div class="col-md-4">
 <div class="form-group">
-<label style="font-family: 'Oswald', sans-serif;">Zip/Postal Code</label>&nbsp;<label for="" style="font-family: 'Oswald', sans-serif; color: red;">* </label>
+<label style="font-family: 'Staatliches', cursive; letter-spacing: 1px; font-size:14px;">Zip/Postal Code</label>&nbsp;<label for="" style="font-family: 'Oswald', sans-serif; color: red;">* </label>
 <input class="form-control" type="text" name="postalcode" id="" value=""  autocomplete="off" required />
 </div>
 </div>
@@ -251,7 +255,7 @@ foreach($results as $result)
   <!-- START TITLE -->        
 <div class="col-md-4">  
 <div class="form-group">
-<label style="font-family: 'Oswald', sans-serif;">Address Type</label>&nbsp;<label for="" style="font-family: 'Oswald', sans-serif; color: red;">* </label>
+<label style="font-family: 'Staatliches', cursive; letter-spacing: 1px; font-size:14px;">Address Type</label>&nbsp;<label for="" style="font-family: 'Oswald', sans-serif; color: red;">* </label>
         <!-- END TITLE -->
     <!-- START SELECT CM FORM ID TITLE -->
 <select class="form-control" name="type" id="" required>
@@ -275,7 +279,7 @@ foreach($results as $result)
 <?php }} ?>
 
 <div class="col-md-12">                             
-<button type="submit" name="add" class="btn btn-primary" >Add Address </button>
+<button type="submit" name="add" class="btn btn-primary" style="font-family: 'Staatliches', cursive; letter-spacing: 1px; font-size:14px;" >Add Address </button>
 </div>
 </form>
 </div>

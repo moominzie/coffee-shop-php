@@ -68,6 +68,9 @@ $error="Your current password is wrong";
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@700&display=swap" rel="stylesheet">
 
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Abel&family=Barlow:wght@200;400&family=Bebas+Neue&family=Fjalla+One&family=Fredoka+One&family=Josefin+Sans&family=Open+Sans:wght@300&family=Staatliches&display=swap" rel="stylesheet">
+
 
   <style>
     .errorWrap {
@@ -125,21 +128,21 @@ Change Password
 <form role="form" method="post" onSubmit="return valid();" name="chngpwd">
 
 <div class="form-group">
-<label style="font-family: 'Oswald', sans-serif;">Current Password</label>&nbsp;<label for="" style="font-family: 'Oswald', sans-serif; color: red;">* </label>
+<label style="font-family: 'Staatliches', cursive; letter-spacing: 1px; font-size:14px;">Current Password</label>&nbsp;<label for="" style="font-family: 'Oswald', sans-serif; color: red;">* </label>
 <input class="form-control" type="password" name="password" autocomplete="off" required  />
 </div>
 
 <div class="form-group">
-<label style="font-family: 'Oswald', sans-serif;">Enter Password</label>&nbsp;<label for="" style="font-family: 'Oswald', sans-serif; color: red;">* </label>
+<label style="font-family: 'Staatliches', cursive; letter-spacing: 1px; font-size:14px;">Enter Password</label>&nbsp;<label for="" style="font-family: 'Oswald', sans-serif; color: red;">* </label>
 <input class="form-control" type="password" name="newpassword" autocomplete="off" required  />
 </div>
 
 <div class="form-group">
-<label style="font-family: 'Oswald', sans-serif;">Confirm Password </label>&nbsp;<label for="" style="font-family: 'Oswald', sans-serif; color: red;">* </label>
+<label style="font-family: 'Staatliches', cursive; letter-spacing: 1px; font-size:14px;">Confirm Password </label>&nbsp;<label for="" style="font-family: 'Oswald', sans-serif; color: red;">* </label>
 <input class="form-control"  type="password" name="confirmpassword" autocomplete="off" required  />
 </div>
 
- <button type="submit" name="change" class="btn btn-primary">Change Password </button> 
+ <button type="submit" name="change" class="btn btn-primary" style="font-family: 'Staatliches', cursive; letter-spacing: 1px; font-size:14px;">Change Password </button> 
 </form>
  </div>
 </div>

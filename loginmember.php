@@ -60,15 +60,18 @@ echo "<script>alert('Invalid Details');</script>";
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;400&display=swap" rel="stylesheet">
 
   <link rel="preconnect" href="https://fonts.gstatic.com">
-<link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&display=swap" rel="stylesheet">
 
   <link rel="preconnect" href="https://fonts.gstatic.com">
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;400&family=Pridi:wght@200&family=Prompt:wght@200&display=swap" rel="stylesheet">
   <link rel="preconnect" href="https://fonts.gstatic.com">
-<link href="https://fonts.googleapis.com/css2?family=Mitr:wght@300&family=Oswald&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Mitr:wght@300&family=Oswald&display=swap" rel="stylesheet">
 
-<link rel="preconnect" href="https://fonts.gstatic.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
   <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@700&display=swap" rel="stylesheet">
+
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Abel&family=Barlow:wght@200;400&family=Bebas+Neue&family=Fjalla+One&family=Fredoka+One&family=Josefin+Sans&family=Open+Sans:wght@300&family=Staatliches&display=swap" rel="stylesheet">
 
 </head>
 <body>
@@ -92,19 +95,19 @@ echo "<script>alert('Invalid Details');</script>";
         <div class="panel-body" style="">
               
     <div class="form-group">
-        <label style="font-family:'Oswald', sans-serif;">Enter Email</label>
+        <label style="font-family: 'Staatliches', cursive; letter-spacing: 1px; font-size:14px;">Enter Email</label>
         <input class="form-control" type="text" name="emailid" autocomplete="off" required />
     </div>
     <div class="form-group">
-        <label style="font-family: 'Oswald', sans-serif;">Password</label>
+        <label style="font-family: 'Staatliches', cursive; letter-spacing: 1px; font-size:14px;">Password</label>
         <input class="form-control" type="password" name="password" required autocomplete="off"  />
-        <p class="help-block"><a href="member-forgot-password.php"style="font-family: 'Prompt', sans-serif; color: #EC7063; font-size: 14px">Forget Password?</a></p>
+        <p class="help-block"><a href="member-forgot-password.php"style="font-family: 'Open Sans', sans-serif; color: #EC7063; font-size: 14px">Forget Password?</a></p>
     </div>
     <div class="form-group">
-       <label style="font-family: 'Montserrat', sans-serif">Verification code : </label>
+       <label style="font-family: 'Staatliches', cursive; letter-spacing: 1px; font-size:14px;">Verification code : </label>
         <input type="text"  name="vercode" maxlength="5" autocomplete="off" required style="width: 150px; height: 25px;" />&nbsp;<img src="captcha.php">
     </div>  
-    <button type="submit" name="login" class="btn btn-info" style="font-family: 'Prompt', sans-serif;"> Login </button> | <a href="signup.php" style="font-family: 'Prompt', sans-serif;">Do not register?</a>
+    <button type="submit" name="login" class="btn btn-info" style="font-family: 'Staatliches', cursive; letter-spacing: 1px;"> Login </button> | <a href="signup.php" style="font-family: 'Open Sans', sans-serif;">Do not register?</a>
  
   </div>
         </div>
