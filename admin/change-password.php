@@ -117,7 +117,7 @@ return true;
 <!--LOGIN PANEL START-->           
 <div class="row">
 <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3" >
-<div class="panel panel-info">
+<div class="panel panel-primary">
 <div class="panel-heading">
 Change Password
 </div>
@@ -139,7 +139,7 @@ Change Password
 <input class="form-control"  type="password" name="confirmpassword" autocomplete="off" required  />
 </div>
 
- <button type="submit" name="change" class="btn btn-info">Change Password </button> 
+ <button type="submit" name="change" class="btn btn-danger">Change Password </button> 
 </form>
  </div>
 </div>

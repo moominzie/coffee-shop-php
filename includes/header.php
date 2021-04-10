@@ -98,7 +98,10 @@
         <li class="dropdown">
             <a class="dropdown-toggle" data-toggle="dropdown" id="ddlmenuItem"  href="#">Account<i class="fa fa-angle-down"></i></a>
             <ul class="dropdown-menu" role="menu" aria-labelledby="ddlmenuItem">
-                <li role="presentation"><a role="menuitem" tabindex="-1" href="my-profile.php"> My Profile</a></li>
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="my-account.php"> My Account</a></li>
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="my-profile.php"> Edit Profile</a></li>
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="my-address.php"> Edit Address</a></li>
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="add-address.php"> Add Address</a></li>
                 <li role="presentation"><a role="menuitem" tabindex="-1" href="change-password.php"> Change Password </a></li>
             </ul>
           </li>

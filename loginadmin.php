@@ -13,7 +13,7 @@ if ($_POST["vercode"] != $_SESSION["vercode"] OR $_SESSION["vercode"]=='')  {
     } 
         else {
           $username=$_POST['username'];
-          $password=($_POST['password']);
+          $password=md5($_POST['password']);
           $sql ="SELECT UserName,Password,Status FROM employee WHERE UserName=:username and Password=:password";
           $query= $dbh -> prepare($sql);
           $query-> bindParam(':username', $username, PDO::PARAM_STR);

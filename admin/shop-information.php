@@ -10,14 +10,12 @@ else{
 if(isset($_POST['update']))
 {   
 $username=$_SESSION['username'];  
-$fname=$_POST['firstname'];
-$lname=$_POST['lastname'];
+$fname=$_POST['fullname'];
 
-$sql="update employee set FirstName=:fname,LastName=:lname where UserName=:username";
+$sql="update employee set FullName=:fname where UserName=:username";
 $query = $dbh->prepare($sql);
 $query->bindParam(':username',$username,PDO::PARAM_STR);
 $query->bindParam(':fname',$fname,PDO::PARAM_STR);
-$query->bindParam(':lname',$lname,PDO::PARAM_STR);
 $query->execute();
 
 echo '<script>alert("Your profile has been updated")</script>';
@@ -90,7 +88,7 @@ echo '<script>alert("Your profile has been updated")</script>';
                             <form name="update" method="post">
 <?php 
 $username=$_SESSION['username'];
-$sql="SELECT UserName,AdminEmail,FirstName,LastName from  employee  where UserName=:username ";
+$sql="SELECT UserName,AdminEmail,FullName from  employee  where UserName=:username ";
 $query = $dbh -> prepare($sql);
 $query-> bindParam(':username', $username, PDO::PARAM_STR);
 $query->execute();
@@ -107,13 +105,8 @@ foreach($results as $result)
 </div>
 
 <div class="form-group">
-<label style="font-family: 'Oswald', sans-serif;">Enter First Name</label>
-<input class="form-control" type="text" name="fullname" id="" value="<?php echo htmlentities($result->FirstName);?>"  autocomplete="off" required />
-</div>
-
-<div class="form-group">
-<label style="font-family: 'Oswald', sans-serif;">Enter Last Name</label>
-<input class="form-control" type="text" name="lastname" id="" value="<?php echo htmlentities($result->LastName);?>"  autocomplete="off" required />
+<label style="font-family: 'Oswald', sans-serif;">Enter Full Name</label>
+<input class="form-control" type="text" name="fullname" id="" value="<?php echo htmlentities($result->FullName);?>"  autocomplete="off" required />
 </div>
 
 <div class="form-group">

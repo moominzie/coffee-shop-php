@@ -10,26 +10,17 @@ if ($_POST["vercode"] != $_SESSION["vercode"] OR $_SESSION["vercode"]=='')  {
     } 
         else {    
 
-//Code for student ID
-$count_my_page = ("userid.txt");
-$hits = file($count_my_page);
-$hits[0] ++;
-$fp = fopen($count_my_page , "wa+");
-fputs($fp , "$hits[0]");
-fclose($fp); 
-$UserId= $hits[0];  
-$fname=$_POST['fullname']; 
-$address=($_POST['address']); 
+$fname=$_POST['firstname']; 
+$lname=($_POST['lastname']); 
 $username=$_POST['username'];
 $email=$_POST['email']; 
 $mobileno=$_POST['mobileno'];
 $password=($_POST['password']); 
 $status=1;
-$sql="INSERT INTO  member (UserId,Username,FullName,Address,EmailId,MobileNumber,Password,Status) VALUES(:UserId,:username,:fname,:address,:email,:mobileno,:password,:status)";
+$sql="INSERT INTO  member (Username,FirstName,LastName,EmailId,MobileNumber,Password,Status) VALUES(:username,:fname,:lname,:email,:mobileno,:password,:status)";
 $query = $dbh->prepare($sql);
-$query->bindParam(':UserId',$UserId,PDO::PARAM_STR);
 $query->bindParam(':fname',$fname,PDO::PARAM_STR);
-$query->bindParam(':address',$address,PDO::PARAM_STR);
+$query->bindParam(':lname',$lname,PDO::PARAM_STR);
 $query->bindParam(':username',$username,PDO::PARAM_STR);
 $query->bindParam(':email',$email,PDO::PARAM_STR);
 $query->bindParam(':mobileno',$mobileno,PDO::PARAM_STR);
@@ -39,7 +30,7 @@ $query->execute();
 $lastInsertId = $dbh->lastInsertId();
 if($lastInsertId)
 {
-echo '<script>alert("Your Registration successfull and your member id is  "+"'.$UserId.'")</script>';
+echo '<script>alert("Your Registration successfull and your Username is  "+"'.$username.'" )</script>';
 }
 else 
 {
@@ -220,14 +211,14 @@ $("#username").keyup(function(){
 
 <div class="col-md-6">
     <div class="form-group">
-        <label style="font-family: 'Oswald', sans-serif;">Enter Name</label>&nbsp;<label style="font-family: 'Oswald', sans-serif; color:red;">*</label>
-        <input class="form-control" type="text" name="fullname" autocomplete="off" required />
+        <label style="font-family: 'Oswald', sans-serif;">Enter First Name</label>&nbsp;<label style="font-family: 'Oswald', sans-serif; color:red;">*</label>
+        <input class="form-control" type="text" name="firstname" autocomplete="off" required />
     </div>
 </div>
 <div class="col-md-6">
     <div class="form-group">
         <label style="font-family: 'Oswald', sans-serif;">Enter Last Name</label>&nbsp;<label style="font-family: 'Oswald', sans-serif; color:red;">*</label>
-        <input class="form-control" type="text" name="fullname" autocomplete="off" required />
+        <input class="form-control" type="text" name="lastname" autocomplete="off" required />
     </div>
 </div>
 <div class="col-md-6">

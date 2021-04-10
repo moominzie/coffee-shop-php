@@ -47,8 +47,6 @@
     }.header {
         padding: 70px;
         text-align: center;
-        background-image: url("assets/img/coffee.jpg") ;
-        background-size: 1290px 550px;
         color: white;
         font-size: 30px;
         margin-top: -30px;
@@ -56,10 +54,10 @@
 
 </style>
 <div class="header">
-        <h1 style="font-family: 'Caveat', cursive; font-size: 64px">Coffee Shop & Coffee Store</h1>
+        
       </div>
 
-      <nav class="navbar navbar-default" style="border-bottom: 5px solid#BC8F8F;">
+      <nav class="navbar navbar-default" style="border-bottom: 5px solid #4682B4;">
   <div class="container-fluid">
     <div class="navbar-header">
       <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
@@ -109,7 +107,7 @@
             <a class="dropdown-toggle" data-toggle="dropdown" id="ddlmenuItem"  href="#">Manage Shop<i class="fa fa-angle-down"></i></a>
             <ul class="dropdown-menu" role="menu" aria-labelledby="ddlmenuItem">
                 <li role="presentation"><a role="menuitem" tabindex="-1" href="add-admin.php">Add admin user</a></li>
-                <li role="presentation"><a role="menuitem" tabindex="-1" href="change-password.php">Shop Information</a></li>
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="shop-information.php">Shop Information</a></li>
             </ul>
           </li>
          <a href="logout.php" class="btn btn-danger pull-right" style="margin-top: 8px">Logout</a>

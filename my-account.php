@@ -5,25 +5,7 @@ error_reporting(0);
 if(strlen($_SESSION['login'])==0)
     {   
 header('location:loginmember.php');
-}
-else{ 
-if(isset($_POST['update']))
-{    
-$username=$_SESSION['username'];  
-$fname=$_POST['firstname'];
-$lname=$_POST['lastname'];
-$mobileno=$_POST['mobileno'];
-
-$sql="update member set FirstName=:fname,LastName=:lname,MobileNumber=:mobileno where Username=:username";
-$query = $dbh->prepare($sql);
-$query->bindParam(':username',$username,PDO::PARAM_STR);
-$query->bindParam(':fname',$fname,PDO::PARAM_STR);
-$query->bindParam(':lname',$lname,PDO::PARAM_STR);
-$query->bindParam(':mobileno',$mobileno,PDO::PARAM_STR);
-$query->execute();
-
-echo '<script>alert("Your profile has been updated")</script>';
-}
+    }
 
 ?>
 
@@ -75,7 +57,7 @@ echo '<script>alert("Your profile has been updated")</script>';
          <div class="container">
         <div class="row pad-botm">
             <div class="col-md-12">
-                <h4 class="header-line">My Profile</h4>
+                <h4 class="header-line">Account Info</h4>
                 
                             </div>
 
@@ -85,7 +67,7 @@ echo '<script>alert("Your profile has been updated")</script>';
 <div class="col-md-9 col-md-offset-1">
                <div class="panel panel-danger">
                         <div class="panel-heading">
-                           My Profile
+                           My Account
                         </div>
                         <div class="panel-body">
                             <form name="update" method="post">
@@ -107,8 +89,45 @@ foreach($results as $result)
 <label style="font-family: 'Oswald', sans-serif;">User Id : </label>
 <?php echo htmlentities($result->id);?>
 </div>
+</div>
+
+<div class="col-md-12">  
+<div class="form-group">
+<label style="font-family: 'Oswald', sans-serif;">Username : </label>
+<?php echo htmlentities($result->Username);?>
+</div>
+</div>
+
+<div class="col-md-12">  
+<div class="form-group">
+<label style="font-family: 'Oswald', sans-serif;">First Name : </label>
+<?php echo htmlentities($result->FirstName);?>
+</div>
+</div>
+
+<div class="col-md-12">  
+<div class="form-group">
+<label style="font-family: 'Oswald', sans-serif;">Last Name : </label>
+<?php echo htmlentities($result->LastName);?>
+</div>
+</div>
+
+<div class="col-md-12">  
+<div class="form-group">
+<label style="font-family: 'Oswald', sans-serif;">Email : </label>
+<?php echo htmlentities($result->EmailId);?>
+</div>
+</div>
+
+<div class="col-md-12">  
+<div class="form-group">
+<label style="font-family: 'Oswald', sans-serif;">Mobile Number : </label>
+<?php echo htmlentities($result->MobileNumber);?>
+</div>
+</div>
 
 
+<div class="col-md-12">  
 <div class="form-group">
 <label style="font-family: 'Oswald', sans-serif;">Reg Date : </label>
 <?php
@@ -120,9 +139,10 @@ echo htmlentities($result->RegDate);?>
 <label style="font-family: 'Oswald', sans-serif;">Last Updation Date : </label>
 <?php echo htmlentities($result->UpdationDate);?>
 </div>
+</div>
 <?php } ?>
 
-
+<div class="col-md-12">  
 <div class="form-group">
 <label style="font-family: 'Oswald', sans-serif;">Profile Status : </label>
 <?php if($result->Status==1){?>
@@ -133,45 +153,107 @@ echo htmlentities($result->RegDate);?>
 </div>
 </div>
 
-<div class="col-md-6">
-<div class="form-group">
-<label style="font-family: 'Oswald', sans-serif;">Username</label>
-<input class="form-control" type="text" name="username" id="" value="<?php echo htmlentities($result->Username);?>"  autocomplete="off" required readonly />
-</div>
 
-<div class="form-group">
-<label style="font-family: 'Oswald', sans-serif;">Enter Email</label>
-<input class="form-control" type="email" name="email" id="emailid" value="<?php echo htmlentities($result->EmailId);?>"  autocomplete="off" required readonly />
-</div>
-</div>
+<?php
+$type=1;
+$sql="SELECT id,Address,Username,AmphureId,ProvinceId,DistrictId,PostalCode,TypeAddress from  address  where Username=:username and TypeAddress=:type ";
+$query = $dbh -> prepare($sql);
+$query-> bindParam(':username', $username, PDO::PARAM_STR);
+$query-> bindParam(':type', $type, PDO::PARAM_STR);
+$query->execute();
+$results=$query->fetchAll(PDO::FETCH_OBJ);
+$cnt=1;
+if($query->rowCount() > 0)
+{
+foreach($results as $result)
+{               ?>  
 
-<div class="col-md-6">
+<div class="col-md-12">    
 <div class="form-group">
-<label style="font-family: 'Oswald', sans-serif;">Enter First Name</label>
-<input class="form-control" type="text" name="firstname" value="<?php echo htmlentities($result->FirstName);?>" autocomplete="off" required />
-</div>
-</div>
-
-<div class="col-md-6">
-<div class="form-group">
-<label style="font-family: 'Oswald', sans-serif;">Enter Last Name</label>
-<input class="form-control" type="text" name="lastname" value="<?php echo htmlentities($result->LastName);?>" autocomplete="off" required />
+<label style="font-family: 'Oswald', sans-serif;">Address : </label>
+<?php echo htmlentities($result->Address);?>
 </div>
 </div>
 
-<div class="col-md-6">
+<?php $sql = "SELECT provinces.name_en FROM provinces join address on address.ProvinceId=provinces.id where address.TypeAddress in (1) group by address.TypeAddress";
+$query = $dbh -> prepare($sql);
+$query->execute();
+$results=$query->fetchAll(PDO::FETCH_OBJ);
+$cnt=1;
+if($query->rowCount() > 0)
+{
+foreach($results as $result)
+{               ?>    
+<div class="col-md-12">    
 <div class="form-group">
-<label style="font-family: 'Oswald', sans-serif;">Mobile Number :</label>
-<input class="form-control" type="text" name="mobileno" maxlength="10" value="<?php echo htmlentities($result->MobileNumber);?>" autocomplete="off" required />
+<label style="font-family: 'Oswald', sans-serif;">Province : </label>
+<?php echo htmlentities($result->name_en);?>
 </div>
-                                    
 </div>
+<?php }} ?>
+<!-- END PROVINCE -->
+
+<?php $sql = "SELECT amphures.name_en FROM amphures join address on address.AmphureId=amphures.id where address.TypeAddress in (1) group by address.TypeAddress";
+$query = $dbh -> prepare($sql);
+$query->execute();
+$results=$query->fetchAll(PDO::FETCH_OBJ);
+$cnt=1;
+if($query->rowCount() > 0)
+{
+foreach($results as $result)
+{               ?>    
+<div class="col-md-12">    
+<div class="form-group">
+<label style="font-family: 'Oswald', sans-serif;">Amphure : </label>
+<?php echo htmlentities($result->name_en);?>
+</div>
+</div>
+<?php }} ?>
+<!-- END AMPHURE -->
+
+<?php $sql = "SELECT districts.name_en FROM districts join address on address.DistrictId=districts.id where address.TypeAddress in (1) group by address.TypeAddress";
+$query = $dbh -> prepare($sql);
+$query->execute();
+$results=$query->fetchAll(PDO::FETCH_OBJ);
+$cnt=1;
+if($query->rowCount() > 0)
+{
+foreach($results as $result)
+{               ?>    
+<div class="col-md-12">    
+<div class="form-group">
+<label style="font-family: 'Oswald', sans-serif;">District : </label>
+<?php echo htmlentities($result->name_en);?>
+</div>
+</div>
+<?php }} ?>
+<!-- END DISTRICT -->
+
+<?php 
+$type=1;
+$sql = "SELECT PostalCode,TypeAddress FROM address WHERE Username=:username and TypeAddress=:type";
+$query = $dbh -> prepare($sql);
+$query-> bindParam(':username', $username, PDO::PARAM_STR);
+$query-> bindParam(':type', $type, PDO::PARAM_STR);
+$query->execute();
+$results=$query->fetchAll(PDO::FETCH_OBJ);
+$cnt=1;
+if($query->rowCount() > 0)
+{
+foreach($results as $result)
+{               ?>    
+<div class="col-md-12">    
+<div class="form-group">
+<label style="font-family: 'Oswald', sans-serif;">Zip/PostalCode : </label>
+<?php echo htmlentities($result->PostalCode);?>
+</div>
+</div>
+<?php }} ?>
+<?php }} ?>
+<!-- END AMPHURE -->
 
 <?php }} ?>
 
-<div class="col-md-12">                             
-<button type="submit" name="update" class="btn btn-primary" >Update Now </button>
-</div>
                                     </form>
                             </div>
                         </div>
@@ -188,4 +270,3 @@ echo htmlentities($result->RegDate);?>
     <script src="assets/js/custom.js"></script>
 </body>
 </html>
-<?php } ?>

@@ -117,7 +117,7 @@ return true;
 <!--LOGIN PANEL START-->           
 <div class="row">
 <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3" >
-<div class="panel panel-info">
+<div class="panel panel-danger">
 <div class="panel-heading">
 Change Password
 </div>
@@ -125,21 +125,21 @@ Change Password
 <form role="form" method="post" onSubmit="return valid();" name="chngpwd">
 
 <div class="form-group">
-<label style="font-family: 'Oswald', sans-serif;">Current Password</label>
+<label style="font-family: 'Oswald', sans-serif;">Current Password</label>&nbsp;<label for="" style="font-family: 'Oswald', sans-serif; color: red;">* </label>
 <input class="form-control" type="password" name="password" autocomplete="off" required  />
 </div>
 
 <div class="form-group">
-<label style="font-family: 'Oswald', sans-serif;">Enter Password</label>
+<label style="font-family: 'Oswald', sans-serif;">Enter Password</label>&nbsp;<label for="" style="font-family: 'Oswald', sans-serif; color: red;">* </label>
 <input class="form-control" type="password" name="newpassword" autocomplete="off" required  />
 </div>
 
 <div class="form-group">
-<label style="font-family: 'Oswald', sans-serif;">Confirm Password </label>
+<label style="font-family: 'Oswald', sans-serif;">Confirm Password </label>&nbsp;<label for="" style="font-family: 'Oswald', sans-serif; color: red;">* </label>
 <input class="form-control"  type="password" name="confirmpassword" autocomplete="off" required  />
 </div>
 
- <button type="submit" name="change" class="btn btn-info">Change Password </button> 
+ <button type="submit" name="change" class="btn btn-primary">Change Password </button> 
 </form>
  </div>
 </div>

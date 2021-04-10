@@ -14,14 +14,16 @@ if ($_POST["vercode"] != $_SESSION["vercode"] OR $_SESSION["vercode"]=='')  {
     } 
         else {    
  
-$fname=$_POST['fullname']; 
+$fname=$_POST['firstname']; 
+$lname=$_POST['lastname']; 
 $email=$_POST['email']; 
 $username=$_POST['username'];
 $password=md5($_POST['password']);
 $status=1;
-$sql="INSERT INTO  employee (FullName,AdminEmail,UserName,Password,Status) VALUES(:fname,:email,:username,:password,:status)";
+$sql="INSERT INTO  employee (FirstName,LastName,AdminEmail,UserName,Password,Status) VALUES(:fname,:lname,:email,:username,:password,:status)";
 $query = $dbh->prepare($sql);
 $query->bindParam(':fname',$fname,PDO::PARAM_STR);
+$query->bindParam(':lname',$lname,PDO::PARAM_STR);
 $query->bindParam(':email',$email,PDO::PARAM_STR);
 $query->bindParam(':username',$username,PDO::PARAM_STR);
 $query->bindParam(':password',$password,PDO::PARAM_STR);
@@ -180,41 +182,57 @@ $("#username").keyup(function(){
                             </div>
 
         </div>
-    <div class="panel panel-danger" style="margin-left:20%; margin-right:20%">
+    <div class="panel panel-primary" style="margin-left:20%; margin-right:20%">
     
         <div class="panel-heading" style="font-size: 16px;">Register admin</div>
         <div class="panel-body" style="">
  
+ <div class="col-md-6">
     <div class="form-group">
-        <label style="font-family: 'Oswald', sans-serif;">Enter Full Name</label>
-        <input class="form-control" type="text" name="fullname" autocomplete="off" required />
+        <label style="font-family: 'Oswald', sans-serif;">Enter First Name</label>&nbsp;<label for="" style="font-family: 'Oswald', sans-serif; color: red;">* </label>
+        <input class="form-control" type="text" name="firstname" autocomplete="off" required />
     </div>
+    </div>
+    <div class="col-md-6">
     <div class="form-group">
-        <label style="font-family: 'Oswald', sans-serif;">Enter Email</label>
+        <label style="font-family: 'Oswald', sans-serif;">Enter Last Name</label>&nbsp;<label for="" style="font-family: 'Oswald', sans-serif; color: red;">* </label>
+        <input class="form-control" type="text" name="lastname" autocomplete="off" required />
+    </div>
+    </div>
+
+    <div class="col-md-6">
+    <div class="form-group">
+        <label style="font-family: 'Oswald', sans-serif;">Enter Email</label>&nbsp;<label for="" style="font-family: 'Oswald', sans-serif; color: red;">* </label>
         <input class="form-control" type="email" name="email" id="adminemail" onBlur="checkEmailAvailability()"  autocomplete="off" required />
         <span id="email-availability-status" style="font-size:12px;"></span> 
     </div>
     <div class="form-group">
-        <label style="font-family: 'Oswald', sans-serif;">Enter Username</label>
+        <label style="font-family: 'Oswald', sans-serif;">Enter Username</label>&nbsp;<label for="" style="font-family: 'Oswald', sans-serif; color: red;">* </label>
         <input class="form-control" type="text" name="username" id="username" onBlur="checkUsernameAvailability()" autocomplete="off" required />
         <span id="username-availability-status" style="font-size:12px;"></span> 
           <!-- Response -->
        <!--  <div id="uname_response" style="font-size:12px" ></div> -->
     </div>
+    </div>
+
+    <div class="col-md-6">
     <div class="form-group">
-        <label style="font-family: 'Oswald', sans-serif;">Password</label>
+        <label style="font-family: 'Oswald', sans-serif;">Password</label>&nbsp;<label for="" style="font-family: 'Oswald', sans-serif; color: red;">* </label>
         <input class="form-control" type="password" name="password" autocomplete="off" required />
     </div>
     <div class="form-group">
-      <label style="font-family: 'Oswald', sans-serif;">Confirm Password </label>
+      <label style="font-family: 'Oswald', sans-serif;">Confirm Password </label>&nbsp;<label for="" style="font-family: 'Oswald', sans-serif; color: red;">* </label>
       <input class="form-control"  type="password" name="confirmpassword" autocomplete="off" required  />
     </div>
+    </div>
 
+<div class="col-md-12">
     <div class="form-group">
     <label style="font-family: 'Montserrat', sans-serif">Verification code : </label>
     <input type="text"  name="vercode" maxlength="5" autocomplete="off" required style="width: 150px; height: 25px;" />&nbsp;<img src="captcha.php">
     </div>  
     <button type="submit" name="regadmin" class="btn btn-danger" id="submit" style="font-family: 'Prompt', sans-serif;"> Add Admin </button>
+    </div>
     </div>
     <!-- REGISTER END-->
         </div>

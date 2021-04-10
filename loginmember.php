@@ -14,7 +14,7 @@ if ($_POST["vercode"] != $_SESSION["vercode"] OR $_SESSION["vercode"]=='')  {
         else {
 $email=$_POST['emailid'];
 $password=($_POST['password']);
-$sql ="SELECT EmailId,Password,UserId,Status FROM member WHERE EmailId=:email and Password=:password";
+$sql ="SELECT EmailId,Password,Username,Status FROM member WHERE EmailId=:email and Password=:password";
 $query= $dbh -> prepare($sql);
 $query-> bindParam(':email', $email, PDO::PARAM_STR);
 $query-> bindParam(':password', $password, PDO::PARAM_STR);
@@ -24,7 +24,7 @@ $results=$query->fetchAll(PDO::FETCH_OBJ);
 if($query->rowCount() > 0)
 {
  foreach ($results as $result) {
- $_SESSION['uid']=$result->UserId;
+ $_SESSION['username']=$result->Username;
 if($result->Status==1)
 {
 $_SESSION['login']=$_POST['emailid'];
@@ -46,7 +46,7 @@ echo "<script>alert('Invalid Details');</script>";
 
 <html lang="en">
 <head>
-  <title>Coffee Shop | Coffee Store</title>
+<title>Coffee Shop | Coffee Store</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
