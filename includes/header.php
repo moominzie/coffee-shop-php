@@ -78,7 +78,7 @@ foreach($results as $result)
       <?php }} ?>
              
 
-      <nav class="navbar navbar-default" style="border-bottom: 5px solid#BC8F8F;">
+      <nav class="navbar navbar-default" style="border-bottom: 5px solid #BC8F8F;">
   <div class="container-fluid">
     <div class="navbar-header">
       <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
@@ -94,14 +94,34 @@ foreach($results as $result)
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
       <li><a href="dashboard.php">Dashboard</a></li>
+      <?php 
+      $sql="SELECT * from  category ";
+      $query = $dbh -> prepare($sql);
+      $query->execute();
+      $results=$query->fetchAll(PDO::FETCH_OBJ);
+      $cnt=1;
+      if($query->rowCount() > 0)
+      {
+      foreach($results as $result)
+      {               ?>   
           <li class="dropdown">
-            <a class="dropdown-toggle" data-toggle="dropdown" href="#">Beverage<span class="caret"></span></a>
+            <a class="dropdown-toggle" data-toggle="dropdown" href="#"><?php echo htmlentities($result->Category);?><span class="caret"></span></a>
             <ul class="dropdown-menu">
-              <li><a href="#">Coffee</a></li>
-              <li><a href="#">Milk</a></li>
-              <li><a href="#">Soda</a></li>
+            <?php 
+      $sql="SELECT * from  subcategory ";
+      $query = $dbh -> prepare($sql);
+      $query->execute();
+      $results=$query->fetchAll(PDO::FETCH_OBJ);
+      $cnt=1;
+      if($query->rowCount() > 0)
+      {
+      foreach($results as $result)
+      {               ?>  
+              <li><a href="#"><?php echo htmlentities($result->SubCategory);?></a></li>
+              <?php }} ?>
             </ul>
         </li>
+        <?php }} ?>
 
          <li class="dropdown">
             <a class="dropdown-toggle" data-toggle="dropdown" href="#">Food<span class="caret"></span></a>
@@ -122,21 +142,42 @@ foreach($results as $result)
                 <li role="presentation"><a role="menuitem" tabindex="-1" href="my-address.php"> Edit Address</a></li>
                 <li role="presentation"><a role="menuitem" tabindex="-1" href="add-address.php"> Add Address</a></li>
                 <li role="presentation"><a role="menuitem" tabindex="-1" href="change-password.php"> Change Password </a></li>
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="logout.php"> Logout <i class="fa fa-sign-out" style="color: #DC143C"></i> </a></li>
             </ul>
           </li>
           <li><a href="">Order</a></li>
-         <a href="logout.php" class="btn btn-danger pull-right" style="margin-top: 8px">Logout</a>
         </ul>
         <?php } else { ?>
             <ul class="nav navbar-nav">
+            <?php 
+      $sql="SELECT * from  category ";
+      $query = $dbh -> prepare($sql);
+      $query->execute();
+      $results=$query->fetchAll(PDO::FETCH_OBJ);
+      $cnt=1;
+      if($query->rowCount() > 0)
+      {
+      foreach($results as $result)
+      {               ?>   
           <li class="dropdown">
-            <a class="dropdown-toggle" data-toggle="dropdown" href="#">Beverage<span class="caret"></span></a>
+            <a class="dropdown-toggle" data-toggle="dropdown" href="#"><?php echo htmlentities($result->Category);?><span class="caret"></span></a>
             <ul class="dropdown-menu">
-              <li><a href="#">Coffee</a></li>
-              <li><a href="#">Milk</a></li>
-              <li><a href="#">Soda</a></li>
+            <?php 
+      $sql="SELECT * from  subcategory ";
+      $query = $dbh -> prepare($sql);
+      $query->execute();
+      $results=$query->fetchAll(PDO::FETCH_OBJ);
+      $cnt=1;
+      if($query->rowCount() > 0)
+      {
+      foreach($results as $result)
+      {               ?>  
+              <li><a href="#"><?php echo htmlentities($result->SubCategory);?></a></li>
+              <?php }} ?>
             </ul>
-          </li>
+        </li>
+        <?php }} ?>
+        
           <li class="dropdown">
             <a class="dropdown-toggle" data-toggle="dropdown" href="#">Food<span class="caret"></span></a>
             <ul class="dropdown-menu">
@@ -149,7 +190,7 @@ foreach($results as $result)
         </ul>
 
         <ul class="nav navbar-nav navbar-right">
-          <li><a href="signup.php"><span class="glyphicon glyphicon-user"></span> Register</a></li>
+          <li><a href="register.php"><span class="glyphicon glyphicon-user"></span> Register</a></li>
           <li><a href="loginmember.php"><span class="glyphicon glyphicon-log-in"></span> Member Login</a></li>
           <li><a href="loginadmin.php"><span class="glyphicon glyphicon-log-in"></span> Admin Login</a></li>
         </ul>

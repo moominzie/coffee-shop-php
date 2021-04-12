@@ -46,7 +46,19 @@ $error="Something went wrong. please try again";
 
 <html lang="en">
 <head>
-<title>Coffee Shop | Coffee Store</title>
+<?php
+$sql="SELECT * from  shop ";
+$query = $dbh -> prepare($sql);
+$query->execute();
+$results=$query->fetchAll(PDO::FETCH_OBJ);
+$cnt=1;
+if($query->rowCount() > 0)
+{
+foreach($results as $result)
+{               ?>   
+<title><?php echo htmlentities($result->ShopName);?></title>
+
+      <?php }} ?>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 

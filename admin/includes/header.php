@@ -6,16 +6,6 @@
     .container {
         margin-top: 5%;
     }
-    table,th,td {
-        border: 1px solid black;
-        border-collapse: collapse;
-    }
-    th,td {
-        height: 50px;
-    }
-    table {
-        margin-left: 70px;
-    }
     h1 {
       font-family: 'Bebas Neue', cursive;
     }
@@ -77,31 +67,41 @@
     <div class="collapse navbar-collapse" id="myNavbar">
     <ul class="nav navbar-nav">
           <li><a href="dashboard.php">Dashboard</a></li>
+
           <li class="dropdown">
-            <a class="dropdown-toggle" data-toggle="dropdown" href="#">Beverage<span class="caret"></span></a>
+            <a class="dropdown-toggle" data-toggle="dropdown" href="#">Add Menu<span class="caret"></span></a>
             <ul class="dropdown-menu">
-              <li><a href="#">Add Coffee</a></li>
-              <li><a href="#">Add Milk</a></li>
-              <li><a href="#">Add Soda</a></li>
+              <li><a href="add-menu.php">Menu</a></li>
+              <li><a href="manage-menu.php">Manage Menu</a></li>
             </ul>
           </li>
+
           <li class="dropdown">
-            <a class="dropdown-toggle" data-toggle="dropdown" href="#">Food<span class="caret"></span></a>
+            <a class="dropdown-toggle" data-toggle="dropdown" href="#">Add Sub-Category<span class="caret"></span></a>
             <ul class="dropdown-menu">
-              <li><a href="#">Add Fresh bread Menu</a></li>
-              <li><a href="#">Add Spaghetti Menu</a></li>
-              <li><a href="#">Add Appetizer & Snack Menu</a></li>
+              <li><a href="add-subcategory.php">Sub-Category</a></li>
+              <li><a href="manage-subcategory.php"> Manage Sub-Category</a></li>
             </ul>
           </li>
-          <li><a href="contactus.php">Inbox</a></li>
+      
+          <li class="dropdown">
+            <a class="dropdown-toggle" data-toggle="dropdown" href="#">Add Category<span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li><a href="add-category.php">Category</a></li>
+              <li><a href="manage-category.php">Manage Category</a></li>
+            </ul>
+          </li>
+          <li><a href="inbox.php">Inbox</a></li>
         </ul>
 
         <ul class="nav navbar-nav navbar-right">
         <li class="dropdown">
             <a class="dropdown-toggle" data-toggle="dropdown" id="ddlmenuItem"  href="#">Account<i class="fa fa-angle-down"></i></a>
             <ul class="dropdown-menu" role="menu" aria-labelledby="ddlmenuItem">
-                <li role="presentation"><a role="menuitem" tabindex="-1" href="admin-profile.php">View Profile</a></li>
+            <li role="presentation"><a role="menuitem" tabindex="-1" href="admin-member.php">Admin Member</a></li>
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="admin-profile.php">Admin Profile</a></li>
                 <li role="presentation"><a role="menuitem" tabindex="-1" href="change-password.php">Change Password </a></li>
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="logout.php"> Logout <i class="fa fa-sign-out" style="color: #DC143C"></i> </a></li>
             </ul>
           </li>
 
@@ -112,7 +112,6 @@
                 <li role="presentation"><a role="menuitem" tabindex="-1" href="shop-information.php">Shop Information</a></li>
             </ul>
           </li>
-         <a href="logout.php" class="btn btn-danger pull-right" style="margin-top: 8px;">Logout</a>
         </ul>
 
         <?php } else { ?>

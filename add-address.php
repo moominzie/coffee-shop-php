@@ -42,7 +42,19 @@ echo '<script>alert("Your address has been added")</script>';
     <!--[if IE]>
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
         <![endif]-->
-    <title>Coffee Shop | Coffee Store</title>
+        <?php
+$sql="SELECT * from  shop ";
+$query = $dbh -> prepare($sql);
+$query->execute();
+$results=$query->fetchAll(PDO::FETCH_OBJ);
+$cnt=1;
+if($query->rowCount() > 0)
+{
+foreach($results as $result)
+{               ?>   
+<title><?php echo htmlentities($result->ShopName);?></title>
+
+      <?php }} ?>
     <script type="text/javascript" src='includes/jquery-3.4.1.min.js'></script>
 
     <!-- BOOTSTRAP CORE STYLE  -->

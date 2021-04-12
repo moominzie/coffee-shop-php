@@ -30,32 +30,45 @@ $query->execute();
 $lastInsertId = $dbh->lastInsertId();
 if($lastInsertId)
 {
-echo '<script>alert("Your Registration successfull and your Username is  "+"'.$username.'" )</script>';
-}
-else 
-{
-echo "<script>alert('Something went wrong. Please try again');</script>";
-}
-}
-}
+    
+        $msg="Registeration succesfully";
+      }
+      else {
+      $error="Something went wrong. please try again";  
+      }
+      }
+      }
 
 ?>
 
+
 <html lang="en">
 <head>
-<title>Coffee Shop | Coffee Store</title>
+<?php
+$sql="SELECT * from  shop ";
+$query = $dbh -> prepare($sql);
+$query->execute();
+$results=$query->fetchAll(PDO::FETCH_OBJ);
+$cnt=1;
+if($query->rowCount() > 0)
+{
+foreach($results as $result)
+{               ?>   
+<title><?php echo htmlentities($result->ShopName);?></title>
+
+      <?php }} ?>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-
-       <!-- BOOTSTRAP CORE STYLE  -->
-       <link href="assets/css/bootstrap.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+        <!-- BOOTSTRAP CORE STYLE  -->
+        <link href="assets/css/bootstrap.css" rel="stylesheet" />
     <!-- FONT AWESOME STYLE  -->
     <link href="assets/css/font-awesome.css" rel="stylesheet" />
     <!-- CUSTOM STYLE  -->
     <link href="assets/css/style.css" rel="stylesheet" />
     <!-- GOOGLE FONT -->
     <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
@@ -66,86 +79,28 @@ echo "<script>alert('Something went wrong. Please try again');</script>";
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;400&display=swap" rel="stylesheet">
 
   <link rel="preconnect" href="https://fonts.gstatic.com">
-<link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&display=swap" rel="stylesheet">
 
   <link rel="preconnect" href="https://fonts.gstatic.com">
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;400&family=Pridi:wght@200&family=Prompt:wght@200&display=swap" rel="stylesheet">
   <link rel="preconnect" href="https://fonts.gstatic.com">
-<link href="https://fonts.googleapis.com/css2?family=Mitr:wght@300&family=Oswald&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Mitr:wght@300&family=Oswald&display=swap" rel="stylesheet">
 
-<link rel="preconnect" href="https://fonts.gstatic.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
   <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@700&display=swap" rel="stylesheet">
 
   <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Abel&family=Barlow:wght@200;400&family=Bebas+Neue&family=Fjalla+One&family=Fredoka+One&family=Josefin+Sans&family=Open+Sans:wght@300&family=Staatliches&display=swap" rel="stylesheet">
 
-
-
-  <script type="text/javascript">
-function valid()
-{
-if(document.signup.password.value!= document.signup.confirmpassword.value)
-  {
-      alert("Password and Confirm Password Field do not match  !!");
-      document.signup.confirmpassword.focus();
-  return false;
-    }
-      return true;
-    }
-</script>
-<script>
-function checkAvailability() {
-    $("#loaderIcon").show();
-        jQuery.ajax({
-        url: "check_availability.php",
-        data:'emailid='+$("#emailid").val(),
-        type: "POST",
-    success:function(data){
-        $("#user-availability-status").html(data);
-        $("#loaderIcon").hide();
-    },
-      error:function (){}
-    });
-}
-</script>   
-<script>
-$(document).ready(function(){
-
-$("#username").keyup(function(){
-
-  var username = $(this).val().trim();
-
-  if(username != ''){
-
-     $.ajax({
-        url: 'check_username.php',
-        type: 'post',
-        data: {username:username},
-        success: function(response){
-
-           // Show response
-           $("#uname_response").html(response);
-
-        }
-     });
-  }else{
-     $("#uname_response").html("");
-  }
-
-});
-
-});
-</script>
-
-
-
 </head>
 <body>
-      <!------MENU SECTION START-->
-<?php include('includes/header.php');?>
+
+    <!------MENU SECTION START-->
+    <?php include('includes/header.php');?>
 <!-- MENU SECTION END-->
 
 <!--REGISTER PANEL START-->      
+
 <form action="" method="post" enctype="multipart/form-data" onSubmit="return valid();" name="signup">
     <div class="container">
     <div class="row pad-botm">
@@ -155,6 +110,9 @@ $("#username").keyup(function(){
                             </div>
 
         </div>
+        <?php if($error){?><div class="errorWrap"><strong>ERROR</strong>:<?php echo htmlentities($error); ?> </div><?php } 
+				else if($msg){?><div class="succWrap"><strong>SUCCESS</strong>:<?php echo htmlentities($msg); ?> </div><?php }?>
+
     <div class="panel panel-danger" style="margin-left:20%; margin-right:20%">
     
         <div class="panel-heading" style="font-size: 16px;">Register Form</div>
@@ -228,6 +186,8 @@ $("#username").keyup(function(){
       </div>
     </div>
   </form>
+
+
 </body>
 </html>
 

@@ -40,7 +40,19 @@ $query->execute();
     <!--[if IE]>
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
         <![endif]-->
-    <title>Online Library Management System | Student Signup</title>
+        <?php
+$sql="SELECT * from  shop ";
+$query = $dbh -> prepare($sql);
+$query->execute();
+$results=$query->fetchAll(PDO::FETCH_OBJ);
+$cnt=1;
+if($query->rowCount() > 0)
+{
+foreach($results as $result)
+{               ?>   
+<title><?php echo htmlentities($result->ShopName);?></title>
+
+      <?php }} ?>
     <!-- BOOTSTRAP CORE STYLE  -->
     <link href="assets/css/bootstrap.css" rel="stylesheet" />
     <!-- FONT AWESOME STYLE  -->
@@ -117,7 +129,7 @@ $query->execute();
                             <form name="update" method="post">
 <?php 
 $username=$_SESSION['username'];
-$sql="SELECT UserName,AdminEmail,FirstName,LastName,MobileNumber from  employee  where UserName=:username ";
+$sql="SELECT UserName,AdminEmail,FirstName,LastName,MobileNumber from  employee  where UserName=:username";
 $query = $dbh -> prepare($sql);
 $query-> bindParam(':username', $username, PDO::PARAM_STR);
 $query->execute();
