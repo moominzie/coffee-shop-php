@@ -75,7 +75,7 @@ foreach($results as $result)
          <div class="container">
         <div class="row pad-botm">
             <div class="col-md-12">
-                <h4 class="header-line">Manage Menu</h4>
+                <h4 class="header-line">Manage Beverage</h4>
     </div>
 
 
@@ -85,7 +85,7 @@ foreach($results as $result)
                     <!-- Advanced Tables -->
                     <div class="panel panel-primary">
                         <div class="panel-heading">
-                          Menu
+                        Beverage
                         </div>
                         <div class="panel-body">
                             <div class="table-responsive">
@@ -94,14 +94,17 @@ foreach($results as $result)
                                         <tr>
                                             <th>ID</th>
                                             <th>Name</th>
+                                            <th>Description</th>
                                             <th>Price</th>
                                             <th>Picture</th>
                                             <th>Category</th>
                                             <th>Sub-Category</th>
+                                            <th>Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-<?php $sql = "SELECT menu.MenuName,menu.Price,menu.Image1,category.Category,subcategory.SubCategory from menu join category on menu.CategoryId=category.id join subcategory on menu.SubCategoryId=subcategory.id order by menu.id asc";
+<?php 
+$sql = "SELECT menu.MenuName,menu.Description,menu.Price,menu.Image1,category.Category,subcategory.SubCategory,menu.id as mid from menu join category on menu.CategoryId=category.id join subcategory on menu.SubCategoryId=subcategory.id where menu.CategoryId in (3) group by menu.id";
 $query = $dbh -> prepare($sql);
 $query->execute();
 $results=$query->fetchAll(PDO::FETCH_OBJ);
@@ -111,12 +114,14 @@ if($query->rowCount() > 0)
 foreach($results as $result)
 {               ?>                                      
                                         <tr class="odd gradeX">
-                                            <td class="center"><?php echo htmlentities($cnt);?></td>
-                                            <td class="center"><?php echo htmlentities($result->MenuName);?></td>
+                                             <td class="center"><?php echo htmlentities($cnt);?></td>
+                                             <td class="center"><?php echo htmlentities($result->MenuName);?></td>
+                                             <td class="center"><?php echo htmlentities($result->Description);?></td>
                                              <td class="center"><?php echo htmlentities($result->Price);?></td>
                                              <td class="center"><img src="uploads/img/<?php echo htmlentities($result->Image1);?>" width="100" height="100" style="border:solid 1px #000"></td>
                                              <td class="center"><?php echo htmlentities($result->Category);?></td>
                                              <td class="center"><?php echo htmlentities($result->SubCategory);?></td>
+                                             <td class="center"><a href="edit-food.php?mid=<?php echo htmlentities($result->mid);?>" class="btn btn-success btn-xs"><i class="fa fa-edit"></i> Edit</a>
                                         </tr>
  <?php $cnt=$cnt+1;}} ?>                                      
                                     </tbody>

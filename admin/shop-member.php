@@ -6,17 +6,36 @@ if(strlen($_SESSION['alogin'])==0)
     {   
 header('location:../loginadmin.php');
 }
-else{ 
-if(isset($_GET['del']))
+  
+// code for block student    
+if(isset($_GET['memid']))
 {
-$id=$_GET['del'];
-$sql = "delete from category  WHERE id=:id";
+$id=$_GET['memid'];
+$status=0;
+$sql = "update member set Status=:status  WHERE id=:id";
 $query = $dbh->prepare($sql);
 $query -> bindParam(':id',$id, PDO::PARAM_STR);
+$query -> bindParam(':status',$status, PDO::PARAM_STR);
 $query -> execute();
-$msg="Category delete completed";
+header('location:shop-member.php');
 }
+
+
+
+//code for active member
+if(isset($_GET['memid']))
+{
+$id=$_GET['memid'];
+$status=1;
+$sql = "update member set Status=:status  WHERE id=:id";
+$query = $dbh->prepare($sql);
+$query -> bindParam(':id',$id, PDO::PARAM_STR);
+$query -> bindParam(':status',$status, PDO::PARAM_STR);
+$query -> execute();
+header('location:shop-member.php');
 }
+
+  
 ?>
 
 <!DOCTYPE html>
@@ -74,22 +93,6 @@ foreach($results as $result)
     <link href="https://fonts.googleapis.com/css2?family=Abel&family=Barlow:wght@200;400&family=Bebas+Neue&family=Fjalla+One&family=Fredoka+One&family=Josefin+Sans&family=Open+Sans:wght@300&family=Staatliches&display=swap" rel="stylesheet">
 </head>
 <style>
-    .errorWrap {
-    padding: 10px;
-    margin: 0 0 20px 0;
-    background: #fff;
-    border-left: 4px solid #dd3d36;
-    -webkit-box-shadow: 0 1px 1px 0 rgba(0,0,0,.1);
-    box-shadow: 0 1px 1px 0 rgba(0,0,0,.1);
-}
-.succWrap{
-    padding: 10px;
-    margin: 0 0 20px 0;
-    background: #fff;
-    border-left: 4px solid #5cb85c;
-    -webkit-box-shadow: 0 1px 1px 0 rgba(0,0,0,.1);
-    box-shadow: 0 1px 1px 0 rgba(0,0,0,.1);
-}
     </style>
 
 <body>
@@ -100,19 +103,17 @@ foreach($results as $result)
          <div class="container">
         <div class="row pad-botm">
             <div class="col-md-12">
-                <h4 class="header-line">Manage Category</h4>
+                <h4 class="header-line">Manage Member</h4>
     </div>
 
 
         </div>
-        <?php if($error){?><div class="errorWrap"><strong>ERROR</strong>:<?php echo htmlentities($error); ?> </div><?php } 
-        else if($msg){?><div class="succWrap"><strong>SUCCESS</strong>:<?php echo htmlentities($msg); ?> </div><?php }?>        
             <div class="row">
                 <div class="col-md-12">
                     <!-- Advanced Tables -->
                     <div class="panel panel-primary">
                         <div class="panel-heading">
-                          Category
+                          Member List
                         </div>
                         <div class="panel-body">
                             <div class="table-responsive">
@@ -120,12 +121,18 @@ foreach($results as $result)
                                     <thead>
                                         <tr>
                                             <th>ID</th>
-                                            <th>Category</th>
+                                            <th>First Name</th>
+                                            <th>Last Name</th>
+                                            <th>Mobile</th>
+                                            <th>Email</th>
+                                            <th>Status</th>
+                                            <th>Register Date</th>
+                                            <th>Last Update Profile</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-<?php $sql = "SELECT * from category order by id asc";
+<?php $sql = "SELECT member.FirstName,member.LastName,member.EmailId,member.MobileNumber,member.Status,member.RegDate,member.updationDate,member.id as memid,member.Username as muname from member order by member.id asc";
 $query = $dbh -> prepare($sql);
 $query->execute();
 $results=$query->fetchAll(PDO::FETCH_OBJ);
@@ -136,12 +143,29 @@ foreach($results as $result)
 {               ?>                                      
                                         <tr class="odd gradeX">
                                             <td class="center"><?php echo htmlentities($cnt);?></td>
-                                            <td class="center"><?php echo htmlentities($result->Category);?></td>
+                                            <td class="center"><?php echo htmlentities($result->FirstName);?></td>
+                                             <td class="center"><?php echo htmlentities($result->LastName);?></td>
+                                            <td class="center"><?php echo htmlentities($result->MobileNumber);?></td>
+                                            <td class="center"><?php echo htmlentities($result->EmailId);?></td>
+                                            <td class="center"><?php if($result->Status==1)
+                                            {
+                                                echo htmlentities("Active");
+                                            } else {
+                                            echo htmlentities("Blocked");
+                                            }
+                                            ?></td>
+                                            <td class="center"><?php echo htmlentities($result->RegDate);?></td>
+                                            <td class="center"><?php echo htmlentities($result->updationDate);?></td>
                                             <td class="center">
-                                            <a href="edit-subcategory.php?catid=<?php echo htmlentities($result->id);?>"><button class="btn btn-success btn-xs"><i class="fa fa-edit "></i> Edit</button> 
-                                            <a href="manage-category.php?del=<?php echo htmlentities($result->id);?>" onclick="return confirm('Are you sure you want to delete?');"" >  <button class="btn btn-danger btn-xs"><i class="fa fa-times"></i> Delete</button>
-                                            </td>
+                                            <?php if($result->Status==1)
+                                            {?>
+                                            <a href="shop-member.php?memid=<?php echo htmlentities($result->memid);?>" onclick="return confirm('Are you sure you want to block this member?');"" >  <button class="btn btn-danger btn-xs"> Inactive</button>
+                                            <?php } else {?>
 
+                                            <a href="shop-member.php?memid=<?php echo htmlentities($result->memid);?>" onclick="return confirm('Are you sure you want to active this member?');""><button class="btn btn-success btn-xs"> Active</button> 
+                                            <?php } ?>
+                                            </td>
+                                        
                                         </tr>
  <?php $cnt=$cnt+1;}} ?>                                      
                                     </tbody>

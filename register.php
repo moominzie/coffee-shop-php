@@ -93,6 +93,52 @@ foreach($results as $result)
     <link href="https://fonts.googleapis.com/css2?family=Abel&family=Barlow:wght@200;400&family=Bebas+Neue&family=Fjalla+One&family=Fredoka+One&family=Josefin+Sans&family=Open+Sans:wght@300&family=Staatliches&display=swap" rel="stylesheet">
 
 </head>
+<script type="text/javascript">
+function valid()
+{
+if(document.signup.password.value!= document.signup.confirmpassword.value)
+  {
+      alert("Password and Confirm Password Field do not match  !!");
+      document.signup.confirmpassword.focus();
+  return false;
+    }
+      return true;
+    }
+</script>
+<script>
+function checkEmailAvailability() {
+    $("#loaderIcon").show();
+        jQuery.ajax({
+        url: "check_availability.php",
+        data:'emailid='+$("#emailid").val(),
+        type: "POST",
+    success:function(data){
+        $("#email-availability-status").html(data);
+        $("#loaderIcon").hide();
+    },
+      error:function (){}
+    });
+}
+
+function checkUsernameAvailability() {
+    $("#loaderIcon").show();
+        jQuery.ajax({
+        url: "check_availability.php",
+        data:'username='+$("#username").val(),
+        type: "POST",
+    success:function(data){
+        $("#username-availability-status").html(data);
+        $("#loaderIcon").hide();
+    },
+      error:function (){}
+    });
+}
+
+
+
+
+</script>   
+
 <body>
 
     <!------MENU SECTION START-->
@@ -133,24 +179,24 @@ foreach($results as $result)
 <div class="col-md-6">
     <div class="form-group">
         <label style="font-family: 'Staatliches', cursive; letter-spacing: 1px; font-size:14px;">Enter Email</label>&nbsp;<label style="font-family: 'Oswald', sans-serif; color:red;">*</label>
-        <input class="form-control" type="email" name="email" id="emailid" onBlur="checkAvailability()"  autocomplete="off" required />
-        <span id="user-availability-status" style="font-size:12px;"></span> 
+        <input class="form-control" type="email" name="email" id="emailid" onBlur="checkEmailAvailability()"  autocomplete="off" required />
+        <span id="email-availability-status" style="font-size:12px;"></span> 
     </div>
 </div>
 
 <div class="col-md-6">
     <div class="form-group">
         <label style="font-family: 'Staatliches', cursive; letter-spacing: 1px; font-size:14px;">Mobile Number</label>&nbsp;<label style="font-family: 'Oswald', sans-serif; color:red;">*</label>
-        <input class="form-control" type="text" name="mobileno" id="mobilenumber" maxlength="10" autocomplete="off" required />
+        <input class="form-control" type="text" name="mobileno" id="mobilenumber" maxlength="10" onBlur=""  autocomplete="off" required />
     </div>
 </div>
 
 <div class="col-md-12">
     <div class="form-group">
         <label style="font-family: 'Staatliches', cursive; letter-spacing: 1px; font-size:14px;">Username</label>&nbsp;<label style="font-family: 'Oswald', sans-serif; color:red;">*</label>
-        <input class="form-control" type="text" name="username" id="username" autocomplete="off" required />
+        <input class="form-control" type="text" name="username" id="username" autocomplete="off" onBlur="checkUsernameAvailability()" required />
+        <span id="username-availability-status" style="font-size:12px;"></span> 
                 <!-- Response -->
-        <div id="uname_response" style="font-size:12px" ></div>
     </div>
 </div>
 

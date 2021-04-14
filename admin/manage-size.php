@@ -6,8 +6,17 @@ if(strlen($_SESSION['alogin'])==0)
     {   
 header('location:../loginadmin.php');
 }
-  
-  
+else{ 
+if(isset($_GET['del']))
+{
+$id=$_GET['del'];
+$sql = "delete from size  WHERE id=:id";
+$query = $dbh->prepare($sql);
+$query -> bindParam(':id',$id, PDO::PARAM_STR);
+$query -> execute();
+$msg="Glass size delete completed";
+}
+}
 ?>
 
 <!DOCTYPE html>
@@ -65,6 +74,22 @@ foreach($results as $result)
     <link href="https://fonts.googleapis.com/css2?family=Abel&family=Barlow:wght@200;400&family=Bebas+Neue&family=Fjalla+One&family=Fredoka+One&family=Josefin+Sans&family=Open+Sans:wght@300&family=Staatliches&display=swap" rel="stylesheet">
 </head>
 <style>
+    .errorWrap {
+    padding: 10px;
+    margin: 0 0 20px 0;
+    background: #fff;
+    border-left: 4px solid #dd3d36;
+    -webkit-box-shadow: 0 1px 1px 0 rgba(0,0,0,.1);
+    box-shadow: 0 1px 1px 0 rgba(0,0,0,.1);
+}
+.succWrap{
+    padding: 10px;
+    margin: 0 0 20px 0;
+    background: #fff;
+    border-left: 4px solid #5cb85c;
+    -webkit-box-shadow: 0 1px 1px 0 rgba(0,0,0,.1);
+    box-shadow: 0 1px 1px 0 rgba(0,0,0,.1);
+}
     </style>
 
 <body>
@@ -75,17 +100,19 @@ foreach($results as $result)
          <div class="container">
         <div class="row pad-botm">
             <div class="col-md-12">
-                <h4 class="header-line">Manage Admin</h4>
+                <h4 class="header-line">Manage Glass Size</h4>
     </div>
 
 
         </div>
+        <?php if($error){?><div class="errorWrap"><strong>ERROR</strong>:<?php echo htmlentities($error); ?> </div><?php } 
+        else if($msg){?><div class="succWrap"><strong>SUCCESS</strong>:<?php echo htmlentities($msg); ?> </div><?php }?>        
             <div class="row">
                 <div class="col-md-12">
                     <!-- Advanced Tables -->
                     <div class="panel panel-primary">
                         <div class="panel-heading">
-                          Admin List
+                          Glass Size
                         </div>
                         <div class="panel-body">
                             <div class="table-responsive">
@@ -93,19 +120,14 @@ foreach($results as $result)
                                     <thead>
                                         <tr>
                                             <th>ID</th>
-                                            <th>Username</th>
-                                            <th>First Name</th>
-                                            <th>Last Name</th>
-                                            <th>Mobile</th>
-                                            <th>Email</th>
-                                            <th>Status</th>
-                                            <th>Last Update Profile</th>
+                                            <th>Glass</th>
+                                            <th>Ounce</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
 <?php 
-$sql = "SELECT * from employee order by id asc";
+$sql = "SELECT size.SizeName,size.Ounce,size.id as sid from size order by size.id asc";
 $query = $dbh -> prepare($sql);
 $query->execute();
 $results=$query->fetchAll(PDO::FETCH_OBJ);
@@ -116,20 +138,13 @@ foreach($results as $result)
 {               ?>                                      
                                         <tr class="odd gradeX">
                                             <td class="center"><?php echo htmlentities($cnt);?></td>
-                                            <td class="center"><?php echo htmlentities($result->UserName);?></td>
-                                            <td class="center"><?php echo htmlentities($result->FirstName);?></td>
-                                             <td class="center"><?php echo htmlentities($result->LastName);?></td>
-                                            <td class="center"><?php echo htmlentities($result->MobileNumber);?></td>
-                                            <td class="center"><?php echo htmlentities($result->AdminEmail);?></td>
-                                            <td class="center"><?php if($result->Status==1) {?>
-                                            <a href="" class="btn btn-success btn-xs">Active</a>
-                                            <?php } else {?>
-                                            <a href="" class="btn btn-danger btn-xs">Inactive</a>
-                                            <?php } ?></td>
-                                            <td class="center"><?php echo htmlentities($result->updationDate);?></td>
-                                            <td class="center"><a href="view-admin.php?adminid=<?php echo htmlentities($result->id);?>" class="btn btn-info btn-xs"><i class="fa fa-eye"></i> View</a>
+                                            <td class="center"><?php echo htmlentities($result->SizeName);?></td>
+                                            <td class="center"><?php echo htmlentities($result->Ounce);?> oz.</td>
+                                            <td class="center">
+                                            <a href="edit-size.php?sid=<?php echo htmlentities($result->sid);?>"><button class="btn btn-success btn-xs"><i class="fa fa-edit "></i> Edit</button> 
+                                            <a href="manage-size.php?del=<?php echo htmlentities($result->sid);?>" onclick="return confirm('Are you sure you want to delete?');"" >  <button class="btn btn-danger btn-xs"><i class="fa fa-times"></i> Delete</button>
                                             </td>
-                                        
+
                                         </tr>
  <?php $cnt=$cnt+1;}} ?>                                      
                                     </tbody>

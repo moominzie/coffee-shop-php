@@ -34,7 +34,7 @@ $query->execute();
 $lastInsertId = $dbh->lastInsertId();
 if($lastInsertId)
 {
-  $msg="Add the new ADMIN successfully";
+  $msg="Add the new ADMIN successfully. Your USERNAME is $username";
 }
 else {
 $error="Something went wrong. please try again";  
@@ -244,7 +244,7 @@ $("#username").keyup(function(){
     <div class="form-group">
         <label style="font-family: 'Staatliches', cursive; letter-spacing: 1px; font-size:14px;">Enter Mobile Number</label>&nbsp;<label for="" style="font-family: 'Oswald', sans-serif; color: red;">* </label>
         <input class="form-control" type="text" name="mobileno" id="mobileno" onBlur=""  autocomplete="off" required />
-        <span id="email-availability-status" style="font-size:12px;"></span> 
+       
     </div>
 </div>
 

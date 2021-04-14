@@ -9,15 +9,17 @@ header('location:loginadmin.php');
 if(isset($_POST['add']))
 { 
  
-$category=$_POST['category'];
-$sql="INSERT INTO category (Category) VALUES(:category)";
+$size=$_POST['sizename'];
+$ounce=$_POST['ounce'];
+$sql="INSERT INTO size (SizeName,Ounce) VALUES(:size,:ounce)";
 $query = $dbh->prepare($sql);
-$query->bindParam(':category',$category,PDO::PARAM_STR);
+$query->bindParam(':size',$size,PDO::PARAM_STR);
+$query->bindParam(':ounce',$ounce,PDO::PARAM_STR);
 $query->execute();
 $lastInsertId = $dbh->lastInsertId();
 if($lastInsertId)
 {
-  $msg="Add the new Category successfully";
+  $msg="Add the new Size successfully";
 }
 else {
 $error="Something went wrong. please try again";  
@@ -104,12 +106,12 @@ foreach($results as $result)
 <!-- MENU SECTION END-->
 
 <!--REGISTER PANEL START-->      
-<form action="" method="post" enctype="multipart/form-data" onSubmit="return valid();" name="signup">
+<form action="" method="post" enctype="multipart/form-data" onSubmit="return valid();" name="add">
 <div class="content-wrapper">
    <div class="container">
     <div class="row pad-botm">
             <div class="col-md-12">
-                <h4 class="header-line">Add Category</h4>
+                <h4 class="header-line">Add Glass Size</h4>
                             </div>
         </div>
         <?php if($error){?><div class="errorWrap"><strong>ERROR</strong>:<?php echo htmlentities($error); ?> </div><?php } 
@@ -117,16 +119,25 @@ foreach($results as $result)
 
     <div class="panel panel-primary" style="margin-left:20%; margin-right:20%">
     
-        <div class="panel-heading" style="font-size: 16px;">Category</div>
+        <div class="panel-heading" style="font-size: 16px;">Glass Size</div>
         <div class="panel-body" style="">
  
- <div class="col-md-12">
+ <div class="col-md-9">
     <div class="form-group">
-        <label style="font-family: 'Staatliches', cursive; letter-spacing: 1px; font-size:14px;">Enter Category Name</label>&nbsp;<label for="" style="font-family: 'Oswald', sans-serif; color: red;">* </label>
-        <input class="form-control" type="text" name="category" autocomplete="off" required />
+        <label style="font-family: 'Staatliches', cursive; letter-spacing: 1px; font-size:14px;">Enter Glass Size</label>&nbsp;<label for="" style="font-family: 'Oswald', sans-serif; color: red;">* </label>
+        <input class="form-control" type="text" name="sizename" autocomplete="off" required />
+    </div>
     </div>
 
-    <button type="submit" name="add" class="btn btn-danger" id="add" style="font-family: 'Staatliches', cursive; letter-spacing: 1px;"> Add Category</button>
+    <div class="col-md-3">
+    <div class="form-group">
+        <label style="font-family: 'Staatliches', cursive; letter-spacing: 1px; font-size:14px;">Enter Ounce</label>&nbsp;<label for="" style="font-family: 'Oswald', sans-serif; color: red;">* Unit oz.</label>
+        <input class="form-control" type="number" name="ounce" autocomplete="off" required />
+    </div>
+    </div>
+
+    <div class="col-md-2">
+    <button type="submit" name="add" class="btn btn-danger" id="add" style="font-family: 'Staatliches', cursive; letter-spacing: 1px;"> Add Glass Size</button>
     </div>
 
     

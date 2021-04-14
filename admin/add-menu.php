@@ -9,26 +9,32 @@ header('location:loginadmin.php');
 if(isset($_POST['add']))
   {
 $menuname=$_POST['menuname'];
+$description=$_POST['description'];
 $price=$_POST['price'];
 $category=$_POST['category'];
 $subcategory=$_POST['subcategory'];
+$type=$_POST['type'];
+$size=$_POST['size'];
 $image1=$_FILES["img1"]["name"];
 
 move_uploaded_file($_FILES["img1"]["tmp_name"],"uploads/img/".$_FILES["img1"]["name"]);
 
 
-$sql="INSERT INTO menu(MenuName,Price,Image1,CategoryId,SubCategoryId) VALUES(:menuname,:price,:image1,:category,:subcategory)";
+$sql="INSERT INTO menu(MenuName,Description,Price,Image1,CategoryId,SubCategoryId,SizeId,TypeId) VALUES(:menuname,:description,:price,:image1,:category,:subcategory,:size,:type)";
 $query = $dbh->prepare($sql);
 $query->bindParam(':price',$price,PDO::PARAM_STR);
 $query->bindParam(':menuname',$menuname,PDO::PARAM_STR);
+$query->bindParam(':description',$description,PDO::PARAM_STR);
 $query->bindParam(':image1',$image1,PDO::PARAM_STR);
 $query->bindParam(':category',$category,PDO::PARAM_STR);
 $query->bindParam(':subcategory',$subcategory,PDO::PARAM_STR);
+$query->bindParam(':type',$type,PDO::PARAM_STR);
+$query->bindParam(':size',$size,PDO::PARAM_STR);
 $query->execute();
 $lastInsertId = $dbh->lastInsertId();
 if($lastInsertId)
 {
-    $msg="Add the new Menu successfully";
+    $msg="Add the new Menu successfully. ";
   }
   else {
   $error="Something went wrong. please try again";  
@@ -134,10 +140,17 @@ foreach($results as $result)
         <div class="panel-heading" style="font-size: 16px;">Menu</div>
         <div class="panel-body" style="">
  
- <div class="col-md-8">
+ <div class="col-md-12">
     <div class="form-group">
         <label style="font-family: 'Staatliches', cursive; letter-spacing: 1px; font-size:14px;">Enter Menu Name</label>&nbsp;<label for="" style="font-family: 'Oswald', sans-serif; color: red;">* </label>
         <input class="form-control" type="text" name="menuname" autocomplete="off" required />
+    </div>
+    </div>
+
+    <div class="col-md-12">
+    <div class="form-group">
+        <label style="font-family: 'Staatliches', cursive; letter-spacing: 1px; font-size:14px;">Enter Description</label>
+        <textarea class="form-control" type="text" name="description" autocomplete="off"></textarea>
     </div>
     </div>
 
@@ -148,14 +161,14 @@ foreach($results as $result)
     </div>
     </div>
 
-    <div class="col-md-4">
+    <div class="col-md-8">
     <div class="form-group">
         <label style="font-family: 'Staatliches', cursive; letter-spacing: 1px; font-size:14px;">Picture</label>&nbsp;<label for="" style="font-family: 'Oswald', sans-serif; color: red;">* </label>
         <input class="form-control" type="file" name="img1" autocomplete="off" required />
     </div>
     </div>
 
-    <div class="form-group col-md-4">
+    <div class="form-group col-md-6">
     <label style="font-family: 'Staatliches', cursive; letter-spacing: 1px; font-size:14px;">Category</label>&nbsp;<label for="" style="font-family: 'Oswald', sans-serif; color: red;">* </label>
         <!-- END TITLE -->
     
@@ -175,8 +188,8 @@ foreach($results as $result)
 </div>
 <!-- END CATEGORY -->
 
-<div class="form-group col-md-4">
-    <label style="font-family: 'Staatliches', cursive; letter-spacing: 1px; font-size:14px;">Sub-Category</label>&nbsp;<label for="" style="font-family: 'Oswald', sans-serif; color: red;">* </label>
+<div class="form-group col-md-6">
+    <label style="font-family: 'Staatliches', cursive; letter-spacing: 1px; font-size:14px;">Sub-Category</label>&nbsp;<label for="" style="font-family: 'Oswald', sans-serif; color: red;">* </label><a href="add-subcategory.php" style="font-family: 'Staatliches', cursive; letter-spacing: 1px; font-size:14px; color: #BB8FCE" > /Add Sub-Category</a>
         <!-- END TITLE -->
     
     <select name="subcategory" id="" class="form-control" onBlur="" required>
@@ -193,7 +206,47 @@ foreach($results as $result)
           ?>
 </select>
 </div>
-<!-- END CATEGORY -->
+<!-- END SUB CATEGORY -->
+
+<div class="form-group col-md-6">
+    <label style="font-family: 'Staatliches', cursive; letter-spacing: 1px; font-size:14px;">Glass Size</label><a href="add-size.php" style="font-family: 'Staatliches', cursive; letter-spacing: 1px; font-size:14px; color: #BB8FCE" > /Add Glass Size</a>
+        <!-- END TITLE -->
+    
+    <select name="size" id="" class="form-control" onBlur="" required>
+<option value='0'> Select Glass Size </option>
+<?php 
+          ## Fetch amphures
+          $query = $dbh->prepare("SELECT * FROM size ORDER BY id");
+          $query->execute();
+          $sizeList = $query->fetchAll();
+
+          foreach($sizeList as $size){
+             echo "<option value='".$size['id']."'>".$size['SizeName']."</option>";
+          }
+          ?>
+</select>
+</div>
+<!-- END TYPE -->
+
+<div class="form-group col-md-6">
+    <label style="font-family: 'Staatliches', cursive; letter-spacing: 1px; font-size:14px;">Beverage Type</label>
+        <!-- END TITLE -->
+    
+    <select name="type" id="" class="form-control" onBlur="" required>
+<option value='0'> Select Beverage Type </option>
+<?php 
+          ## Fetch amphures
+          $query = $dbh->prepare("SELECT * FROM type ORDER BY id");
+          $query->execute();
+          $typeList = $query->fetchAll();
+
+          foreach($typeList as $type){
+             echo "<option value='".$type['id']."'>".$type['TypeName']."</option>";
+          }
+          ?>
+</select>
+</div>
+<!-- END TYPE -->
 
 <div class="col-md-12">
     <button type="submit" name="add" class="btn btn-danger" id="add" style="font-family: 'Staatliches', cursive; letter-spacing: 1px;"> Add Menu </button>

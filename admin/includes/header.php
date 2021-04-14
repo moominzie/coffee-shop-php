@@ -69,47 +69,46 @@
           <li><a href="dashboard.php">Dashboard</a></li>
 
           <li class="dropdown">
-            <a class="dropdown-toggle" data-toggle="dropdown" href="#">Add Menu<span class="caret"></span></a>
+            <a class="dropdown-toggle" data-toggle="dropdown" href="#">Added <i class="fa fa-angle-down"></i></a>
             <ul class="dropdown-menu">
-              <li><a href="add-menu.php">Menu</a></li>
-              <li><a href="manage-menu.php">Manage Menu</a></li>
+              <li><a href="add-menu.php">Add Menu</a></li>
+              <li><a href="add-subcategory.php">Add Sub-Category</a></li>
+              <li><a href="add-size.php">Add Glass Size</a></li>
             </ul>
           </li>
 
           <li class="dropdown">
-            <a class="dropdown-toggle" data-toggle="dropdown" href="#">Add Sub-Category<span class="caret"></span></a>
+            <a class="dropdown-toggle" data-toggle="dropdown" href="#">Management <i class="fa fa-angle-down"></i></a>
             <ul class="dropdown-menu">
-              <li><a href="add-subcategory.php">Sub-Category</a></li>
+            <li><a href="manage-food.php">Manage Food</a></li>
+              <li><a href="manage-beverage.php">Manage Beverage</a></li>
+              <li><a href="manage-freshbread.php">Manage Fresh Bread</a></li>
               <li><a href="manage-subcategory.php"> Manage Sub-Category</a></li>
+              <li><a href="manage-size.php">Manage Glass Size</a></li>
             </ul>
           </li>
-      
-          <li class="dropdown">
-            <a class="dropdown-toggle" data-toggle="dropdown" href="#">Add Category<span class="caret"></span></a>
-            <ul class="dropdown-menu">
-              <li><a href="add-category.php">Category</a></li>
-              <li><a href="manage-category.php">Manage Category</a></li>
-            </ul>
-          </li>
-          <li><a href="inbox.php">Inbox</a></li>
+
+          <li><a href="inbox.php">Inbox </a></li>
         </ul>
 
         <ul class="nav navbar-nav navbar-right">
         <li class="dropdown">
-            <a class="dropdown-toggle" data-toggle="dropdown" id="ddlmenuItem"  href="#">Account<i class="fa fa-angle-down"></i></a>
+            <a class="dropdown-toggle" data-toggle="dropdown" id="ddlmenuItem"  href="#">Account <i class="fa fa-angle-down"></i></a>
             <ul class="dropdown-menu" role="menu" aria-labelledby="ddlmenuItem">
             <li role="presentation"><a role="menuitem" tabindex="-1" href="admin-member.php">Admin Member</a></li>
                 <li role="presentation"><a role="menuitem" tabindex="-1" href="admin-profile.php">Admin Profile</a></li>
-                <li role="presentation"><a role="menuitem" tabindex="-1" href="change-password.php">Change Password </a></li>
-                <li role="presentation"><a role="menuitem" tabindex="-1" href="logout.php"> Logout <i class="fa fa-sign-out" style="color: #DC143C"></i> </a></li>
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="change-password.php">Change Password</a></li>
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="logout.php">Logout <i class="fa fa-sign-out" style="color: #DC143C"></i> </a></li>
             </ul>
           </li>
 
           <li class="dropdown">
-            <a class="dropdown-toggle" data-toggle="dropdown" id="ddlmenuItem"  href="#">Manage Shop<i class="fa fa-angle-down"></i></a>
+            <a class="dropdown-toggle" data-toggle="dropdown" id="ddlmenuItem"  href="#">Manage Shop <i class="fa fa-angle-down"></i></a>
             <ul class="dropdown-menu" role="menu" aria-labelledby="ddlmenuItem">
                 <li role="presentation"><a role="menuitem" tabindex="-1" href="add-admin.php">Add admin user</a></li>
                 <li role="presentation"><a role="menuitem" tabindex="-1" href="shop-information.php">Shop Information</a></li>
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="shop-member.php">Shop Member</a></li>
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="member-address.php">Member Address</a></li>
             </ul>
           </li>
         </ul>

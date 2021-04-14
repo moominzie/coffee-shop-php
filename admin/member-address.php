@@ -75,7 +75,7 @@ foreach($results as $result)
          <div class="container">
         <div class="row pad-botm">
             <div class="col-md-12">
-                <h4 class="header-line">Manage Admin</h4>
+                <h4 class="header-line">Current Address Member</h4>
     </div>
 
 
@@ -85,7 +85,7 @@ foreach($results as $result)
                     <!-- Advanced Tables -->
                     <div class="panel panel-primary">
                         <div class="panel-heading">
-                          Admin List
+                          Member Address
                         </div>
                         <div class="panel-body">
                             <div class="table-responsive">
@@ -93,19 +93,19 @@ foreach($results as $result)
                                     <thead>
                                         <tr>
                                             <th>ID</th>
-                                            <th>Username</th>
-                                            <th>First Name</th>
+                                            <th>Name</th>
                                             <th>Last Name</th>
-                                            <th>Mobile</th>
-                                            <th>Email</th>
-                                            <th>Status</th>
-                                            <th>Last Update Profile</th>
-                                            <th>Action</th>
+                                            <th>Username</th>
+                                            <th>Address</th>
+                                            <th>Province</th>
+                                            <th>Amphure</th>
+                                            <th>Districe</th>
+                                            <th>Type</th>
                                         </tr>
                                     </thead>
                                     <tbody>
 <?php 
-$sql = "SELECT * from employee order by id asc";
+$sql="SELECT address.Address,address.PostalCode,provinces.name_en as pname,amphures.name_en as aname,districts.name_en as dname,member.Username as muname,member.FirstName,adstype.TypeAddress,member.LastName from address join member on member.Username=address.Username join provinces on provinces.id=address.ProvinceId join amphures on amphures.id=address.AmphureId join districts on districts.id=address.DistrictId join adstype on adstype.id=address.TypeAddress where address.id";
 $query = $dbh -> prepare($sql);
 $query->execute();
 $results=$query->fetchAll(PDO::FETCH_OBJ);
@@ -116,19 +116,14 @@ foreach($results as $result)
 {               ?>                                      
                                         <tr class="odd gradeX">
                                             <td class="center"><?php echo htmlentities($cnt);?></td>
-                                            <td class="center"><?php echo htmlentities($result->UserName);?></td>
                                             <td class="center"><?php echo htmlentities($result->FirstName);?></td>
-                                             <td class="center"><?php echo htmlentities($result->LastName);?></td>
-                                            <td class="center"><?php echo htmlentities($result->MobileNumber);?></td>
-                                            <td class="center"><?php echo htmlentities($result->AdminEmail);?></td>
-                                            <td class="center"><?php if($result->Status==1) {?>
-                                            <a href="" class="btn btn-success btn-xs">Active</a>
-                                            <?php } else {?>
-                                            <a href="" class="btn btn-danger btn-xs">Inactive</a>
-                                            <?php } ?></td>
-                                            <td class="center"><?php echo htmlentities($result->updationDate);?></td>
-                                            <td class="center"><a href="view-admin.php?adminid=<?php echo htmlentities($result->id);?>" class="btn btn-info btn-xs"><i class="fa fa-eye"></i> View</a>
-                                            </td>
+                                            <td class="center"><?php echo htmlentities($result->LastName);?></td>
+                                            <td class="center"><?php echo htmlentities($result->muname);?></td>
+                                            <td class="center"><?php echo htmlentities($result->Address);?></td>
+                                            <td class="center"><?php echo htmlentities($result->pname);?></td>
+                                            <td class="center"><?php echo htmlentities($result->aname);?></td>
+                                            <td class="center"><?php echo htmlentities($result->dname);?></td>
+                                            <td class="center"><?php echo htmlentities($result->TypeAddress);?></td>
                                         
                                         </tr>
  <?php $cnt=$cnt+1;}} ?>                                      

@@ -125,7 +125,9 @@ foreach($results as $result)
                                         </tr>
                                     </thead>
                                     <tbody>
-<?php $sql = "SELECT * from subcategory order by id asc";
+<?php 
+
+$sql = "SELECT subcategory.SubCategory,subcategory.id as subid from subcategory order by subcategory.id asc";
 $query = $dbh -> prepare($sql);
 $query->execute();
 $results=$query->fetchAll(PDO::FETCH_OBJ);
@@ -138,8 +140,8 @@ foreach($results as $result)
                                             <td class="center"><?php echo htmlentities($cnt);?></td>
                                             <td class="center"><?php echo htmlentities($result->SubCategory);?></td>
                                             <td class="center">
-                                            <a href="edit-subcategory.php?catid=<?php echo htmlentities($result->id);?>"><button class="btn btn-success btn-xs"><i class="fa fa-edit "></i> Edit</button> 
-                                            <a href="manage-subcategory.php?del=<?php echo htmlentities($result->id);?>" onclick="return confirm('Are you sure you want to delete?');"" >  <button class="btn btn-danger btn-xs"><i class="fa fa-pencil"></i> Delete</button>
+                                            <a href="edit-subcategory.php?subid=<?php echo htmlentities($result->subid);?>"><button class="btn btn-success btn-xs"><i class="fa fa-edit "></i> Edit</button> 
+                                            <a href="manage-subcategory.php?del=<?php echo htmlentities($result->subid);?>" onclick="return confirm('Are you sure you want to delete?');"" >  <button class="btn btn-danger btn-xs"><i class="fa fa-pencil"></i> Delete</button>
                                             </td>
 
                                         </tr>

@@ -8,20 +8,21 @@ header('location:../loginadmin.php');
 }
 else{ 
 if(isset($_POST['update']))
-{   
-$sname=$_POST['shopname'];
-$address=$_POST['address'];
-$mobileno=$_POST['mobileno'];
-$email=$_POST['shopemail'];
-$sql="update shop set ShopName=:sname,Address=:address,MobileNumber=:mobileno,ShopEmail=:email";
+{
+$subid=intval($_GET['subid']);
+$subcategory=$_POST['subcategory'];
+
+$sql="update subcategory set SubCategory=:subcategory  where id=:subid";
 $query = $dbh->prepare($sql);
-$query->bindParam(':sname',$sname,PDO::PARAM_STR);
-$query->bindParam(':address',$address,PDO::PARAM_STR);
-$query->bindParam(':mobileno',$mobileno,PDO::PARAM_STR);
-$query->bindParam(':email',$email,PDO::PARAM_STR);
+$query->bindParam(':subid',$subid,PDO::PARAM_STR);
+$query->bindParam(':subcategory',$subcategory,PDO::PARAM_STR);
 $query->execute();
-$msg="Your Shop information has been update";
+$msg="Update $subcategory menu successfully";
 }
+
+
+  
+  
 ?>
 
 <!DOCTYPE html>
@@ -75,8 +76,6 @@ foreach($results as $result)
 
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Abel&family=Barlow:wght@200;400&family=Bebas+Neue&family=Fjalla+One&family=Fredoka+One&family=Josefin+Sans&family=Open+Sans:wght@300&family=Staatliches&display=swap" rel="stylesheet">
-
-
 </head>
 <style>
     .errorWrap {
@@ -96,7 +95,6 @@ foreach($results as $result)
     box-shadow: 0 1px 1px 0 rgba(0,0,0,.1);
 }
     </style>
-
 <body>
     <!------MENU SECTION START-->
 <?php include('includes/header.php');?>
@@ -105,12 +103,12 @@ foreach($results as $result)
          <div class="container">
         <div class="row pad-botm">
             <div class="col-md-12">
-                <h4 class="header-line">Shop Information</h4>
+                <h4 class="header-line">My Profile</h4>
                 
                             </div>
 
         </div>
-
+        
         <?php if($error){?><div class="errorWrap"><strong>ERROR</strong>:<?php echo htmlentities($error); ?> </div><?php } 
 				else if($msg){?><div class="succWrap"><strong>SUCCESS</strong>:<?php echo htmlentities($msg); ?> </div><?php }?>
 
@@ -120,14 +118,17 @@ foreach($results as $result)
 <div class="col-md-9 col-md-offset-1">
                <div class="panel panel-primary">
                         <div class="panel-heading" style="font-size: 16px;">
-                           Information
+                           My Profile
                         </div>
                         <div class="panel-body">
                             <form name="update" method="post">
-<?php
-$sql="SELECT ShopName,Address,MobileNumber,ShopEmail from  shop  ";
+<?php 
+
+$subid=intval($_GET['subid']);
+$sql = "SELECT subcategory.SubCategory,subcategory.id as subid from subcategory where subcategory.id=:subid";
+
 $query = $dbh -> prepare($sql);
-$query-> bindParam(':id', $id, PDO::PARAM_STR);
+$query-> bindParam(':subid', $subid, PDO::PARAM_STR);
 $query->execute();
 $results=$query->fetchAll(PDO::FETCH_OBJ);
 $cnt=1;
@@ -136,50 +137,24 @@ if($query->rowCount() > 0)
 foreach($results as $result)
 {               ?>  
 
+<div class="col-md-12">
 <div class="form-group">
-<label style="font-family: 'Staatliches', cursive; letter-spacing: 1px; font-size:14px;">Name : </label>
-<?php echo htmlentities($result->ShopName);?>
+<label style="font-family: 'Staatliches', cursive; letter-spacing: 1px; font-size:14px;">Sub-Category : </label>
+<?php echo htmlentities($result->SubCategory);?>
+</div>
 </div>
 
+<div class="col-md-6">
 <div class="form-group">
-<label style="font-family: 'Staatliches', cursive; letter-spacing: 1px; font-size:14px;">Address : </label>
-<?php echo htmlentities($result->Address);?>
+<label style="font-family: 'Staatliches', cursive; letter-spacing: 1px; font-size:14px;">Enter Sub-Category Name</label>
+<input class="form-control" type="text" name="subcategory" id="" value="<?php echo htmlentities($result->SubCategory);?>"  autocomplete="off" required />
 </div>
-
-<div class="form-group">
-<label style="font-family: 'Staatliches', cursive; letter-spacing: 1px; font-size:14px;">Mobile Number : </label>
-<?php echo htmlentities($result->MobileNumber);?>
-</div>
-
-<div class="form-group">
-<label style="font-family: 'Staatliches', cursive; letter-spacing: 1px; font-size:14px;">Email : </label>
-<?php echo htmlentities($result->ShopEmail);?>
-</div>
-
-<div class="form-group">
-<label style="font-family: 'Staatliches', cursive; letter-spacing: 1px; font-size:14px;">Enter Shop Name</label>
-<input class="form-control" type="text" name="shopname" id="" value="<?php echo htmlentities($result->ShopName);?>"  autocomplete="off" required />
-</div>
-
-<div class="form-group">
-<label style="font-family: 'Staatliches', cursive; letter-spacing: 1px; font-size:14px;">Enter Shop Address</label>
-<textarea class="form-control" type="text" name="address" id="" value="<?php echo htmlentities($result->Address);?>"  autocomplete="off" required><?php echo htmlentities($result->Address);?></textarea>
-</div>
-
-<div class="form-group">
-<label style="font-family: 'Staatliches', cursive; letter-spacing: 1px; font-size:14px;">Enter Shop Mobile</label>
-<input class="form-control" type="text" name="mobileno" value="<?php echo htmlentities($result->MobileNumber);?>" autocomplete="off" required />
-</div>
-
-<div class="form-group">
-<label style="font-family: 'Staatliches', cursive; letter-spacing: 1px; font-size:14px;">Enter Shop Email</label>
-<input class="form-control" type="text" name="shopemail" value="<?php echo htmlentities($result->ShopEmail);?>" autocomplete="off" required />
 </div>
 
 <?php }} ?>
-                              
-<button type="submit" name="update" class="btn btn-danger" style="font-family: 'Staatliches', cursive; letter-spacing: 1px; font-size:14px;">Update Now </button>
-
+<div class="col-md-12">                   
+<button type="submit" name="update" class="btn btn-danger" style="font-family: 'Staatliches', cursive; letter-spacing: 1px;" > Update </button>
+</div>
                                     </form>
                             </div>
                         </div>
