@@ -50,7 +50,7 @@ include('includes/connection.php');
         font-size: 30px;
         margin-top: -30px;
     }.header {
-        padding: 70px;
+        padding: 50px;
         text-align: center;
         background-image: url("assets/img/coffee.jpg") ;
         background-size: 1290px 550px;

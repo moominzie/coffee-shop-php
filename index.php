@@ -109,7 +109,7 @@ foreach($results as $result)
     {
     foreach($results as $result)
     {               ?>  
-          <img src="admin/uploads/banner/<?php echo htmlentities($result->bev);?>" class="d-block w-100" alt="banner" width="970" height="250">
+          <img src="admin/uploads/banner/<?php echo htmlentities($result->bev);?>" class="d-block w-100" alt="banner" width="1366" height="384">
           <?php }} ?>
           
         </div>
@@ -125,7 +125,7 @@ foreach($results as $result)
     {
     foreach($results as $result)
     {               ?>  
-          <img src="admin/uploads/banner/<?php echo htmlentities($result->food);?>" class="d-block w-100" alt="banner" width="970" height="250">
+          <img src="admin/uploads/banner/<?php echo htmlentities($result->food);?>" class="d-block w-100" alt="banner" width="1366" height="384">
           <?php }} ?>
         </div>
 
@@ -140,7 +140,7 @@ foreach($results as $result)
     {
     foreach($results as $result)
     {               ?>  
-          <img src="admin/uploads/banner/<?php echo htmlentities($result->bread);?>" class="d-block w-100" alt="banner" width="970" height="250">
+          <img src="admin/uploads/banner/<?php echo htmlentities($result->bread);?>" class="d-block w-100" alt="banner" width="1366" height="384">
           <?php }} ?>
         </div>
 
