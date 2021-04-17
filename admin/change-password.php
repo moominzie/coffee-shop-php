@@ -134,7 +134,7 @@ return true;
 <div class="row">
 <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3" >
 <div class="panel panel-primary">
-<div class="panel-heading">
+<div class="panel-heading" style="font-family: 'Montserrat', sans-serif; letter-spacing: 1px; font-size: 16px;">
 Change Password
 </div>
 <div class="panel-body">
@@ -155,7 +155,7 @@ Change Password
 <input class="form-control"  type="password" name="confirmpassword" autocomplete="off" required  />
 </div>
 
- <button type="submit" name="change" class="btn btn-danger" style="font-family: 'Staatliches', cursive; letter-spacing: 1px;"> Change Password </button> 
+ <button type="submit" name="change" class="btn btn-danger" style="font-family: 'Montserrat', sans-serif; letter-spacing: 1px;"> Change Password </button> 
 </form>
  </div>
 </div>

@@ -80,6 +80,10 @@ foreach($results as $result)
 <link rel="preconnect" href="https://fonts.gstatic.com">
   <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@700&display=swap" rel="stylesheet">
 
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Abel&family=Barlow:wght@200;400&family=Bebas+Neue&family=Fjalla+One&family=Fredoka+One&family=Josefin+Sans&family=Open+Sans:wght@300&family=Staatliches&display=swap" rel="stylesheet">
+
+
   <script type="text/javascript">
 function valid()
 {
@@ -111,26 +115,26 @@ if(document.change.newpassword.value!= document.change.confirmpassword.value)
         else if($msg){?><div class="succWrap"><strong>SUCCESS</strong>:<?php echo htmlentities($msg); ?> </div><?php }?>   
     <div class="panel panel-info" style="margin-left:20%; margin-right:20%">
     
-        <div class="panel-heading"><b>รหัสผ่านใหม่</b></div>
+        <div class="panel-heading" style="font-family: 'Montserrat', sans-serif; font-size: 16px; letter-spacing: 1px;">New Password</div>
         <div class="panel-body" style="">
  
     <div class="form-group">
-        <label style="font-family: 'Oswald', sans-serif;">Enter Register Email</label>
+        <label style="font-family: 'Staatliches', cursive; letter-spacing: 1px; font-size:14px;">Enter Register Email</label>
         <input class="form-control" type="text" name="email" autocomplete="off" required />
     </div>
     <div class="form-group">
-        <label style="font-family: 'Oswald', sans-serif;">Enter Reg Mobile Number</label>
+        <label style="font-family: 'Staatliches', cursive; letter-spacing: 1px; font-size:14px;">Enter Reg Mobile Number</label>
         <input class="form-control" type="text" name="mobileno" autocomplete="off" required />
     </div>
 
     
     <div class="form-group">
-    <label style="font-family: 'Oswald', sans-serif;" >Password</label>
+    <label style="font-family: 'Staatliches', cursive; letter-spacing: 1px; font-size:14px;" >Password</label>
     <input class="form-control" type="password" name="newpassword" required autocomplete="off"  />
     </div>
 
     <div class="form-group">
-    <label style="font-family: 'Oswald', sans-serif;">ConfirmPassword</label>
+    <label style="font-family: 'Staatliches', cursive; letter-spacing: 1px; font-size:14px;">ConfirmPassword</label>
     <input class="form-control" type="password" name="confirmpassword" required autocomplete="off"  />
     </div>
 
@@ -138,7 +142,7 @@ if(document.change.newpassword.value!= document.change.confirmpassword.value)
     <label style="font-family: 'Montserrat', sans-serif">Verification code : </label>
     <input type="text"  name="vercode" maxlength="5" autocomplete="off" required style="width: 150px; height: 25px;" />&nbsp;<img src="captcha.php">
     </div>  
-    <button type="submit" name="change" class="btn btn-info" style=" font-family: 'Mitr', sans-serif; font-size: 16px">Change Password</button> | <a href="loginmember.php">Login</a>
+    <button type="submit" name="change" class="btn btn-info" style="font-family: 'Montserrat', sans-serif; letter-spacing: 1px;">Change Password</button> | <a href="loginmember.php" style="font-family: 'Montserrat', sans-serif; letter-spacing: 1px;">Login</a>
     </div>
     <!-- REGISTER END-->
  

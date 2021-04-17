@@ -84,7 +84,7 @@ foreach($results as $result)
                 <div class="col-md-12">
                     <!-- Advanced Tables -->
                     <div class="panel panel-primary">
-                        <div class="panel-heading">
+                        <div class="panel-heading" style="font-family: 'Montserrat', sans-serif; letter-spacing: 1px; font-size: 16px;">
                           Admin List
                         </div>
                         <div class="panel-body">

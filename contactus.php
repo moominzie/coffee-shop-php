@@ -118,7 +118,7 @@ foreach($results as $result)
 				else if($msg){?><div class="succWrap"><strong>SUCCESS</strong>:<?php echo htmlentities($msg); ?> </div><?php }?>
 
     <div class="panel panel-warning" style="margin-left:20%; margin-right:20%">
-        <div class="panel-heading" style="font-size:16px">Contact Form</div>
+        <div class="panel-heading" style="font-family: 'Montserrat', sans-serif; font-size: 16px; letter-spacing: 1px;">Contact Form</div>
         <div class="panel-body" style="">
 
 <div class="col-md-6">
@@ -151,7 +151,7 @@ foreach($results as $result)
         <label style="font-family: 'Staatliches', cursive; letter-spacing: 1px; font-size:14px;">Comment</label>
         <textarea class="form-control" type="password" name="comment" autocomplete="off" required ></textarea>
     </div>
-    <button type="submit" name="signup" class="btn btn-danger" id="submit" style="font-family: 'Staatliches', cursive; letter-spacing: 1px;"> Send comment </button> 
+    <button type="submit" name="signup" class="btn btn-danger" id="submit" style="font-family: 'Montserrat', sans-serif; letter-spacing: 1px;"> Send comment </button> 
     </div>
     </div>
         </div>

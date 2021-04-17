@@ -8,13 +8,13 @@ header('location:../loginadmin.php');
 }
   
 // code for block student    
-if(isset($_GET['memid']))
+if(isset($_GET['block']))
 {
-$id=$_GET['memid'];
+$memid=$_GET['block'];
 $status=0;
-$sql = "update member set Status=:status  WHERE id=:id";
+$sql = "update member set Status=:status  WHERE id=:memid";
 $query = $dbh->prepare($sql);
-$query -> bindParam(':id',$id, PDO::PARAM_STR);
+$query -> bindParam(':memid',$memid, PDO::PARAM_STR);
 $query -> bindParam(':status',$status, PDO::PARAM_STR);
 $query -> execute();
 header('location:shop-member.php');
@@ -23,13 +23,13 @@ header('location:shop-member.php');
 
 
 //code for active member
-if(isset($_GET['memid']))
+if(isset($_GET['active']))
 {
-$id=$_GET['memid'];
+$memid=$_GET['active'];
 $status=1;
-$sql = "update member set Status=:status  WHERE id=:id";
+$sql = "update member set Status=:status  WHERE id=:memid";
 $query = $dbh->prepare($sql);
-$query -> bindParam(':id',$id, PDO::PARAM_STR);
+$query -> bindParam(':memid',$memid, PDO::PARAM_STR);
 $query -> bindParam(':status',$status, PDO::PARAM_STR);
 $query -> execute();
 header('location:shop-member.php');
@@ -71,6 +71,7 @@ foreach($results as $result)
         <link href="assets/js/dataTables/dataTables.bootstrap.css" rel="stylesheet" />
     <!-- GOOGLE FONT -->
     <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' /> 
+    <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
 
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Pridi:wght@200&display=swap" rel="stylesheet">
@@ -103,7 +104,7 @@ foreach($results as $result)
          <div class="container">
         <div class="row pad-botm">
             <div class="col-md-12">
-                <h4 class="header-line">Manage Member</h4>
+                <h4 class="header-line">Manage Customer</h4>
     </div>
 
 
@@ -112,8 +113,8 @@ foreach($results as $result)
                 <div class="col-md-12">
                     <!-- Advanced Tables -->
                     <div class="panel panel-primary">
-                        <div class="panel-heading">
-                          Member List
+                        <div class="panel-heading" style="font-family: 'Montserrat', sans-serif; letter-spacing: 1px; font-size: 16px;">
+                          Customer List
                         </div>
                         <div class="panel-body">
                             <div class="table-responsive">
@@ -132,7 +133,7 @@ foreach($results as $result)
                                         </tr>
                                     </thead>
                                     <tbody>
-<?php $sql = "SELECT member.FirstName,member.LastName,member.EmailId,member.MobileNumber,member.Status,member.RegDate,member.updationDate,member.id as memid,member.Username as muname from member order by member.id asc";
+<?php $sql = "SELECT member.FirstName,member.LastName,member.EmailId,member.MobileNumber,member.Status,member.RegDate,member.updationDate,member.id as memid,member.Username as muname from member order by memid asc";
 $query = $dbh -> prepare($sql);
 $query->execute();
 $results=$query->fetchAll(PDO::FETCH_OBJ);
@@ -148,21 +149,20 @@ foreach($results as $result)
                                             <td class="center"><?php echo htmlentities($result->MobileNumber);?></td>
                                             <td class="center"><?php echo htmlentities($result->EmailId);?></td>
                                             <td class="center"><?php if($result->Status==1)
-                                            {
-                                                echo htmlentities("Active");
-                                            } else {
-                                            echo htmlentities("Blocked");
-                                            }
-                                            ?></td>
+                                            { ?>
+                                               <?php echo htmlentities("Active");?>&nbsp<i class="fa fa-check-circle-o" style="color: green"></i>
+                                           <?php }   else { 
+                                             echo htmlentities("Blocked"); ?>  <i class="fa fa-times-circle-o" style="color: red"></i>
+                                            <?php }?> </td>
                                             <td class="center"><?php echo htmlentities($result->RegDate);?></td>
                                             <td class="center"><?php echo htmlentities($result->updationDate);?></td>
                                             <td class="center">
                                             <?php if($result->Status==1)
                                             {?>
-                                            <a href="shop-member.php?memid=<?php echo htmlentities($result->memid);?>" onclick="return confirm('Are you sure you want to block this member?');"" >  <button class="btn btn-danger btn-xs"> Inactive</button>
+                                            <a href="shop-member.php?block=<?php echo htmlentities($result->memid);?>" onclick="return confirm('Are you sure you want to block this customer?');"" >  <button class="btn btn-default btn-xs"> Inactive</button>
                                             <?php } else {?>
 
-                                            <a href="shop-member.php?memid=<?php echo htmlentities($result->memid);?>" onclick="return confirm('Are you sure you want to active this member?');""><button class="btn btn-success btn-xs"> Active</button> 
+                                            <a href="shop-member.php?active=<?php echo htmlentities($result->memid);?>" onclick="return confirm('Are you sure you want to active this customer?');""><button class="btn btn-success btn-xs"> Active</button> 
                                             <?php } ?>
                                             </td>
                                         

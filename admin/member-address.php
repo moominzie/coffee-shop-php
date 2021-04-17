@@ -75,7 +75,7 @@ foreach($results as $result)
          <div class="container">
         <div class="row pad-botm">
             <div class="col-md-12">
-                <h4 class="header-line">Current Address Member</h4>
+                <h4 class="header-line">Current Address Customer</h4>
     </div>
 
 
@@ -84,8 +84,8 @@ foreach($results as $result)
                 <div class="col-md-12">
                     <!-- Advanced Tables -->
                     <div class="panel panel-primary">
-                        <div class="panel-heading">
-                          Member Address
+                        <div class="panel-heading" style="font-family: 'Montserrat', sans-serif; letter-spacing: 1px; font-size: 16px;">
+                          Customer Address
                         </div>
                         <div class="panel-body">
                             <div class="table-responsive">

@@ -217,7 +217,7 @@ $("#username").keyup(function(){
 
     <div class="panel panel-primary" style="margin-left:20%; margin-right:20%">
     
-        <div class="panel-heading" style="font-size: 16px;">Register admin</div>
+        <div class="panel-heading" style="font-family: 'Montserrat', sans-serif; letter-spacing: 1px; font-size: 16px;">Register admin</div>
         <div class="panel-body" style="">
  
  <div class="col-md-6">
@@ -274,7 +274,7 @@ $("#username").keyup(function(){
     <label style="font-family: 'Staatliches', cursive; letter-spacing: 1px; font-size:14px;">Verification code : </label>
     <input type="text"  name="vercode" maxlength="5" autocomplete="off" required style="width: 150px; height: 25px;" />&nbsp;<img src="captcha.php">
     </div>  
-    <button type="submit" name="regadmin" class="btn btn-danger" id="submit" style="font-family: 'Staatliches', cursive; letter-spacing: 1px;"> Add Admin </button>
+    <button type="submit" name="regadmin" class="btn btn-danger" id="submit" style="font-family: 'Montserrat', sans-serif; letter-spacing: 1px;"> Add Admin </button>
     </div>
     </div>
     <!-- REGISTER END-->

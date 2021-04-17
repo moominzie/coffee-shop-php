@@ -107,7 +107,7 @@ foreach($results as $result)
          <div class="container">
         <div class="row pad-botm">
             <div class="col-md-12">
-                <h4 class="header-line">My Profile</h4>
+                <h4 class="header-line">Edit Beverage</h4>
                 
                             </div>
 
@@ -121,8 +121,8 @@ foreach($results as $result)
            
 <div class="col-md-9 col-md-offset-1">
                <div class="panel panel-primary">
-                        <div class="panel-heading" style="font-size: 16px;">
-                           My Profile
+                        <div class="panel-heading" style="font-family: 'Montserrat', sans-serif; letter-spacing: 1px; font-size: 16px;">
+                           Beverage
                         </div>
                         <div class="panel-body">
                             <form name="update" method="post">
@@ -219,7 +219,7 @@ foreach($results as $result)
 
 <?php }} ?>
 <div class="col-md-12">                   
-<button type="submit" name="update" class="btn btn-danger" style="font-family: 'Staatliches', cursive; letter-spacing: 1px;" > Update </button>
+<button type="submit" name="update" class="btn btn-danger" style="font-family: 'Montserrat', sans-serif; letter-spacing: 1px;"> Update </button>
 </div>
                                     </form>
                             </div>

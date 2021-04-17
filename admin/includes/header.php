@@ -95,7 +95,6 @@
         <li class="dropdown">
             <a class="dropdown-toggle" data-toggle="dropdown" id="ddlmenuItem"  href="#">Account <i class="fa fa-angle-down"></i></a>
             <ul class="dropdown-menu" role="menu" aria-labelledby="ddlmenuItem">
-            <li role="presentation"><a role="menuitem" tabindex="-1" href="admin-member.php">Admin Member</a></li>
                 <li role="presentation"><a role="menuitem" tabindex="-1" href="admin-profile.php">Admin Profile</a></li>
                 <li role="presentation"><a role="menuitem" tabindex="-1" href="change-password.php">Change Password</a></li>
                 <li role="presentation"><a role="menuitem" tabindex="-1" href="logout.php">Logout <i class="fa fa-sign-out" style="color: #DC143C"></i> </a></li>
@@ -106,9 +105,12 @@
             <a class="dropdown-toggle" data-toggle="dropdown" id="ddlmenuItem"  href="#">Manage Shop <i class="fa fa-angle-down"></i></a>
             <ul class="dropdown-menu" role="menu" aria-labelledby="ddlmenuItem">
                 <li role="presentation"><a role="menuitem" tabindex="-1" href="add-admin.php">Add admin user</a></li>
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="admin-member.php">Admin Member</a></li>
                 <li role="presentation"><a role="menuitem" tabindex="-1" href="shop-information.php">Shop Information</a></li>
-                <li role="presentation"><a role="menuitem" tabindex="-1" href="shop-member.php">Shop Member</a></li>
-                <li role="presentation"><a role="menuitem" tabindex="-1" href="member-address.php">Member Address</a></li>
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="edit-banner.php">Shop Banner</a></li>
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="edit-thumbnail.php">Shop Thumbnail</a></li>
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="shop-member.php">Customer</a></li>
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="member-address.php">Customer Address</a></li>
             </ul>
           </li>
         </ul>

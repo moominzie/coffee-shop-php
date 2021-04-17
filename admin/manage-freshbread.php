@@ -75,7 +75,7 @@ foreach($results as $result)
          <div class="container">
         <div class="row pad-botm">
             <div class="col-md-12">
-                <h4 class="header-line">Manage Beverage</h4>
+                <h4 class="header-line">Manage Fresh Bread</h4>
     </div>
 
 
@@ -84,8 +84,8 @@ foreach($results as $result)
                 <div class="col-md-12">
                     <!-- Advanced Tables -->
                     <div class="panel panel-primary">
-                        <div class="panel-heading">
-                        Beverage
+                        <div class="panel-heading" style="font-family: 'Montserrat', sans-serif; letter-spacing: 1px; font-size: 16px;">
+                        Fresh Bread
                         </div>
                         <div class="panel-body">
                             <div class="table-responsive">

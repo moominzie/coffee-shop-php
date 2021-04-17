@@ -137,7 +137,7 @@ foreach($results as $result)
 
     <div class="panel panel-primary" style="margin-left:20%; margin-right:20%">
     
-        <div class="panel-heading" style="font-size: 16px;">Menu</div>
+        <div class="panel-heading" style="font-family: 'Montserrat', sans-serif; letter-spacing: 1px; font-size: 16px;">Menu</div>
         <div class="panel-body" style="">
  
  <div class="col-md-12">
@@ -249,7 +249,7 @@ foreach($results as $result)
 <!-- END TYPE -->
 
 <div class="col-md-12">
-    <button type="submit" name="add" class="btn btn-danger" id="add" style="font-family: 'Staatliches', cursive; letter-spacing: 1px;"> Add Menu </button>
+    <button type="submit" name="add" class="btn btn-danger" id="add" style="font-family: 'Montserrat', sans-serif; letter-spacing: 1px;"> Add Menu </button>
     </div>
 
     

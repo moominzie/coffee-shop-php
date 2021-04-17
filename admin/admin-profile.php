@@ -122,7 +122,7 @@ foreach($results as $result)
            
 <div class="col-md-9 col-md-offset-1">
                <div class="panel panel-primary">
-                        <div class="panel-heading" style="font-size: 16px;">
+                        <div class="panel-heading" style="font-family: 'Montserrat', sans-serif; letter-spacing: 1px; font-size: 16px;">
                            My Profile
                         </div>
                         <div class="panel-body">
@@ -198,7 +198,7 @@ foreach($results as $result)
 
 <?php }} ?>
 <div class="col-md-12">                   
-<button type="submit" name="update" class="btn btn-danger" style="font-family: 'Staatliches', cursive; letter-spacing: 1px;" > Update Now </button>
+<button type="submit" name="update" class="btn btn-danger" style="font-family: 'Montserrat', sans-serif; letter-spacing: 1px;"> Update Now </button>
 </div>
                                     </form>
                             </div>

@@ -77,7 +77,6 @@ foreach($results as $result)
       </div>
       <?php }} ?>
              
-
       <nav class="navbar navbar-default" style="border-bottom: 5px solid #BC8F8F;">
   <div class="container-fluid">
     <div class="navbar-header">
@@ -91,6 +90,7 @@ foreach($results as $result)
     <?php if($_SESSION['login'])
 {
 ?>   
+
     <div class="collapse navbar-collapse" id="myNavbar">
     <ul class="nav navbar-nav">
           <li><a href="dashboard.php">Dashboard</a></li>
@@ -151,36 +151,11 @@ foreach($results as $result)
 
         <?php } else { ?>
           <ul class="nav navbar-nav">
-          <li class="dropdown">
-            <a class="dropdown-toggle" data-toggle="dropdown" href="#">Beverage <i class="fa fa-angle-down"></i></a>
-            <ul class="dropdown-menu">
-              <li><a href="add-menu.php">Add Menu</a></li>
-              <li><a href="add-subcategory.php">Add Sub-Category</a></li>
-              <li><a href="add-size.php">Add Glass Size</a></li>
-            </ul>
-          </li>
-
-          <li class="dropdown">
-            <a class="dropdown-toggle" data-toggle="dropdown" href="#">Food <i class="fa fa-angle-down"></i></a>
-            <ul class="dropdown-menu">
-            <li><a href="manage-food.php">Manage Food</a></li>
-              <li><a href="manage-beverage.php">Manage Beverage</a></li>
-              <li><a href="manage-freshbread.php">Manage Fresh Bread</a></li>
-              <li><a href="manage-subcategory.php"> Manage Sub-Category</a></li>
-              <li><a href="manage-size.php">Manage Glass Size</a></li>
-            </ul>
-          </li>
-
-          <li class="dropdown">
-            <a class="dropdown-toggle" data-toggle="dropdown" href="#">Fresh Bread <i class="fa fa-angle-down"></i></a>
-            <ul class="dropdown-menu">
-            <li><a href="manage-food.php">Manage Food</a></li>
-              <li><a href="manage-beverage.php">Manage Beverage</a></li>
-              <li><a href="manage-freshbread.php">Manage Fresh Bread</a></li>
-              <li><a href="manage-subcategory.php"> Manage Sub-Category</a></li>
-              <li><a href="manage-size.php">Manage Glass Size</a></li>
-            </ul>
-          </li>
+          <li><a href="beverage.php">Beverage</a></li>
+          <li><a href="food.php">Food</a></li>
+          <li><a href="fresh-bread.php">Fresh Bread</a></li>
+          <li><a href="toast.php">Toast</a></li>
+          <li><a href="contactus.php">Contact Shop</a></li>
         </ul>
 
         <ul class="nav navbar-nav navbar-right">

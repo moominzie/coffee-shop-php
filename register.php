@@ -161,7 +161,7 @@ function checkUsernameAvailability() {
 
     <div class="panel panel-danger" style="margin-left:20%; margin-right:20%">
     
-        <div class="panel-heading" style="font-size: 16px;">Register Form</div>
+        <div class="panel-heading" style="font-family: 'Montserrat', sans-serif; font-size: 16px; letter-spacing: 1px;">Register Form</div>
         <div class="panel-body" style="">
 
 <div class="col-md-6">
@@ -217,12 +217,12 @@ function checkUsernameAvailability() {
 <div class="col-md-12">
     <div class="form-group">
         <label style="font-family: 'Montserrat', sans-serif">Verification code : </label>&nbsp;<label style="font-family: 'Oswald', sans-serif; color:red;">*</label>
-        <input class="form-control"  type="text"  name="vercode" maxlength="5" autocomplete="off" required style="width: 150px;" /><img style="margin-top:10px" src="captcha.php">
+        <input type="text"  name="vercode" maxlength="5" autocomplete="off" required style="width: 150px; height: 25px;" />&nbsp;<img src="captcha.php">
     </div>  
 </div>
 
 <div class="col-md-12">
-    <button type="submit" name="signup" class="btn btn-danger" id="submit" style="font-family: 'Staatliches', cursive; letter-spacing: 1px;"> Register </button> 
+    <button type="submit" name="signup" class="btn btn-danger" id="submit" style="font-family: 'Montserrat', sans-serif; letter-spacing: 1px;"> Register </button> 
 </div>
 
     

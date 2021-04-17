@@ -106,13 +106,13 @@ foreach($results as $result)
     <div class="container">
     <div class="row pad-botm">
             <div class="col-md-12">
-                <h4 class="header-line">Member Login</h4>
+                <h4 class="header-line" >Member Login</h4>
                 
                             </div>
 
         </div>
     <div class="panel panel-info" style="margin-left:20%; margin-right:20%">
-        <div class="panel-heading" style="font-size: 16px;">Login</div>
+        <div class="panel-heading" style="font-family: 'Montserrat', sans-serif; font-size: 16px; letter-spacing: 1px;">Login</div>
         <div class="panel-body" style="">
               
     <div class="form-group">
@@ -125,10 +125,10 @@ foreach($results as $result)
         <p class="help-block"><a href="member-forgot-password.php"style="font-family: 'Open Sans', sans-serif; color: #EC7063; font-size: 14px">Forget Password?</a></p>
     </div>
     <div class="form-group">
-       <label style="font-family: 'Staatliches', cursive; letter-spacing: 1px; font-size:14px;">Verification code : </label>
+       <label style="font-family: 'Montserrat', sans-serif">Verification code : </label>
         <input type="text"  name="vercode" maxlength="5" autocomplete="off" required style="width: 150px; height: 25px;" />&nbsp;<img src="captcha.php">
     </div>  
-    <button type="submit" name="login" class="btn btn-info" style="font-family: 'Staatliches', cursive; letter-spacing: 1px;"> Login </button> | <a href="signup.php" style="font-family: 'Open Sans', sans-serif;">Do not register?</a>
+    <button type="submit" name="login" class="btn btn-info" style="font-family: 'Montserrat', sans-serif; letter-spacing: 1px;"> Login </button> | <a href="register.php" style="font-family: 'Montserrat', sans-serif">Do not register?</a>
  
   </div>
         </div>
