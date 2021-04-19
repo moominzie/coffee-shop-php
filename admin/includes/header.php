@@ -27,7 +27,7 @@
     }
     .text_eng,a {
         font-family: 'Open Sans', sans-serif;
-        font-size: 16px;
+        font-size: 14px;
 
     }  
     .header1 {
