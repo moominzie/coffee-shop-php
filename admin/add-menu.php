@@ -163,7 +163,7 @@ foreach($results as $result)
 
     <div class="col-md-8">
     <div class="form-group">
-        <label style="font-family: 'Staatliches', cursive; letter-spacing: 1px; font-size:14px;">Picture</label>&nbsp;<label for="" style="font-family: 'Oswald', sans-serif; color: red;">* Please use image scale 250x250px. </label>
+        <label style="font-family: 'Staatliches', cursive; letter-spacing: 1px; font-size:14px;">Picture</label>&nbsp;<label for="" style="font-family: 'Oswald', sans-serif; color: red;">* Please use image scale 300x300 px. </label>
         <input class="form-control" type="file" name="img1" autocomplete="off" required />
     </div>
     </div>

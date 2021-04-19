@@ -36,13 +36,24 @@ foreach($results as $result)
             </ul>
           </div>
 
+          <?php if($_SESSION['login'])
+{
+?>  
           <div class="col-xs-6 col-md-3">
+            <h6>Quick Links</h6>
+            <ul class="footer-links">
+              <li><a href="index.php">Home</a></li>
+            </ul>
+          </div>
+          <?php } else { ?>
+            <div class="col-xs-6 col-md-3">
             <h6>Quick Links</h6>
             <ul class="footer-links">
               <li><a href="index.php">Home</a></li>
               <li><a href="contactus.php">Contact Us</a></li>
             </ul>
           </div>
+          <?php } ?>
         </div>
         <hr>
       </div>

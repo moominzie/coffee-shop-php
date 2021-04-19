@@ -83,6 +83,8 @@ foreach($results as $result)
       </div>
     </div>
   </form>
+     <!-- CONTENT-WRAPPER SECTION END-->
+     <?php include('includes/footer.php');?>
 
 
 </body>

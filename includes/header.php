@@ -95,9 +95,9 @@ foreach($results as $result)
     <ul class="nav navbar-nav">
           <li><a href="dashboard.php">Dashboard</a></li>
           <li><a href="beverage.php">Beverage</a></li>
-          <li><a href="food.php">Food</a></li>
           <li><a href="fresh-bread.php">Fresh Bread</a></li>
           <li><a href="toast.php">Toast</a></li>
+          <li><a href="food.php">Food</a></li>
         </ul>
 
         <ul class="nav navbar-nav navbar-right">
@@ -118,10 +118,9 @@ foreach($results as $result)
         <?php } else { ?>
           <ul class="nav navbar-nav">
           <li><a href="beverage.php">Beverage</a></li>
-          <li><a href="food.php">Food</a></li>
           <li><a href="fresh-bread.php">Fresh Bread</a></li>
           <li><a href="toast.php">Toast</a></li>
-          <li><a href="contactus.php">Contact Shop</a></li>
+          <li><a href="food.php">Food</a></li>
         </ul>
 
         <ul class="nav navbar-nav navbar-right">
