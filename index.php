@@ -100,6 +100,7 @@ foreach($results as $result)
 
       <div class="item active">
         <?php
+        
     $sql = "SELECT bevbanner.Images as bev from bevbanner";
     $query = $dbh -> prepare($sql);
     $query->execute();

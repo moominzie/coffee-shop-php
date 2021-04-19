@@ -19,8 +19,8 @@ foreach($results as $result)
 
 <p class="text-justify"><?php echo htmlentities($result->ShopName);?></p>
 <p class="text-justify"><?php echo htmlentities($result->Address);?></p>
-<p class="text-justify"><?php echo htmlentities($result->MobileNumber);?></p>
-<p class="text-justify"><?php echo htmlentities($result->ShopEmail);?></p>
+<p class="text-justify"> <i class="fa fa-phone" aria-hidden="true"></i> <?php echo htmlentities($result->MobileNumber);?> </p>
+<p class="text-justify"> <i class="fa fa-envelope" aria-hidden="true"></i> <?php echo htmlentities($result->ShopEmail);?></p>
 
 <?php }} ?>
          

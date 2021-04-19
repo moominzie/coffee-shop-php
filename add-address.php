@@ -265,9 +265,9 @@ foreach($results as $result)
 </div>
 
   <!-- START TITLE -->        
-<div class="col-md-4">  
+<div class="col-md-8">  
 <div class="form-group">
-<label style="font-family: 'Staatliches', cursive; letter-spacing: 1px; font-size:14px;">Address Type</label>&nbsp;<label for="" style="font-family: 'Oswald', sans-serif; color: red;">* </label>
+<label style="font-family: 'Staatliches', cursive; letter-spacing: 1px; font-size:14px;">Address Type</label>&nbsp;<label for="" style="font-family: 'Oswald', sans-serif; color: red;">* Please select 'Delivery Address' if you have already added your current address. </label>
         <!-- END TITLE -->
     <!-- START SELECT CM FORM ID TITLE -->
 <select class="form-control" name="type" id="" required>
@@ -291,7 +291,7 @@ foreach($results as $result)
 <?php }} ?>
 
 <div class="col-md-12">                             
-<button type="submit" name="add" class="btn btn-primary" style="font-family: 'Staatliches', cursive; letter-spacing: 1px; font-size:14px;" >Add Address </button>
+<button type="submit" name="add" class="btn btn-primary" style="font-family: 'Staatliches', cursive; letter-spacing: 1px; font-size:14px;" >Add Address </button> | <a href="my-address.php" style="font-family: 'Staatliches', cursive; color: red">Edit your Current Address please click here!!</a>
 </div>
 </form>
 </div>

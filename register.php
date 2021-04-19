@@ -167,19 +167,19 @@ function checkUsernameAvailability() {
 <div class="col-md-6">
     <div class="form-group">
         <label style="font-family: 'Staatliches', cursive; letter-spacing: 1px; font-size:14px;">Enter First Name</label>&nbsp;<label style="font-family: 'Oswald', sans-serif; color:red;">*</label>
-        <input class="form-control" type="text" name="firstname" autocomplete="off" required />
+        <input class="form-control" type="text" name="firstname" autocomplete="off" required value="<?php echo htmlspecialchars($_POST['firstname'] ?? '', ENT_QUOTES); ?>" />
     </div>
 </div>
 <div class="col-md-6">
     <div class="form-group">
         <label style="font-family: 'Staatliches', cursive; letter-spacing: 1px; font-size:14px;">Enter Last Name</label>&nbsp;<label style="font-family: 'Oswald', sans-serif; color:red;">*</label>
-        <input class="form-control" type="text" name="lastname" autocomplete="off" required />
+        <input class="form-control" type="text" name="lastname" autocomplete="off" required  value="<?php echo htmlspecialchars($_POST['lastname'] ?? '', ENT_QUOTES); ?>" />
     </div>
 </div>
 <div class="col-md-6">
     <div class="form-group">
         <label style="font-family: 'Staatliches', cursive; letter-spacing: 1px; font-size:14px;">Enter Email</label>&nbsp;<label style="font-family: 'Oswald', sans-serif; color:red;">*</label>
-        <input class="form-control" type="email" name="email" id="emailid" onBlur="checkEmailAvailability()"  autocomplete="off" required />
+        <input class="form-control" type="email" name="email" id="emailid" onBlur="checkEmailAvailability()"  autocomplete="off" required value="<?php echo htmlspecialchars($_POST['email'] ?? '', ENT_QUOTES); ?>"/>
         <span id="email-availability-status" style="font-size:12px;"></span> 
     </div>
 </div>
@@ -187,14 +187,14 @@ function checkUsernameAvailability() {
 <div class="col-md-6">
     <div class="form-group">
         <label style="font-family: 'Staatliches', cursive; letter-spacing: 1px; font-size:14px;">Mobile Number</label>&nbsp;<label style="font-family: 'Oswald', sans-serif; color:red;">*</label>
-        <input class="form-control" type="text" name="mobileno" id="mobilenumber" maxlength="10" onBlur=""  autocomplete="off" required />
+        <input class="form-control" type="text" name="mobileno" id="mobilenumber" maxlength="10" onBlur=""  autocomplete="off" required value="<?php echo htmlspecialchars($_POST['mobileno'] ?? '', ENT_QUOTES); ?>" />
     </div>
 </div>
 
 <div class="col-md-12">
     <div class="form-group">
         <label style="font-family: 'Staatliches', cursive; letter-spacing: 1px; font-size:14px;">Username</label>&nbsp;<label style="font-family: 'Oswald', sans-serif; color:red;">*</label>
-        <input class="form-control" type="text" name="username" id="username" autocomplete="off" onBlur="checkUsernameAvailability()" required />
+        <input class="form-control" type="text" name="username" id="username" autocomplete="off" onBlur="checkUsernameAvailability()" required value="<?php echo htmlspecialchars($_POST['username'] ?? '', ENT_QUOTES); ?>"/>
         <span id="username-availability-status" style="font-size:12px;"></span> 
                 <!-- Response -->
     </div>
@@ -222,7 +222,7 @@ function checkUsernameAvailability() {
 </div>
 
 <div class="col-md-12">
-    <button type="submit" name="signup" class="btn btn-danger" id="submit" style="font-family: 'Montserrat', sans-serif; letter-spacing: 1px;"> Register </button> 
+    <button type="submit" name="signup" class="btn btn-danger" id="submit" style="font-family: 'Montserrat', sans-serif; letter-spacing: 1px;"> Register </button> | <a href="loginmember.php" style="font-family: 'Montserrat', sans-serif">Login</a>
 </div>
 
     

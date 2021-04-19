@@ -83,6 +83,7 @@
             <li><a href="manage-food.php">Manage Food</a></li>
               <li><a href="manage-beverage.php">Manage Beverage</a></li>
               <li><a href="manage-freshbread.php">Manage Fresh Bread</a></li>
+              <li><a href="manage-toast.php">Manage Toast</a></li>
               <li><a href="manage-subcategory.php"> Manage Sub-Category</a></li>
               <li><a href="manage-size.php">Manage Glass Size</a></li>
             </ul>
