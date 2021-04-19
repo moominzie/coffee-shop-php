@@ -77,12 +77,91 @@ foreach($results as $result)
         font-family: 'Fjalla One', sans-serif;
         letter-spacing: 1px; 
     }
+    * {
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    }
+    .image-box {
+        position: relative;
+        margin: auto;
+        overflow: hidden;
+    }
+    .image-box img {
+        max-width: 100%;
+        transition: all 0.3s;
+        display: block;
+        transform: scale(1);
+    }
+
+    .image-box:hover img {
+        transform: scale(1.1);
+        cursor: pointer;
+    }
+
+    .img1{
+      width: 570px;
+      height: 570px;
+      margin-top:20px;
+      margin-right:35px;
+      margin-bottom:20px;
+    }
+
+    .img2{
+      width: 300px;
+      height: 275px;
+      margin-top:20px;
+      margin-left: -35px;
+    }
+
+    .img3{
+      width: 300px;
+      height: 275px;
+      margin-top:20px;
+      margin-left: -35px;
+    }
+
+    .img4{
+      width: 300px;
+      height: 275px;
+      margin-top:20px;
+      margin-left: -35px;
+    }
+    .img5{
+      width: 300px;
+      height: 275px;
+      margin-top:20px;
+      margin-left: -35px;
+    }
+    #myBtn {
+    display: none;
+    position: fixed;
+    bottom: 20px;
+    right: 30px;
+    z-index: 99;
+    font-size: 18px;
+    border: none;
+    outline: none;
+    background-color: #BC8F8F;
+    color: white;
+    cursor: pointer;
+    padding: 15px;
+    border-radius: 50%;
+    box-shadow: 2px 2px 5px #000000;
+  }
+
+  #myBtn:hover {
+    background-color: #555;
+  }
   
   </style>
   
 </head>
 
 <body>
+<button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
 
     <!------MENU SECTION START-->
     <?php include('includes/header.php');?>
@@ -163,6 +242,7 @@ foreach($results as $result)
     <div class="row">
 
       <div class="col-md-6">
+      <div class="image-box img1">
       <a href="beverage.php" > 
       <?php
     $sql = "SELECT Images from thumbnail where PositionId = 1";
@@ -174,11 +254,14 @@ foreach($results as $result)
     {
     foreach($results as $result)
     {               ?>  
-          <img src="admin/uploads/thumbnails/<?php echo htmlentities($result->Images);?>" width="570" height="570" style="margin-bottom: 20px;margin-top: 20px;">
+  
+          <img src="admin/uploads/thumbnails/<?php echo htmlentities($result->Images);?>" width="570" height="570" style="">
           <?php }} ?></a>
+          </div>
       </div>
 
       <div class="col-md-3">
+      <div class="image-box img2">
       <a href="fresh-bread.php" > 
       <?php
      $sql = "SELECT Images from thumbnail where PositionId = 2";
@@ -190,11 +273,13 @@ foreach($results as $result)
     {
     foreach($results as $result)
     {               ?>  
-          <img src="admin/uploads/thumbnails/<?php echo htmlentities($result->Images);?>" width="300" height="275" style="margin-bottom: 20px;margin-top: 20px;margin-left: -35px;">
+          <img src="admin/uploads/thumbnails/<?php echo htmlentities($result->Images);?>" width="300" height="275" style="">
           <?php }} ?></a>
+      </div>
       </div>
 
       <div class="col-md-3">
+      <div class="image-box img3">
       <a href="beverage.php" > 
       <?php
      $sql = "SELECT Images from thumbnail where PositionId = 3";
@@ -206,11 +291,13 @@ foreach($results as $result)
     {
     foreach($results as $result)
     {               ?>  
-          <img src="admin/uploads/thumbnails/<?php echo htmlentities($result->Images);?>" width="300" height="275" style="margin-bottom: 20px;margin-top: 20px;margin-left: -25px;">
+          <img src="admin/uploads/thumbnails/<?php echo htmlentities($result->Images);?>" width="300" height="275" style="">
           <?php }} ?></a>
+      </div>
       </div>
 
       <div class="col-md-3">
+      <div class="image-box img4">
       <a href="food.php" > 
       <?php
      $sql = "SELECT Images from thumbnail where PositionId = 4";
@@ -222,11 +309,13 @@ foreach($results as $result)
     {
     foreach($results as $result)
     {               ?>  
-          <img src="admin/uploads/thumbnails/<?php echo htmlentities($result->Images);?>" width="300" height="275" style="margin-bottom: 20px;margin-left: -35px;">
+          <img src="admin/uploads/thumbnails/<?php echo htmlentities($result->Images);?>" width="300" height="275" style="">
           <?php }} ?></a>
+      </div>
       </div>
 
       <div class="col-md-3">
+      <div class="image-box img5">
       <a href="toast.php" > 
       <?php
      $sql = "SELECT Images from thumbnail where PositionId = 5";
@@ -238,8 +327,9 @@ foreach($results as $result)
     {
     foreach($results as $result)
     {               ?>  
-          <img src="admin/uploads/thumbnails/<?php echo htmlentities($result->Images);?>" width="300" height="275" style="margin-bottom: 20px;margin-left: -25px;">
+          <img src="admin/uploads/thumbnails/<?php echo htmlentities($result->Images);?>" width="300" height="275" style="">
           <?php }} ?></a>
+      </div>
       </div>
 
       </div>
@@ -251,5 +341,27 @@ foreach($results as $result)
 
 
 </body>
+
 </html>
+<script>
+//Get the button
+var mybutton = document.getElementById("myBtn");
+
+// When the user scrolls down 20px from the top of the document, show the button
+window.onscroll = function() {scrollFunction()};
+
+function scrollFunction() {
+  if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+    mybutton.style.display = "block";
+  } else {
+    mybutton.style.display = "none";
+  }
+}
+
+// When the user clicks on the button, scroll to the top of the document
+function topFunction() {
+  document.body.scrollTop = 0;
+  document.documentElement.scrollTop = 0;
+}
+</script>
 

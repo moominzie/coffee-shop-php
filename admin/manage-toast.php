@@ -121,7 +121,7 @@ foreach($results as $result)
                                              <td class="center"><img src="uploads/img/<?php echo htmlentities($result->Image1);?>" width="100" height="100" style="border:solid 1px #000"></td>
                                              <td class="center"><?php echo htmlentities($result->Category);?></td>
                                              <td class="center"><?php echo htmlentities($result->SubCategory);?></td>
-                                             <td class="center"><a href="edit-food.php?mid=<?php echo htmlentities($result->mid);?>" class="btn btn-success btn-xs"><i class="fa fa-edit"></i> Edit</a>
+                                             <td class="center"><a href="edit-toast.php?mid=<?php echo htmlentities($result->mid);?>" class="btn btn-success btn-xs"><i class="fa fa-edit"></i> Edit</a>
                                         </tr>
  <?php $cnt=$cnt+1;}} ?>                                      
                                     </tbody>

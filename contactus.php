@@ -158,6 +158,11 @@ foreach($results as $result)
       </div>
     </div>
   </form>
+
+          <!------FOOTER SECTION START-->
+          <?php include('includes/footer.php');?>
+
+
 </body>
 </html>
 

@@ -89,7 +89,7 @@ foreach($results as $result)
     </div>
     <?php if($_SESSION['login'])
 {
-?>   
+?>  
 
     <div class="collapse navbar-collapse" id="myNavbar">
     <ul class="nav navbar-nav">

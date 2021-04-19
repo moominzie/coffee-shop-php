@@ -3,7 +3,6 @@ session_start();
 include('includes/connection.php');
 error_reporting(0);
 
-
 ?>
 
 
@@ -60,6 +59,12 @@ foreach($results as $result)
   <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@700&display=swap" rel="stylesheet">
 
   <link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Coda+Caption:wght@800&display=swap" rel="stylesheet">
+
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Yanone+Kaffeesatz:wght@500&display=swap" rel="stylesheet">
+
+  <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Abel&family=Barlow:wght@200;400&family=Bebas+Neue&family=Fjalla+One&family=Fredoka+One&family=Josefin+Sans&family=Open+Sans:wght@300&family=Staatliches&display=swap" rel="stylesheet">
   <style>
   /* Make the image fully responsive */
@@ -74,20 +79,20 @@ foreach($results as $result)
   h3 {
         font-weight:900;
         text-transform:uppercase;
-        font-family: 'Fjalla One', sans-serif;
+        font-family: 'Coda Caption', sans-serif;
         letter-spacing: 1px; 
     }
     .card {
         box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
         max-width: 300px;
         margin: auto;
-        text-align: center;
+        text-align: left;
         font-family: arial;
         }
 
         .price {
         color: grey;
-        font-size: 16px;
+        font-size: 14px;
         }
 
         .card button {
@@ -154,23 +159,23 @@ foreach($results as $result)
     background-color: #555;
   }
 
-
   
   </style>
   
 </head>
 
 <body>
-
 <button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
+
     <!------MENU SECTION START-->
     <?php include('includes/header.php');?>
 <!-- MENU SECTION END-->
 
 <div class="container-fluid">
-<h3 class="header-line" style="margin-top:30px; font-family: 'Fjalla One', sans-serif;text-transform:none;">Toast</h3>
+<h3 class="header-line" style="margin-top:30px; font-family: 'Fjalla One', sans-serif;text-transform:none;">Beverage</h3>
 <?php 
-$sql = "SELECT menu.MenuName,menu.Description,menu.Price,menu.Image1,category.Category,subcategory.SubCategory,menu.id as mid from menu join category on menu.CategoryId=category.id join subcategory on menu.SubCategoryId=subcategory.id where menu.CategoryId in (4) group by menu.id";
+
+$sql = "SELECT menu.MenuName,menu.Description,menu.Price,menu.Image1,category.Category,subcategory.SubCategory,size.SizeName,type.TypeName,size.Ounce,menu.id as mid from menu join category on menu.CategoryId=category.id join subcategory on menu.SubCategoryId=subcategory.id join size on menu.SizeId=size.id join type on menu.TypeId=type.id order by mid asc";
 $query = $dbh -> prepare($sql);
 $query->execute();
 $results=$query->fetchAll(PDO::FETCH_OBJ);
@@ -178,24 +183,27 @@ $cnt=1;
 if($query->rowCount() > 0)
 {
 foreach($results as $result)
-{               ?>    
+{               ?>     
 <div class="col-6 col-md-3">
-
 <div class="image-box">
-<a href="product-toast.php?mid=<?php echo htmlentities($result->mid);?>" style="color: black" >
-  <img src="admin/uploads/img/<?php echo htmlentities($result->Image1);?>" width="250" height="250" style=""></a>
+<a href="product-bev.php?mid=<?php echo htmlentities($result->mid);?>" style="color: black" >
+  <img src="admin/uploads/img/<?php echo htmlentities($result->Image1);?>" width="250" height="250" style="">
+  </a>
   </div>
-  <a href="product-toast.php?mid=<?php echo htmlentities($result->mid);?>" style="color: black" ><h4 style="margin-left:20px;font-family: 'Fjalla One', sans-serif;"><?php echo htmlentities($result->MenuName);?></h4></a>
+  <a href="product-bev.php?mid=<?php echo htmlentities($result->mid);?>" style="color: black" ><h4 style="margin-left:20px;font-family: 'Fjalla One', sans-serif;"><?php echo htmlentities($result->MenuName);?></h4></a>
   <p style="margin-left:20px;"><?php echo htmlentities($result->Description);?></p>
-  <p class="price" style="margin-left:20px;"><?php echo htmlentities($result->Price);?>฿ </p>
-
+  <p class="price" style="margin-left:20px;"><?php echo htmlentities($result->SizeName);?>&nbsp | <?php echo htmlentities($result->Price);?>฿ </p>
 
 </div>
+
 <?php }} ?>   
 </div>
-
         <!------FOOTER SECTION START-->
         <?php include('includes/footer.php');?>
+
+
+
+
 
 
 
@@ -222,6 +230,5 @@ function topFunction() {
   document.documentElement.scrollTop = 0;
 }
 </script>
-
 
 

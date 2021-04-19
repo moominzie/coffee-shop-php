@@ -3,7 +3,6 @@ session_start();
 include('includes/connection.php');
 error_reporting(0);
 
-
 ?>
 
 
@@ -60,6 +59,12 @@ foreach($results as $result)
   <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@700&display=swap" rel="stylesheet">
 
   <link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Coda+Caption:wght@800&display=swap" rel="stylesheet">
+
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Yanone+Kaffeesatz:wght@500&display=swap" rel="stylesheet">
+
+  <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Abel&family=Barlow:wght@200;400&family=Bebas+Neue&family=Fjalla+One&family=Fredoka+One&family=Josefin+Sans&family=Open+Sans:wght@300&family=Staatliches&display=swap" rel="stylesheet">
   <style>
   /* Make the image fully responsive */
@@ -74,20 +79,20 @@ foreach($results as $result)
   h3 {
         font-weight:900;
         text-transform:uppercase;
-        font-family: 'Fjalla One', sans-serif;
+        font-family: 'Coda Caption', sans-serif;
         letter-spacing: 1px; 
     }
     .card {
         box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
         max-width: 300px;
         margin: auto;
-        text-align: center;
+        text-align: left;
         font-family: arial;
         }
 
         .price {
         color: grey;
-        font-size: 16px;
+        font-size: 14px;
         }
 
         .card button {
@@ -105,19 +110,69 @@ foreach($results as $result)
         .card button:hover {
         opacity: 0.7;
         }
+        * {
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    }
+    .image-box {
+        position: relative;
+        margin: auto;
+        overflow: hidden;
+        width: 250px;
+        height: 250px;
+        border-radius: 5%;
+    }
+    .image-box img {
+        max-width: 100%;
+        transition: all 0.3s;
+        display: block;
+        width: 250px;
+        height: 250px;
+        transform: scale(1);
+    }
+
+    .image-box:hover img {
+        transform: scale(1.1);
+        cursor: pointer;
+    }
+    #myBtn {
+    display: none;
+    position: fixed;
+    bottom: 20px;
+    right: 30px;
+    z-index: 99;
+    font-size: 18px;
+    border: none;
+    outline: none;
+    background-color: #BC8F8F;
+    color: white;
+    cursor: pointer;
+    padding: 15px;
+    border-radius: 50%;
+    box-shadow: 2px 2px 5px #000000;
+  }
+
+  #myBtn:hover {
+    background-color: #555;
+  }
+
   
   </style>
   
 </head>
 
 <body>
+<button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
 
     <!------MENU SECTION START-->
     <?php include('includes/header.php');?>
 <!-- MENU SECTION END-->
 
 <div class="container-fluid">
-<h3>Beverage</h3>
+<h3 class="header-line" style="margin-top:30px; font-family: 'Fjalla One', sans-serif;text-transform:none;">Beverage</h3>
 <?php 
 $sql = "SELECT menu.MenuName,menu.Description,menu.Price,menu.Image1,category.Category,subcategory.SubCategory,size.SizeName,type.TypeName,size.Ounce,menu.id as mid from menu join category on menu.CategoryId=category.id join subcategory on menu.SubCategoryId=subcategory.id join size on menu.SizeId=size.id join type on menu.TypeId=type.id order by mid asc";
 $query = $dbh -> prepare($sql);
@@ -129,17 +184,21 @@ if($query->rowCount() > 0)
 foreach($results as $result)
 {               ?>     
 <div class="col-6 col-md-3">
-  <div class="card">
-  <img src="admin/uploads/img/<?php echo htmlentities($result->Image1);?>" width="250" height="250" style="margin:10px">
-  <h4><?php echo htmlentities($result->MenuName);?></h4>
-  <p class="price"><?php echo htmlentities($result->TypeName);?>&nbsp<?php echo htmlentities($result->Price);?>฿ </p>
-  <p class="price"><?php echo htmlentities($result->SizeName);?>&nbsp<?php echo htmlentities($result->Ounce);?> oz. </p>
-  <p><?php echo htmlentities($result->Description);?></p>
-  <p><button id="addcart" >Add to Cart <i class="fa fa-shopping-cart" aria-hidden="true"></i></button></p>
+<div class="image-box">
+<a href="product-bev.php?mid=<?php echo htmlentities($result->mid);?>" style="color: black" >
+  <img src="admin/uploads/img/<?php echo htmlentities($result->Image1);?>" width="250" height="250" style="">
+  </a>
+  </div>
+  <a href="product-bev.php?mid=<?php echo htmlentities($result->mid);?>" style="color: black" ><h4 style="margin-left:20px;font-family: 'Fjalla One', sans-serif;"><?php echo htmlentities($result->MenuName);?></h4></a>
+  <p style="margin-left:20px;"><?php echo htmlentities($result->Description);?></p>
+  <p class="price" style="margin-left:20px;"><?php echo htmlentities($result->SizeName);?>&nbsp | <?php echo htmlentities($result->Price);?>฿ </p>
+
 </div>
-</div>
+
 <?php }} ?>   
 </div>
+        <!------FOOTER SECTION START-->
+        <?php include('includes/footer.php');?>
 
 
 
@@ -149,4 +208,26 @@ foreach($results as $result)
 
 </body>
 </html>
+<script>
+//Get the button
+var mybutton = document.getElementById("myBtn");
+
+// When the user scrolls down 20px from the top of the document, show the button
+window.onscroll = function() {scrollFunction()};
+
+function scrollFunction() {
+  if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+    mybutton.style.display = "block";
+  } else {
+    mybutton.style.display = "none";
+  }
+}
+
+// When the user clicks on the button, scroll to the top of the document
+function topFunction() {
+  document.body.scrollTop = 0;
+  document.documentElement.scrollTop = 0;
+}
+</script>
+
 
