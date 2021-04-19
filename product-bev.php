@@ -29,6 +29,7 @@ foreach($results as $result)
 <title><?php echo htmlentities($result->ShopName);?></title>
 
       <?php }} ?>
+    <script type="text/javascript" src='includes/jquery-3.4.1.min.js'></script>
     <!-- BOOTSTRAP CORE STYLE  -->
     <link href="assets/css/bootstrap.css" rel="stylesheet" />
     <!-- FONT AWESOME STYLE  -->
@@ -200,9 +201,13 @@ foreach($results as $result)
     <a href="#buynow" data-toggle="modal" data-dismiss="modal">
     <p><button style="margin-left:20px;" >Buy Now </button></p>
 <?php } else { ?>
-    <a href="#loginform" data-toggle="modal" data-dismiss="modal">
+          <!--Login-Form -->
+<?php include('includes/loginmember.php');?>
+<!--/Login-Form --> 
+  <a href="#loginform" data-toggle="modal" data-dismiss="modal">
     <p><button style="margin-left:20px;" >Add to Cart <i class="fa fa-shopping-cart" aria-hidden="true"></i></button></p>
-    
+
+
     <a href="#loginform" data-toggle="modal" data-dismiss="modal">
     <p><button style="margin-left:20px;" >Buy Now </button></p>
 </div>
@@ -214,20 +219,10 @@ foreach($results as $result)
      <!-- CONTENT-WRAPPER SECTION END-->
     <?php include('includes/footer.php');?>
 
-    <!--Login-Form -->
-<?php include('includes/loginmember.php');?>
-<!--/Login-Form --> 
-
 
     <script src="assets/js/jquery-1.10.2.js"></script>
     <!-- BOOTSTRAP SCRIPTS  -->
     <script src="assets/js/bootstrap.js"></script>
-      <!-- CUSTOM SCRIPTS  -->
-    <script src="assets/js/custom.js"></script>
+
 </body>
 </html>
-<script>
-function pleaseLogin() {
-  alert("Please Login!");
-}
-</script>

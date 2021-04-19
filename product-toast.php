@@ -200,10 +200,15 @@ foreach($results as $result)
     
     <a href="#buynow" data-toggle="modal" data-dismiss="modal">
     <p><button style="margin-left:20px;" >Buy Now </button></p>
-<?php } else { ?>
+<?php } else { ?>        
+
+<!--Login-Form -->
+<?php include('includes/loginmember.php');?>
+<!--/Login-Form --> 
     <a href="#loginform" data-toggle="modal" data-dismiss="modal">
     <p><button style="margin-left:20px;" >Add to Cart <i class="fa fa-shopping-cart" aria-hidden="true"></i></button></p>
-    
+
+
     <a href="#loginform" data-toggle="modal" data-dismiss="modal">
     <p><button style="margin-left:20px;" >Buy Now </button></p>
 </div>
@@ -215,10 +220,6 @@ foreach($results as $result)
 
      <!-- CONTENT-WRAPPER SECTION END-->
     <?php include('includes/footer.php');?>
-
-    <!--Login-Form -->
-<?php include('includes/loginmember.php');?>
-<!--/Login-Form --> 
 
 
     <script src="assets/js/jquery-1.10.2.js"></script>
