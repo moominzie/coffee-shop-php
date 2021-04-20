@@ -6,11 +6,21 @@
     .container {
         margin-top: 5%;
     }
+    table,th,td {
+        border: 1px solid black;
+        border-collapse: collapse;
+    }
+    th,td {
+        height: 50px;
+    }
+    table {
+        margin-left: 70px;
+    }
     h1 {
-      font-family: 'Bebas Neue', cursive;
+      font-family: 'Asap', sans-serif;
     }
     b {
-      font-family: 'Bebas Neue', cursive;
+      font-family: 'Asap', sans-serif;
         font-size: 18px;
     }
     .pad-botm {
@@ -20,13 +30,11 @@
         font-weight:900;
         padding-bottom:25px;
         border-bottom:1px solid #eeeeee;
-        text-transform:uppercase;
-        font-family: 'Fjalla One', sans-serif;
-        letter-spacing: 1px; 
-
+        text-transform:none;
+        font-family: 'Noto Sans JP', sans-serif; 
     }
     .text_eng,a {
-        font-family: 'Open Sans', sans-serif;
+      font-family: 'Asap', sans-serif;
         font-size: 14px;
 
     }  
@@ -37,115 +45,111 @@
         font-size: 30px;
         margin-top: -30px;
     }.header {
-        padding: 70px;
+        padding: 50px;
         text-align: center;
         color: white;
-        font-size: 30px;
-        margin-top: -30px;
+    }
+    img:hover{
+      cursor: pointer;
     }
 
 </style>
+
+ 
 <div class="header">
-        
+
       </div>
+ 
+      <nav class="navbar navbar-expand-lg navbar-light bg-light" style="box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);">
 
-      <nav class="navbar navbar-default" style="border-bottom: 5px solid #4682B4;">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>                        
-      </button>
-    
-    </div>
-
-    <?php if($_SESSION['alogin'])
+  <?php if($_SESSION['alogin'])
 {
-?>   
-    
-    <div class="collapse navbar-collapse" id="myNavbar">
-    <ul class="nav navbar-nav">
-          <li><a href="dashboard.php">Dashboard</a></li>
-
-          <li class="dropdown">
-            <a class="dropdown-toggle" data-toggle="dropdown" href="#">Added <i class="fa fa-angle-down"></i></a>
-            <ul class="dropdown-menu">
-              <li><a href="add-menu.php">Add Menu</a></li>
-              <li><a href="add-subcategory.php">Add Sub-Category</a></li>
-              <li><a href="add-size.php">Add Glass Size</a></li>
-            </ul>
-          </li>
-
-          <li class="dropdown">
-            <a class="dropdown-toggle" data-toggle="dropdown" href="#">Management <i class="fa fa-angle-down"></i></a>
-            <ul class="dropdown-menu">
-            <li><a href="manage-food.php">Manage Food</a></li>
-              <li><a href="manage-beverage.php">Manage Beverage</a></li>
-              <li><a href="manage-freshbread.php">Manage Fresh Bread</a></li>
-              <li><a href="manage-toast.php">Manage Toast</a></li>
-              <li><a href="manage-subcategory.php"> Manage Sub-Category</a></li>
-              <li><a href="manage-size.php">Manage Glass Size</a></li>
-            </ul>
-          </li>
-
-          <li><a href="inbox.php">Inbox </a></li>
-        </ul>
-
-        <ul class="nav navbar-nav navbar-right">
-        <li class="dropdown">
-            <a class="dropdown-toggle" data-toggle="dropdown" id="ddlmenuItem"  href="#">Account <i class="fa fa-angle-down"></i></a>
-            <ul class="dropdown-menu" role="menu" aria-labelledby="ddlmenuItem">
-                <li role="presentation"><a role="menuitem" tabindex="-1" href="admin-profile.php">Admin Profile</a></li>
-                <li role="presentation"><a role="menuitem" tabindex="-1" href="change-password.php">Change Password</a></li>
-                <li role="presentation"><a role="menuitem" tabindex="-1" href="logout.php">Logout <i class="fa fa-sign-out" style="color: #DC143C"></i> </a></li>
-            </ul>
-          </li>
-
-          <li class="dropdown">
-            <a class="dropdown-toggle" data-toggle="dropdown" id="ddlmenuItem"  href="#">Manage Shop <i class="fa fa-angle-down"></i></a>
-            <ul class="dropdown-menu" role="menu" aria-labelledby="ddlmenuItem">
-                <li role="presentation"><a role="menuitem" tabindex="-1" href="add-admin.php">Add admin user</a></li>
-                <li role="presentation"><a role="menuitem" tabindex="-1" href="admin-member.php">Admin Member</a></li>
-                <li role="presentation"><a role="menuitem" tabindex="-1" href="shop-information.php">Shop Information</a></li>
-                <li role="presentation"><a role="menuitem" tabindex="-1" href="edit-banner.php">Shop Banner</a></li>
-                <li role="presentation"><a role="menuitem" tabindex="-1" href="edit-thumbnail.php">Shop Thumbnail</a></li>
-                <li role="presentation"><a role="menuitem" tabindex="-1" href="shop-member.php">Customer</a></li>
-                <li role="presentation"><a role="menuitem" tabindex="-1" href="member-address.php">Customer Address</a></li>
-            </ul>
-          </li>
-        </ul>
-
-        <?php } else { ?>
-            <ul class="nav navbar-nav">
-            <li class="dropdown">
-            <a class="dropdown-toggle" data-toggle="dropdown" href="#">Beverage<span class="caret"></span></a>
-            <ul class="dropdown-menu">
-              <li><a href="#">Add Coffee</a></li>
-              <li><a href="#">Add Milk</a></li>
-              <li><a href="#">Add Soda</a></li>
-            </ul>
-          </li>
-          <li class="dropdown">
-            <a class="dropdown-toggle" data-toggle="dropdown" href="#">Food<span class="caret"></span></a>
-            <ul class="dropdown-menu">
-              <li><a href="#">Add Fresh bread Menu</a></li>
-              <li><a href="#">Add Spaghetti Menu</a></li>
-              <li><a href="#">Add Appetizer & Snack Menu</a></li>
-            </ul>
-          </li>
-         
-        </ul>
-
-        
-        <ul class="nav navbar-nav navbar-right">
-          <li><a href="signup.php"><span class="glyphicon glyphicon-user"></span> สมัครสมาชิก</a></li>
-          <li><a href="loginmember.php"><span class="glyphicon glyphicon-log-in"></span> เข้าสู่ระบบ</a></li>
-          <li><a href="login_admin.php"><span class="glyphicon glyphicon-log-in"></span> เข้าสู่ระบบพนักงาน</a></li>
-        </ul>
-        <?php } ?>
+?> 
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
 
 
-    </div>
+  <div class="collapse navbar-collapse" id="navbarNavDropdown">
+    <ul class="navbar-nav">  
+      <li class="nav-item">
+        <a class="nav-link" href="dashboard.php">Dashboard <span class="sr-only">(current)</span></a>
+      </li>    
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Add product
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+          <a class="dropdown-item" href="add-menu.php">Add Menu</a>
+          <a class="dropdown-item" href="add-subcategory.php">Add Sub-Category</a>
+          <a class="dropdown-item" href="add-size.php">Add Glass Size</a>
+        </div>
+      </li>
+
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Manage product
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+          <a class="dropdown-item" href="manage-food.php">Manage Food</a>
+          <a class="dropdown-item" href="manage-beverage.php">Manage Beverage</a>
+          <a class="dropdown-item" href="manage-freshbread.php">Manage Fresh Bread</a>
+          <a class="dropdown-item" href="manage-toast.php">Manage Toast</a>
+          <a class="dropdown-item" href="manage-subcategory.php"> Manage Sub-Category</a>
+          <a class="dropdown-item" href="manage-size.php">Manage Glass Size</a>
+        </div>
+      </li>
+    </ul>
+
+    <ul class="navbar-nav navbar-right">
+    <li class="nav-item active">
+        <a class="nav-link" href="inbox.php"><p class="account"><i class="fas fa-inbox"></i>&nbsp Inbox</p><span class="sr-only" >(current)</span></a>
+      </li>
+    <li class="nav-item active">
+        <a class="nav-link" href="account.php"><p class="account"><i class="fas fa-user-circle"></i>&nbsp Manage account</p><span class="sr-only" >(current)</span></a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="mycart.php"><p class="account"><i class="fas fa-store"></i>&nbsp Manage shop</p><span class="sr-only" >(current)</span></a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="logout.php"><p class="sign-out">Sign out</p><span class="sr-only" >(current)</span></a>
+      </li>
+    </ul>
   </div>
+
+  <?php } else { ?>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+
+  <div class="collapse navbar-collapse" id="navbarNavDropdown">
+    <ul class="navbar-nav">  
+    <li class="nav-item active">
+        <a class="nav-link" href="index.php">Home <span class="sr-only">(current)</span></a>
+      </li>    
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Menu
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+          <a class="dropdown-item" href="beverage.php">Beverage</a>
+          <a class="dropdown-item" href="fresh-bread.php">Fresh Bread</a>
+          <a class="dropdown-item" href="toast.php">Toast</a>
+          <a class="dropdown-item" href="food.php">Food</a>
+        </div>
+      </li>
+    </ul>
+
+    <ul class="navbar-nav navbar-right">
+    <li class="nav-item active">
+        <a class="nav-link" href="loginmember.php"><p class="sign-in">Sign in</p><span class="sr-only" >(current)</span></a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="register.php"><p class="sign-out">Join now</p><span class="sr-only" >(current)</span></a>
+      </li>
+    </ul>
+  </div>
+  <?php } ?>
 </nav>
+

@@ -56,35 +56,34 @@ foreach($results as $result)
 
       <?php }} ?>
     <script type="text/javascript" src='includes/jquery-3.4.1.min.js'></script>
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
-    <!-- BOOTSTRAP CORE STYLE  -->
-    <link href="assets/css/bootstrap.css" rel="stylesheet" />
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+        <!-- BOOTSTRAP CORE STYLE  -->
+        <link href="assets/css/bootstrap.css" rel="stylesheet" />
     <!-- FONT AWESOME STYLE  -->
-    <link href="assets/css/font-awesome.css" rel="stylesheet" />
+  <link href="assets/bs4/css/all.css" rel="stylesheet"> <!--load all styles -->
+
+  <link href="assets/bs4/css/style.css" rel="stylesheet"> <!--load all styles -->
+
     <!-- CUSTOM STYLE  -->
     <link href="assets/css/style.css" rel="stylesheet" />
     <!-- GOOGLE FONT -->
-    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' /> 
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
 
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Pridi:wght@200&display=swap" rel="stylesheet">
-
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;400&display=swap" rel="stylesheet">
-
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&display=swap" rel="stylesheet">
-
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;400&family=Pridi:wght@200&family=Prompt:wght@200&display=swap" rel="stylesheet">
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Mitr:wght@300&family=Oswald&display=swap" rel="stylesheet">
-
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@700&display=swap" rel="stylesheet">
-    <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Abel&family=Barlow:wght@200;400&family=Bebas+Neue&family=Fjalla+One&family=Fredoka+One&family=Josefin+Sans&family=Open+Sans:wght@300&family=Staatliches&display=swap" rel="stylesheet">
 
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Orelega+One&display=swap" rel="stylesheet">
+
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Asap:wght@400&display=swap" rel="stylesheet">
 
 </head>
 <script>
@@ -112,7 +111,7 @@ function getAmphure() {
          <div class="container">
         <div class="row pad-botm">
             <div class="col-md-12">
-                <h4 class="header-line">Address</h4>
+                <h4 class="header-line">Add address</h4>
                 
                             </div>
 
@@ -120,11 +119,8 @@ function getAmphure() {
              <div class="row">
            
 <div class="col-md-9 col-md-offset-1">
-               <div class="panel panel-danger">
-                        <div class="panel-heading">
-                           Add Address
-                        </div>
-                        <div class="panel-body">
+               <div class="card">
+               <div class="panel-body" style="margin:20px">
                             <form name="update" method="post">
 <?php 
 $username=$_SESSION['username'];
@@ -142,14 +138,14 @@ foreach($results as $result)
 
 <div class="col-md-12">
 <div class="form-group">
-<label style="font-family: 'Staatliches', cursive; letter-spacing: 1px; font-size:14px;">Username</label>
+<label>Username</label>
 <input class="form-control" type="text" name="username" id="" value="<?php echo htmlentities($result->Username);?>"  autocomplete="off" required readonly />
 </div>
 </div>
 
 <div class="col-md-12">
 <div class="form-group">
-<label style="font-family: 'Staatliches', cursive; letter-spacing: 1px; font-size:14px;">Address</label>&nbsp;<label for="" style="font-family: 'Oswald', sans-serif; color: red;">* </label>
+<label>Address</label>&nbsp;<label for="" style="font-family: 'Oswald', sans-serif; color: red;">* </label>
 <textarea class="form-control" type="email" name="address" id="" value=""  autocomplete="off" required></textarea>
 </div>
 </div>
@@ -157,10 +153,10 @@ foreach($results as $result)
   <!-- START TITLE -->     
   
 <div class="form-group col-md-4">
-    <label style="font-family: 'Staatliches', cursive; letter-spacing: 1px; font-size:14px;">Province</label>&nbsp;<label for="" style="font-family: 'Oswald', sans-serif; color: red;">* </label>
+    <label>Province</label>&nbsp;<label for="" style="font-family: 'Oswald', sans-serif; color: red;">* </label>
         <!-- END TITLE -->
     
-    <select name="province" id="province_id" class="form-control" onBlur="getAmphure()" required>
+    <select name="province" id="province_id" class="form-control form-control-lg" onBlur="getAmphure()" required>
 <option value='0'> Select Province </option>
 <?php 
           ## Fetch amphures
@@ -176,16 +172,16 @@ foreach($results as $result)
 </div>
 
 <div class="form-group col-md-4">
-<label style="font-family: 'Staatliches', cursive; letter-spacing: 1px; font-size:14px;">Amphure</label>&nbsp;<label for="" style="font-family: 'Oswald', sans-serif; color: red;">* </label>
-<select name="amphure" id="amphure_id" class="form-control">
+<label>Amphure</label>&nbsp;<label for="" style="font-family: 'Oswald', sans-serif; color: red;">* </label>
+<select name="amphure" id="amphure_id" class="form-control form-control-lg">
 <option value='0'> Select Amphure </option>
 
 </select>
 </div>
 
 <div class="form-group col-md-4">
-<label style="font-family: 'Staatliches', cursive; letter-spacing: 1px; font-size:14px;">District</label>&nbsp;<label for="" style="font-family: 'Oswald', sans-serif; color: red;">* </label>
-<select name="district" id="district_id" class="form-control">
+<label>District</label>&nbsp;<label for="" style="font-family: 'Oswald', sans-serif; color: red;">* </label>
+<select name="district" id="district_id" class="form-control form-control-lg">
 <option value='0'> Select District</option>
 
 </select>
@@ -259,7 +255,7 @@ foreach($results as $result)
 
 <div class="col-md-4">
 <div class="form-group">
-<label style="font-family: 'Staatliches', cursive; letter-spacing: 1px; font-size:14px;">Zip/Postal Code</label>&nbsp;<label for="" style="font-family: 'Oswald', sans-serif; color: red;">* </label>
+<label>Zip/Postal Code</label>&nbsp;<label for="" style="font-family: 'Oswald', sans-serif; color: red;">* </label>
 <input class="form-control" type="text" name="postalcode" id="" value=""  autocomplete="off" required />
 </div>
 </div>
@@ -267,10 +263,10 @@ foreach($results as $result)
   <!-- START TITLE -->        
 <div class="col-md-8">  
 <div class="form-group">
-<label style="font-family: 'Staatliches', cursive; letter-spacing: 1px; font-size:14px;">Address Type</label>&nbsp;<label for="" style="font-family: 'Oswald', sans-serif; color: red;">* Please select 'Delivery Address' if you have already added your current address. </label>
+<label>Address Type</label>&nbsp;<label for="" style="color: red;">* Please select 'Delivery Address' if you have already added your current address. </label>
         <!-- END TITLE -->
     <!-- START SELECT CM FORM ID TITLE -->
-<select class="form-control" name="type" id="" required>
+<select class="form-control form-control-lg" name="type" id="" required>
 <option value=""> Select </option>
 <?php $ret="select id,TypeAddress from adstype";
 $query= $dbh -> prepare($ret);
@@ -291,7 +287,7 @@ foreach($results as $result)
 <?php }} ?>
 
 <div class="col-md-12">                             
-<button type="submit" name="add" class="btn btn-primary" style="font-family: 'Staatliches', cursive; letter-spacing: 1px; font-size:14px;" >Add Address </button> | <a href="my-address.php" style="font-family: 'Staatliches', cursive; color: red">Edit your Current Address please click here!!</a>
+<button type="submit" name="add" class="create-account" > Submit </button>&nbsp&nbsp&nbsp<a href="account.php" style="color: black;">Your current address here</a>
 </div>
 </form>
 </div>

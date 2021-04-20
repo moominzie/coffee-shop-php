@@ -24,7 +24,6 @@ foreach($results as $result)
       <?php }} ?>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-
 <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
@@ -36,33 +35,24 @@ foreach($results as $result)
         <link href="assets/css/bootstrap.css" rel="stylesheet" />
     <!-- FONT AWESOME STYLE  -->
   <link href="assets/bs4/css/all.css" rel="stylesheet"> <!--load all styles -->
+
+  <link href="assets/bs4/css/style.css" rel="stylesheet"> <!--load all styles -->
+
     <!-- CUSTOM STYLE  -->
     <link href="assets/css/style.css" rel="stylesheet" />
     <!-- GOOGLE FONT -->
     <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
 
   <link rel="preconnect" href="https://fonts.gstatic.com">
-  <link href="https://fonts.googleapis.com/css2?family=Pridi:wght@200&display=swap" rel="stylesheet">
-
-  <link rel="preconnect" href="https://fonts.gstatic.com">
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;400&display=swap" rel="stylesheet">
-
-  <link rel="preconnect" href="https://fonts.gstatic.com">
-  <link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&display=swap" rel="stylesheet">
-
-  <link rel="preconnect" href="https://fonts.gstatic.com">
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;400&family=Pridi:wght@200&family=Prompt:wght@200&display=swap" rel="stylesheet">
-  <link rel="preconnect" href="https://fonts.gstatic.com">
-  <link href="https://fonts.googleapis.com/css2?family=Mitr:wght@300&family=Oswald&display=swap" rel="stylesheet">
-
-  <link rel="preconnect" href="https://fonts.gstatic.com">
-  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@700&display=swap" rel="stylesheet">
-
-  <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Abel&family=Barlow:wght@200;400&family=Bebas+Neue&family=Fjalla+One&family=Fredoka+One&family=Josefin+Sans&family=Open+Sans:wght@300&family=Staatliches&display=swap" rel="stylesheet">
 
     <link rel="preconnect" href="https://fonts.gstatic.com">
-<link href="https://fonts.googleapis.com/css2?family=Asap:wght@500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Orelega+One&display=swap" rel="stylesheet">
+
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Asap:wght@400&display=swap" rel="stylesheet">
+
   <style>
   /* Make the image fully responsive */
   .carousel-inner img {
@@ -181,7 +171,7 @@ foreach($results as $result)
   .sign-out:hover{
     background-color: #000000B3;
   }
-  
+
   </style>
   
 </head>
@@ -203,7 +193,7 @@ foreach($results as $result)
 
       <div class="carousel-inner">
 
-      <div class="item active">
+      <div class="carousel-item active">
         <?php
         
     $sql = "SELECT bevbanner.Images as bev from bevbanner";
@@ -215,12 +205,12 @@ foreach($results as $result)
     {
     foreach($results as $result)
     {               ?>  
-          <img src="admin/uploads/banner/<?php echo htmlentities($result->bev);?>" class="d-block w-100" alt="banner" width="1366" height="384">
+          <img src="admin/uploads/banner/<?php echo htmlentities($result->bev);?>" class="d-block w-100" alt="banner">
           <?php }} ?>
           
         </div>
 
-        <div class="item">
+        <div class="carousel-item">
         <?php
     $sql = "SELECT foodbanner.Images as food from foodbanner";
     $query = $dbh -> prepare($sql);
@@ -231,11 +221,11 @@ foreach($results as $result)
     {
     foreach($results as $result)
     {               ?>  
-          <img src="admin/uploads/banner/<?php echo htmlentities($result->food);?>" class="d-block w-100" alt="banner" width="1366" height="384">
+          <img src="admin/uploads/banner/<?php echo htmlentities($result->food);?>" class="d-block w-100" alt="banner">
           <?php }} ?>
         </div>
 
-        <div class="item">
+        <div class="carousel-item">
         <?php
     $sql = "SELECT breadbanner.Images as bread from breadbanner";
     $query = $dbh -> prepare($sql);
@@ -246,7 +236,7 @@ foreach($results as $result)
     {
     foreach($results as $result)
     {               ?>  
-          <img src="admin/uploads/banner/<?php echo htmlentities($result->bread);?>" class="d-block w-100" alt="banner" width="1366" height="384">
+          <img src="admin/uploads/banner/<?php echo htmlentities($result->bread);?>" class="d-block w-100" alt="banner">
           <?php }} ?>
         </div>
 
@@ -302,9 +292,8 @@ foreach($results as $result)
           <img src="admin/uploads/thumbnails/<?php echo htmlentities($result->Images);?>" width="300" height="275" style="">
           <?php }} ?></a>
       </div>
-      </div>
 
-      <div class="col-md-3">
+
       <div class="image-box img3">
       <a href="beverage.php" > 
       <?php
@@ -338,9 +327,7 @@ foreach($results as $result)
           <img src="admin/uploads/thumbnails/<?php echo htmlentities($result->Images);?>" width="300" height="275" style="">
           <?php }} ?></a>
       </div>
-      </div>
 
-      <div class="col-md-3">
       <div class="image-box img5">
       <a href="toast.php" > 
       <?php

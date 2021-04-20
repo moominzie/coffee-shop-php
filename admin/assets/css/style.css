@@ -17,7 +17,7 @@
  ============================================================ */
 
 body {
-    font-family: 'Open Sans', sans-serif;
+    font-family: 'Asap', sans-serif;
     line-height:28px;
    
 }
@@ -209,7 +209,7 @@ height: 60px;
  {
    background-color:#26272b;
    padding:45px 0 20px;
-   font-size:15px;
+   font-size:14px;
    line-height:24px;
    color:#737373;
  }
@@ -225,7 +225,7 @@ height: 60px;
  .site-footer h6
  {
    color:#fff;
-   font-size:16px;
+   font-size:14px;
    text-transform:uppercase;
    margin-top:5px;
    letter-spacing:2px
@@ -236,7 +236,7 @@ height: 60px;
  }
  .site-footer a:hover
  {
-   color:#3366cc;
+   color:#BC8F8F;
    text-decoration:none;
  }
  .footer-links
@@ -254,7 +254,7 @@ height: 60px;
  }
  .footer-links a:active,.footer-links a:focus,.footer-links a:hover
  {
-   color:#3366cc;
+   color:#dee2eb;
    text-decoration:none;
  }
  .footer-links.inline li
@@ -368,3 +368,61 @@ height: 60px;
      font-weight:600
    }
  }
+
+ /*------------------------
+	1.10. Modal
+--------------------------------*/
+.modal-dialog {
+  width: 650px;
+}
+.modal-content {
+  padding: 0 32px 22px;
+}
+.modal-header {
+	padding:15px 0;
+	margin-bottom:25px;
+}
+.modal-body {
+	padding:10px 0;
+}
+.modal .modal-header .close {
+  background: #000000 none repeat scroll 0 0;
+  border-radius: 50%;
+  color: #ffffff;
+  font-size: 17px;
+  height: 31px;
+  line-height: 30px;
+  margin-top: 5px;
+  opacity: 1;
+  text-align: center;
+  text-shadow: none;
+  width: 31px;
+}
+
+/*--Sign in---*/
+  .sign-in{
+    padding:5px 18px;
+    border-radius:20px;
+    border: 1px solid black;
+    font-family: 'Asap', sans-serif;
+    font-size: 14px;
+    color: black;
+    background-color: white;
+  }
+  .sign-in:hover{
+    background-color: #0000000F;
+  }
+  .sign-out{
+    padding:5px 18px;
+    border-radius:20px;
+    border: 1px solid black;
+    font-family: 'Asap', sans-serif;
+    font-size: 14px;
+    color: white;
+    background-color: black;
+  }
+  .sign-out:hover{
+    background-color: #000000B3;
+  }
+ 
+  

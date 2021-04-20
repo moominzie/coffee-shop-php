@@ -2,7 +2,7 @@
   <footer class="site-footer">
       <div class="container">
         <div class="row">
-          <div class="col-sm-12 col-md-6">
+          <div class="col-sm-12 col-md-4">
             <h6>About</h6>
 
             <?php
@@ -30,7 +30,7 @@ foreach($results as $result)
             <h6>Categories</h6>
             <ul class="footer-links">
               <li><a href="beverage.php">Beverage</a></li>
-              <li><a href="fresh-bread.php">Fresh Bread</a></li>
+              <li><a href="fresh-bread.php">Fresh bread</a></li>
               <li><a href="food.php">Food</a></li>
               <li><a href="toast.php">Toast</a></li>
             </ul>
@@ -40,19 +40,36 @@ foreach($results as $result)
 {
 ?>  
           <div class="col-xs-6 col-md-3">
-            <h6>Quick Links</h6>
+            <h6>Quick links</h6>
             <ul class="footer-links">
               <li><a href="index.php">Home</a></li>
+              <li><a href="account.php">Profile</a></li>
+              <li><a href="logout.php">Sing out</a></li>
+              <li><a href="mycart.php">My Cart &nbsp<i class="fa fa-shopping-cart" aria-hidden="true"></i></a></li>
             </ul>
           </div>
+
+          <div class="col-xs-6 col-md-2">
+            <h6>Working to become resource positive</h6>
+            <p>Stay up to date with what we’re doing to become a resource-positive company, giving back more than we take from the planet.</p>
+          </div>
+
           <?php } else { ?>
             <div class="col-xs-6 col-md-3">
-            <h6>Quick Links</h6>
+            <h6>Quick links</h6>
             <ul class="footer-links">
               <li><a href="index.php">Home</a></li>
-              <li><a href="contactus.php">Contact Us</a></li>
+              <li><a href="contactus.php">Contact us</a></li>
             </ul>
           </div>
+
+          <div class="col-xs-6 col-md-2">
+            <h6>Staff</h6>
+            <ul class="footer-links">
+              <li><a href="loginadmin.php">Staff sign in</a></li>
+            </ul>
+          </div>
+
           <?php } ?>
         </div>
         <hr>

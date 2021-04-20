@@ -21,10 +21,10 @@ include('includes/connection.php');
         margin-left: 70px;
     }
     h1 {
-      font-family: 'Bebas Neue', cursive;
+      font-family: 'Asap', sans-serif;
     }
     b {
-      font-family: 'Bebas Neue', cursive;
+      font-family: 'Asap', sans-serif;
         font-size: 18px;
     }
     .pad-botm {
@@ -34,12 +34,11 @@ include('includes/connection.php');
         font-weight:900;
         padding-bottom:25px;
         border-bottom:1px solid #eeeeee;
-        text-transform:uppercase;
-        font-family: 'Fjalla One', sans-serif;
-        letter-spacing: 1px; 
+        text-transform:none;
+        font-family: 'Noto Sans JP', sans-serif; 
     }
     .text_eng,a {
-        font-family: 'Open Sans', sans-serif;
+      font-family: 'Asap', sans-serif;
         font-size: 14px;
 
     }  
@@ -58,6 +57,9 @@ include('includes/connection.php');
         font-size: 30px;
         margin-top: -30px;
     }
+    img:hover{
+      cursor: pointer;
+    }
 
 </style>
 
@@ -73,10 +75,10 @@ if($query->rowCount() > 0)
 foreach($results as $result)
 {               ?>   
 <div class="header">
-        <h1 style="font-family: 'Caveat', cursive; font-size: 64px"><?php echo htmlentities($result->ShopName);?></h1>
+        <h1 style="font-family: 'Orelega One', cursive; font-size: 64px;text-shadow: 2px 2px black;"><?php echo htmlentities($result->ShopName);?></h1>
       </div>
  
-      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <nav class="navbar navbar-expand-lg navbar-light bg-light" style="box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);">
   <a class="navbar-brand" href="#"></a><img src="admin/uploads/logo/<?php echo htmlentities($result->Logo);?>" width="60" height="60" >
   <?php }} ?>
   
@@ -93,8 +95,11 @@ foreach($results as $result)
     <li class="nav-item active">
         <a class="nav-link" href="index.php">Home <span class="sr-only">(current)</span></a>
       </li>    
+      <li class="nav-item">
+        <a class="nav-link" href="dashboard.php">Dashboard <span class="sr-only">(current)</span></a>
+      </li>    
       <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="login" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <a class="nav-link dropdown-toggle" href="#" id="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Menu
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
@@ -108,10 +113,13 @@ foreach($results as $result)
 
     <ul class="navbar-nav navbar-right">
     <li class="nav-item active">
-        <a class="nav-link" href="loginmember.php"><p class="sign-in">Sign in</p><span class="sr-only" >(current)</span></a>
+        <a class="nav-link" href="account.php"><p class="account"><i class="fas fa-user-circle"></i>&nbsp Account</p><span class="sr-only" >(current)</span></a>
       </li>
       <li class="nav-item active">
-        <a class="nav-link" href="register.php"><p class="sign-out">Join now</p><span class="sr-only" >(current)</span></a>
+        <a class="nav-link" href="mycart.php"><p class="account"><i class="fas fa-shopping-cart"></i>&nbsp My Cart</p><span class="sr-only" >(current)</span></a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="logout.php"><p class="sign-out">Sign out</p><span class="sr-only" >(current)</span></a>
       </li>
     </ul>
   </div>
@@ -128,7 +136,7 @@ foreach($results as $result)
         <a class="nav-link" href="index.php">Home <span class="sr-only">(current)</span></a>
       </li>    
       <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="login" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <a class="nav-link dropdown-toggle" href="#" id="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Menu
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
