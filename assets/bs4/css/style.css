@@ -1,0 +1,25 @@
+/* Sign in ----*/
+.sign-in{
+    padding:5px 18px;
+    border-radius:20px;
+    border: 1px solid black;
+    font-family: 'Asap', sans-serif;
+    font-size: 14px;
+    color: black;
+    background-color: white;
+  }
+  .sign-in:hover{
+    background-color: #0000000F;
+  }
+  .sign-out{
+    padding:5px 18px;
+    border-radius:20px;
+    border: 1px solid black;
+    font-family: 'Asap', sans-serif;
+    font-size: 14px;
+    color: white;
+    background-color: black;
+  }
+  .sign-out:hover{
+    background-color: #000000B3;
+  }

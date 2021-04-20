@@ -1,5 +1,5 @@
 <?php
-$filename = 'uploads/thumbnails';
+$filename = 'uploads/logo';
 if (is_writable($filename)) {
     echo 'The file is writable';
 } else {

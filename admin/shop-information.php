@@ -13,12 +13,17 @@ $sname=$_POST['shopname'];
 $address=$_POST['address'];
 $mobileno=$_POST['mobileno'];
 $email=$_POST['shopemail'];
-$sql="update shop set ShopName=:sname,Address=:address,MobileNumber=:mobileno,ShopEmail=:email";
+$logo=$_FILES["img1"]["name"];
+
+move_uploaded_file($_FILES["img1"]["tmp_name"],"uploads/logo/".$_FILES["img1"]["name"]);
+
+$sql="update shop set ShopName=:sname,Address=:address,MobileNumber=:mobileno,ShopEmail=:email,Logo=:logo";
 $query = $dbh->prepare($sql);
 $query->bindParam(':sname',$sname,PDO::PARAM_STR);
 $query->bindParam(':address',$address,PDO::PARAM_STR);
 $query->bindParam(':mobileno',$mobileno,PDO::PARAM_STR);
 $query->bindParam(':email',$email,PDO::PARAM_STR);
+$query->bindParam(':logo',$logo,PDO::PARAM_STR);
 $query->execute();
 $msg="Your Shop information has been update";
 }
@@ -123,9 +128,9 @@ foreach($results as $result)
                            Information
                         </div>
                         <div class="panel-body">
-                            <form name="update" method="post">
+                            <form name="update" method="post" enctype="multipart/form-data">
 <?php
-$sql="SELECT ShopName,Address,MobileNumber,ShopEmail from  shop  ";
+$sql="SELECT ShopName,Address,MobileNumber,ShopEmail,Logo from  shop  ";
 $query = $dbh -> prepare($sql);
 $query-> bindParam(':id', $id, PDO::PARAM_STR);
 $query->execute();
@@ -175,6 +180,15 @@ foreach($results as $result)
 <label style="font-family: 'Staatliches', cursive; letter-spacing: 1px; font-size:14px;">Enter Shop Email</label>
 <input class="form-control" type="text" name="shopemail" value="<?php echo htmlentities($result->ShopEmail);?>" autocomplete="off" required />
 </div>
+
+<div class="form-group">
+<img src="uploads/logo/<?php echo htmlentities($result->Logo);?>" width="100" height="100" style="border:solid 1px #000">
+    </div>
+
+<div class="form-group">
+        <label style="font-family: 'Staatliches', cursive; letter-spacing: 1px; font-size:14px;">Picture</label>&nbsp;<label for="" style="font-family: 'Oswald', sans-serif; color: red;">* Please use image scale 100x100 px. </label>
+        <input class="form-control" type="file" name="img1" autocomplete="off" required />
+    </div>
 
 <?php }} ?>
                               

@@ -209,7 +209,7 @@ height: 60px;
  {
    background-color:#26272b;
    padding:45px 0 20px;
-   font-size:15px;
+   font-size:14px;
    line-height:24px;
    color:#737373;
  }
@@ -225,7 +225,7 @@ height: 60px;
  .site-footer h6
  {
    color:#fff;
-   font-size:16px;
+   font-size:14px;
    text-transform:uppercase;
    margin-top:5px;
    letter-spacing:2px
@@ -398,3 +398,29 @@ height: 60px;
   text-shadow: none;
   width: 31px;
 }
+
+/*--Sign in---*/
+  .sign-in{
+    padding:5px 18px;
+    border-radius:20px;
+    border: 1px solid black;
+    font-family: 'Asap', sans-serif;
+    font-size: 14px;
+    color: black;
+    background-color: white;
+  }
+  .sign-in:hover{
+    background-color: #0000000F;
+  }
+  .sign-out{
+    padding:5px 18px;
+    border-radius:20px;
+    border: 1px solid black;
+    font-family: 'Asap', sans-serif;
+    font-size: 14px;
+    color: white;
+    background-color: black;
+  }
+  .sign-out:hover{
+    background-color: #000000B3;
+  }
