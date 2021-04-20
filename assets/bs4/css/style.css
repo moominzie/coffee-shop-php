@@ -101,17 +101,20 @@
         .join-now:hover{
           background-color: #00824814;
         }
-
         .carousel .carousel-item {
-          width: 1266px;
-          height: 354px;
+          width: 1420px;
+          height: 364px;
         }
         
         .carousel-item img {
             top: 0;
             left: 0;
-            min-width: 1266px;
-            min-height: 354px;
+            min-width: 1420px;
+            min-height: 364px;
+        }
+        .carousel-inner img {
+          width: 100%;
+          height: 100%;
         }
   
         .add-cart{

@@ -9,8 +9,8 @@ header('location:../loginadmin.php');
 else{ 
 if(isset($_POST['change']))
   {
-$password=($_POST['password']);
-$newpassword=($_POST['newpassword']);
+$password=md5($_POST['password']);
+$newpassword=md5($_POST['newpassword']);
 $username=$_SESSION['alogin'];
   $sql ="SELECT Password FROM employee WHERE UserName=:username and Password=:password";
 $query= $dbh -> prepare($sql);
@@ -60,7 +60,7 @@ foreach($results as $result)
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <!-- BOOTSTRAP CORE STYLE  -->
         <link href="assets/css/bootstrap.css" rel="stylesheet" />
     <!-- FONT AWESOME STYLE  -->
@@ -79,9 +79,12 @@ foreach($results as $result)
     <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=Orelega+One&display=swap" rel="stylesheet">
 
+
     <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=Asap:wght@400&display=swap" rel="stylesheet">
 
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@900&display=swap" rel="stylesheet">
 
 
   <style>
@@ -120,46 +123,46 @@ return true;
     <!------MENU SECTION START-->
 <?php include('includes/header.php');?>
 <!-- MENU SECTION END-->
-<div class="content-wrapper">
-<div class="container">
-<div class="row pad-botm">
-<div class="col-md-12">
-<h4 class="header-line">Admin Change Password</h4>
-</div>
-</div>
- <?php if($error){?><div class="errorWrap"><strong>ERROR</strong>:<?php echo htmlentities($error); ?> </div><?php } 
-        else if($msg){?><div class="succWrap"><strong>SUCCESS</strong>:<?php echo htmlentities($msg); ?> </div><?php }?>            
-<!--LOGIN PANEL START-->           
-<div class="row">
-<div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3" >
-<div class="panel panel-primary">
-<div class="panel-heading" style="font-family: 'Montserrat', sans-serif; letter-spacing: 1px; font-size: 16px;">
-Change Password
-</div>
-<div class="panel-body">
 <form role="form" method="post" onSubmit="return valid();" name="chngpwd">
+<div class="container">
+    <div class="row pad-botm">
+            <div class="col-md-12">
+            <h4 class="header-new" style="text-align:center; font-family: 'Noto Sans JP', sans-serif; font-size: 22px;">Change password</h4>
+                
+                            </div>
 
+        </div>
+        <div class="card">
+        <div class="panel-body" style="margin:50px">
 <div class="form-group">
-<label style="font-family: 'Staatliches', cursive; letter-spacing: 1px; font-size:14px;">Current Password</label>
+<label>Current Password</label>
 <input class="form-control" type="password" name="password" autocomplete="off" required  />
 </div>
 
 <div class="form-group">
-<label style="font-family: 'Staatliches', cursive; letter-spacing: 1px; font-size:14px;">Enter Password</label>
+<label>Enter Password</label>
 <input class="form-control" type="password" name="newpassword" autocomplete="off" required  />
 </div>
 
 <div class="form-group">
-<label style="font-family: 'Staatliches', cursive; letter-spacing: 1px; font-size:14px;">Confirm Password </label>
+<label>Confirm Password </label>
 <input class="form-control"  type="password" name="confirmpassword" autocomplete="off" required  />
 </div>
 
- <button type="submit" name="change" class="btn btn-danger" style="font-family: 'Montserrat', sans-serif; letter-spacing: 1px;"> Change Password </button> 
-</form>
- </div>
+<div class="col-md-12">
+  <?php if($error){?><div class="errorWrap"><strong>ERROR</strong>:<?php echo htmlentities($error); ?> </div><?php } 
+				else if($msg){?><div class="succWrap"><strong>SUCCESS</strong>:<?php echo htmlentities($msg); ?> </div><?php }?>
 </div>
+
+<div class="col-md-6" style="margin-left:280px;margin-top:10px;">
+    <button type="submit" name="change" class="create-account" id="submit" > Submit to change </button>
 </div>
-</div>  
+        </div>
+      </div>
+    </div>
+  </form>
+
+ 
 <!---LOGIN PABNEL END-->            
              
  

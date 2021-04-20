@@ -78,6 +78,10 @@ foreach($results as $result)
     <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=Asap:wght@400&display=swap" rel="stylesheet">
 
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@900&display=swap" rel="stylesheet">
+
+
 </head>
 <style>
     .errorWrap {
@@ -101,29 +105,7 @@ foreach($results as $result)
     <!------MENU SECTION START-->
     <?php include('includes/header.php');?>
 <!-- MENU SECTION END-->
-<div class="content-wrapper">
-         <div class="container">
-        <div class="row pad-botm">
-            <div class="col-md-12">
-                <h4 class="header-line">Edit Banner</h4>
-                
-                            </div>
 
-        </div>
-        
-        <?php if($error){?><div class="errorWrap"><strong>ERROR</strong>:<?php echo htmlentities($error); ?> </div><?php } 
-				else if($msg){?><div class="succWrap"><strong>SUCCESS</strong>:<?php echo htmlentities($msg); ?> </div><?php }?>
-
-
-             <div class="row">
-           
-<div class="col-xl-9">
-               <div class="panel panel-primary">
-                        <div class="panel-heading" style="font-family: 'Montserrat', sans-serif; letter-spacing: 1px; font-size: 16px;">
-                        Promotion 2
-                        </div>
-                        <div class="panel-body">
-                        <form name="update" method="post" enctype="multipart/form-data">
 <?php 
 
 $sql = "SELECT Images from foodbanner";
@@ -135,26 +117,40 @@ if($query->rowCount() > 0)
 {
 foreach($results as $result)
 {               ?>  
-
+<form name="update" method="post" enctype="multipart/form-data">
+<div class="content-wrapper">
+   <div class="container">
+    <div class="row pad-botm">
+            <div class="col-md-12">
+            <h4 class="header-line" style="text-align:none; font-family: 'Noto Sans JP', sans-serif; font-size: 22px;">Banner</h4>
+                            </div>
+        </div>
+<div class="card-data">
+        <div class="panel-body">
 <div class="col-md-12">
 <div class="form-group">
-<img src="uploads/banner/<?php echo htmlentities($result->Images);?>" width="970" height="250" style="border:solid 1px #000">
+<img src="uploads/banner/<?php echo htmlentities($result->Images);?>" width="970" height="250" style="border-radius:10px;">
 </div>
 </div>
 <?php }} ?>
 
 <div class="col-md-8">
     <div class="form-group">
-        <label style="font-family: 'Staatliches', cursive; letter-spacing: 1px; font-size:14px;">Upload new beverage banner</label>&nbsp;<label for="" style="font-family: 'Oswald', sans-serif; color: red;">* </label>&nbsp;<label for="" style="font-family: 'Montserrat', sans-serif; font-size:14px; color: #B03A2E"> Please use picture scale 1366x384 px. </label>
+        <label>Upload new beverage banner</label>&nbsp;<label for="" style="color: red;">* </label>&nbsp;<label for="" style="color: red"> Please use picture scale 1366x384 px. </label>
         <input class="form-control" type="file" name="img1" autocomplete="off" required />
     </div>
     </div>
 <div class="hr-dashed"></div>
-											
-
-<div class="col-md-12">                   
-<button type="submit" name="update" class="btn btn-danger" style="font-family: 'Montserrat', sans-serif; letter-spacing: 1px;"> Upload </button> | <a href="edit-banner.php" style="font-family: 'Staatliches', cursive; letter-spacing: 1px; font-size:14px; color: #BB8FCE" > Edit Promotion Banner 1</a> | <a href="edit-bread-banner.php" style="font-family: 'Staatliches', cursive; letter-spacing: 1px; font-size:14px; color: #BB8FCE" > Edit Promotion Banner 3</a>
+			
+  <div class="col-md-12">
+  <?php if($error){?><div class="errorWrap"><strong>ERROR</strong>:<?php echo htmlentities($error); ?> </div><?php } 
+				else if($msg){?><div class="succWrap"><strong>SUCCESS</strong>:<?php echo htmlentities($msg); ?> </div><?php }?>
 </div>
+
+<div class="col-md-12">                             
+<button type="submit" name="update" class="create-account" > Update banner </button> | <a href="edit-banner.php" style="color: #006400" > Edit Promotion Banner 1</a> | <a href="edit-bread-banner.php" style="color: #006400" > Edit Promotion Banner 3</a>
+</div>
+
                                     </form>
                             </div>
                         </div>

@@ -7,11 +7,7 @@ $_SESSION['login']='';
 }
 if(isset($_POST['login']))
 {
-  //code for captach verification
-if ($_POST["vercode"] != $_SESSION["vercode"] OR $_SESSION["vercode"]=='')  {
-        echo "<script>alert('Incorrect verification code');</script>" ;
-    } 
-        else {
+
 $email=$_POST['emailid'];
 $password=($_POST['password']);
 $sql ="SELECT EmailId,Password,Username,Status FROM member WHERE EmailId=:email and Password=:password";
@@ -41,7 +37,7 @@ else{
 echo "<script>alert('Email or Password is incorrect!');</script>";
 }
 }
-}
+
 ?>
 
 <html lang="en">
@@ -123,10 +119,6 @@ foreach($results as $result)
         <input class="form-control" type="password" name="password" required autocomplete="off"  />
         <p class="help-block"><a href="member-forgot-password.php"style="color: #006400; font-size: 14px">Forget Password?</a></p>
     </div>
-    <div class="form-group">
-       <label style="">Verification code : </label>
-        <input type="text"  name="vercode" maxlength="5" autocomplete="off" required />&nbsp;<img src="captcha.php">
-    </div>  
     <button type="submit" name="login" class="create-account" style="margin-left:390px;margin-top:10px;" > Login </button>
  
   </div>

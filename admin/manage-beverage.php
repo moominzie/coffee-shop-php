@@ -62,6 +62,10 @@ foreach($results as $result)
     <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=Asap:wght@400&display=swap" rel="stylesheet">
 
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@900&display=swap" rel="stylesheet">
+
+
 </head>
 <style>
     </style>
@@ -70,25 +74,17 @@ foreach($results as $result)
       <!------MENU SECTION START-->
 <?php include('includes/header.php');?>
 <!-- MENU SECTION END-->
-    <div class="content-wrapper">
-         <div class="container">
-        <div class="row pad-botm">
+<div class="container">
+    <div class="row pad-botm">
             <div class="col-md-12">
-                <h4 class="header-line">Manage Beverage</h4>
+            <h4 class="header-line" style="text-align:none; font-family: 'Noto Sans JP', sans-serif; font-size: 22px;">Manage beverage &nbsp<i class="fas fa-mug-hot"></i></h4>
     </div>
 
-
-        </div>
-            <div class="row">
-                <div class="col-md-12">
-                    <!-- Advanced Tables -->
-                    <div class="panel panel-primary">
-                        <div class="panel-heading" style="font-family: 'Montserrat', sans-serif; letter-spacing: 1px; font-size: 16px;">
-                        Beverage
-                        </div>
-                        <div class="panel-body">
+            <!-- Advanced Tables -->
+            <div class="card-table">
+                        <div class="panel-body" style="">
                             <div class="table-responsive">
-                                <table class="table table-striped table-bordered table-hover" id="dataTables-example">
+                            <table class="table">
                                     <thead>
                                         <tr>
                                             <th>ID</th>
@@ -120,22 +116,23 @@ foreach($results as $result)
                                              <td class="center"><?php echo htmlentities($result->MenuName);?></td>
                                              <td class="center"><?php echo htmlentities($result->Description);?></td>
                                              <td class="center"><?php echo htmlentities($result->Price);?></td>
-                                             <td class="center"><img src="uploads/img/<?php echo htmlentities($result->Image1);?>" width="100" height="100" style="border:solid 1px #000"></td>
+                                             <td class="center"><img src="uploads/img/<?php echo htmlentities($result->Image1);?>" width="100" height="100" style="border-radius:10px;"></td>
                                              <td class="center"><?php echo htmlentities($result->Category);?></td>
                                              <td class="center"><?php echo htmlentities($result->SubCategory);?></td>
                                              <td class="center"><?php echo htmlentities($result->SizeName);?></td>
                                              <td class="center"><?php echo htmlentities($result->Ounce);?> oz.</td>
                                              <td class="center"><?php echo htmlentities($result->TypeName);?></td>
                                              <td class="center">
-                                             <a href="edit-beverage.php?mid=<?php echo htmlentities($result->mid);?>" class="btn btn-success btn-xs"><i class="fa fa-edit"></i> Edit</a>
+                                             <a href="edit-beverage.php?mid=<?php echo htmlentities($result->mid);?>" class="btn btn-success" style="border-radius:15px;background-color: #00A862;"><i class="fa fa-edit"></i> Edit</a>
                                             </td>
                                         </tr>
  <?php $cnt=$cnt+1;}} ?>                                      
                                     </tbody>
                                 </table>
+                                </div>
                             </div>
                             
-                        </div>
+                
                     </div>
                     <!--End Advanced Tables -->
                 </div>
@@ -144,7 +141,7 @@ foreach($results as $result)
 
             
     </div>
-    </div>
+
 
      <!-- CONTENT-WRAPPER SECTION END-->
 

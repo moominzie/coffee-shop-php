@@ -73,6 +73,11 @@ foreach($results as $result)
     <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=Asap:wght@400&display=swap" rel="stylesheet">
 
+
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@900&display=swap" rel="stylesheet">
+
+
 </head>
 <style>
     .errorWrap {
@@ -104,25 +109,27 @@ foreach($results as $result)
    <div class="container">
     <div class="row pad-botm">
             <div class="col-md-12">
-                <h4 class="header-line">Add Sub-Category</h4>
+            <h4 class="header-line" style="text-align:none; font-family: 'Noto Sans JP', sans-serif; font-size: 22px;">Create an Category</h4>
                             </div>
         </div>
-        <?php if($error){?><div class="errorWrap"><strong>ERROR</strong>:<?php echo htmlentities($error); ?> </div><?php } 
-				else if($msg){?><div class="succWrap"><strong>SUCCESS</strong>:<?php echo htmlentities($msg); ?> </div><?php }?>
-
-    <div class="panel panel-primary" style="margin-left:20%; margin-right:20%">
-    
-        <div class="panel-heading" style="font-family: 'Montserrat', sans-serif; letter-spacing: 1px; font-size: 16px;">Sub-Category</div>
-        <div class="panel-body" style="">
+<div class="card">
+        <div class="panel-body" style="margin:20px">
  
  <div class="col-md-12">
     <div class="form-group">
-        <label style="font-family: 'Staatliches', cursive; letter-spacing: 1px; font-size:14px;">Enter Sub-Category Name</label>&nbsp;<label for="" style="font-family: 'Oswald', sans-serif; color: red;">* </label>
+        <label >Sub category name</label>&nbsp;<label for="" style="color: red;">* </label>
         <input class="form-control" type="text" name="subcategory" autocomplete="off" required />
     </div>
+</div>
 
-    <button type="submit" name="add" class="btn btn-danger" id="add" style="font-family: 'Montserrat', sans-serif; letter-spacing: 1px;"> Add Category</button>
-    </div>
+    <div class="col-md-12">
+  <?php if($error){?><div class="errorWrap"><strong>ERROR</strong>:<?php echo htmlentities($error); ?> </div><?php } 
+				else if($msg){?><div class="succWrap"><strong>SUCCESS</strong>:<?php echo htmlentities($msg); ?> </div><?php }?>
+</div>
+
+<div class="col-md-12">                             
+<button type="submit" name="add" class="create-account"> Submit </button>
+</div>
 
     
         </div>

@@ -10,16 +10,6 @@ include('includes/connection.php');
     .container {
         margin-top: 5%;
     }
-    table,th,td {
-        border: 1px solid black;
-        border-collapse: collapse;
-    }
-    th,td {
-        height: 50px;
-    }
-    table {
-        margin-left: 70px;
-    }
     h1 {
       font-family: 'Asap', sans-serif;
     }
@@ -49,13 +39,12 @@ include('includes/connection.php');
         font-size: 30px;
         margin-top: -30px;
     }.header {
-        padding: 50px;
+        padding: 60px 70px;
         text-align: center;
         background-image: url("assets/img/coffee.jpg") ;
-        background-size: 1290px 550px;
+        background-size: 1400px 550px;
         color: white;
         font-size: 30px;
-        margin-top: -30px;
     }
     img:hover{
       cursor: pointer;

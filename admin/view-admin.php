@@ -70,6 +70,9 @@ foreach($results as $result)
     <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=Asap:wght@400&display=swap" rel="stylesheet">
 
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@900&display=swap" rel="stylesheet">
+
 </head>
 <style>
     .errorWrap {
@@ -93,29 +96,6 @@ foreach($results as $result)
     <!------MENU SECTION START-->
 <?php include('includes/header.php');?>
 <!-- MENU SECTION END-->
-<div class="content-wrapper">
-         <div class="container">
-        <div class="row pad-botm">
-            <div class="col-md-12">
-                <h4 class="header-line">Admin Profile</h4>
-                
-                            </div>
-
-        </div>
-        
-        <?php if($error){?><div class="errorWrap"><strong>ERROR</strong>:<?php echo htmlentities($error); ?> </div><?php } 
-				else if($msg){?><div class="succWrap"><strong>SUCCESS</strong>:<?php echo htmlentities($msg); ?> </div><?php }?>
-
-
-             <div class="row">
-           
-<div class="col-md-9 col-md-offset-1">
-               <div class="panel panel-primary">
-                        <div class="panel-heading" style="font-family: 'Montserrat', sans-serif; letter-spacing: 1px; font-size: 16px;">
-                           Profile
-                        </div>
-                        <div class="panel-body">
-                            <form name="update" method="post">
 <?php 
 
 $adminid=intval($_GET['adminid']);
@@ -129,6 +109,17 @@ if($query->rowCount() > 0)
 {
 foreach($results as $result)
 {               ?>  
+
+<form name="update" method="post" enctype="multipart/form-data">
+<div class="content-wrapper">
+   <div class="container">
+    <div class="row pad-botm">
+            <div class="col-md-12">
+            <h4 class="header-line" style="text-align:none; font-family: 'Noto Sans JP', sans-serif; font-size: 22px;"><?php echo htmlentities($result->FirstName);?>&nbsp<?php echo htmlentities($result->LastName);?> &nbsp<i class="fas fa-user-tie"></i>&nbsp&nbsp&nbsp<a href="admin-member.php" style="color: black;">Staff list here</a></h4>  
+                            </div>
+        </div>
+<div class="card-data">
+        <div class="panel-body">
 
 <div class="col-md-12">
 <div class="form-group">
@@ -163,9 +154,9 @@ foreach($results as $result)
 <div class="form-group">
 <label style="font-family: 'Staatliches', cursive; letter-spacing: 1px; font-size:14px;">Status : </label>
 <?php if($result->Status==1) {?>
-<a href="" class="btn btn-success btn-xs">Active</a>
+<a style="color: #00A862" >Active</a>
 <?php } else {?>
-<a href="" class="btn btn-danger btn-xs">Inactive</a>
+<a style="color: #00A862" >Inactive</a>
 <?php } ?>
 </div>
 </div>
@@ -181,9 +172,11 @@ foreach($results as $result)
 
 
 <?php }} ?>
-<div class="col-md-12">                   
-<button type="submit" name="update" class="btn btn-danger" style="font-family: 'Montserrat', sans-serif; letter-spacing: 1px;"> Back </button>
+<div class="col-md-12">
+  <?php if($error){?><div class="errorWrap"><strong>ERROR</strong>:<?php echo htmlentities($error); ?> </div><?php } 
+				else if($msg){?><div class="succWrap"><strong>SUCCESS</strong>:<?php echo htmlentities($msg); ?> </div><?php }?>
 </div>
+
                                     </form>
                             </div>
                         </div>

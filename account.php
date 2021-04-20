@@ -2,10 +2,12 @@
 session_start();
 include('includes/connection.php');
 error_reporting(0);
-  
+if(strlen($_SESSION['login'])==0)
+    {   
+header('location:loginmember.php');
+    }
 
 ?>
-
 
 <html lang="en">
 <head>
@@ -53,6 +55,9 @@ foreach($results as $result)
     <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=Asap:wght@400&display=swap" rel="stylesheet">
 
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@900&display=swap" rel="stylesheet">
+
 </head>
 <body>
 
@@ -76,7 +81,8 @@ if($query->rowCount() > 0)
 {
 foreach($results as $result)
 {               ?>    
-                <h4 class="header-line"><?php echo htmlentities($result->FirstName);?>&nbsp<?php echo htmlentities($result->LastName);?></h4>
+
+<h4 class="header-line"><?php echo htmlentities($result->FirstName);?>&nbsp<?php echo htmlentities($result->LastName);?></h4>
                 
                 <?php }} ?>
             </div>

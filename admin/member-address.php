@@ -61,6 +61,8 @@ foreach($results as $result)
 
     <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=Asap:wght@400&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@900&display=swap" rel="stylesheet">
 
 </head>
 <style>
@@ -70,25 +72,17 @@ foreach($results as $result)
       <!------MENU SECTION START-->
 <?php include('includes/header.php');?>
 <!-- MENU SECTION END-->
-    <div class="content-wrapper">
-         <div class="container">
-        <div class="row pad-botm">
+<div class="container">
+    <div class="row pad-botm">
             <div class="col-md-12">
-                <h4 class="header-line">Current Address Customer</h4>
+            <h4 class="header-line" style="text-align:none; font-family: 'Noto Sans JP', sans-serif; font-size: 22px;">Customer address &nbsp<i class="fas fa-map-marker-alt"></i>&nbsp&nbsp&nbsp<a href="shop-member.php" style="color: black;">Customer list here</a></h4>  
     </div>
 
-
-        </div>
-            <div class="row">
-                <div class="col-md-12">
-                    <!-- Advanced Tables -->
-                    <div class="panel panel-primary">
-                        <div class="panel-heading" style="font-family: 'Montserrat', sans-serif; letter-spacing: 1px; font-size: 16px;">
-                          Customer Address
-                        </div>
-                        <div class="panel-body">
+            <!-- Advanced Tables -->
+            <div class="card-table">
+                        <div class="panel-body" style="">
                             <div class="table-responsive">
-                                <table class="table table-striped table-bordered table-hover" id="dataTables-example">
+                            <table class="table">
                                     <thead>
                                         <tr>
                                             <th>ID</th>
@@ -128,9 +122,10 @@ foreach($results as $result)
  <?php $cnt=$cnt+1;}} ?>                                      
                                     </tbody>
                                 </table>
+                                </div>
                             </div>
                             
-                        </div>
+                
                     </div>
                     <!--End Advanced Tables -->
                 </div>
@@ -138,7 +133,6 @@ foreach($results as $result)
 
 
             
-    </div>
     </div>
 
      <!-- CONTENT-WRAPPER SECTION END-->

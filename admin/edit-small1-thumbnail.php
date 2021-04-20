@@ -79,6 +79,8 @@ foreach($results as $result)
 
     <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=Asap:wght@400&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@900&display=swap" rel="stylesheet">
 
 </head>
 <style>
@@ -103,30 +105,6 @@ foreach($results as $result)
     <!------MENU SECTION START-->
 <?php include('includes/header.php');?>
 <!-- MENU SECTION END-->
-<div class="content-wrapper">
-         <div class="container">
-        <div class="row pad-botm">
-            <div class="col-md-12">
-                <h4 class="header-line">Edit Thumbnails</h4>
-                
-                            </div>
-
-        </div>
-        
-        <?php if($error){?><div class="errorWrap"><strong>ERROR</strong>:<?php echo htmlentities($error); ?> </div><?php } 
-				else if($msg){?><div class="succWrap"><strong>SUCCESS</strong>:<?php echo htmlentities($msg); ?> </div><?php }?>
-
-
-             <div class="row">
-           
-<div class="col-xl-9">
-               <div class="panel panel-primary">
-                        <div class="panel-heading" style="font-family: 'Montserrat', sans-serif; letter-spacing: 1px; font-size: 16px;">
-                           Small 1 (Fresh Bread)
-                        </div>
-                        <div class="panel-body">
-
-<form name="update" method="post" enctype="multipart/form-data">
 <?php 
 
 $sql = "SELECT Name,Images from thumbnail where PositionId=2";
@@ -139,31 +117,48 @@ if($query->rowCount() > 0)
 foreach($results as $result)
 {               ?>  
 
+<form name="update" method="post" enctype="multipart/form-data">
+<div class="content-wrapper">
+   <div class="container">
+    <div class="row pad-botm">
+            <div class="col-md-12">
+            <h4 class="header-line" style="text-align:none; font-family: 'Noto Sans JP', sans-serif; font-size: 22px;">Thumbnails</h4>
+                            </div>
+        </div>
+<div class="card-data">
+        <div class="panel-body">
 <div class="col-md-6">
     <div class="form-group">
-        <label style="font-family: 'Staatliches', cursive; letter-spacing: 1px; font-size:14px;">Enter Thumbnail Name</label>&nbsp;<label for="" style="font-family: 'Oswald', sans-serif; color: red;">* </label>
+        <label>Enter Thumbnail Name</label>&nbsp;<label for="" style="color: red;">* </label>
         <input class="form-control" type="text" name="name" value="<?php echo htmlentities($result->Name);?>" autocomplete="off" required />
     </div>
     </div>
 
 <div class="col-md-12">
 <div class="form-group">
-<img src="uploads/thumbnails/<?php echo htmlentities($result->Images);?>" width="570" height="570" style="border:solid 1px #000">
+<img src="uploads/thumbnails/<?php echo htmlentities($result->Images);?>" width="300" height="300" style="border-radius:10px;">
 </div>
 </div>
 <?php }} ?>
 
 <div class="col-md-8">
     <div class="form-group">
-        <label style="font-family: 'Staatliches', cursive; letter-spacing: 1px; font-size:14px;">Upload new Large thumbnail</label>&nbsp;<label for="" style="font-family: 'Oswald', sans-serif; color: red;">* </label>&nbsp;<label for="" style="font-family: 'Montserrat', sans-serif; font-size:14px; color: #B03A2E"> Please use picture scale 300x275 px. </label>
+        <label>Upload new Small thumbnail</label>&nbsp;<label for="" style="color: red;">* </label>&nbsp;<label for="" style="color: red"> Please use picture scale 300x300 px. </label>
         <input class="form-control" type="file" name="img1" autocomplete="off" required />
     </div>
     </div>
+
+    <div class="col-md-12">
+  <?php if($error){?><div class="errorWrap"><strong>ERROR</strong>:<?php echo htmlentities($error); ?> </div><?php } 
+				else if($msg){?><div class="succWrap"><strong>SUCCESS</strong>:<?php echo htmlentities($msg); ?> </div><?php }?>
+</div>
+
+<div class="col-md-12">                             
+<button type="submit" name="update" class="create-account" > Update thumbnails </button> | <a href="edit-thumbnail.php" style="color: #006400" > Edit Large</a> | <a href="edit-small2-thumbnail.php" style="color: #006400" > Edit Small2 </a> | <a href="edit-small3-thumbnail.php" style="color: #006400" > Edit Small3</a> | <a href="edit-small4-thumbnail.php" style="color: #006400" > Edit Small4</a>
+</div>
 											
 
-<div class="col-md-12">                   
-<button type="submit" name="update" class="btn btn-danger" style="font-family: 'Montserrat', sans-serif; letter-spacing: 1px;"> Upload </button> | <a href="edit-thumbnail.php" style="font-family: 'Staatliches', cursive; letter-spacing: 1px; font-size:14px; color: #BB8FCE" > Edit Large</a> | <a href="edit-small2-thumbnail.php" style="font-family: 'Staatliches', cursive; letter-spacing: 1px; font-size:14px; color: #BB8FCE" > Edit Small2 </a> | <a href="edit-small3-thumbnail.php" style="font-family: 'Staatliches', cursive; letter-spacing: 1px; font-size:14px; color: #BB8FCE" > Edit Small3</a> | <a href="edit-small4-thumbnail.php" style="font-family: 'Staatliches', cursive; letter-spacing: 1px; font-size:14px; color: #BB8FCE" > Edit Small4</a>
-</div>
+
 </form>
 </div>
 </div>

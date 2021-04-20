@@ -108,16 +108,16 @@ foreach($results as $result)
         position: relative;
         margin: auto;
         overflow: hidden;
-        width: 250px;
-        height: 250px;
+        width: 270px;
+        height: 270px;
         border-radius: 5%;
     }
     .image-box img {
         max-width: 100%;
         transition: all 0.3s;
         display: block;
-        width: 250px;
-        height: 250px;
+        width: 270px;
+        height: 270px;
         transform: scale(1);
     }
 
@@ -170,14 +170,14 @@ if($query->rowCount() > 0)
 {
 foreach($results as $result)
 {               ?>    
-<div class="col-6 col-md-3">
+<div class="col-6 col-md-4">
 <div class="image-box">
 <a href="product-fresh-bread.php?mid=<?php echo htmlentities($result->mid);?>" style="color: black" >
   <img src="admin/uploads/img/<?php echo htmlentities($result->Image1);?>" width="250" height="250" style=""></a>
   </div>
-  <a href="product-fresh-bread.php?mid=<?php echo htmlentities($result->mid);?>" style="color: black" ><h4 style="margin-left:20px;font-family: 'Fjalla One', sans-serif;"><?php echo htmlentities($result->MenuName);?></h4></a>
-  <p style="margin-left:20px;"><?php echo htmlentities($result->Description);?></p>
-  <p class="price" style="margin-left:20px;"><?php echo htmlentities($result->Price);?>฿ </p>
+  <a href="product-fresh-bread.php?mid=<?php echo htmlentities($result->mid);?>" style="color: black" ><h4 style="text-align:center;font-family: 'Fjalla One', sans-serif;"><?php echo htmlentities($result->MenuName);?></h4></a>
+  <p style="text-align:center;"><?php echo htmlentities($result->Description);?></p>
+  <p class="price" style="text-align:center;"><?php echo htmlentities($result->Price);?>฿ </p>
 
 
 </div>

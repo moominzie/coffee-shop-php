@@ -106,16 +106,16 @@ foreach($results as $result)
         position: relative;
         margin: auto;
         overflow: hidden;
-        width: 250px;
-        height: 250px;
+        width: 270px;
+        height: 270px;
         border-radius: 5%;
     }
     .image-box img {
         max-width: 100%;
         transition: all 0.3s;
         display: block;
-        width: 250px;
-        height: 250px;
+        width: 270px;
+        height: 270px;
         transform: scale(1);
     }
 
@@ -158,6 +158,7 @@ foreach($results as $result)
 
 <div class="container-fluid">
 <h3 class="header-line" style="margin-top:30px; font-family: 'Fjalla One', sans-serif;text-transform:none;">Beverage</h3>
+
 <?php 
 $sql = "SELECT menu.MenuName,menu.Description,menu.Price,menu.Image1,category.Category,subcategory.SubCategory,size.SizeName,type.TypeName,size.Ounce,menu.id as mid from menu join category on menu.CategoryId=category.id join subcategory on menu.SubCategoryId=subcategory.id join size on menu.SizeId=size.id join type on menu.TypeId=type.id order by mid asc";
 $query = $dbh -> prepare($sql);
@@ -167,20 +168,22 @@ $cnt=1;
 if($query->rowCount() > 0)
 {
 foreach($results as $result)
-{               ?>     
-<div class="col-6 col-md-3">
+{               ?> 
+
+<div class="col-6 col-md-4">
 <div class="image-box">
 <a href="product-bev.php?mid=<?php echo htmlentities($result->mid);?>" style="color: black" >
   <img src="admin/uploads/img/<?php echo htmlentities($result->Image1);?>" width="250" height="250" style="">
   </a>
   </div>
-  <a href="product-bev.php?mid=<?php echo htmlentities($result->mid);?>" style="color: black" ><h4 style="margin-left:20px;font-family: 'Fjalla One', sans-serif;"><?php echo htmlentities($result->MenuName);?></h4></a>
-  <p style="margin-left:20px;"><?php echo htmlentities($result->Description);?></p>
-  <p class="price" style="margin-left:20px;"><?php echo htmlentities($result->SizeName);?>&nbsp | <?php echo htmlentities($result->Price);?>฿ </p>
-
+  <a href="product-bev.php?mid=<?php echo htmlentities($result->mid);?>" style="color: black" ><h4 style="text-align:center;font-family: 'Fjalla One', sans-serif;"><?php echo htmlentities($result->MenuName);?></h4></a>
+  <p style="text-align:center;"><?php echo htmlentities($result->Description);?></p>
+  <p class="price" style="text-align:center;"><?php echo htmlentities($result->SizeName);?>&nbsp | <?php echo htmlentities($result->Price);?>฿ </p>
+  
 </div>
+<?php }} ?>    
 
-<?php }} ?>   
+
 </div>
         <!------FOOTER SECTION START-->
         <?php include('includes/footer.php');?>

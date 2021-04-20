@@ -69,6 +69,7 @@ foreach($results as $result)
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
         <!-- BOOTSTRAP CORE STYLE  -->
         <link href="assets/css/bootstrap.css" rel="stylesheet" />
@@ -91,6 +92,8 @@ foreach($results as $result)
     <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=Asap:wght@400&display=swap" rel="stylesheet">
 
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@900&display=swap" rel="stylesheet">
 
   <script type="text/javascript">
 function valid()
@@ -204,41 +207,49 @@ $("#username").keyup(function(){
    <div class="container">
     <div class="row pad-botm">
             <div class="col-md-12">
-                <h4 class="header-line">Manage Admin</h4>
+            <h4 class="" style="text-align:center; font-family: 'Noto Sans JP', sans-serif; font-size: 22px;">Create new staff</h4>
+            <?php
+                    $sql="SELECT * from  shop ";
+                    $query = $dbh -> prepare($sql);
+                    $query->execute();
+                    $results=$query->fetchAll(PDO::FETCH_OBJ);
+                    $cnt=1;
+                    if($query->rowCount() > 0)
+                    {
+                    foreach($results as $result)
+                    {               ?>   
+                    <p style="text-align:center;color: grey;"> Join to <?php echo htmlentities($result->ShopName);?></p>
+
+                        <?php }} ?>
                             </div>
         </div>
-        <?php if($error){?><div class="errorWrap"><strong>ERROR</strong>:<?php echo htmlentities($error); ?> </div><?php } 
-				else if($msg){?><div class="succWrap"><strong>SUCCESS</strong>:<?php echo htmlentities($msg); ?> </div><?php }?>
-
-    <div class="panel panel-primary" style="margin-left:20%; margin-right:20%">
-    
-        <div class="panel-heading" style="font-family: 'Montserrat', sans-serif; letter-spacing: 1px; font-size: 16px;">Register admin</div>
-        <div class="panel-body" style="">
+<div class="card">
+<div class="panel-body" style="margin:50px">
  
  <div class="col-md-6">
     <div class="form-group">
-        <label style="font-family: 'Staatliches', cursive; letter-spacing: 1px; font-size:14px;">Enter First Name</label>&nbsp;<label for="" style="font-family: 'Oswald', sans-serif; color: red;">* </label>
-        <input class="form-control" type="text" name="firstname" autocomplete="off" required />
+        <label>Staff firstname</label>&nbsp;<label for="" style="color: red;">* </label>
+        <input class="form-control" type="text" name="firstname" autocomplete="off" required value="<?php echo htmlspecialchars($_POST['firstname'] ?? '', ENT_QUOTES); ?>"/>
     </div>
     </div>
 
     <div class="col-md-6">
     <div class="form-group">
-        <label style="font-family: 'Staatliches', cursive; letter-spacing: 1px; font-size:14px;">Enter Last Name</label>&nbsp;<label for="" style="font-family: 'Oswald', sans-serif; color: red;">* </label>
-        <input class="form-control" type="text" name="lastname" autocomplete="off" required />
+        <label>Staff lastname</label>&nbsp;<label for="" style="color: red;">* </label>
+        <input class="form-control" type="text" name="lastname" autocomplete="off" required value="<?php echo htmlspecialchars($_POST['lastname'] ?? '', ENT_QUOTES); ?>"/>
     </div>
     </div>
 
     <div class="col-md-6">
     <div class="form-group">
-        <label style="font-family: 'Staatliches', cursive; letter-spacing: 1px; font-size:14px;">Enter Email</label>&nbsp;<label for="" style="font-family: 'Oswald', sans-serif; color: red;">* </label>
-        <input class="form-control" type="email" name="email" id="adminemail" onBlur="checkEmailAvailability()"  autocomplete="off" required />
+        <label>Staff email</label>&nbsp;<label for="" style="color: red;">* </label>
+        <input class="form-control" type="email" name="email" id="adminemail" onBlur="checkEmailAvailability()"  autocomplete="off" required value="<?php echo htmlspecialchars($_POST['email'] ?? '', ENT_QUOTES); ?>" />
         <span id="email-availability-status" style="font-size:12px;"></span> 
     </div>
 
     <div class="form-group">
-        <label style="font-family: 'Staatliches', cursive; letter-spacing: 1px; font-size:14px;">Enter Mobile Number</label>&nbsp;<label for="" style="font-family: 'Oswald', sans-serif; color: red;">* </label>
-        <input class="form-control" type="text" name="mobileno" id="mobileno" onBlur=""  autocomplete="off" required />
+        <label>Staff mobile number</label>&nbsp;<label for="" style="color: red;">* </label>
+        <input class="form-control" type="text" name="mobileno" id="mobileno" onBlur=""  autocomplete="off" required value="<?php echo htmlspecialchars($_POST['mobileno'] ?? '', ENT_QUOTES); ?>"/>
        
     </div>
 </div>
@@ -247,7 +258,7 @@ $("#username").keyup(function(){
 
     <div class="col-md-6">
     <div class="form-group">
-        <label style="font-family: 'Staatliches', cursive; letter-spacing: 1px; font-size:14px;">Enter Username</label>&nbsp;<label for="" style="font-family: 'Oswald', sans-serif; color: red;">* </label>
+        <label>Username</label>&nbsp;<label for="" style="color: red;">* </label>
         <input class="form-control" type="text" name="username" id="username" onBlur="checkUsernameAvailability()" autocomplete="off" required />
         <span id="username-availability-status" style="font-size:12px;"></span> 
           <!-- Response -->
@@ -257,20 +268,31 @@ $("#username").keyup(function(){
 
     <div class="col-md-6">
     <div class="form-group">
-        <label style="font-family: 'Staatliches', cursive; letter-spacing: 1px; font-size:14px;">Password</label>&nbsp;<label for="" style="font-family: 'Oswald', sans-serif; color: red;">* </label>
+        <label>Password</label>&nbsp;<label for="" style="color: red;">* </label>
         <input class="form-control" type="password" name="password" autocomplete="off" required />
     </div>
     <div class="form-group">
-      <label style="font-family: 'Staatliches', cursive; letter-spacing: 1px; font-size:14px;">Confirm Password </label>&nbsp;<label for="" style="font-family: 'Oswald', sans-serif; color: red;">* </label>
+      <label>Confirm password </label>&nbsp;<label for="" style="color: red;">* </label>
       <input class="form-control"  type="password" name="confirmpassword" autocomplete="off" required  />
     </div>
+
    
     <div class="form-group">
-    <label style="font-family: 'Staatliches', cursive; letter-spacing: 1px; font-size:14px;">Verification code : </label>
-    <input type="text"  name="vercode" maxlength="5" autocomplete="off" required style="width: 150px; height: 25px;" />&nbsp;<img src="captcha.php">
+        <label style="">Verification code : </label>&nbsp;<label style="color:red;">*</label>
+        <input class="form-control" type="text"  name="vercode" maxlength="5" autocomplete="off" required /><img src="captcha.php" style="margin-top: 10px">
     </div>  
-    <button type="submit" name="regadmin" class="btn btn-danger" id="submit" style="font-family: 'Montserrat', sans-serif; letter-spacing: 1px;"> Add Admin </button>
-    </div>
+</div>
+
+    <div class="col-md-12">
+  <?php if($error){?><div class="errorWrap"><strong>ERROR</strong>:<?php echo htmlentities($error); ?> </div><?php } 
+				else if($msg){?><div class="succWrap"><strong>SUCCESS</strong>:<?php echo htmlentities($msg); ?> </div><?php }?>
+</div>
+
+<div class="col-md-6" style="margin-left:290px;margin-top:10px;">
+    <button type="submit" name="regadmin" class="create-account" id="submit" > Create account </button>
+</div>
+    </div> 
+    
     </div>
     <!-- REGISTER END-->
         </div>

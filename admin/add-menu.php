@@ -92,6 +92,11 @@ foreach($results as $result)
     <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=Asap:wght@400&display=swap" rel="stylesheet">
 
+
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@900&display=swap" rel="stylesheet">
+
+
 </head>
 
 
@@ -124,50 +129,45 @@ foreach($results as $result)
    <div class="container">
     <div class="row pad-botm">
             <div class="col-md-12">
-                <h4 class="header-line">Add Menu</h4>
+            <h4 class="header-line" style="text-align:none; font-family: 'Noto Sans JP', sans-serif; font-size: 22px;">Create an Product &nbsp<i class="fas fa-mug-hot"></i></h4>
                             </div>
         </div>
-        <?php if($error){?><div class="errorWrap"><strong>ERROR</strong>:<?php echo htmlentities($error); ?> </div><?php } 
-				else if($msg){?><div class="succWrap"><strong>SUCCESS</strong>:<?php echo htmlentities($msg); ?> </div><?php }?>
-
-    <div class="panel panel-primary" style="margin-left:20%; margin-right:20%">
-    
-        <div class="panel-heading" style="font-family: 'Montserrat', sans-serif; letter-spacing: 1px; font-size: 16px;">Menu</div>
-        <div class="panel-body" style="">
+<div class="card">
+        <div class="panel-body" style="margin:20px">
  
  <div class="col-md-12">
     <div class="form-group">
-        <label style="font-family: 'Staatliches', cursive; letter-spacing: 1px; font-size:14px;">Enter Menu Name</label>&nbsp;<label for="" style="font-family: 'Oswald', sans-serif; color: red;">* </label>
+        <label>Menu name</label>&nbsp;<label for="" style="color: red;">* </label>
         <input class="form-control" type="text" name="menuname" autocomplete="off" required />
     </div>
     </div>
 
     <div class="col-md-12">
     <div class="form-group">
-        <label style="font-family: 'Staatliches', cursive; letter-spacing: 1px; font-size:14px;">Enter Description</label>
+        <label>Menu description</label>
         <textarea class="form-control" type="text" name="description" autocomplete="off"></textarea>
     </div>
     </div>
 
     <div class="col-md-4">
     <div class="form-group">
-        <label style="font-family: 'Staatliches', cursive; letter-spacing: 1px; font-size:14px;">Enter Menu Price</label>&nbsp;<label for="" style="font-family: 'Oswald', sans-serif; color: red;">* </label>
+        <label>Menu price</label>&nbsp;<label for="" style="color: red;">* </label>
         <input class="form-control" type="number" name="price" autocomplete="off" required />
     </div>
     </div>
 
     <div class="col-md-8">
     <div class="form-group">
-        <label style="font-family: 'Staatliches', cursive; letter-spacing: 1px; font-size:14px;">Picture</label>&nbsp;<label for="" style="font-family: 'Oswald', sans-serif; color: red;">* Please use image scale 300x300 px. </label>
+        <label>Picture</label>&nbsp;<label for="" style="color: red;">* Please use image scale 300x300 px. </label>
         <input class="form-control" type="file" name="img1" autocomplete="off" required />
     </div>
     </div>
 
     <div class="form-group col-md-6">
-    <label style="font-family: 'Staatliches', cursive; letter-spacing: 1px; font-size:14px;">Category</label>&nbsp;<label for="" style="font-family: 'Oswald', sans-serif; color: red;">* </label>
+    <label>Category</label>&nbsp;<label for="" style="color: red;">* </label>
         <!-- END TITLE -->
     
-    <select name="category" id="" class="form-control" onBlur="" required>
+    <select name="category" id="" class="form-control form-control-lg" onBlur="" required>
 <option value='0'> Select Category </option>
 <?php 
           ## Fetch amphures
@@ -184,10 +184,10 @@ foreach($results as $result)
 <!-- END CATEGORY -->
 
 <div class="form-group col-md-6">
-    <label style="font-family: 'Staatliches', cursive; letter-spacing: 1px; font-size:14px;">Sub-Category</label>&nbsp;<label for="" style="font-family: 'Oswald', sans-serif; color: red;">* </label><a href="add-subcategory.php" style="font-family: 'Staatliches', cursive; letter-spacing: 1px; font-size:14px; color: #BB8FCE" > /Add Sub-Category</a>
+    <label>Sub-Category</label>&nbsp;<label for="" style="color: red;">* </label><a href="add-subcategory.php" style="color: #006400" > /Add Sub-Category</a>
         <!-- END TITLE -->
     
-    <select name="subcategory" id="" class="form-control" onBlur="" required>
+    <select name="subcategory" id="" class="form-control form-control-lg" onBlur="" required>
 <option value='0'> Select Sub-Category </option>
 <?php 
           ## Fetch amphures
@@ -204,10 +204,10 @@ foreach($results as $result)
 <!-- END SUB CATEGORY -->
 
 <div class="form-group col-md-6">
-    <label style="font-family: 'Staatliches', cursive; letter-spacing: 1px; font-size:14px;">Glass Size</label><a href="add-size.php" style="font-family: 'Staatliches', cursive; letter-spacing: 1px; font-size:14px; color: #BB8FCE" > /Add Glass Size</a>
+    <label>Glass Size</label><a href="add-size.php" style="color: #006400" > /Add Glass Size</a>
         <!-- END TITLE -->
     
-    <select name="size" id="" class="form-control" onBlur="" required>
+    <select name="size" id="" class="form-control form-control-lg" onBlur="" required>
 <option value='0'> Select Glass Size </option>
 <?php 
           ## Fetch amphures
@@ -224,10 +224,10 @@ foreach($results as $result)
 <!-- END TYPE -->
 
 <div class="form-group col-md-6">
-    <label style="font-family: 'Staatliches', cursive; letter-spacing: 1px; font-size:14px;">Beverage Type</label>
+    <label>Beverage Type</label>
         <!-- END TITLE -->
     
-    <select name="type" id="" class="form-control" onBlur="" required>
+    <select name="type" id="" class="form-control form-control-lg" onBlur="" required>
 <option value='0'> Select Beverage Type </option>
 <?php 
           ## Fetch amphures
@@ -242,10 +242,14 @@ foreach($results as $result)
 </select>
 </div>
 <!-- END TYPE -->
-
 <div class="col-md-12">
-    <button type="submit" name="add" class="btn btn-danger" id="add" style="font-family: 'Montserrat', sans-serif; letter-spacing: 1px;"> Add Menu </button>
-    </div>
+  <?php if($error){?><div class="errorWrap"><strong>ERROR</strong>:<?php echo htmlentities($error); ?> </div><?php } 
+				else if($msg){?><div class="succWrap"><strong>SUCCESS</strong>:<?php echo htmlentities($msg); ?> </div><?php }?>
+</div>
+
+<div class="col-md-12">                             
+<button type="submit" name="add" class="create-account" > Submit </button>
+</div>
 
     
         </div>

@@ -6,16 +6,6 @@
     .container {
         margin-top: 5%;
     }
-    table,th,td {
-        border: 1px solid black;
-        border-collapse: collapse;
-    }
-    th,td {
-        height: 50px;
-    }
-    table {
-        margin-left: 70px;
-    }
     h1 {
       font-family: 'Asap', sans-serif;
     }
@@ -80,9 +70,9 @@
           Add product
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-          <a class="dropdown-item" href="add-menu.php">Add Menu</a>
-          <a class="dropdown-item" href="add-subcategory.php">Add Sub-Category</a>
-          <a class="dropdown-item" href="add-size.php">Add Glass Size</a>
+          <a class="dropdown-item" href="add-menu.php">New menu &nbsp<i class="fas fa-plus"></i></a>
+          <a class="dropdown-item" href="add-subcategory.php">Add sub-category</a>
+          <a class="dropdown-item" href="add-size.php">Add glass size</a>
         </div>
       </li>
 
@@ -91,14 +81,36 @@
           Manage product
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-          <a class="dropdown-item" href="manage-food.php">Manage Food</a>
-          <a class="dropdown-item" href="manage-beverage.php">Manage Beverage</a>
-          <a class="dropdown-item" href="manage-freshbread.php">Manage Fresh Bread</a>
-          <a class="dropdown-item" href="manage-toast.php">Manage Toast</a>
-          <a class="dropdown-item" href="manage-subcategory.php"> Manage Sub-Category</a>
-          <a class="dropdown-item" href="manage-size.php">Manage Glass Size</a>
+          <a class="dropdown-item" href="manage-food.php">Manage food</a>
+          <a class="dropdown-item" href="manage-beverage.php">Manage beverage</a>
+          <a class="dropdown-item" href="manage-freshbread.php">Manage fresh bread</a>
+          <a class="dropdown-item" href="manage-toast.php">Manage toast</a>
+          <a class="dropdown-item" href="manage-subcategory.php"> Manage sub-category</a>
+          <a class="dropdown-item" href="manage-size.php">Manage glass size</a>
         </div>
       </li>
+
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Shop page
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+          <a class="dropdown-item" href="edit-banner.php">Manage banner</a>
+          <a class="dropdown-item" href="edit-thumbnail.php">Manage thumbnails</a>
+        </div>
+      </li>
+
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Manage member
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+          <a class="dropdown-item" href="add-admin.php">New staff &nbsp<i class="fas fa-user-plus"></i></a>
+          <a class="dropdown-item" href="shop-member.php">Customer</a>
+          <a class="dropdown-item" href="admin-member.php">Staff</a>
+        </div>
+      </li>
+
     </ul>
 
     <ul class="navbar-nav navbar-right">
@@ -109,7 +121,7 @@
         <a class="nav-link" href="account.php"><p class="account"><i class="fas fa-user-circle"></i>&nbsp Manage account</p><span class="sr-only" >(current)</span></a>
       </li>
       <li class="nav-item active">
-        <a class="nav-link" href="mycart.php"><p class="account"><i class="fas fa-store"></i>&nbsp Manage shop</p><span class="sr-only" >(current)</span></a>
+        <a class="nav-link" href="manage-shop.php"><p class="account"><i class="fas fa-store"></i>&nbsp Manage shop</p><span class="sr-only" >(current)</span></a>
       </li>
       <li class="nav-item active">
         <a class="nav-link" href="logout.php"><p class="sign-out">Sign out</p><span class="sr-only" >(current)</span></a>

@@ -55,10 +55,6 @@ foreach($results as $result)
 
   <style>
   /* Make the image fully responsive */
-  .carousel-inner img {
-    width: 100%;
-    height: 100%;
-  }
   footer {
       background-color: #f2f2f2;
       padding: 25px;
@@ -105,14 +101,14 @@ foreach($results as $result)
       width: 300px;
       height: 275px;
       margin-top:20px;
-      margin-left: -35px;
+      margin-left: -25px;
     }
 
     .img3{
       width: 300px;
       height: 275px;
       margin-top:20px;
-      margin-left: -35px;
+      margin-left: -25px;
     }
 
     .img4{
@@ -183,75 +179,11 @@ foreach($results as $result)
     <?php include('includes/header.php');?>
 <!-- MENU SECTION END-->
 
+    <!------MENU SECTION START-->
+    <?php include('includes/carousel.php');?>
+<!-- MENU SECTION END-->
+
 <!--REGISTER PANEL START-->     
-<div id="menu" class="carousel slide" data-ride="carousel">
-  <ol class="carousel-indicators">
-    <li data-target="#menu" data-slide-to="0" class="active"></li>
-    <li data-target="#menu" data-slide-to="1"></li>
-    <li data-target="#menu" data-slide-to="2"></li>
-  </ol>
-
-      <div class="carousel-inner">
-
-      <div class="carousel-item active">
-        <?php
-        
-    $sql = "SELECT bevbanner.Images as bev from bevbanner";
-    $query = $dbh -> prepare($sql);
-    $query->execute();
-    $results=$query->fetchAll(PDO::FETCH_OBJ);
-    $cnt=1;
-    if($query->rowCount() > 0)
-    {
-    foreach($results as $result)
-    {               ?>  
-          <img src="admin/uploads/banner/<?php echo htmlentities($result->bev);?>" class="d-block w-100" alt="banner">
-          <?php }} ?>
-          
-        </div>
-
-        <div class="carousel-item">
-        <?php
-    $sql = "SELECT foodbanner.Images as food from foodbanner";
-    $query = $dbh -> prepare($sql);
-    $query->execute();
-    $results=$query->fetchAll(PDO::FETCH_OBJ);
-    $cnt=1;
-    if($query->rowCount() > 0)
-    {
-    foreach($results as $result)
-    {               ?>  
-          <img src="admin/uploads/banner/<?php echo htmlentities($result->food);?>" class="d-block w-100" alt="banner">
-          <?php }} ?>
-        </div>
-
-        <div class="carousel-item">
-        <?php
-    $sql = "SELECT breadbanner.Images as bread from breadbanner";
-    $query = $dbh -> prepare($sql);
-    $query->execute();
-    $results=$query->fetchAll(PDO::FETCH_OBJ);
-    $cnt=1;
-    if($query->rowCount() > 0)
-    {
-    foreach($results as $result)
-    {               ?>  
-          <img src="admin/uploads/banner/<?php echo htmlentities($result->bread);?>" class="d-block w-100" alt="banner">
-          <?php }} ?>
-        </div>
-
-      </div>
-
-      <a class="carousel-control-prev" href="#menu" role="button" data-slide="prev">
-    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span class="sr-only">Previous</span>
-  </a>
-  <a class="carousel-control-next" href="#menu" role="button" data-slide="next">
-    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    <span class="sr-only">Next</span>
-  </a>
-</div>
-
 
   <div class="container-fluid">
   <h3>Today’s good mood is sponsored by coffee</h3>

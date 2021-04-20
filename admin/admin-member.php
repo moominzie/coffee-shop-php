@@ -62,6 +62,10 @@ foreach($results as $result)
     <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=Asap:wght@400&display=swap" rel="stylesheet">
 
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@900&display=swap" rel="stylesheet">
+
+
 </head>
 <style>
     </style>
@@ -70,25 +74,17 @@ foreach($results as $result)
       <!------MENU SECTION START-->
 <?php include('includes/header.php');?>
 <!-- MENU SECTION END-->
-    <div class="content-wrapper">
-         <div class="container">
-        <div class="row pad-botm">
+<div class="container">
+    <div class="row pad-botm">
             <div class="col-md-12">
-                <h4 class="header-line">Manage Admin</h4>
+            <h4 class="header-line" style="text-align:none; font-family: 'Noto Sans JP', sans-serif; font-size: 22px;">Staff list &nbsp<i class="fas fa-user-check"></i>
     </div>
 
-
-        </div>
-            <div class="row">
-                <div class="col-md-12">
-                    <!-- Advanced Tables -->
-                    <div class="panel panel-primary">
-                        <div class="panel-heading" style="font-family: 'Montserrat', sans-serif; letter-spacing: 1px; font-size: 16px;">
-                          Admin List
-                        </div>
-                        <div class="panel-body">
+            <!-- Advanced Tables -->
+            <div class="card-table">
+                        <div class="panel-body" style="">
                             <div class="table-responsive">
-                                <table class="table table-striped table-bordered table-hover" id="dataTables-example">
+                            <table class="table">
                                     <thead>
                                         <tr>
                                             <th>ID</th>
@@ -121,21 +117,22 @@ foreach($results as $result)
                                             <td class="center"><?php echo htmlentities($result->MobileNumber);?></td>
                                             <td class="center"><?php echo htmlentities($result->AdminEmail);?></td>
                                             <td class="center"><?php if($result->Status==1) {?>
-                                            <a href="" class="btn btn-success btn-xs">Active</a>
+                                            <a href="" class="btn btn-success" style="border-radius:15px;background-color: #00A862;">Active</a>
                                             <?php } else {?>
-                                            <a href="" class="btn btn-danger btn-xs">Inactive</a>
+                                            <a href="" class="btn btn-success" style="border-radius:15px;background-color: white;color: black">Inactive</a>
                                             <?php } ?></td>
                                             <td class="center"><?php echo htmlentities($result->updationDate);?></td>
-                                            <td class="center"><a href="view-admin.php?adminid=<?php echo htmlentities($result->id);?>" class="btn btn-info btn-xs"><i class="fa fa-eye"></i> View</a>
+                                            <td class="center"><a href="view-admin.php?adminid=<?php echo htmlentities($result->id);?>" class="btn btn-success" style="border-radius:15px;background-color: white;color: black;"><i class="fa fa-eye"></i> View</a>
                                             </td>
                                         
                                         </tr>
  <?php $cnt=$cnt+1;}} ?>                                      
                                     </tbody>
                                 </table>
+                                </div>
                             </div>
                             
-                        </div>
+                
                     </div>
                     <!--End Advanced Tables -->
                 </div>
@@ -143,7 +140,6 @@ foreach($results as $result)
 
 
             
-    </div>
     </div>
 
      <!-- CONTENT-WRAPPER SECTION END-->
