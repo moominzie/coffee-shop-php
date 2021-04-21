@@ -113,7 +113,7 @@ foreach($results as $result)
                                     <thead>
                                         <tr>
                                             <th>ID</th>
-                                            <th>Sub-Category</th>
+                                            <th>Sub category</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>

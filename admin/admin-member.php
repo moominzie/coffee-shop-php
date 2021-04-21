@@ -89,12 +89,12 @@ foreach($results as $result)
                                         <tr>
                                             <th>ID</th>
                                             <th>Username</th>
-                                            <th>First Name</th>
-                                            <th>Last Name</th>
+                                            <th>Firstname</th>
+                                            <th>Lastname</th>
                                             <th>Mobile</th>
                                             <th>Email</th>
                                             <th>Status</th>
-                                            <th>Last Update Profile</th>
+                                            <th>Last update profile</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>

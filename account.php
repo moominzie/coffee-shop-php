@@ -82,7 +82,8 @@ if($query->rowCount() > 0)
 foreach($results as $result)
 {               ?>    
 
-<h4 class="header-line"><?php echo htmlentities($result->FirstName);?>&nbsp<?php echo htmlentities($result->LastName);?></h4>
+
+<h4 class="header-line">Account</h4>
                 
                 <?php }} ?>
             </div>

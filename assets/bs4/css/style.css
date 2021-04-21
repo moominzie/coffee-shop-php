@@ -126,3 +126,7 @@
           background-color: Black;
           
         }
+
+        .invisible {
+          visibility: hidden;
+        }

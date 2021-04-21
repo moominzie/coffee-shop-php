@@ -2,7 +2,7 @@
 session_start();
 include('includes/connection.php');
 error_reporting(0);
-if(isset($_POST['signup']))
+if(isset($_POST['submit']))
 {
 $fname=$_POST['firstname']; 
 $lname=($_POST['lastname']); 
@@ -146,15 +146,17 @@ foreach($results as $result)
     <div class="form-group">
         <label>Your comment</label>
         <textarea class="form-control" type="password" name="comment" autocomplete="off" required ></textarea>
-    </div>
+        </div>
+        </div>
+
 
     <div class="col-md-12">
-  <?php if($error){?><div class="errorWrap"><strong>ERROR</strong>:<?php echo htmlentities($error); ?> </div><?php } 
-				else if($msg){?><div class="succWrap"><strong>SUCCESS</strong>:<?php echo htmlentities($msg); ?> </div><?php }?>
+  <?php if($error){?><div class="alert alert-danger" role="alert" ><?php echo htmlentities($error); ?> </div><?php } 
+				else if($msg){?><div class="alert alert-success" role="alert" ><?php echo htmlentities($msg); ?> &nbsp<a href="register.php" class="alert-link">Do you want to join with us?</a></div><?php }?>
 </div>
 
-<div class="col-md-6" style="margin-left:360px;margin-top:10px;">
-    <button type="submit" name="signup" class="create-account" id="submit" > Submit </button>
+<div class="col-md-12" style="margin-left:380px;margin-top:10px;">
+    <button type="submit" name="submit" class="create-account" id="submit" > Submit </button>
 </div>
     </div>
     </div>

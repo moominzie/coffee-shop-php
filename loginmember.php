@@ -26,7 +26,6 @@ if($result->Status==1)
 $_SESSION['login']=$_POST['emailid'];
 echo "<script type='text/javascript'> document.location ='dashboard.php'; </script>";
 } else {
-echo "<script>alert('Your Account Has been blocked .Please contact admin');</script>";
 
 }
 }
@@ -34,7 +33,7 @@ echo "<script>alert('Your Account Has been blocked .Please contact admin');</scr
 } 
 
 else{
-echo "<script>alert('Email or Password is incorrect!');</script>";
+  $msg_error="Email or Password is incorrect!";
 }
 }
 
@@ -109,6 +108,59 @@ foreach($results as $result)
         </div>
         <div class="card">
         <div class="panel-body" style="margin:50px">
+
+    
+        <div class="form-group">
+<?php if($_SESSION['msg']!="")
+{?>
+
+<div class="alert alert-success" role="alert" >
+ <?php echo htmlentities($_SESSION['msg']);?>
+<?php echo htmlentities($_SESSION['msg']="");?>
+&nbsp<a href="" class="alert-link">Please check your email</a>
+<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<?php } ?>
+
+<?php if($_SESSION['pwccorrect']!="")
+{?>
+
+<div class="alert alert-success" role="alert" >
+ <?php echo htmlentities($_SESSION['pwccorrect']);?>
+<?php echo htmlentities($_SESSION['pwccorrect']="");?>
+<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<?php } ?>
+
+<?php  if($error)
+{?>
+
+<div class="alert alert-warning" role="alert" >
+ <?php echo htmlentities($error);?>
+<?php echo htmlentities($error="");?>
+&nbsp<a href="contactus.php" class="alert-link">Please contact us</a>
+<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<?php } ?>
+<?php  if($msg_error)
+{?>
+
+<div class="alert alert-danger" role="alert" >
+ <?php echo htmlentities($msg_error);?>
+<?php echo htmlentities($msg_error="");?>
+&nbsp<a href="member-forgot-password.php" class="alert-link">Forget password?</a>
+<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<?php } ?>
+</div>
               
     <div class="form-group">
         <label >Email</label>

@@ -92,7 +92,7 @@ foreach($results as $result)
                                             <th>Price</th>
                                             <th>Picture</th>
                                             <th>Category</th>
-                                            <th>Sub-Category</th>
+                                            <th>Sub category</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>

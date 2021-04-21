@@ -30,14 +30,15 @@ $query->execute();
 $lastInsertId = $dbh->lastInsertId();
 if($lastInsertId)
 {
-    
-        $msg="Registeration succesfully";
+    $_SESSION['msg']="Registeration succesfully";
+header('location:loginmember.php');
       }
       else {
-      $error="Something went wrong. please try again";  
+        $_SESSION['error']="Something went wrong. Please try again";
+        header('location:register.php');
       }
       }
-      }
+    }
 
 ?>
 
@@ -205,7 +206,7 @@ function checkUsernameAvailability() {
 
 <div class="col-md-6">
     <div class="form-group">
-        <label>Number</label>&nbsp;<label style="color:red;">*</label>
+        <label>Mobile number</label>&nbsp;<label style="color:red;">*</label>
         <input class="form-control" type="text" name="mobileno" id="mobilenumber" maxlength="10" onBlur=""  autocomplete="off" required value="<?php echo htmlspecialchars($_POST['mobileno'] ?? '', ENT_QUOTES); ?>" />
     </div>
 </div>
@@ -241,11 +242,6 @@ function checkUsernameAvailability() {
     </div>  
 </div>
 
-<div class="col-md-12">
-  <?php if($error){?><div class="errorWrap"><strong>ERROR</strong>:<?php echo htmlentities($error); ?> </div><?php } 
-				else if($msg){?><div class="succWrap"><strong>SUCCESS</strong>:<?php echo htmlentities($msg); ?> </div><?php }?>
-</div>
-
 <div class="col-md-6" style="margin-left:290px;margin-top:10px;">
     <button type="submit" name="signup" class="create-account" id="submit" > Create account </button>
 </div>
@@ -265,4 +261,3 @@ function checkUsernameAvailability() {
 
 </body>
 </html>
-

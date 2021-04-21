@@ -4,11 +4,6 @@ error_reporting(0);
 include('includes/connection.php');
 if(isset($_POST['change']))
 {
-  //code for captach verification
-  if ($_POST["vercode"] != $_SESSION["vercode"] OR $_SESSION["vercode"]=='')  {
-    echo "<script>alert('Incorrect verification code');</script>" ;
-} 
-    else {
 $email=$_POST['email'];
 $mobileno=$_POST['mobileno'];
 $newpassword=md5($_POST['newpassword']);
@@ -26,11 +21,11 @@ $chngpwd1-> bindParam(':email', $email, PDO::PARAM_STR);
 $chngpwd1-> bindParam(':mobileno', $mobile, PDO::PARAM_STR);
 $chngpwd1-> bindParam(':newpassword', $newpassword, PDO::PARAM_STR);
 $chngpwd1->execute();
-$msg="Your Password succesfully changed";
+$_SESSION['pwccorrect']="Your password succesfully changed";
+header('location:loginmember.php');
 }
 else {
-$error="Email or Mobile number is incorrect"; 
-}
+  $error="Email or Mobile number is incorrect";
 }
 }
 ?>
@@ -136,6 +131,20 @@ if(document.change.newpassword.value!= document.change.confirmpassword.value)
     <label>Confirm password</label>
     <input class="form-control" type="password" name="confirmpassword" required autocomplete="off"  />
     </div>
+
+    <div class="form-group">
+    <?php  if($error)
+{?>
+
+    <div class="alert alert-danger" role="alert" >
+ <?php echo htmlentities($error);?>
+<?php echo htmlentities($error="");?>
+<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<?php } ?>
+</div>
 
     <div class="col-md-6" style="margin-left:280px;margin-top:10px;">
     <button type="submit" name="change" class="create-account" id="submit" > Submit to change </button>

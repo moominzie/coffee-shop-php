@@ -48,7 +48,7 @@ $msg="Your Shop information has been update";
     </style>
 
 <body>
-<h4 class="header-line">Edit shop information</h4> 
+
 <form name="update" method="post" enctype="multipart/form-data">
 <?php
 $sql="SELECT ShopName,Address,MobileNumber,ShopEmail,Logo from  shop  ";
@@ -61,75 +61,55 @@ if($query->rowCount() > 0)
 {
 foreach($results as $result)
 {               ?>  
-
-<div class="col-md-12">
+<h4 class="header-line"><?php echo htmlentities($result->ShopName);?></h4> 
+<div class="col-md-8">
 <div class="form-group">
-<label>Name : </label>
+<label>Shop name : </label>
 <?php echo htmlentities($result->ShopName);?>
-</div></div>
+</div>
 
-<div class="col-md-12">
 <div class="form-group">
-<label>Address : </label>
+<label><i class="fas fa-map-marker-alt"></i>&nbsp </label>
 <?php echo htmlentities($result->Address);?>
-</div></div>
+</div>
 
-<div class="col-md-12">
 <div class="form-group">
-<label>Mobile Number : </label>
+<label><i class="fas fa-phone"></i>&nbsp Shop mobile number : </label>
 <?php echo htmlentities($result->MobileNumber);?>
-</div></div>
+</div>
 
-<div class="col-md-12">
 <div class="form-group">
-<label>Email : </label>
+<label><i class="fas fa-envelope"></i>&nbsp Shop email : </label>
 <?php echo htmlentities($result->ShopEmail);?>
 </div></div>
 
-<div class="col-md-12">
-<div class="form-group">
-<label>Enter Shop Name</label>
-<input class="form-control" type="text" name="shopname" id="" value="<?php echo htmlentities($result->ShopName);?>"  autocomplete="off" required />
-</div></div>
+<div class="col-md-4">
+<img src="uploads/logo/<?php echo htmlentities($result->Logo);?>" width="200" height="200" style="border-radius:10px;">
 
-<div class="col-md-12">
-<div class="form-group">
-<label>Enter Shop Address</label>
-<textarea class="form-control" type="text" name="address" id="" value="<?php echo htmlentities($result->Address);?>"  autocomplete="off" required><?php echo htmlentities($result->Address);?></textarea>
-</div></div>
+</div>
 
-<div class="col-md-12">
-<div class="form-group">
-<label>Enter Shop Mobile</label>
-<input class="form-control" type="text" name="mobileno" value="<?php echo htmlentities($result->MobileNumber);?>" autocomplete="off" required />
-</div></div>
 
-<div class="col-md-12">
-<div class="form-group">
-<label>Enter Shop Email</label>
-<input class="form-control" type="text" name="shopemail" value="<?php echo htmlentities($result->ShopEmail);?>" autocomplete="off" required />
-</div></div>
-
-<div class="col-md-12">
-<div class="form-group">
-<img src="uploads/logo/<?php echo htmlentities($result->Logo);?>" width="100" height="100" >
-    </div></div>
-
-    <div class="col-md-12">
-<div class="form-group">
-        <label>Picture</label>&nbsp;<label for="" style="color: red;">* Please use image scale 100x100 px. </label>
-        <input class="form-control" type="file" name="img1" autocomplete="off" required />
-        </div>    </div>
 
 <?php }} ?>
                               
-<div class="col-md-12">
-  <?php if($error){?><div class="errorWrap"><strong>ERROR</strong>:<?php echo htmlentities($error); ?> </div><?php } 
-				else if($msg){?><div class="succWrap"><strong>SUCCESS</strong>:<?php echo htmlentities($msg); ?> </div><?php }?>
+<div class="col-md-5">
+  <?php if($error){?><div class="errorWrap"> <?php echo htmlentities($error); ?> </div><?php } 
+				else if($msg){?><div class="alert alert-success" role="alert" > <?php echo htmlentities($msg); ?><button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button> </div><?php }?>
 </div>
 
-<div class="col-md-6">
-    <button type="submit" name="update" class="create-account" id="submit" > Update shop </button>&nbsp&nbsp&nbsp<a href="add-admin.php" style="color: black;">New staff here</a>
+<div class="col-md-12">                    
+<button class="create-account" data-toggle="collapse" href="#editshop" role="button" aria-expanded="false" aria-controls="editshop">
+    Edit shop
+    </button>&nbsp&nbsp&nbsp<a href="add-admin.php" style="color: black;">New staff here</a>
+</div>
+
+  <div class="collapse" id="editshop">
+  <div style="margin-top: 50px;">
+      <!------MENU SECTION START-->
+	  <?php include('edit-shop.php');?>
+  </div>
 </div>
 
                                     </form>
@@ -139,8 +119,7 @@ foreach($results as $result)
         </div>
     </div>
 </div>
-     <!-- CONTENT-WRAPPER SECTION END-->
-    <?php include('includes/footer.php');?>
+
     <script src="assets/js/jquery-1.10.2.js"></script>
     <!-- BOOTSTRAP SCRIPTS  -->
     <script src="assets/js/bootstrap.js"></script>

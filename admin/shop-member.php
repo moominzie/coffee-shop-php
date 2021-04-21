@@ -116,13 +116,13 @@ foreach($results as $result)
                                     <thead>
                                         <tr>
                                             <th>ID</th>
-                                            <th>First Name</th>
-                                            <th>Last Name</th>
+                                            <th>Firstname</th>
+                                            <th>Lastname</th>
                                             <th>Mobile</th>
                                             <th>Email</th>
                                             <th>Status</th>
-                                            <th>Register Date</th>
-                                            <th>Last Update Profile</th>
+                                            <th>Register date</th>
+                                            <th>Last update profile</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>

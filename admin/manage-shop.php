@@ -83,7 +83,7 @@ if($query->rowCount() > 0)
 foreach($results as $result)
 {               ?>  
   
-                <h4 class="header-line"><?php echo htmlentities($result->ShopName);?></h4>
+                <h4 class="header-line">Shop</h4>
                 
                 <?php }} ?>
             </div>
@@ -106,6 +106,8 @@ foreach($results as $result)
     </div>
 
 
+     <!-- CONTENT-WRAPPER SECTION END-->
+     <?php include('includes/footer.php');?>
 
 
 </body>

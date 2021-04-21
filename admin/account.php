@@ -85,7 +85,7 @@ if($query->rowCount() > 0)
 foreach($results as $result)
 {               ?>  
   
-                <h4 class="header-line"><?php echo htmlentities($result->FirstName);?>&nbsp<?php echo htmlentities($result->LastName);?></h4>
+                <h4 class="header-line">Account</h4>
                 
                 <?php }} ?>
             </div>
@@ -93,7 +93,7 @@ foreach($results as $result)
      
   <div class="col-3">
     <div class="list-group" id="list-tab" role="tablist">
-      <a class="list-group-item list-group-item-action active " id="list-profile-list" data-toggle="list" href="#list-profile" role="tab" aria-controls="profile">Edit your profile</a>
+      <a class="list-group-item list-group-item-action active " id="list-profile-list" data-toggle="list" href="#list-profile" role="tab" aria-controls="profile">Your profile</a>
     </div>
   </div>
   <div class="col-9">

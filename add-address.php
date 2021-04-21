@@ -27,7 +27,7 @@ $query->bindParam(':postalcode',$postalcode,PDO::PARAM_STR);
 $query->bindParam(':type',$type,PDO::PARAM_STR);
 $query->execute();
 
-echo '<script>alert("Your address has been added")</script>';
+$msg="Your address has been added completly";
 }
 
 ?>
@@ -136,11 +136,8 @@ foreach($results as $result)
 {               ?>  
 <?php } ?>
 
-<div class="col-md-12">
-<div class="form-group">
-<label>Username</label>
+<div class="invisible">
 <input class="form-control" type="text" name="username" id="" value="<?php echo htmlentities($result->Username);?>"  autocomplete="off" required readonly />
-</div>
 </div>
 
 <div class="col-md-12">
@@ -286,9 +283,25 @@ foreach($results as $result)
  <!-- END SELECT PROBLEM TITLE -->
 <?php }} ?>
 
+<div class="col-md-12">  
+    <?php  if($msg)
+{?>
+
+    <div class="alert alert-success" role="alert" >
+ <?php echo htmlentities($msg);?>
+<?php echo htmlentities($msg="");?>
+<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<?php } ?>
+</div>
+
+
 <div class="col-md-12">                             
 <button type="submit" name="add" class="create-account" > Submit </button>&nbsp&nbsp&nbsp<a href="account.php" style="color: black;">Your current address here</a>
 </div>
+
 </form>
 </div>
 </div>

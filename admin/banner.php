@@ -109,9 +109,14 @@ foreach($results as $result)
                 <h4 class="header-line">Add Sub-Category</h4>
                             </div>
         </div>
-        <?php if($error){?><div class="errorWrap"><strong>ERROR</strong>:<?php echo htmlentities($error); ?> </div><?php } 
-				else if($msg){?><div class="succWrap"><strong>SUCCESS</strong>:<?php echo htmlentities($msg); ?> </div><?php }?>
-
+        <div class="col-md-5">
+        <?php if($error){?><div class="alert alert-danger" role="alert" ><?php echo htmlentities($error); ?><button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button> </div><?php } 
+				else if($msg){?><div class="alert alert-success" role="alert" ><?php echo htmlentities($msg); ?><button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button> </div><?php }?>
+</div>
     <div class="panel panel-primary" style="margin-left:20%; margin-right:20%">
     
         <div class="panel-heading" style="font-family: 'Montserrat', sans-serif; letter-spacing: 1px; font-size: 16px;">Sub-Category</div>
@@ -124,8 +129,10 @@ foreach($results as $result)
     </div>
     </div>
 
+
     <button type="submit" name="add" class="btn btn-danger" id="add" style="font-family: 'Montserrat', sans-serif; letter-spacing: 1px;"> Add Category</button>
     </div>
+
 
     
         </div>

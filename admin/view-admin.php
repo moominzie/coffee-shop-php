@@ -123,28 +123,28 @@ foreach($results as $result)
 
 <div class="col-md-12">
 <div class="form-group">
-<label style="font-family: 'Staatliches', cursive; letter-spacing: 1px; font-size:14px;">Username : </label>
+<label>Username : </label>
 <?php echo htmlentities($result->UserName);?>
 </div>
 </div>
 
 <div class="col-md-12">
 <div class="form-group">
-<label style="font-family: 'Staatliches', cursive; letter-spacing: 1px; font-size:14px;">Full Name : </label>
+<label>Name-Surname : </label>
 <?php echo htmlentities($result->FirstName);?>&nbsp<?php echo htmlentities($result->LastName);?>
 </div>
 </div>
 
 <div class="col-md-12">
 <div class="form-group">
-<label style="font-family: 'Staatliches', cursive; letter-spacing: 1px; font-size:14px;">Mobile Number : </label>
+<label>Mobile number : </label>
 <?php echo htmlentities($result->MobileNumber);?>
 </div>
 </div>
 
 <div class="col-md-12">
 <div class="form-group">
-<label style="font-family: 'Staatliches', cursive; letter-spacing: 1px; font-size:14px;">Email : </label>
+<label>Email : </label>
 <?php echo htmlentities($result->AdminEmail);?>
 </div>
 </div>
@@ -152,7 +152,7 @@ foreach($results as $result)
 
 <div class="col-md-12">
 <div class="form-group">
-<label style="font-family: 'Staatliches', cursive; letter-spacing: 1px; font-size:14px;">Status : </label>
+<label>Status : </label>
 <?php if($result->Status==1) {?>
 <a style="color: #00A862" >Active</a>
 <?php } else {?>
@@ -163,7 +163,7 @@ foreach($results as $result)
 
 <div class="col-md-12">
 <div class="form-group">
-<label style="font-family: 'Staatliches', cursive; letter-spacing: 1px; font-size:14px;">Last Update : </label>
+<label>Last Update : </label>
 <?php echo htmlentities($result->updationDate);?>
 </div>
 </div>
@@ -172,10 +172,6 @@ foreach($results as $result)
 
 
 <?php }} ?>
-<div class="col-md-12">
-  <?php if($error){?><div class="errorWrap"><strong>ERROR</strong>:<?php echo htmlentities($error); ?> </div><?php } 
-				else if($msg){?><div class="succWrap"><strong>SUCCESS</strong>:<?php echo htmlentities($msg); ?> </div><?php }?>
-</div>
 
                                     </form>
                             </div>

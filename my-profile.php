@@ -21,14 +21,15 @@ $query->bindParam(':fname',$fname,PDO::PARAM_STR);
 $query->bindParam(':lname',$lname,PDO::PARAM_STR);
 $query->bindParam(':mobileno',$mobileno,PDO::PARAM_STR);
 $query->execute();
-
-echo '<script>alert("Your profile has been updated")</script>';
+$msg="Your profile has been updated";
 }
 
 ?>
 <body>
 <h4 class="header-line">Edit your profile</h4>
 <form name="update" method="post">
+
+
 <?php 
 $username=$_SESSION['username'];
 $sql="SELECT id,Username,FirstName,LastName,EmailId,MobileNumber,RegDate,UpdationDate,Status from  member  where Username=:username ";
@@ -42,69 +43,47 @@ if($query->rowCount() > 0)
 foreach($results as $result)
 {               ?>  
 
-<div class="col-md-12">    
-<div class="form-group">
-<label>User Id : </label>
-<?php echo htmlentities($result->id);?>
-</div>
 
 
-<div class="form-group">
-<label>Reg Date : </label>
-<?php
-date_default_timezone_set("Asia/Bangkok");
-echo htmlentities($result->RegDate);?>
-</div>
-<?php if($result->UpdationDate!=""){?>
-<div class="form-group">
-<label>Last Updation Date : </label>
-<?php echo htmlentities($result->UpdationDate);?>
+<div class="col-md-5">
+<?php  if($msg)
+{?>
+
+    <div class="alert alert-success" role="alert" >
+ <?php echo htmlentities($msg);?>
+<?php echo htmlentities($msg="");?>
+<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
 </div>
 <?php } ?>
-
-
 <div class="form-group">
-<label>Profile Status : </label>
-<?php if($result->Status==1){?>
-<span style="color: green">Active</span>
-<?php } else { ?>
-<span style="color: red">Blocked</span>
-<?php }?>
-</div>
-</div>
-
-<div class="col-md-6">
-<div class="form-group">
-<label>Username</label>
+Username
 <input class="form-control" type="text" name="username" id="" value="<?php echo htmlentities($result->Username);?>"  autocomplete="off" required readonly />
 </div>
 
-<div class="form-group">
-<label>Enter Email</label>
-<input class="form-control" type="email" name="email" id="emailid" value="<?php echo htmlentities($result->EmailId);?>"  autocomplete="off" required readonly />
-</div>
-</div>
 
-<div class="col-md-6">
 <div class="form-group">
-<label>Enter First Name</label>
+First name
 <input class="form-control" type="text" name="firstname" value="<?php echo htmlentities($result->FirstName);?>" autocomplete="off" required />
 </div>
-</div>
 
-<div class="col-md-6">
 <div class="form-group">
-<label>Enter Last Name</label>
+Last name
 <input class="form-control" type="text" name="lastname" value="<?php echo htmlentities($result->LastName);?>" autocomplete="off" required />
 </div>
-</div>
 
-<div class="col-md-6">
+
 <div class="form-group">
-<label>Mobile Number :</label>
+Mobile number
 <input class="form-control" type="text" name="mobileno" maxlength="10" value="<?php echo htmlentities($result->MobileNumber);?>" autocomplete="off" required />
+
+<div class="form-group">
+Your email
+<input class="form-control" type="email" name="email" id="emailid" value="<?php echo htmlentities($result->EmailId);?>"  autocomplete="off" required readonly />
 </div>
-                                    
+                          
+</div>
 </div>
 
 <?php }} ?>

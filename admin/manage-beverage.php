@@ -93,10 +93,10 @@ foreach($results as $result)
                                             <th>Price</th>
                                             <th>Picture</th>
                                             <th>Category</th>
-                                            <th>Sub-Category</th>
-                                            <th>Glass Size</th>
+                                            <th>Sub category</th>
+                                            <th>Glass size</th>
                                             <th>Ounce</th>
-                                            <th>Beverage Type</th>
+                                            <th>Beverage type</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>

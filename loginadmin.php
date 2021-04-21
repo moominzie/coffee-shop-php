@@ -25,13 +25,13 @@ if(isset($_POST['login']))
            $_SESSION['alogin']=$_POST['username'];
            echo "<script type='text/javascript'> document.location ='admin/dashboard.php'; </script>";
            } else {
-           echo "<script>alert('Your Account Has been blocked .Please contact primary caretaker');</script>";
+            $error="Your Account Has been blocked";
            
            }
           }
           }
           else{
-            echo "<script>alert('Login error, please check your Username or Password.');</script>";
+            $msg_error="Username or Password is incorrect!";
             }
             }
             
@@ -105,6 +105,57 @@ foreach($results as $result)
         </div>
         <div class="card">
         <div class="panel-body" style="margin:50px">
+
+        <div class="form-group">
+<?php if($_SESSION['msg']!="")
+{?>
+
+<div class="alert alert-success" role="alert" >
+ <?php echo htmlentities($_SESSION['msg']);?>
+<?php echo htmlentities($_SESSION['msg']="");?>
+&nbsp<a href="" class="alert-link">Please check your email</a>
+<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<?php } ?>
+
+<?php if($_SESSION['pwccorrect']!="")
+{?>
+
+<div class="alert alert-success" role="alert" >
+ <?php echo htmlentities($_SESSION['pwccorrect']);?>
+<?php echo htmlentities($_SESSION['pwccorrect']="");?>
+<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<?php } ?>
+
+<?php  if($error)
+{?>
+
+<div class="alert alert-warning" role="alert" >
+ <?php echo htmlentities($error);?>
+<?php echo htmlentities($error="");?>
+&nbsp<a href="contactus.php" class="alert-link">Please contact us</a>
+<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<?php } ?>
+<?php  if($msg_error)
+{?>
+
+<div class="alert alert-danger" role="alert" >
+ <?php echo htmlentities($msg_error);?>
+<?php echo htmlentities($msg_error="");?>
+<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<?php } ?>
+</div>
               
     <div class="form-group">
         <label style="letter-spacing: 1px; font-size:14px;">Username</label>
