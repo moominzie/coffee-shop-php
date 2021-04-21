@@ -9,7 +9,7 @@ if(isset($_POST['login']))
 {
 
 $email=$_POST['emailid'];
-$password=($_POST['password']);
+$password=md5($_POST['password']);
 $sql ="SELECT EmailId,Password,Username,Status FROM member WHERE EmailId=:email and Password=:password";
 $query= $dbh -> prepare($sql);
 $query-> bindParam(':email', $email, PDO::PARAM_STR);

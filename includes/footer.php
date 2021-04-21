@@ -66,7 +66,7 @@ foreach($results as $result)
           <div class="col-xs-6 col-md-2">
             <h6>Staff</h6>
             <ul class="footer-links">
-              <li><a href="loginadmin.php">Staff sign in</a></li>
+              <li><a href="loginadmin.php">Staff sign in &nbsp<i class="fas fa-user-tie"></i></a></li>
             </ul>
           </div>
 

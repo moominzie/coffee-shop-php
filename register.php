@@ -185,19 +185,19 @@ function checkUsernameAvailability() {
 
 <div class="col-md-6">
     <div class="form-group">
-        <label>Enter First Name</label>&nbsp;<label style="color:red;">*</label>
+        <label>Firstname</label>&nbsp;<label style="color:red;">*</label>
         <input class="form-control" type="text" name="firstname" autocomplete="off" required value="<?php echo htmlspecialchars($_POST['firstname'] ?? '', ENT_QUOTES); ?>" />
     </div>
 </div>
 <div class="col-md-6">
     <div class="form-group">
-        <label>Enter Last Name</label>&nbsp;<label style="color:red;">*</label>
+        <label>Lastname</label>&nbsp;<label style="color:red;">*</label>
         <input class="form-control" type="text" name="lastname" autocomplete="off" required  value="<?php echo htmlspecialchars($_POST['lastname'] ?? '', ENT_QUOTES); ?>" />
     </div>
 </div>
 <div class="col-md-6">
     <div class="form-group">
-        <label>Enter Email</label>&nbsp;<label style="color:red;">*</label>
+        <label>Email</label>&nbsp;<label style="color:red;">*</label>
         <input class="form-control" type="email" name="email" id="emailid" onBlur="checkEmailAvailability()"  autocomplete="off" required value="<?php echo htmlspecialchars($_POST['email'] ?? '', ENT_QUOTES); ?>"/>
         <span id="email-availability-status" style="font-size:12px;"></span> 
     </div>
@@ -205,7 +205,7 @@ function checkUsernameAvailability() {
 
 <div class="col-md-6">
     <div class="form-group">
-        <label>Mobile Number</label>&nbsp;<label style="color:red;">*</label>
+        <label>Number</label>&nbsp;<label style="color:red;">*</label>
         <input class="form-control" type="text" name="mobileno" id="mobilenumber" maxlength="10" onBlur=""  autocomplete="off" required value="<?php echo htmlspecialchars($_POST['mobileno'] ?? '', ENT_QUOTES); ?>" />
     </div>
 </div>
@@ -229,14 +229,14 @@ function checkUsernameAvailability() {
 
 <div class="col-md-6">
     <div class="form-group">
-      <label>Confirm Password </label>&nbsp;<label style="color:red;">*</label>
+      <label>Confirm password </label>&nbsp;<label style="color:red;">*</label>
       <input class="form-control"  type="password" name="confirmpassword" autocomplete="off" required  />
     </div>
 </div>
 
 <div class="col-md-6">
     <div class="form-group">
-        <label style="">Verification code : </label>&nbsp;<label style="color:red;">*</label>
+        <label style="">Verification code </label>&nbsp;<label style="color:red;">*</label>
         <input class="form-control" type="text"  name="vercode" maxlength="5" autocomplete="off" required /><img src="captcha.php" style="margin-top: 10px">
     </div>  
 </div>
