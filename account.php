@@ -110,7 +110,8 @@ foreach($results as $result)
     </div>
 
 
-
+     <!-- CONTENT-WRAPPER SECTION END-->
+     <?php include('includes/footer.php');?>
 
 </body>
 </html>

@@ -60,6 +60,7 @@
           border: 0px solid white;
           margin-bottom: 50px;
         }
+  
 
         header-new{
           text-align:center; 
@@ -129,4 +130,14 @@
 
         .invisible {
           visibility: hidden;
+        }
+
+        .cart-now{
+          padding:5px 18px;
+          border-radius:5px;
+          font-family: 'Asap', sans-serif;
+          font-size: 14px;
+          color: white;
+          background-color: Black;
+          
         }

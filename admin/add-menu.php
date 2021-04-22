@@ -15,12 +15,13 @@ $category=$_POST['category'];
 $subcategory=$_POST['subcategory'];
 $type=$_POST['type'];
 $size=$_POST['size'];
+$productcode=$_POST['productcode'];
 $image1=$_FILES["img1"]["name"];
 
 move_uploaded_file($_FILES["img1"]["tmp_name"],"uploads/img/".$_FILES["img1"]["name"]);
 
 
-$sql="INSERT INTO menu(MenuName,Description,Price,Image1,CategoryId,SubCategoryId,SizeId,TypeId) VALUES(:menuname,:description,:price,:image1,:category,:subcategory,:size,:type)";
+$sql="INSERT INTO menu(MenuName,Description,Price,Image1,CategoryId,SubCategoryId,SizeId,TypeId,ProductCode) VALUES(:menuname,:description,:price,:image1,:category,:subcategory,:size,:type,:productcode)";
 $query = $dbh->prepare($sql);
 $query->bindParam(':price',$price,PDO::PARAM_STR);
 $query->bindParam(':menuname',$menuname,PDO::PARAM_STR);
@@ -30,6 +31,7 @@ $query->bindParam(':category',$category,PDO::PARAM_STR);
 $query->bindParam(':subcategory',$subcategory,PDO::PARAM_STR);
 $query->bindParam(':type',$type,PDO::PARAM_STR);
 $query->bindParam(':size',$size,PDO::PARAM_STR);
+$query->bindParam(':productcode',$productcode,PDO::PARAM_STR);
 $query->execute();
 $lastInsertId = $dbh->lastInsertId();
 if($lastInsertId)
@@ -70,7 +72,7 @@ foreach($results as $result)
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <!-- BOOTSTRAP CORE STYLE  -->
         <link href="assets/css/bootstrap.css" rel="stylesheet" />
     <!-- FONT AWESOME STYLE  -->
@@ -96,8 +98,24 @@ foreach($results as $result)
 <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@900&display=swap" rel="stylesheet">
 
+<script>
+function checkProductcode() {
+    $("#loaderIcon").show();
+        jQuery.ajax({
+        url: "check_availability.php",
+        data:'productid='+$("#productid").val(),
+        type: "POST",
+    success:function(data){
+        $("#product-code-status").html(data);
+        $("#loaderIcon").hide();
+    },
+      error:function (){}
+    });
+}
+</script>   
 
 </head>
+
 
 
 <style>
@@ -135,6 +153,14 @@ foreach($results as $result)
 <div class="card">
         <div class="panel-body" style="margin:20px">
  
+        <div class="col-md-4">
+    <div class="form-group">
+        <label>Product code</label>&nbsp;<label for="" style="color: red;">* </label>
+        <input class="form-control" type="text" name="productcode" id="productid" autocomplete="off" maxlength="10" onBlur="checkProductcode()" required />
+        <span id="product-code-status" style="font-size:12px;"></span> 
+    </div>
+    </div>
+
  <div class="col-md-12">
     <div class="form-group">
         <label>Menu name</label>&nbsp;<label for="" style="color: red;">* </label>
@@ -242,7 +268,7 @@ foreach($results as $result)
 </select>
 </div>
 <!-- END TYPE -->
-<div class="col-md-5">
+<div class="col-md-8">
   <?php if($error){?><div class="alert alert-danger" role="alert" ><?php echo htmlentities($error); ?><button type="button" class="close" data-dismiss="alert" aria-label="Close">
     <span aria-hidden="true">&times;</span>
   </button> </div><?php } 

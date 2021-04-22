@@ -98,8 +98,6 @@ Your email
         </div>
     </div>
     </div>
-     <!-- CONTENT-WRAPPER SECTION END-->
-    <?php include('includes/footer.php');?>
     <script src="assets/js/jquery-1.10.2.js"></script>
     <!-- BOOTSTRAP SCRIPTS  -->
     <script src="assets/js/bootstrap.js"></script>

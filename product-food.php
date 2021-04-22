@@ -159,13 +159,24 @@ foreach($results as $result)
 <p class="price" style="margin-left:20px;"><?php echo htmlentities($result->Price);?>฿ </p>
 <?php if($_SESSION['login'])
 {
+$username=$_SESSION['username'];
+$sql="SELECT id,Username,FirstName,LastName,EmailId,MobileNumber,RegDate,UpdationDate,Status from  member  where Username=:username ";
+$query = $dbh -> prepare($sql);
+$query-> bindParam(':username', $username, PDO::PARAM_STR);
+$query->execute();
+$results=$query->fetchAll(PDO::FETCH_OBJ);
+$cnt=1;
+if($query->rowCount() > 0)
+{
+foreach($results as $result)
+{               ?>  
 
-?>  
-    <a href="#addcart" data-toggle="modal" data-dismiss="modal" style="color:white;">
-    <p><button class="add-cart" style="margin-left:20px;" >Add to Cart <i class="fa fa-shopping-cart" aria-hidden="true"></i></button></p></a>
-    
-    <a href="#buynow" data-toggle="modal" data-dismiss="modal" style="color:white;">
-    <p><button class="add-cart" style="margin-left:20px;" >Buy Now </button></p></a>
+<?php include('food-cart.php');?>
+<a href="#addcart" data-toggle="modal" data-target="#addcart" style="color:white;">
+<p><button class="add-cart" style="margin-left:20px;" >Add to Cart <i class="fa fa-shopping-cart" aria-hidden="true"></i></button></p></a>
+  <a href="#addcart" data-toggle="modal" data-target="#addcart" style="color:white;">
+  <p><button class="add-cart" style="margin-left:20px;" >Buy Now </button></p></a>
+  <?php }} ?>
 <?php } else { ?>
          <!-- CONTENT-WRAPPER SECTION END-->
          <?php include('includes/loginmember.php');?>

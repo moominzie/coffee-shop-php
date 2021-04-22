@@ -47,4 +47,26 @@ if(!empty($_POST["username"])) {
 	// End code check username
 
 
+//Product code check
+if(!empty($_POST["productid"])) {
+	$productcode=$_POST["productid"];
+	$sql ="SELECT ProductCode FROM menu WHERE ProductCode=:productcode";
+	$query= $dbh -> prepare($sql);
+	$query-> bindParam(':productcode', $productcode, PDO::PARAM_STR);
+	$query-> execute();
+	$results = $query -> fetchAll(PDO::FETCH_OBJ);
+	$cnt=1;
+	if($query -> rowCount() > 0){
+	 echo "<span style='color:red'> Have already this code </span>";
+	 echo "<script>$('#submit').prop('disabled',true);</script>";
+	}else{
+	echo "<span style='color:green'> Product code complete <span>&check;</span></span>";
+	echo "<script>$('#submit').prop('disabled',false);</script>";
+	}
+}
+	// End code check username
+
+
 ?>
+
+

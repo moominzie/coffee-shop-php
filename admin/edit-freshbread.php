@@ -13,15 +13,18 @@ $mid=intval($_GET['mid']);
 $menuname=$_POST['menuname'];
 $description=$_POST['description'];
 $price=$_POST['price'];
+$productcode=$_POST['productcode'];
 
-$sql="update menu set MenuName=:menuname,Description=:description,Price=:price where id=:mid";
+$sql="update menu set MenuName=:menuname,Description=:description,Price=:price,ProductCode=:productcode where id=:mid";
 $query = $dbh->prepare($sql);
 $query->bindParam(':mid',$mid,PDO::PARAM_STR);
 $query->bindParam(':menuname',$menuname,PDO::PARAM_STR);
 $query->bindParam(':description',$description,PDO::PARAM_STR);
 $query->bindParam(':price',$price,PDO::PARAM_STR);
+$query->bindParam(':productcode',$productcode,PDO::PARAM_STR);
 $query->execute();
-$msg="Update $menuname menu successfully";
+$_SESSION['msg']="Update $menuname menu successfully";
+header('location:manage-freshbread.php');
 }
 
 
@@ -59,7 +62,8 @@ foreach($results as $result)
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    
         <!-- BOOTSTRAP CORE STYLE  -->
         <link href="assets/css/bootstrap.css" rel="stylesheet" />
     <!-- FONT AWESOME STYLE  -->
@@ -86,6 +90,22 @@ foreach($results as $result)
 
 
 </head>
+<script>
+function checkProductcode() {
+    $("#loaderIcon").show();
+        jQuery.ajax({
+        url: "check_availability.php",
+        data:'productid='+$("#productid").val(),
+        type: "POST",
+    success:function(data){
+        $("#product-code-status").html(data);
+        $("#loaderIcon").hide();
+    },
+      error:function (){}
+    });
+}
+</script>   
+
 <style>
     .errorWrap {
     padding: 10px;
@@ -112,7 +132,7 @@ foreach($results as $result)
 <?php 
 
 $mid=intval($_GET['mid']);
-$sql = "SELECT menu.MenuName,menu.Description,menu.Price,menu.Image1,category.Category,subcategory.SubCategory,menu.id as mid from menu join category on menu.CategoryId=category.id join subcategory on menu.SubCategoryId=subcategory.id where menu.id=:mid";
+$sql = "SELECT menu.MenuName,menu.Description,menu.Price,menu.Image1,category.Category,subcategory.SubCategory,menu.id as mid,ProductCode from menu join category on menu.CategoryId=category.id join subcategory on menu.SubCategoryId=subcategory.id where menu.id=:mid";
 
 $query = $dbh -> prepare($sql);
 $query-> bindParam(':mid', $mid, PDO::PARAM_STR);
@@ -135,76 +155,70 @@ foreach($results as $result)
 <div class="card-data">
         <div class="panel-body" >
 
-<div class="col-md-12">
+        <div class="col-md-12">
 <div class="form-group">
-<label style="font-family: 'Staatliches', cursive; letter-spacing: 1px; font-size:14px;">Menu : </label>
-<?php echo htmlentities($result->MenuName);?>
+<img src="uploads/img/<?php echo htmlentities($result->Image1);?>" width="200" height="200" style="border-radius:10px;">
 </div>
 </div>
 
-<div class="col-md-6">
+<div class="col-md-4">
 <div class="form-group">
-<label style="font-family: 'Staatliches', cursive; letter-spacing: 1px; font-size:14px;">Enter Menu Name</label>
+<label>Product code</label>
+<input class="form-control" type="text" name="productcode" id="productid" onBlur="checkProductcode()" value="<?php echo htmlentities($result->ProductCode);?>"  autocomplete="off" required />
+<span id="product-code-status" style="font-size:12px;"></span> 
+</div>
+</div>
+
+<div class="col-md-12">
+<input type="hidden"/>
+</div>
+
+
+<div class="col-md-4">
+<div class="form-group">
+<label>Menu name</label>
 <input class="form-control" type="text" name="menuname" id="" value="<?php echo htmlentities($result->MenuName);?>"  autocomplete="off" required />
 </div>
 </div>
 
 <div class="col-md-12">
+<input type="hidden"/>
+</div>
+
+<div class="col-md-8">
 <div class="form-group">
-<label style="font-family: 'Staatliches', cursive; letter-spacing: 1px; font-size:14px;">Description : </label>
-<?php echo htmlentities($result->Description);?>
+<label>Description</label>
+<textarea class="form-control" type="text" name="description" id="" value="<?php echo htmlentities($result->Description);?>"  autocomplete="off" required><?php echo htmlentities($result->Description);?></textarea>
 </div>
 </div>
 
 <div class="col-md-12">
-<div class="form-group">
-<label style="font-family: 'Staatliches', cursive; letter-spacing: 1px; font-size:14px;">Enter Description</label>
-<textarea class="form-control" type="text" name="description" id="" value="<?php echo htmlentities($result->Description);?>" maxlength="255" autocomplete="off" required><?php echo htmlentities($result->Description);?></textarea>
-</div>
-</div>
-
-<div class="col-md-12">
-<div class="form-group">
-<label style="font-family: 'Staatliches', cursive; letter-spacing: 1px; font-size:14px;">Price : </label>
-<?php echo htmlentities($result->Price);?>
-</div>
+<input type="hidden"/>
 </div>
 
 <div class="col-md-2">
 <div class="form-group">
-<label style="font-family: 'Staatliches', cursive; letter-spacing: 1px; font-size:14px;">Enter Price</label>
+<label>Price</label>
 <input class="form-control" type="number" name="price" id="" value="<?php echo htmlentities($result->Price);?>"  autocomplete="off" required />
 </div>
 </div>
 
 <div class="col-md-12">
 <div class="form-group">
-<label style="font-family: 'Staatliches', cursive; letter-spacing: 1px; font-size:14px;">Picture : </label>
-</div>
-</div>
-
-<div class="col-md-12">
-<div class="form-group">
-<img src="uploads/img/<?php echo htmlentities($result->Image1);?>" width="100" height="100" style="border-radius:10px;">
-</div>
-</div>
-
-<div class="col-md-12">
-<div class="form-group">
-<label style="font-family: 'Staatliches', cursive; letter-spacing: 1px; font-size:14px;">Category : </label>
+<label>Category :</label>
 <?php echo htmlentities($result->Category);?>
 </div>
 </div>
 
 <div class="col-md-12">
 <div class="form-group">
-<label style="font-family: 'Staatliches', cursive; letter-spacing: 1px; font-size:14px;">Sub Category : </label>
+<label>Sub Category :</label>
 <?php echo htmlentities($result->SubCategory);?>
 </div>
 </div>
 
 <?php }} ?>
-<div class="col-md-5">
+<div class="col-md-8">
   <?php if($error){?><div class="errorWrap"> <?php echo htmlentities($error); ?> </div><?php } 
 				else if($msg){?><div class="alert alert-success" role="alert" > <?php echo htmlentities($msg); ?><button type="button" class="close" data-dismiss="alert" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
@@ -221,8 +235,7 @@ foreach($results as $result)
         </div>
     </div>
 </div>
-     <!-- CONTENT-WRAPPER SECTION END-->
-    <?php include('includes/footer.php');?>
+
     <script src="assets/js/jquery-1.10.2.js"></script>
     <!-- BOOTSTRAP SCRIPTS  -->
     <script src="assets/js/bootstrap.js"></script>

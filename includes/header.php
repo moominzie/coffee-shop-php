@@ -6,6 +6,7 @@ include('includes/connection.php');
 <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300&display=swap" rel="stylesheet">
 </head>
+
 <style>
     .container {
         margin-top: 5%;
@@ -105,7 +106,7 @@ foreach($results as $result)
         <a class="nav-link" href="account.php"><p class="account"><i class="fas fa-user-circle"></i>&nbsp Account</p><span class="sr-only" >(current)</span></a>
       </li>
       <li class="nav-item active">
-        <a class="nav-link" href="mycart.php"><p class="account"><i class="fas fa-shopping-cart"></i>&nbsp My Cart</p><span class="sr-only" >(current)</span></a>
+        <a class="nav-link" href="mycart.php"><p class="account"><i class="fas fa-shopping-cart"></i>&nbsp My Cart <span class="cart_item" ><?php echo $results->id; ?></span></p><span class="sr-only" >(current)</span></a>
       </li>
       <li class="nav-item active">
         <a class="nav-link" href="logout.php"><p class="sign-out">Sign out</p><span class="sr-only" >(current)</span></a>

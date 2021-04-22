@@ -15,8 +15,7 @@ $amphure=$_POST['amphure'];
 $district=$_POST['district'];
 $province=$_POST['province'];
 $postalcode=$_POST['postalcode'];
-$type=$_POST['type'];
-$sql="INSERT INTO  address (Address,ProvinceId,AmphureId,DistrictId,PostalCode,Username,TypeAddress) VALUES(:address,:province,:amphure,:district,:postalcode,:username,:type)";
+$sql="INSERT INTO  address (Address,ProvinceId,AmphureId,DistrictId,PostalCode,Username) VALUES(:address,:province,:amphure,:district,:postalcode,:username)";
 $query = $dbh->prepare($sql);
 $query->bindParam(':username',$username,PDO::PARAM_STR);
 $query->bindParam(':address',$address,PDO::PARAM_STR);
@@ -24,7 +23,6 @@ $query->bindParam(':amphure',$amphure,PDO::PARAM_STR);
 $query->bindParam(':district',$district,PDO::PARAM_STR);
 $query->bindParam(':province',$province,PDO::PARAM_STR);
 $query->bindParam(':postalcode',$postalcode,PDO::PARAM_STR);
-$query->bindParam(':type',$type,PDO::PARAM_STR);
 $query->execute();
 
 $msg="Your address has been added completly";
@@ -86,22 +84,7 @@ foreach($results as $result)
 <link href="https://fonts.googleapis.com/css2?family=Asap:wght@400&display=swap" rel="stylesheet">
 
 </head>
-<script>
-function getAmphure() {
-    $("#loaderIcon").show();
-        jQuery.ajax({
-            url: "get_amphure.php",
-            data:'province_id='+$("#province_id").val(),
-            type: "POST",
-        success:function(data){
-            $("#get_amphure_name").html(data);
-            $("#loaderIcon").hide();
-            },
-        error:function (){}
-    });
-}
 
-</script>
 
 <body>
     <!------MENU SECTION START-->
@@ -154,7 +137,7 @@ foreach($results as $result)
         <!-- END TITLE -->
     
     <select name="province" id="province_id" class="form-control form-control-lg" onBlur="getAmphure()" required>
-<option value='0'> Select Province </option>
+<option value='0'> Select province </option>
 <?php 
           ## Fetch amphures
           $query = $dbh->prepare("SELECT * FROM provinces ORDER BY name_en");
@@ -169,18 +152,16 @@ foreach($results as $result)
 </div>
 
 <div class="form-group col-md-4">
-<label>Amphure</label>&nbsp;<label for="" style="font-family: 'Oswald', sans-serif; color: red;">* </label>
+<label>Amphure</label>&nbsp;<label for="" style="color: red;">* </label>
 <select name="amphure" id="amphure_id" class="form-control form-control-lg">
-<option value='0'> Select Amphure </option>
-
+<option value='0'> Select amphure </option>
 </select>
 </div>
 
 <div class="form-group col-md-4">
-<label>District</label>&nbsp;<label for="" style="font-family: 'Oswald', sans-serif; color: red;">* </label>
+<label>District</label>&nbsp;<label for="" style="color: red;">* </label>
 <select name="district" id="district_id" class="form-control form-control-lg">
-<option value='0'> Select District</option>
-
+<option value='0'> Select district</option>
 </select>
 </div>
 
@@ -196,6 +177,7 @@ foreach($results as $result)
 			// Empty state and city dropdown
 			$('#amphure_id').find('option').not(':first').remove();
 			$('#district_id').find('option').not(':first').remove();
+            $('#zipcode_id').find('option').not(':first').remove();
 
 			// AJAX request
 			$.ajax({
@@ -240,47 +222,25 @@ foreach($results as $result)
 		            for( var i = 0; i<len; i++){
 		                var id = response[i]['id'];
 		                var name_en = response[i]['name_en'];
+
 		                    
 		                $("#district_id").append("<option value='"+id+"'>"+name_en+"</option>");
-
+                        
 		            }
 				}
 			});
 		});
+
+    
 	});
 	</script>
-
 <div class="col-md-4">
 <div class="form-group">
 <label>Zip/Postal Code</label>&nbsp;<label for="" style="font-family: 'Oswald', sans-serif; color: red;">* </label>
-<input class="form-control" type="text" name="postalcode" id="" value=""  autocomplete="off" required />
+<input class="form-control" type="text" name="postalcode" id="zipcode" autocomplete="off" required />
 </div>
 </div>
 
-  <!-- START TITLE -->        
-<div class="col-md-8">  
-<div class="form-group">
-<label>Address Type</label>&nbsp;<label for="" style="color: red;">* Please select 'Delivery Address' if you have already added your current address. </label>
-        <!-- END TITLE -->
-    <!-- START SELECT CM FORM ID TITLE -->
-<select class="form-control form-control-lg" name="type" id="" required>
-<option value=""> Select </option>
-<?php $ret="select id,TypeAddress from adstype";
-$query= $dbh -> prepare($ret);
-//$query->bindParam(':id',$id, PDO::PARAM_STR);
-$query-> execute();
-$results = $query -> fetchAll(PDO::FETCH_OBJ);
-if($query -> rowCount() > 0)
-{
-foreach($results as $result)
-{
-?>
-<option value="<?php echo htmlentities($result->id);?>"><?php echo htmlentities($result->TypeAddress);?></option>
-<?php }} ?>
-</select>
-</div>
-</div>
- <!-- END SELECT PROBLEM TITLE -->
 <?php }} ?>
 
 <div class="col-md-12">  

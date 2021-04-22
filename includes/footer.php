@@ -31,8 +31,9 @@ foreach($results as $result)
             <ul class="footer-links">
               <li><a href="beverage.php">Beverage</a></li>
               <li><a href="fresh-bread.php">Fresh bread</a></li>
-              <li><a href="food.php">Food</a></li>
               <li><a href="toast.php">Toast</a></li>
+              <li><a href="food.php">Food</a></li>
+              
             </ul>
           </div>
 

@@ -107,8 +107,5 @@ foreach($results as $result)
         </div>     
     </div>
 
-
-
-
 </body>
 </html>

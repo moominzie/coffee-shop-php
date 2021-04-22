@@ -43,10 +43,39 @@ if($request == 2){
 	foreach($districtList as $amphure){
 		$response[] = array(
 				"id" => $amphure['id'],
-				"name_en" => $amphure['name_en']
+				"name_en" => $amphure['name_en'],
 			);
 	}
 
 	echo json_encode($response);
 	exit;
 }
+
+
+
+
+// Fetch district list by districtid
+if($request == 0){
+	$districtid = $_POST['districtid'];
+
+	$query = $dbh->prepare("SELECT * FROM districts WHERE zip_code=:zipcode ORDER BY zip_code");
+	$query->bindValue(':zipcode', (int)$districtid, PDO::PARAM_INT);
+
+	$query->execute();
+	$zipList = $query->fetchAll();
+
+	$response = array();
+	foreach($zipList as $zip){
+		$response[] = array(
+				"id" => $zip['id'],
+				"zip_code" => $zip['zip_code'],
+			);
+	}
+
+	echo json_encode($response);
+	exit;
+}
+
+
+
+

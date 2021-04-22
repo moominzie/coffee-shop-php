@@ -2,8 +2,10 @@
 session_start();
 include('includes/connection.php');
 error_reporting(0);
-  
-
+if(strlen($_SESSION['login'])==0)
+    {   
+header('location:loginmember.php');
+}
 ?>
 
 

@@ -65,7 +65,7 @@ echo htmlentities($result->RegDate);?>
 <?php if($result->UpdationDate!=""){?>
 <div class="form-group">
 <label><i class="fas fa-history"></i>&nbsp Last updation Date : </label>
-<?php echo htmlentities($result->updationDate);?>
+<?php echo htmlentities($result->UpdationDate);?>
 </div>
 <?php } ?>
 </div>
@@ -75,21 +75,21 @@ echo htmlentities($result->RegDate);?>
 <div class="form-group">
 <label>Profile status : </label>
 <?php if($result->Status==1){?>
-<span style="color: green">Active</span>
+<span style="color: green">Active <i class="far fa-check-circle"></i></span>
 <?php } else { ?>
-<span style="color: red">Blocked</span>
+<span style="color: red">Blocked <i class="far fa-times-circle"></i></span>
 <?php }?>
 </div>
 </div>
 
 
-<div class="col-md-12">   
-<a href="#loginform" data-toggle="modal" data-target="#loginform" style="color:white;">
-    <p><button class="create-account" >Your Cart <i class="fa fa-shopping-cart" aria-hidden="true"></i></button></p></a>
 
-    </div>
 <?php }} ?>
 </form>
 
+<div class="col-md-12">   
+<a href="mycart.php" style="color:white;">
+    <p><button class="create-account" >Your Cart <i class="fa fa-shopping-cart" aria-hidden="true"></i></button></p></a>
 
+    </div>
 

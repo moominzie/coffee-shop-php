@@ -3,7 +3,6 @@ session_start();
 include('includes/connection.php');
 error_reporting(0);
 
-
 ?>
 
 <!DOCTYPE html>
@@ -58,6 +57,7 @@ foreach($results as $result)
     <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=Asap:wght@400&display=swap" rel="stylesheet">
 </head>
+    
 <style>
     .errorWrap {
     padding: 10px;
@@ -110,6 +110,7 @@ opacity: 0.7;
     height: 300px;
     border-radius: 5%;
     margin-top:10px;
+    margin-bottom:20px;
 }
 .image-box img {
     max-width: 100%;
@@ -124,6 +125,7 @@ opacity: 0.7;
     transform: scale(1.1);
     cursor: pointer;
 }
+
 
 
     </style>
@@ -146,7 +148,7 @@ if($query->rowCount() > 0)
 foreach($results as $result)
 {               ?>  
 <div class="container-fluid">
-<h3 class="header-line" style="margin-top:30px; font-family: 'Fjalla One', sans-serif;text-transform:none;">Product</h3>
+<h3 class="header-line" style="margin-top:30px; font-family: 'Fjalla One', sans-serif;text-transform:none;">Product &nbsp</h3>
 <div class="col-6 col-md-6">
 <div class="image-box">
 <img src="admin/uploads/img/<?php echo htmlentities($result->Image1);?>" width="250" height="250" style="">
@@ -156,17 +158,27 @@ foreach($results as $result)
 <div class="col-6 col-md-3">
 <a href="product.php?mid=<?php echo htmlentities($result->mid);?>" style="color: black" ><h4 style="margin-left:20px;font-family: 'Fjalla One', sans-serif;"><?php echo htmlentities($result->MenuName);?></h4></a>
 <p style="margin-left:20px;"><?php echo htmlentities($result->Description);?></p>
-<p style="margin-left:20px;font-weight:900;"><?php echo htmlentities($result->TypeName);?></p>
 <p class="price" style="margin-left:20px;"><?php echo htmlentities($result->SizeName);?>&nbsp<?php echo htmlentities($result->Ounce);?> oz.</td>&nbsp | <?php echo htmlentities($result->Price);?>฿ </p>
 <?php if($_SESSION['login'])
 {
+$username=$_SESSION['username'];
+$sql="SELECT id,Username,FirstName,LastName,EmailId,MobileNumber,RegDate,UpdationDate,Status from  member  where Username=:username ";
+$query = $dbh -> prepare($sql);
+$query-> bindParam(':username', $username, PDO::PARAM_STR);
+$query->execute();
+$results=$query->fetchAll(PDO::FETCH_OBJ);
+$cnt=1;
+if($query->rowCount() > 0)
+{
+foreach($results as $result)
+{               ?>  
 
-?>  
-    <a href="#addcart" data-toggle="modal" data-dismiss="modal" style="color:white;">
-    <p><button class="add-cart" style="margin-left:20px;" >Add to Cart <i class="fa fa-shopping-cart" aria-hidden="true"></i></button></p></a>
-    
-    <a href="#buynow" data-toggle="modal" data-dismiss="modal" style="color:white;">
-    <p><button class="add-cart" style="margin-left:20px;" >Buy Now </button></p></a>
+<?php include('beverage-cart.php');?>
+<a href="#addcart" data-toggle="modal" data-target="#addcart" style="color:white;">
+<p><button class="add-cart" style="margin-left:20px;" >Add to Cart <i class="fa fa-shopping-cart" aria-hidden="true"></i></button></p></a>
+  <a href="#addcart" data-toggle="modal" data-target="#addcart" style="color:white;">
+  <p><button class="add-cart" style="margin-left:20px;" >Buy Now </button></p></a>
+  <?php }} ?>
 <?php } else { ?>
          <!-- CONTENT-WRAPPER SECTION END-->
          <?php include('includes/loginmember.php');?>
@@ -178,8 +190,15 @@ foreach($results as $result)
     <p><button class="add-cart" style="margin-left:20px;" >Buy Now </button></p></a>
 </div>
 <?php } ?>
-<?php }} ?>   
+<?php }} ?>  
+
 </div>
+<div class="col-md-3">
+<div class="alert-message"></div>
+</div>
+
+
+
 </div>
 
 
@@ -190,6 +209,7 @@ foreach($results as $result)
     <script src="assets/js/jquery-1.10.2.js"></script>
     <!-- BOOTSTRAP SCRIPTS  -->
     <script src="assets/js/bootstrap.js"></script>
+
 
 </body>
 </html>

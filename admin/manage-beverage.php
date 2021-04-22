@@ -79,7 +79,17 @@ foreach($results as $result)
             <div class="col-md-12">
             <h4 class="header-line" style="text-align:none; font-family: 'Noto Sans JP', sans-serif; font-size: 22px;">Manage beverage &nbsp<i class="fas fa-mug-hot"></i></h4>
     </div>
+    <?php if($_SESSION['msg']!="")
+{?>
 
+<div class="alert alert-success" role="alert" >
+ <?php echo htmlentities($_SESSION['msg']);?>
+<?php echo htmlentities($_SESSION['msg']="");?>
+<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<?php } ?>
             <!-- Advanced Tables -->
             <div class="card-table">
                         <div class="panel-body" style="">
@@ -87,7 +97,8 @@ foreach($results as $result)
                             <table class="table">
                                     <thead>
                                         <tr>
-                                            <th>ID</th>
+                                            <th style="display:none;">ID</th>
+                                            <th>Product code</th>
                                             <th>Name</th>
                                             <th>Description</th>
                                             <th>Price</th>
@@ -102,7 +113,7 @@ foreach($results as $result)
                                     </thead>
                                     <tbody>
 <?php 
-$sql = "SELECT menu.MenuName,menu.Description,menu.Price,menu.Image1,category.Category,subcategory.SubCategory,size.SizeName,type.TypeName,size.Ounce,menu.id as mid from menu join category on menu.CategoryId=category.id join subcategory on menu.SubCategoryId=subcategory.id join size on menu.SizeId=size.id join type on menu.TypeId=type.id order by mid asc";
+$sql = "SELECT menu.MenuName,menu.Description,menu.Price,menu.Image1,category.Category,subcategory.SubCategory,size.SizeName,type.TypeName,size.Ounce,menu.id as mid,ProductCode from menu join category on menu.CategoryId=category.id join subcategory on menu.SubCategoryId=subcategory.id join size on menu.SizeId=size.id join type on menu.TypeId=type.id order by mid asc";
 $query = $dbh -> prepare($sql);
 $query->execute();
 $results=$query->fetchAll(PDO::FETCH_OBJ);
@@ -112,7 +123,8 @@ if($query->rowCount() > 0)
 foreach($results as $result)
 {               ?>                                      
                                         <tr class="odd gradeX">
-                                             <td class="center"><?php echo htmlentities($cnt);?></td>
+                                             <td class="center" style="display:none;"><?php echo htmlentities($cnt);?></td>
+                                             <td class="center"><?php echo htmlentities($result->ProductCode);?></td>
                                              <td class="center"><?php echo htmlentities($result->MenuName);?></td>
                                              <td class="center"><?php echo htmlentities($result->Description);?></td>
                                              <td class="center"><?php echo htmlentities($result->Price);?></td>

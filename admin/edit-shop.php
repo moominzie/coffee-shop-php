@@ -99,7 +99,7 @@ Your shop mobile number
 
 <?php }} ?>
                               
-<div class="col-md-5">
+<div class="col-md-8">
   <?php if($error){?><div class="errorWrap"> <?php echo htmlentities($error); ?> </div><?php } 
 				else if($msg){?><div class="alert alert-success" role="alert" > <?php echo htmlentities($msg); ?><button type="button" class="close" data-dismiss="alert" aria-label="Close">
                     <span aria-hidden="true">&times;</span>

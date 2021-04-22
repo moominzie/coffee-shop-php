@@ -158,11 +158,11 @@ foreach($results as $result)
 </div>
               
     <div class="form-group">
-        <label style="letter-spacing: 1px; font-size:14px;">Username</label>
+        <label>Username</label>
         <input class="form-control" type="text" name="username" autocomplete="off" required />
     </div>
     <div class="form-group">
-        <label style="letter-spacing: 1px; font-size:14px;">Password</label>
+        <label>Password</label>
         <input class="form-control" type="password" name="password" required autocomplete="off"  />
     </div>
  

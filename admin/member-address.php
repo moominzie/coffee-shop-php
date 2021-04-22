@@ -93,12 +93,12 @@ foreach($results as $result)
                                             <th>Province</th>
                                             <th>Amphure</th>
                                             <th>Districe</th>
-                                            <th>Type</th>
+                                            <th>Postal code*</th>
                                         </tr>
                                     </thead>
                                     <tbody>
 <?php 
-$sql="SELECT address.Address,address.PostalCode,provinces.name_en as pname,amphures.name_en as aname,districts.name_en as dname,member.Username as muname,member.FirstName,adstype.TypeAddress,member.LastName from address join member on member.Username=address.Username join provinces on provinces.id=address.ProvinceId join amphures on amphures.id=address.AmphureId join districts on districts.id=address.DistrictId join adstype on adstype.id=address.TypeAddress group by address.id ";
+$sql="SELECT address.Address,districts.zip_code,provinces.name_en as pname,amphures.name_en as aname,districts.name_en as dname,member.Username as muname,member.FirstName,member.LastName from address join member on member.Username=address.Username join provinces on provinces.id=address.ProvinceId join amphures on amphures.id=address.AmphureId join districts on districts.id=address.DistrictId group by address.id ";
 $query = $dbh -> prepare($sql);
 $query->execute();
 $results=$query->fetchAll(PDO::FETCH_OBJ);
@@ -116,7 +116,7 @@ foreach($results as $result)
                                             <td class="center"><?php echo htmlentities($result->pname);?></td>
                                             <td class="center"><?php echo htmlentities($result->aname);?></td>
                                             <td class="center"><?php echo htmlentities($result->dname);?></td>
-                                            <td class="center"><?php echo htmlentities($result->TypeAddress);?></td>
+                                            <td class="center"><?php echo htmlentities($result->zip_code);?></td>
                                         
                                         </tr>
  <?php $cnt=$cnt+1;}} ?>                                      

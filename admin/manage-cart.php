@@ -36,7 +36,7 @@ foreach($results as $result)
 
 <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
@@ -77,9 +77,9 @@ foreach($results as $result)
 <div class="container">
     <div class="row pad-botm">
             <div class="col-md-12">
-            <h4 class="header-line" style="text-align:none; font-family: 'Noto Sans JP', sans-serif; font-size: 22px;">Manage food &nbsp<i class="fas fa-utensils"></i></h4>
-                </div>
-                <?php if($_SESSION['msg']!="")
+            <h4 class="header-line" style="text-align:none; font-family: 'Noto Sans JP', sans-serif; font-size: 22px;">Manage beverage &nbsp<i class="fas fa-mug-hot"></i></h4>
+    </div>
+    <?php if($_SESSION['msg']!="")
 {?>
 
 <div class="alert alert-success" role="alert" >
@@ -90,14 +90,14 @@ foreach($results as $result)
   </button>
 </div>
 <?php } ?>
-                        <!-- Advanced Tables -->
-                    <div class="card-table">
+            <!-- Advanced Tables -->
+            <div class="card-table">
                         <div class="panel-body" style="">
                             <div class="table-responsive">
                             <table class="table">
                                     <thead>
                                         <tr>
-                                        <th style="display:none;">ID</th>
+                                            <th style="display:none;">ID</th>
                                             <th>Product code</th>
                                             <th>Name</th>
                                             <th>Description</th>
@@ -105,14 +105,15 @@ foreach($results as $result)
                                             <th>Picture</th>
                                             <th>Category</th>
                                             <th>Sub category</th>
+                                            <th>Glass size</th>
+                                            <th>Ounce</th>
+                                            <th>Beverage type</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
-        
                                     <tbody>
 <?php 
-
-$sql = "SELECT menu.MenuName,menu.Description,menu.Price,menu.Image1,category.Category,subcategory.SubCategory,menu.id as mid,ProductCode from menu join category on menu.CategoryId=category.id join subcategory on menu.SubCategoryId=subcategory.id where menu.CategoryId in (1) group by menu.id";
+$sql="SELECT id,ProductCode,ProductName,ProductImage,ProductPrice,Quantity,TotalPrice,Username,ProductPrice*Quantity as Total FROM cart ORDER BY id";
 $query = $dbh -> prepare($sql);
 $query->execute();
 $results=$query->fetchAll(PDO::FETCH_OBJ);
@@ -120,17 +121,22 @@ $cnt=1;
 if($query->rowCount() > 0)
 {
 foreach($results as $result)
-{               ?>                                      
-                                        <tr id="menu">
-                                        <td class="center" style="display:none;"><?php echo htmlentities($cnt);?></td>
+{               ?>                                     
+                                        <tr class="odd gradeX">
+                                             <td class="center" style="display:none;"><?php echo htmlentities($cnt);?></td>
                                              <td class="center"><?php echo htmlentities($result->ProductCode);?></td>
-                                             <td class="center"><?php echo htmlentities($result->MenuName);?></td>
-                                             <td class="center"><?php echo htmlentities($result->Description);?></td>
+                                             <td class="center"><?php echo htmlentities($result->ProductName);?></td>
+                                             <td class="center"><?php echo htmlentities($result->Total);?></td>
                                              <td class="center"><?php echo htmlentities($result->Price);?></td>
-                                             <td class="center"><img src="uploads/img/<?php echo htmlentities($result->Image1);?>" width="100" height="100"style="border-radius:10px;" ></td>
+                                             <td class="center"><img src="uploads/img/<?php echo htmlentities($result->Image1);?>" width="100" height="100" style="border-radius:10px;"></td>
                                              <td class="center"><?php echo htmlentities($result->Category);?></td>
                                              <td class="center"><?php echo htmlentities($result->SubCategory);?></td>
-                                             <td class="center"><a href="edit-food.php?mid=<?php echo htmlentities($result->mid);?>" class="btn btn-success" style="border-radius:15px;background-color: #00A862;"><i class="fa fa-edit"></i> Edit</a>
+                                             <td class="center"><?php echo htmlentities($result->SizeName);?></td>
+                                             <td class="center"><?php echo htmlentities($result->Ounce);?> oz.</td>
+                                             <td class="center"><?php echo htmlentities($result->TypeName);?></td>
+                                             <td class="center">
+                                             <a href="edit-beverage.php?mid=<?php echo htmlentities($result->mid);?>" class="btn btn-success" style="border-radius:15px;background-color: #00A862;"><i class="fa fa-edit"></i> Edit</a>
+                                            </td>
                                         </tr>
  <?php $cnt=$cnt+1;}} ?>                                      
                                     </tbody>
@@ -149,16 +155,17 @@ foreach($results as $result)
     </div>
 
 
+     <!-- CONTENT-WRAPPER SECTION END-->
 
+    <!-- JAVASCRIPT FILES PLACED AT THE BOTTOM TO REDUCE THE LOADING TIME  -->
+    <!-- CORE JQUERY  -->
+    <script src="assets/js/jquery-1.10.2.js"></script>
+    <!-- BOOTSTRAP SCRIPTS  -->
+    <script src="assets/js/bootstrap.js"></script>
+    <!-- DATATABLE SCRIPTS  -->
+    <script src="assets/js/dataTables/jquery.dataTables.js"></script>
+    <script src="assets/js/dataTables/dataTables.bootstrap.js"></script>
+      <!-- CUSTOM SCRIPTS  -->
+    <script src="assets/js/custom.js"></script>
 </body>
-<script>
-$(document).ready(function(){
-  $("#myInput").on("keyup", function() {
-    var value = $(this).val().toLowerCase();
-    $("#myTable tr").filter(function() {
-      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-    });
-  });
-});
-</script>
 </html>

@@ -150,7 +150,7 @@ foreach($results as $result)
     </div>
     </div>
 
-    <div class="col-md-5">
+    <div class="col-md-8">
   <?php if($error){?><div class="errorWrap"> <?php echo htmlentities($error); ?> </div><?php } 
 				else if($msg){?><div class="alert alert-success" role="alert" > <?php echo htmlentities($msg); ?><button type="button" class="close" data-dismiss="alert" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
@@ -173,7 +173,6 @@ foreach($results as $result)
 
 
      <!-- CONTENT-WRAPPER SECTION END-->
-    <?php include('includes/footer.php');?>
     <script src="assets/js/jquery-1.10.2.js"></script>
     <!-- BOOTSTRAP SCRIPTS  -->
     <script src="assets/js/bootstrap.js"></script>
