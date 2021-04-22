@@ -19,7 +19,9 @@ $query->bindParam(':sid',$sid,PDO::PARAM_STR);
 $query->bindParam(':size',$size,PDO::PARAM_STR);
 $query->bindParam(':ounce',$ounce,PDO::PARAM_STR);
 $query->execute();
-$msg="Update $size menu successfully";
+
+$_SESSION['msg']="Update $size successfully";
+header('location:manage-size.php');
 }
 
 
@@ -134,21 +136,21 @@ foreach($results as $result)
 
 <div class="col-md-12">
 <div class="form-group">
-<label style="font-family: 'Staatliches', cursive; letter-spacing: 1px; font-size:14px;">Glass Size : </label>
+<label>Glass Size : </label>
 <?php echo htmlentities($result->SizeName);?>
 </div>
 </div>
 
 <div class="col-md-8">
 <div class="form-group">
-<label style="font-family: 'Staatliches', cursive; letter-spacing: 1px; font-size:14px;">Enter Glass Size</label>
+<label>Enter Glass Size</label>
 <input class="form-control" type="text" name="sizename" id="" value="<?php echo htmlentities($result->SizeName);?>"  autocomplete="off" required />
 </div>
 </div>
 
 <div class="col-md-4">
 <div class="form-group">
-<label style="font-family: 'Staatliches', cursive; letter-spacing: 1px; font-size:14px;">Enter Ounce</label>
+<label>Enter Ounce</label>
 <input class="form-control" type="text" name="ounce" id="" value="<?php echo htmlentities($result->Ounce);?>"  autocomplete="off" required />
 </div>
 </div>

@@ -7,7 +7,7 @@ if(strlen($_SESSION['login'])==0)
 header('location:loginmember.php');
 }
 else{ 
-if(isset($_POST['add']))
+if(isset($_POST['updateadd']))
 {    
 $username=$_SESSION['username'];  
 $address=$_POST['address'];
@@ -15,7 +15,7 @@ $amphure=$_POST['amphure'];
 $district=$_POST['district'];
 $province=$_POST['province'];
 $postalcode=$_POST['postalcode'];
-$sql="INSERT INTO  address (Address,ProvinceId,AmphureId,DistrictId,PostalCode,Username) VALUES(:address,:province,:amphure,:district,:postalcode,:username)";
+$sql="update address set Address=:address,ProvinceId=:province,AmphureId=:amphure,DistrictId=:district,PostalCode=:postalcode where Username=:username";
 $query = $dbh->prepare($sql);
 $query->bindParam(':username',$username,PDO::PARAM_STR);
 $query->bindParam(':address',$address,PDO::PARAM_STR);
@@ -23,13 +23,13 @@ $query->bindParam(':amphure',$amphure,PDO::PARAM_STR);
 $query->bindParam(':district',$district,PDO::PARAM_STR);
 $query->bindParam(':province',$province,PDO::PARAM_STR);
 $query->bindParam(':postalcode',$postalcode,PDO::PARAM_STR);
+
 $query->execute();
 
-$addresscom="Your address has been added completly";
+header('location:mycart.php');
 }
 
 ?>
-
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -104,19 +104,37 @@ foreach($results as $result)
 <div class="col-md-9 col-md-offset-1">
                <div class="card">
                <div class="panel-body" style="margin:20px">
-                            <form name="update" method="post">
 
+               <form action="" method="post" role="form" enctype="multipart/form-data">
 <div class="col-md-12">
 <div class="form-group">
 <label>Address</label>&nbsp;<label for="" style="font-family: 'Oswald', sans-serif; color: red;">* </label>
-<textarea class="form-control" type="email" name="address" id="" value=""  autocomplete="off" required></textarea>
+<textarea class="form-control" type="text" name="address" id="" value="<?php echo htmlentities($result->Address);?>"  autocomplete="off" required><?php echo htmlentities($result->Address);?></textarea>
 </div>
 </div>
 
-  <!-- START TITLE -->     
-  
-<div class="form-group col-md-4">
-    <label>Province</label>&nbsp;<label for="" style="font-family: 'Oswald', sans-serif; color: red;">* </label>
+<div class="col-md-3">
+<div class="form-group">
+<label>District</label>
+<select name="district" id="district_id" class="form-control form-control-lg">
+<option value='0'> Select district</option>
+</select>
+</div>
+</div>
+
+<div class="col-md-3">
+<div class="form-group">
+<label>Amphures</label>
+<select name="amphure" id="amphure_id" class="form-control form-control-lg">
+<option value='0'> Select amphure </option>
+</select>
+</div>
+</div>
+
+<div class="col-md-3">
+<div class="form-group">
+<label>Provine</label>
+<label>Province</label>&nbsp;<label for="" style="font-family: 'Oswald', sans-serif; color: red;">* </label>
         <!-- END TITLE -->
     
     <select name="province" id="province_id" class="form-control form-control-lg" onBlur="getAmphure()" required>
@@ -133,19 +151,6 @@ foreach($results as $result)
           ?>
 </select>
 </div>
-
-<div class="form-group col-md-4">
-<label>Amphure</label>&nbsp;<label for="" style="color: red;">* </label>
-<select name="amphure" id="amphure_id" class="form-control form-control-lg">
-<option value='0'> Select amphure </option>
-</select>
-</div>
-
-<div class="form-group col-md-4">
-<label>District</label>&nbsp;<label for="" style="color: red;">* </label>
-<select name="district" id="district_id" class="form-control form-control-lg">
-<option value='0'> Select district</option>
-</select>
 </div>
 
 	<!-- Script -->
@@ -217,40 +222,27 @@ foreach($results as $result)
     
 	});
 	</script>
-<div class="col-md-4">
+
+
+
+<div class="col-md-3">
 <div class="form-group">
-<label>Zip/Postal Code</label>&nbsp;<label for="" style="font-family: 'Oswald', sans-serif; color: red;">* </label>
-<input class="form-control" type="text" name="postalcode" id="zipcode" autocomplete="off" required />
+<label>Postal code</label>
+<input class="form-control" type="text" name="postalcode" id="" value="<?php echo htmlentities($result->PostalCode);?>"  autocomplete="off" required />
 </div>
 </div>
-
-<div class="col-md-12">  
-    <?php  if($addresscom)
-{?>
-
-    <div class="alert alert-success" role="alert" >
- <?php echo htmlentities($addresscom);?>
-<?php echo htmlentities($addresscom="");?>
-<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-    <span aria-hidden="true">&times;</span>
-  </button>
-</div>
-<?php } ?>
-</div>
-
 
 <div class="col-md-12">                             
-<button type="submit" name="add" class="create-account" > Submit </button>&nbsp&nbsp&nbsp<a href="account.php" style="color: black;">Your current address here</a>
+<button type="submit" name="updateadd" class="create-account" >Update address </button>
 </div>
-
 </form>
+<?php } ?>
 </div>
 </div>
 </div>
 </div>
     </div>
     </div>
-
      <!-- CONTENT-WRAPPER SECTION END-->
     <script src="assets/js/jquery-1.10.2.js"></script>
     <!-- BOOTSTRAP SCRIPTS  -->
@@ -259,6 +251,6 @@ foreach($results as $result)
     <script src="assets/js/custom.js"></script>
 
 
-    <?php } ?>
+    
 </body>
 </html>

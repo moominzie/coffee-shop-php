@@ -69,23 +69,8 @@ foreach($results as $result)
     <div class="container">
         <div class="row pad-botm">
             <div class="col-md-12">
-            <?php 
-$username=$_SESSION['username'];
-$sql="SELECT id,Username,FirstName,LastName,EmailId,MobileNumber,RegDate,UpdationDate,Status from  member  where Username=:username ";
-$query = $dbh -> prepare($sql);
-$query-> bindParam(':username', $username, PDO::PARAM_STR);
-$query->execute();
-$results=$query->fetchAll(PDO::FETCH_OBJ);
-$cnt=1;
-if($query->rowCount() > 0)
-{
-foreach($results as $result)
-{               ?>    
-
-
 <h4 class="header-line">Account</h4>
-                
-                <?php }} ?>
+
             </div>
 
      
@@ -93,14 +78,14 @@ foreach($results as $result)
     <div class="list-group" id="list-tab" role="tablist">
       <a class="list-group-item list-group-item-action active " id="list-profile-list" data-toggle="list" href="#list-profile" role="tab" aria-controls="profile">Your profile</a>
       <a class="list-group-item list-group-item-action" id="list-address-list" data-toggle="list" href="#list-address" role="tab" aria-controls="address">Your address</a>
-      <a class="list-group-item list-group-item-action" id="list-edit-list" data-toggle="list" href="#list-edit" role="tab" aria-controls="editprofile">Edit your profile</a>
+      <a class="list-group-item list-group-item-action" id="list-editprofile" data-toggle="list" href="#editprofile" role="tab" aria-controls="profile">Edit your profile</a>
     </div>
   </div>
   <div class="col-9">
     <div class="tab-content" id="nav-tabContent">
       <div class="tab-pane fade show active" id="list-profile" role="tabpanel" aria-labelledby="list-profile-list"><?php include('my-account.php');?></div>
       <div class="tab-pane fade" id="list-address" role="tabpanel" aria-labelledby="list-address-list"><?php include('my-address.php');?></div>
-      <div class="tab-pane fade" id="list-edit" role="tabpanel" aria-labelledby="list-edit-list"><?php include('my-profile.php');?></div>
+      <div class="tab-pane fade" id="editprofile" role="tabpanel" aria-labelledby="list-editprofile"><?php include('my-profile.php');?></div>
     </div>
   </div>
 

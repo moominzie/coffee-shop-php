@@ -115,6 +115,9 @@
 
     <ul class="navbar-nav navbar-right">
     <li class="nav-item active">
+        <a class="nav-link" href="manage-cart.php"><p class="account"><i class="fas fa-shopping-basket"></i>&nbsp Order</p><span class="sr-only" >(current)</span></a>
+      </li>
+    <li class="nav-item active">
         <a class="nav-link" href="inbox.php"><p class="account"><i class="fas fa-inbox"></i>&nbsp Inbox</p><span class="sr-only" >(current)</span></a>
       </li>
     <li class="nav-item active">

@@ -2,26 +2,20 @@
 session_start();
 include('includes/connection.php');
 error_reporting(0);
-if(strlen($_SESSION['login'])==0)
+if(strlen($_SESSION['alogin'])==0)
     {   
-header('loginmember.php');
+header('location:../loginadmin.php');
 }
 else{ 
 if(isset($_POST['update']))
-{
-$id=intval($_GET['edit']);
-$quantity=$_POST['quantity'];
-
-$sql="update cart set Quantity=:quantity where id=:id";
-$query = $dbh->prepare($sql);
-$query->bindParam(':id',$id,PDO::PARAM_STR);
-$query->bindParam(':quantity',$quantity,PDO::PARAM_STR);
-$query->execute();
-
-$_SESSION['edit']="Update your order complete";
-header('location:mycart.php');
-
+{   
+    header('location:admin-member.php');
+ 
 }
+
+
+  
+  
 ?>
 
 <!DOCTYPE html>
@@ -79,9 +73,7 @@ foreach($results as $result)
 <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@900&display=swap" rel="stylesheet">
 
-
 </head>
-
 <style>
     .errorWrap {
     padding: 10px;
@@ -99,56 +91,17 @@ foreach($results as $result)
     -webkit-box-shadow: 0 1px 1px 0 rgba(0,0,0,.1);
     box-shadow: 0 1px 1px 0 rgba(0,0,0,.1);
 }
-.price {
-    color: grey;
-    font-size: 14px;
-}
-
-* {
-    -moz-box-sizing: border-box;
-    -webkit-box-sizing: border-box;
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
-.image-box {
-    box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 1);
-    position: static;
-    margin: auto;
-    overflow: hidden;
-    width: 200px;
-    height: 200px;
-    border-radius: 5%;
-    margin-top:10px;
-    margin-bottom:20px;
-    margin-left:10px;
-}
-.image-box img {
-    max-width: 100%;
-    transition: all 0.3s;
-    display: block;
-    width: 200px;
-    height: 200px;
-    transform: scale(1);
-}
-
-.image-box:hover img {
-    transform: scale(1.1);
-    cursor: pointer;
-}
-
-
-
     </style>
 <body>
     <!------MENU SECTION START-->
 <?php include('includes/header.php');?>
 <!-- MENU SECTION END-->
 <?php 
-$id=intval($_GET['edit']);
-$sql="SELECT * FROM cart WHERE id=:id";
+
+$mid=intval($_GET['mid']);
+$sql="SELECT id as mid,Username,FirstName,LastName,EmailId,MobileNumber,RegDate,UpdationDate,Status from  member  where id=:mid ";
 $query = $dbh -> prepare($sql);
-$query-> bindParam(':id', $id, PDO::PARAM_STR);
+$query-> bindParam(':mid', $mid, PDO::PARAM_STR);
 $query->execute();
 $results=$query->fetchAll(PDO::FETCH_OBJ);
 $cnt=1;
@@ -156,43 +109,69 @@ if($query->rowCount() > 0)
 {
 foreach($results as $result)
 {               ?>  
+
 <form name="update" method="post" enctype="multipart/form-data">
 <div class="content-wrapper">
    <div class="container">
     <div class="row pad-botm">
             <div class="col-md-12">
-            <h4 class="" style="text-align:center; font-family: 'Noto Sans JP', sans-serif; font-size: 22px;">Order</h4>
+            <h4 class="header-line" style="text-align:none; font-family: 'Noto Sans JP', sans-serif; font-size: 22px;"><?php echo htmlentities($result->FirstName);?>&nbsp<?php echo htmlentities($result->LastName);?> &nbsp<i class="fas fa-user-alt"></i>&nbsp&nbsp&nbsp<a href="member-address.php" style="color: black;">Customer address &nbsp<i class="fas fa-map-marker-alt"></i></a></h4>  
                             </div>
         </div>
-
-<div class="card">
+<div class="card-data">
         <div class="panel-body">
 
-        <div class="col-md-6">
-<div class="image-box">
-<img src="admin/uploads/img/<?php echo htmlentities($result->ProductImage);?>" width="200" height="200" style="border-radius:10px;">
+<div class="col-md-12">
+<div class="form-group">
+<label>Username : </label>
+<?php echo htmlentities($result->Username);?>
 </div>
 </div>
 
-        <div class="col-md-6">
+<div class="col-md-12">
+<div class="form-group">
+<label>Name-Surname : </label>
+<?php echo htmlentities($result->FirstName);?>&nbsp<?php echo htmlentities($result->LastName);?>
+</div>
+</div>
 
-       <h4 style="font-family: 'Noto Sans JP', sans-serif;"><?php echo htmlentities($result->ProductName);?></h4></a>
-       <p> Product code : <?php echo htmlentities($result->ProductCode);?></p>
-       <p> Quantity &nbsp<input style="item-align:center;width:60px;" class="form-control" type="number" name="quantity" value="<?php echo htmlentities($result->Quantity);?>" required autocomplete="off"  /></p>
-          <br>
-          <button type="submit" name="update" class="create-account"> Submit </button>
-                    </div>
+<div class="col-md-12">
+<div class="form-group">
+<label>Mobile number : </label>
+<?php echo htmlentities($result->MobileNumber);?>
+</div>
+</div>
+
+<div class="col-md-12">
+<div class="form-group">
+<label>Email : </label>
+<?php echo htmlentities($result->EmailId);?>
+</div>
+</div>
+
+
+<div class="col-md-12">
+<div class="form-group">
+<label>Status : </label>
+<?php if($result->Status==1) {?>
+<a style="color: #00A862" >Active</a>
+<?php } else {?>
+<a style="color: #00A862" >Inactive</a>
+<?php } ?>
+</div>
 </div>
 
 <?php }} ?>
 
-            </form>
+                                    </form>
+                            </div>
+                        </div>
+                            </div>
+        </div>
+    </div>
 </div>
-</div>
-</div>
-      <!------MENU SECTION START-->
-      <?php include('includes/footer.php');?>
-<!-- MENU SECTION END-->
+     <!-- CONTENT-WRAPPER SECTION END-->
+    <?php include('includes/footer.php');?>
     <script src="assets/js/jquery-1.10.2.js"></script>
     <!-- BOOTSTRAP SCRIPTS  -->
     <script src="assets/js/bootstrap.js"></script>
@@ -201,4 +180,3 @@ foreach($results as $result)
 </body>
 </html>
 <?php } ?>
-

@@ -103,6 +103,20 @@ foreach($results as $result)
             <div class="col-md-12">
             <h4 class="header-line" style="text-align:none; font-family: 'Noto Sans JP', sans-serif; font-size: 22px;">Manage glass size</h4>
                 </div>
+
+                <?php if($_SESSION['msg']!="")
+{?>
+
+<div class="alert alert-success" role="alert" >
+ <?php echo htmlentities($_SESSION['msg']);?>
+<?php echo htmlentities($_SESSION['msg']="");?>
+<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<?php } ?>
+
+</div>
                 
                         <!-- Advanced Tables -->
                     <div class="card-table">

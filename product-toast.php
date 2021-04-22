@@ -110,6 +110,7 @@ opacity: 0.7;
     height: 300px;
     border-radius: 5%;
     margin-top:10px;
+    margin-bottom:20px;
 }
 .image-box img {
     max-width: 100%;
@@ -176,19 +177,16 @@ foreach($results as $result)
 
 <?php include('toast-cart.php');?>
 <a href="#addcart" data-toggle="modal" data-target="#addcart" style="color:white;">
-<p><button class="add-cart" style="margin-left:20px;" >Add to Cart <i class="fa fa-shopping-cart" aria-hidden="true"></i></button></p></a>
-  <a href="#addcart" data-toggle="modal" data-target="#addcart" style="color:white;">
-  <p><button class="add-cart" style="margin-left:20px;" >Buy Now </button></p></a>
+<p><button class="add-cart" style="margin-left:20px; " >Add to Cart <i class="fa fa-shopping-cart" aria-hidden="true"></i></button></p></a>
+
   <?php }} ?>
 <?php } else { ?>
          <!-- CONTENT-WRAPPER SECTION END-->
          <?php include('includes/loginmember.php');?>
 <a href="#loginform" data-toggle="modal" data-target="#loginform" style="color:white;">
-    <p><button class="add-cart" style="margin-left:20px;" >Add to Cart <i class="fa fa-shopping-cart" aria-hidden="true"></i></button></p></a>
+    <p><button class="add-cart" style="margin-left:20px; " >Add to Cart <i class="fa fa-shopping-cart" aria-hidden="true"></i></button></p></a>
 
 
-    <a href="#loginform" data-toggle="modal" data-target="#loginform" style="color:white;">
-    <p><button class="add-cart" style="margin-left:20px;" >Buy Now </button></p></a>
 </div>
 <?php } ?>
 </div>

@@ -22,7 +22,7 @@ $query->bindParam(':lname',$lname,PDO::PARAM_STR);
 $query->bindParam(':mobileno',$mobileno,PDO::PARAM_STR);
 $query->execute();
     $msg="Update your Admin profile successfully";
- 
+    header('location:account.php');
 }
 
 
@@ -48,7 +48,6 @@ $query->execute();
 }
     </style>
 <body>  
-<form name="update" method="post">
 <?php 
 $username=$_SESSION['username'];
 $sql="SELECT UserName,AdminEmail,FirstName,LastName,MobileNumber from  employee  where UserName=:username";
@@ -63,6 +62,20 @@ foreach($results as $result)
 {               ?>  
 
 <h4 class="header-line"><?php echo htmlentities($result->FirstName);?>&nbsp<?php echo htmlentities($result->LastName);?></h4>
+
+<div class="col-md-5">  
+<?php  if($msg)
+{?>
+<div class="alert alert-success" role="alert" >
+ <?php echo htmlentities($msg);?>
+<?php echo htmlentities($msg="");?>
+<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<?php } ?>
+</div>
+
 <div class="col-md-12">
 <div class="form-group">
 <label><i class="fas fa-user-alt"></i>&nbsp Username : </label>
@@ -92,27 +105,73 @@ foreach($results as $result)
 </div>
 <?php }} ?>
 
-<div class="col-md-5">
-  <?php if($error){?><div class="errorWrap"> <?php echo htmlentities($error); ?> </div><?php } 
-				else if($msg){?><div class="alert alert-success" role="alert" > <?php echo htmlentities($msg); ?><button type="button" class="close" data-dismiss="alert" aria-label="Close">
+<div class="col-md-12">            
+<a href="#demo" data-toggle="collapse"><button class="create-account" >
+    Edit profile 
+  </button></a>&nbsp&nbsp&nbsp<a href="change-password.php" style="color: black;">Change password here</a>
+</div>
+
+
+<div id="demo" class="collapse">
+<form name="update" method="post">
+<?php 
+$username=$_SESSION['username'];
+$sql="SELECT UserName,AdminEmail,FirstName,LastName,MobileNumber from  employee  where UserName=:username";
+$query = $dbh -> prepare($sql);
+$query-> bindParam(':username', $username, PDO::PARAM_STR);
+$query->execute();
+$results=$query->fetchAll(PDO::FETCH_OBJ);
+$cnt=1;
+if($query->rowCount() > 0)
+{
+foreach($results as $result)
+{               ?>  
+
+<div class="col-md-6">
+<div class="form-group">
+Your firstname
+<input class="form-control" type="text" name="firstname" id="" value="<?php echo htmlentities($result->FirstName);?>"  autocomplete="off" required />
+</div>
+</div>
+
+<div class="col-md-6">
+<div class="form-group">
+Your lastname
+<input class="form-control" type="text" name="lastname" id="" value="<?php echo htmlentities($result->LastName);?>"  autocomplete="off" required />
+</div>
+</div>
+
+<div class="col-md-6">
+<div class="form-group">
+Your mobile number
+<input class="form-control" type="text" name="mobileno" value="<?php echo htmlentities($result->MobileNumber);?>" autocomplete="off" required  />
+</div>
+</div>
+
+<div class="col-md-6">
+<div class="form-group">
+Your email
+<input class="form-control" type="email" name="adminemail" value="<?php echo htmlentities($result->AdminEmail);?>" autocomplete="off" required readonly />
+</div>
+</div>
+
+<?php }} ?>
+<div class="col-md-8">
+  <?php if($error){?><div class="alert alert-danger" role="alert" ><?php echo htmlentities($error); ?><button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button> </div><?php } 
+				else if($msg){?><div class="alert alert-success" role="alert" ><?php echo htmlentities($msg); ?><button type="button" class="close" data-dismiss="alert" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                   </button> </div><?php }?>
 </div>
 
-<div class="col-md-12">                    
-<button class="create-account" data-toggle="collapse" href="#editprofile" role="button" aria-expanded="false" aria-controls="editprofile">
-    Edit profile
-    </button>&nbsp&nbsp&nbsp<a href="change-password.php" style="color: black;">Change password here</a>
-</div>
-
-  <div class="collapse" id="editprofile">
-  <div class="">
-      <!------MENU SECTION START-->
-	  <?php include('edit-profile.php');?>
-  </div>
+<div class="col-md-12">
+    <button type="submit" name="update" class="create-account" id="submit" > Update profile </button>
 </div>
                                     </form>
-                            </div>
+  </div>
+</div>
+
                         </div>
                             </div>
         </div>

@@ -28,6 +28,22 @@ include('includes/connection.php');
         text-transform:none;
         font-family: 'Noto Sans JP', sans-serif; 
     }
+
+    .header-left {
+        font-weight:900;
+        padding-bottom:25px;
+        text-transform:none;
+        border-bottom:1px solid #eeeeee;
+        font-family: 'Noto Sans JP', sans-serif; 
+    }
+    .header-right {
+        text-align: right;
+        padding-bottom:25px;
+        text-transform:none;
+        border-bottom:1px solid #eeeeee;
+        font-family: 'Asap', sans-serif;
+        margin-left: 70px;
+    }
     .text_eng,a {
       font-family: 'Asap', sans-serif;
         font-size: 14px;
@@ -50,6 +66,11 @@ include('includes/connection.php');
     img:hover{
       cursor: pointer;
     }
+
+    .count {
+
+    }  
+
 
 </style>
 
@@ -84,10 +105,7 @@ foreach($results as $result)
     <ul class="navbar-nav">  
     <li class="nav-item active">
         <a class="nav-link" href="index.php">Home <span class="sr-only">(current)</span></a>
-      </li>    
-      <li class="nav-item">
-        <a class="nav-link" href="dashboard.php">Dashboard <span class="sr-only">(current)</span></a>
-      </li>    
+      </li>   
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Menu
@@ -106,7 +124,21 @@ foreach($results as $result)
         <a class="nav-link" href="account.php"><p class="account"><i class="fas fa-user-circle"></i>&nbsp Account</p><span class="sr-only" >(current)</span></a>
       </li>
       <li class="nav-item active">
-        <a class="nav-link" href="mycart.php"><p class="account"><i class="fas fa-shopping-cart"></i>&nbsp My Cart <span class="cart_item" ><?php echo $results->id; ?></span></p><span class="sr-only" >(current)</span></a>
+      <?php
+$username=$_SESSION['username'];  
+$sql="SELECT SUM(Quantity) as NumberCart FROM cart WHERE Username=:username";
+$query = $dbh -> prepare($sql);
+$query-> bindParam(':username', $username, PDO::PARAM_STR);
+$query->execute();
+$results=$query->fetchAll(PDO::FETCH_OBJ);
+$cnt=1;
+if($query->rowCount() > 0)
+{
+foreach($results as $result)
+{               ?> 
+                   
+        <a class="nav-link" href="mycart.php"><p class="account"><i class="fas fa-shopping-cart"></i>&nbsp My Cart  <span class="count"><?php echo htmlentities($result->NumberCart);?></span><span class="cart_item" ><?php echo $results->id; ?></span></p><span class="sr-only" >(current)</span></a>
+        <?php }} ?>
       </li>
       <li class="nav-item active">
         <a class="nav-link" href="logout.php"><p class="sign-out">Sign out</p><span class="sr-only" >(current)</span></a>

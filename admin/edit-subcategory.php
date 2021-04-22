@@ -17,7 +17,9 @@ $query = $dbh->prepare($sql);
 $query->bindParam(':subid',$subid,PDO::PARAM_STR);
 $query->bindParam(':subcategory',$subcategory,PDO::PARAM_STR);
 $query->execute();
-$msg="Update $subcategory menu successfully";
+
+$_SESSION['msg']="Update $subcategory successfully";
+header('location:manage-subcategory.php');
 }
 
 
@@ -134,14 +136,14 @@ foreach($results as $result)
 
 <div class="col-md-12">
 <div class="form-group">
-<label style="font-family: 'Staatliches', cursive; letter-spacing: 1px; font-size:14px;">Sub-Category : </label>
+<label>Sub-Category : </label>
 <?php echo htmlentities($result->SubCategory);?>
 </div>
 </div>
 
 <div class="col-md-6">
 <div class="form-group">
-<label style="font-family: 'Staatliches', cursive; letter-spacing: 1px; font-size:14px;">Enter Sub-Category Name</label>
+<label>Enter Sub-Category Name</label>
 <input class="form-control" type="text" name="subcategory" id="" value="<?php echo htmlentities($result->SubCategory);?>"  autocomplete="off" required />
 </div>
 </div>

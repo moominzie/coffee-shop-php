@@ -7,6 +7,27 @@ if(strlen($_SESSION['login'])==0)
 header('location:loginmember.php');
 }
 else{ 
+if(isset($_POST['checkout']))
+{    
+$username=$_SESSION['username'];  
+$customername=$_POST['customername'];
+$customerlname=$_POST['customerlname'];
+$customertel=$_POST['customertel'];
+$quantity=$_POST['quantity'];
+$total=$_POST['total'];
+$sql="INSERT INTO  checkout (CustomerName,CustomerLname,CustomerTel,Quantity,Total,Username) VALUES(:customername,:customerlname,:customertel,:quantity,:total,:username)";
+$query = $dbh->prepare($sql);
+$query->bindParam(':username',$username,PDO::PARAM_STR);
+$query->bindParam(':customername',$customername,PDO::PARAM_STR);
+$query->bindParam(':customerlname',$customerlname,PDO::PARAM_STR);
+$query->bindParam(':customertel',$customertel,PDO::PARAM_STR);
+$query->bindParam(':quantity',$quantity,PDO::PARAM_STR);
+$query->bindParam(':total',$total,PDO::PARAM_STR);
+$query->execute();
+
+header('location:checkout.php');
+}
+
 if(isset($_GET['del']))
 {
 $id=$_GET['del'];
@@ -14,10 +35,10 @@ $sql = "delete from cart  WHERE id=:id";
 $query = $dbh->prepare($sql);
 $query -> bindParam(':id',$id, PDO::PARAM_STR);
 $query -> execute();
-$msg="Glass size delete completed";
 }
 
 ?>
+
 <html lang="en">
 <head>
 <?php
@@ -153,13 +174,51 @@ foreach($results as $result)
         <?php include('includes/header.php');?>
 <!-- MENU SECTION END-->
 <button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
-    <form name="update" method="post">     
-</form>
+
 
     <div class="content-wrapper">
    <div class="container">
             <h4 class="header-line" style="text-align:none; font-family: 'Noto Sans JP', sans-serif; font-size: 22px;"><i class="fas fa-shopping-cart"></i>&nbsp My Cart </h4>
+<?php if($_SESSION['msg']!="")
+{?>
+
+<div class="alert alert-success" role="alert" >
+ <?php echo htmlentities($_SESSION['msg']);?>
+<?php echo htmlentities($_SESSION['msg']="");?>
+&nbsp<a href="" class="alert-link"></a>
+<button type="button" class="close" data-dismiss="alert" aria-label="Close" onClick="emptyCart()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+
+<script type="text/javascript">
+function emptyCart() {
+  <?php 
+    $username=$_SESSION['username'];  
+    $sql="DELETE FROM cart WHERE Username=:username";
+    $query = $dbh->prepare($sql);
+    $query->bindParam(':username',$username,PDO::PARAM_STR);
+    $query->execute();?>
+}
+</script>
+
+<?php } ?>
+
+<?php if($_SESSION['edit']!="")
+{?>
+
+<div class="alert alert-success" role="alert" >
+ <?php echo htmlentities($_SESSION['edit']);?>
+<?php echo htmlentities($_SESSION['edit']="");?>
+&nbsp<a href="" class="alert-link"></a>
+<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+
+<?php } ?>
 <div class="row">
+
   <div class="col-md-6">
     <div class="">
       <div class="card-body">
@@ -217,9 +276,37 @@ foreach($results as $result)
   <div class="col-md-6">
     <div class="card">
       <div class="card-body">
-        <h5 class="card-title">Special title treatment</h5>
-        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+      <?php
+$username=$_SESSION['username'];  
+$sql="SELECT SUM(ProductPrice*Quantity) as Total,SUM(Quantity) as Quantity FROM cart WHERE Username=:username";
+$query = $dbh -> prepare($sql);
+$query-> bindParam(':username', $username, PDO::PARAM_STR);
+$query->execute();
+$results=$query->fetchAll(PDO::FETCH_OBJ);
+$cnt=1;
+if($query->rowCount() > 0)
+{
+foreach($results as $result)
+{               ?>  
 
+<div class="col-md-12">  
+<div class="form-group">
+<label>Product quantity : </label>
+<?php echo htmlentities($result->Quantity);?> item
+</div>
+</div>             
+<input class="form-control" type="hidden" name="quantity" value="<?php echo htmlentities($result->Quantity);?>" required autocomplete="off"  />
+
+<div class="col-md-12">  
+<div class="form-group">
+<label>Total price : </label>
+<?php echo htmlentities($result->Total);?> ฿ 
+</div>
+</div>             
+<input class="form-control" type="hidden" name="total" value="<?php echo htmlentities($result->Total);?>" required autocomplete="off"  />
+
+
+<?php }} ?> 
 
 <?php if($_SESSION['msg']!="")
 {?>
@@ -234,7 +321,49 @@ foreach($results as $result)
 </div>
 <?php } ?>
 
-<a href="checkout.php"><button class="create-account" style="margin-left:380px;margin-bottom:10px;" > Checkout! </button></a>
+<form name="update" method="post">     
+
+
+<?php
+$username=$_SESSION['username'];  
+$sql="SELECT * FROM member WHERE Username=:username";
+$query = $dbh -> prepare($sql);
+$query-> bindParam(':username', $username, PDO::PARAM_STR);
+$query->execute();
+$results=$query->fetchAll(PDO::FETCH_OBJ);
+$cnt=1;
+if($query->rowCount() > 0)
+{
+foreach($results as $result)
+{               ?>  
+             <input class="form-control" type="hidden" name="customername" value="<?php echo htmlentities($result->FirstName);?>" required autocomplete="off"  />
+             <input class="form-control" type="hidden" name="customerlname" value="<?php echo htmlentities($result->LastName);?>" required autocomplete="off"  />
+             <input class="form-control" type="hidden" name="customertel" value="<?php echo htmlentities($result->MobileNumber);?>" required autocomplete="off"  />
+             <?php }} ?> 
+             
+             <?php
+$username=$_SESSION['username'];  
+$sql="SELECT ProductPrice*Quantity as Total,SUM(Quantity) as Quantity,Username,SUM(ProductPrice*Quantity) as ProductSum FROM cart WHERE Username=:username";
+$query = $dbh -> prepare($sql);
+$query-> bindParam(':username', $username, PDO::PARAM_STR);
+$query->execute();
+$results=$query->fetchAll(PDO::FETCH_OBJ);
+$cnt=1;
+if($query->rowCount() > 0)
+{
+foreach($results as $result)
+{               ?>  
+            <input class="form-control" type="hidden" name="quantity" value="<?php echo htmlentities($result->Quantity);?>" required autocomplete="off"  />
+             <input class="form-control" type="hidden" name="total" value="<?php echo htmlentities($result->ProductSum);?>" required autocomplete="off"  />
+             <?php }} ?>
+             <input class="form-control" type="hidden" name="username" value="<?php echo htmlentities($result->Username);?>" required autocomplete="off"  />
+  
+             <a href=""><button name="checkout" type="submit" class="create-account" style="margin-left:380px;margin-bottom:10px;" > Checkout! </button></a>
+             
+</form>
+
+
+
 
       </div>
     </div>
@@ -274,3 +403,5 @@ function topFunction() {
   document.documentElement.scrollTop = 0;
 }
 </script>
+
+

@@ -9,7 +9,6 @@ header('location:loginmember.php');
 
 ?>
 
-<form name="update" method="post">
 <?php 
 $username=$_SESSION['username'];
 $sql="SELECT id,Username,FirstName,LastName,EmailId,MobileNumber,RegDate,UpdationDate,Status from  member  where Username=:username ";
@@ -22,6 +21,7 @@ if($query->rowCount() > 0)
 {
 foreach($results as $result)
 {               ?>  
+
 
 <h4 class="header-line"><?php echo htmlentities($result->FirstName);?>&nbsp<?php echo htmlentities($result->LastName);?></h4>
 
@@ -84,12 +84,11 @@ echo htmlentities($result->RegDate);?>
 
 
 
+
 <?php }} ?>
-</form>
 
-<div class="col-md-12">   
-<a href="mycart.php" style="color:white;">
-    <p><button class="create-account" >Your Cart <i class="fa fa-shopping-cart" aria-hidden="true"></i></button></p></a>
-
-    </div>
-
+<div class="col-md-12">            
+<a href="mycart.php" style="color: white;"><button class="create-account" data-toggle="collapse" href="#editaddress" role="button" aria-expanded="false" aria-controls="editaddress">
+    Your cart 
+  </button></a>&nbsp&nbsp&nbsp<a href="change-password.php" style="color: black;">Change password here</a>
+</div>

@@ -91,29 +91,24 @@ foreach($results as $result)
 </div>
 <?php } ?>
             <!-- Advanced Tables -->
-            <div class="card-table">
+            <div class="card">
                         <div class="panel-body" style="">
                             <div class="table-responsive">
                             <table class="table">
                                     <thead>
                                         <tr>
                                             <th style="display:none;">ID</th>
-                                            <th>Product code</th>
-                                            <th>Name</th>
-                                            <th>Description</th>
-                                            <th>Price</th>
-                                            <th>Picture</th>
-                                            <th>Category</th>
-                                            <th>Sub category</th>
-                                            <th>Glass size</th>
-                                            <th>Ounce</th>
-                                            <th>Beverage type</th>
-                                            <th>Action</th>
+                                            <th>Order</th>
+                                            <th>Income</th>
+                                            <th>Quantity</th>
+                                            <th>Customer</th>
+                                            <th>Mobile</th>
+                                            <th>Username</th>
                                         </tr>
                                     </thead>
                                     <tbody>
 <?php 
-$sql="SELECT id,ProductCode,ProductName,ProductImage,ProductPrice,Quantity,TotalPrice,Username,ProductPrice*Quantity as Total FROM cart ORDER BY id";
+$sql="SELECT OrderId,ProductTotalPrice,Quantity,CustomerName,CustomerTel,CustomerUname,member.id as mid FROM cforder join member on member.Username=cforder.CustomerUname";
 $query = $dbh -> prepare($sql);
 $query->execute();
 $results=$query->fetchAll(PDO::FETCH_OBJ);
@@ -124,19 +119,12 @@ foreach($results as $result)
 {               ?>                                     
                                         <tr class="odd gradeX">
                                              <td class="center" style="display:none;"><?php echo htmlentities($cnt);?></td>
-                                             <td class="center"><?php echo htmlentities($result->ProductCode);?></td>
-                                             <td class="center"><?php echo htmlentities($result->ProductName);?></td>
-                                             <td class="center"><?php echo htmlentities($result->Total);?></td>
-                                             <td class="center"><?php echo htmlentities($result->Price);?></td>
-                                             <td class="center"><img src="uploads/img/<?php echo htmlentities($result->Image1);?>" width="100" height="100" style="border-radius:10px;"></td>
-                                             <td class="center"><?php echo htmlentities($result->Category);?></td>
-                                             <td class="center"><?php echo htmlentities($result->SubCategory);?></td>
-                                             <td class="center"><?php echo htmlentities($result->SizeName);?></td>
-                                             <td class="center"><?php echo htmlentities($result->Ounce);?> oz.</td>
-                                             <td class="center"><?php echo htmlentities($result->TypeName);?></td>
-                                             <td class="center">
-                                             <a href="edit-beverage.php?mid=<?php echo htmlentities($result->mid);?>" class="btn btn-success" style="border-radius:15px;background-color: #00A862;"><i class="fa fa-edit"></i> Edit</a>
-                                            </td>
+                                             <td class="center"><?php echo htmlentities($result->OrderId);?></td>
+                                             <td class="center"><?php echo htmlentities($result->ProductTotalPrice);?></td>
+                                             <td class="center"><?php echo htmlentities($result->Quantity);?></td>
+                                             <td class="center"><?php echo htmlentities($result->CustomerName);?></td>
+                                             <td class="center"><?php echo htmlentities($result->CustomerTel);?></td>
+                                             <td class="center"><a style="color:black;" href="view-user.php?mid=<?php echo htmlentities($result->mid);?>"><?php echo htmlentities($result->CustomerUname);?></a></td>
                                         </tr>
  <?php $cnt=$cnt+1;}} ?>                                      
                                     </tbody>

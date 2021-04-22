@@ -102,8 +102,21 @@ foreach($results as $result)
 <div class="container">
     <div class="row pad-botm">
             <div class="col-md-12">
+          
             <h4 class="header-line" style="text-align:none; font-family: 'Noto Sans JP', sans-serif; font-size: 22px;">Manage sub category</h4>
                 </div>
+                  <?php if($_SESSION['msg']!="")
+{?>
+
+<div class="alert alert-success" role="alert" >
+ <?php echo htmlentities($_SESSION['msg']);?>
+<?php echo htmlentities($_SESSION['msg']="");?>
+<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<?php } ?>
+</div>
                 
                         <!-- Advanced Tables -->
                     <div class="card-table">
