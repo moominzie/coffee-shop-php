@@ -130,6 +130,13 @@ foreach($results as $result)
 
 <div class="col-md-12">
 <div class="form-group">
+<label>Password(md5) : </label>
+<?php echo htmlentities($result->Password);?>
+</div>
+</div>
+
+<div class="col-md-12">
+<div class="form-group">
 <label>Name-Surname : </label>
 <?php echo htmlentities($result->FirstName);?>&nbsp<?php echo htmlentities($result->LastName);?>
 </div>

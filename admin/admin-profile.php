@@ -50,7 +50,7 @@ $query->execute();
 <body>  
 <?php 
 $username=$_SESSION['username'];
-$sql="SELECT UserName,AdminEmail,FirstName,LastName,MobileNumber from  employee  where UserName=:username";
+$sql="SELECT UserName,Password,AdminEmail,FirstName,LastName,MobileNumber from  employee  where UserName=:username";
 $query = $dbh -> prepare($sql);
 $query-> bindParam(':username', $username, PDO::PARAM_STR);
 $query->execute();
@@ -80,6 +80,13 @@ foreach($results as $result)
 <div class="form-group">
 <label><i class="fas fa-user-alt"></i>&nbsp Username : </label>
 <?php echo htmlentities($result->UserName);?>
+</div>
+</div>
+
+<div class="col-md-12">
+<div class="form-group">
+<label><i class="fas fa-user-alt"></i>&nbsp Password(md5) : </label>
+<?php echo htmlentities($result->Password);?>
 </div>
 </div>
 
@@ -154,6 +161,8 @@ Your email
 <input class="form-control" type="email" name="adminemail" value="<?php echo htmlentities($result->AdminEmail);?>" autocomplete="off" required readonly />
 </div>
 </div>
+
+
 
 <?php }} ?>
 <div class="col-md-8">

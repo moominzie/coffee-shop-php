@@ -37,6 +37,12 @@ include('includes/connection.php');
         border-bottom:1px solid #eeeeee;
         font-family: 'Noto Sans JP', sans-serif; 
     }
+    .header-shop {
+        font-weight:900;
+        text-transform:none;
+        font-family: 'Noto Sans JP', sans-serif; 
+    }
+
     .header-right {
         text-align: right;
         padding-bottom:25px;
@@ -58,8 +64,8 @@ include('includes/connection.php');
         margin-top: -30px;
     }.header {
         padding: 60px 70px;
-        text-align: center;
-        background-image: url("assets/img/coffee.jpg") ;
+        text-align: right;
+        background-image: url("assets/img/coffee.jpg");
         background-size: 1400px 550px;
         color: white;
         font-size: 30px;
@@ -87,11 +93,11 @@ if($query->rowCount() > 0)
 foreach($results as $result)
 {               ?>   
 <div class="header">
-        <h1 style="font-family: 'Orelega One', cursive; font-size: 64px;text-shadow: 2px 2px black;"><?php echo htmlentities($result->ShopName);?></h1>
+        <h1 style="font-family: 'Bebas Neue', cursive;letter-spacing:2px; font-size: 64px;text-shadow: 2px 2px black;"><?php echo htmlentities($result->ShopName);?></h1>
       </div>
  
       <nav class="navbar navbar-expand-lg navbar-light bg-light" style="box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);">
-  <a class="navbar-brand" href="#"></a><img src="admin/uploads/logo/<?php echo htmlentities($result->Logo);?>" width="60" height="60" >
+  <a class="nav-link" href="index.php"><img src="admin/uploads/logo/<?php echo htmlentities($result->Logo);?>" width="60" height="60" ></a>
   <?php }} ?>
   
   <?php if($_SESSION['login'])
@@ -113,9 +119,9 @@ foreach($results as $result)
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
           <a class="dropdown-item" href="beverage.php">Beverage</a>
-          <a class="dropdown-item" href="fresh-bread.php">Fresh Bread</a>
-          <a class="dropdown-item" href="toast.php">Toast</a>
-          <a class="dropdown-item" href="food.php">Food</a>
+          <a class="dropdown-item" href="bakery.php">Bakery</a>
+          <a class="dropdown-item" href="dessert.php">Dessert and Ice cream</a>
+          <a class="dropdown-item" href="cake.php">Cake</a>
         </div>
       </li>
     </ul>

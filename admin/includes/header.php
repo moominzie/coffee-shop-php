@@ -81,10 +81,10 @@
           Manage product
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-          <a class="dropdown-item" href="manage-food.php">Manage food</a>
           <a class="dropdown-item" href="manage-beverage.php">Manage beverage</a>
-          <a class="dropdown-item" href="manage-freshbread.php">Manage fresh bread</a>
-          <a class="dropdown-item" href="manage-toast.php">Manage toast</a>
+          <a class="dropdown-item" href="manage-cake.php">Manage cake</a>
+          <a class="dropdown-item" href="manage-bakery.php">Manage bakery</a>
+          <a class="dropdown-item" href="manage-dessert.php">Manage dessert and ice cream</a>
           <a class="dropdown-item" href="manage-subcategory.php"> Manage sub-category</a>
           <a class="dropdown-item" href="manage-size.php">Manage glass size</a>
         </div>

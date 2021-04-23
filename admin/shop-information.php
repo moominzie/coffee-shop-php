@@ -152,7 +152,8 @@ Your shop mobile number
 <div class="form-group">
         Picture : &nbsp;<label for="" style="color: red;">* Please use image scale 100x100 px.  
         <input class="form-control" type="file" name="img1" autocomplete="off" required />
-        </div>    </div>
+        </div>    
+    </div>
 
 <?php }} ?>
 

@@ -23,7 +23,7 @@ $query->bindParam(':price',$price,PDO::PARAM_STR);
 $query->bindParam(':productcode',$productcode,PDO::PARAM_STR);
 $query->execute();
 $_SESSION['msg']="Update $menuname menu successfully";
-header('location:manage-toast.php');
+header('location:manage-dessert.php');
 }
 
 

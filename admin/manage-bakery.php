@@ -76,7 +76,7 @@ foreach($results as $result)
 <div class="container">
     <div class="row pad-botm">
             <div class="col-md-12">
-            <h4 class="header-line" style="text-align:none; font-family: 'Noto Sans JP', sans-serif; font-size: 22px;">Manage freash bread &nbsp<i class="fas fa-bread-slice"></i></h4>
+            <h4 class="header-line" style="text-align:none; font-family: 'Noto Sans JP', sans-serif; font-size: 22px;">Manage bakery &nbsp<i class="fas fa-bread-slice"></i></h4>
                 </div>
                 <?php if($_SESSION['msg']!="")
 {?>
@@ -127,7 +127,7 @@ foreach($results as $result)
                                              <td class="center"><img src="uploads/img/<?php echo htmlentities($result->Image1);?>" width="100" height="100" style="border-radius:10px;"></td>
                                              <td class="center"><?php echo htmlentities($result->Category);?></td>
                                              <td class="center"><?php echo htmlentities($result->SubCategory);?></td>
-                                             <td class="center"><a href="edit-freshbread.php?mid=<?php echo htmlentities($result->mid);?>" class="btn btn-success" style="border-radius:15px;background-color: #00A862;"><i class="fa fa-edit"></i> Edit</a>
+                                             <td class="center"><a href="edit-bakery.php?mid=<?php echo htmlentities($result->mid);?>" class="btn btn-success" style="border-radius:15px;background-color: #00A862;"><i class="fa fa-edit"></i> Edit</a>
                                         </tr>
  <?php $cnt=$cnt+1;}} ?>                                      
                                     </tbody>

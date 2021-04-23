@@ -1,10 +1,3 @@
-<?php 
-session_start();
-include('includes/connection.php');
-error_reporting(0);
-  
-
-?>
 <body>
 <!-- Site footer -->
   <footer class="site-footer">
@@ -38,9 +31,9 @@ foreach($results as $result)
             <h6>Categories</h6>
             <ul class="footer-links">
               <li><a href="beverage.php">Beverage</a></li>
-              <li><a href="fresh-bread.php">Fresh bread</a></li>
-              <li><a href="toast.php">Toast</a></li>
-              <li><a href="food.php">Food</a></li>
+              <li><a href="bakery.php">Bakery</a></li>
+              <li><a href="dessert.php">Dessert and Ice cream</a></li>
+              <li><a href="cake.php">Cake</a></li>
               
             </ul>
           </div>

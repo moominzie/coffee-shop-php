@@ -98,7 +98,7 @@ foreach($results as $result)
                                     <thead>
                                         <tr>
                                             <th style="display:none;">ID</th>
-                                            <th>Order</th>
+                                            <th>Order number</th>
                                             <th>Income</th>
                                             <th>Quantity</th>
                                             <th>Customer</th>

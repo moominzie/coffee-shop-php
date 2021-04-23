@@ -24,7 +24,7 @@ $query->bindParam(':price',$price,PDO::PARAM_STR);
 $query->bindParam(':productcode',$productcode,PDO::PARAM_STR);
 $query->execute();
 $_SESSION['msg']="Update $menuname menu successfully";
-header('location:manage-food.php');
+header('location:manage-bakery.php');
 }
 
 
@@ -55,7 +55,7 @@ foreach($results as $result)
 <title><?php echo htmlentities($result->ShopName);?></title>
 
       <?php }} ?>
-
+   
 <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
@@ -63,7 +63,7 @@ foreach($results as $result)
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-   
+    
         <!-- BOOTSTRAP CORE STYLE  -->
         <link href="assets/css/bootstrap.css" rel="stylesheet" />
     <!-- FONT AWESOME STYLE  -->
@@ -88,8 +88,8 @@ foreach($results as $result)
 <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@900&display=swap" rel="stylesheet">
 
-</head>
 
+</head>
 <script>
 function checkProductcode() {
     $("#loaderIcon").show();
@@ -104,7 +104,7 @@ function checkProductcode() {
       error:function (){}
     });
 }
-</script>  
+</script>   
 
 <style>
     .errorWrap {
@@ -128,10 +128,12 @@ function checkProductcode() {
     <!------MENU SECTION START-->
 <?php include('includes/header.php');?>
 <!-- MENU SECTION END-->
+
 <?php 
 
 $mid=intval($_GET['mid']);
-$sql = "SELECT menu.MenuName,menu.Description,menu.Price,menu.Image1,category.Category,subcategory.SubCategory,ProductCode from menu join category on menu.CategoryId=category.id join subcategory on menu.SubCategoryId=subcategory.id where menu.id=:mid";
+$sql = "SELECT menu.MenuName,menu.Description,menu.Price,menu.Image1,category.Category,subcategory.SubCategory,menu.id as mid,ProductCode from menu join category on menu.CategoryId=category.id join subcategory on menu.SubCategoryId=subcategory.id where menu.id=:mid";
+
 $query = $dbh -> prepare($sql);
 $query-> bindParam(':mid', $mid, PDO::PARAM_STR);
 $query->execute();
@@ -140,13 +142,14 @@ $cnt=1;
 if($query->rowCount() > 0)
 {
 foreach($results as $result)
-{               ?>  
+{               ?> 
+
 <form name="update" method="post" enctype="multipart/form-data">
 <div class="content-wrapper">
    <div class="container">
     <div class="row pad-botm">
             <div class="col-md-12">
-            <h4 class="header-line" style="text-align:none; font-family: 'Noto Sans JP', sans-serif; font-size: 22px;"><?php echo htmlentities($result->MenuName);?> &nbsp<i class="fas fa-utensils"></i></h4>
+            <h4 class="header-line" style="text-align:none; font-family: 'Noto Sans JP', sans-serif; font-size: 22px;"><?php echo htmlentities($result->MenuName);?> &nbsp<i class="fas fa-bread-slice"></i></h4>
                             </div>
         </div>
 <div class="card-data">
@@ -223,7 +226,7 @@ foreach($results as $result)
 </div>
 
 <div class="col-md-12">                             
-<button type="submit" name="update" class="create-account" style="margin-bottom:20px"> Update food </button>
+<button type="submit" name="update" class="create-account" style="margin-bottom:20px"> Update fresh bread </button>
 </div>
                                     </form>
                             </div>

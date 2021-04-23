@@ -97,7 +97,7 @@ foreach($results as $result)
         .card button:hover {
         opacity: 0.7;
         }
-                * {
+        * {
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
@@ -146,22 +146,23 @@ foreach($results as $result)
     background-color: #555;
   }
 
+
   
   </style>
   
 </head>
 
 <body>
-<button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
 
+<button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
     <!------MENU SECTION START-->
     <?php include('includes/header.php');?>
 <!-- MENU SECTION END-->
 
 <div class="container-fluid">
-<h3 class="header-line" style="margin-top:30px; font-family: 'Fjalla One', sans-serif;text-transform:none;">Fresh Bread</h3>
+<h3 class="header-line" style="margin-top:30px; font-family: 'Fjalla One', sans-serif;text-transform:none;">Dessert and Ice cream</h3>
 <?php 
-$sql = "SELECT menu.MenuName,menu.Description,menu.Price,menu.Image1,category.Category,subcategory.SubCategory,menu.id as mid from menu join category on menu.CategoryId=category.id join subcategory on menu.SubCategoryId=subcategory.id where menu.CategoryId in (3) group by menu.id";
+$sql = "SELECT menu.MenuName,menu.Description,menu.Price,menu.Image1,category.Category,subcategory.SubCategory,menu.id as mid from menu join category on menu.CategoryId=category.id join subcategory on menu.SubCategoryId=subcategory.id where menu.CategoryId in (4) group by menu.id";
 $query = $dbh -> prepare($sql);
 $query->execute();
 $results=$query->fetchAll(PDO::FETCH_OBJ);
@@ -170,12 +171,13 @@ if($query->rowCount() > 0)
 {
 foreach($results as $result)
 {               ?>    
-<div class="col-6 col-md-4">
+<div class="col-6 col-md-3">
+
 <div class="image-box">
-<a href="product-fresh-bread.php?mid=<?php echo htmlentities($result->mid);?>" style="color: black" >
+<a href="product-dessert.php?mid=<?php echo htmlentities($result->mid);?>" style="color: black" >
   <img src="admin/uploads/img/<?php echo htmlentities($result->Image1);?>" width="250" height="250" style=""></a>
   </div>
-  <a href="product-fresh-bread.php?mid=<?php echo htmlentities($result->mid);?>" style="color: black" ><h4 style="text-align:center;font-family: 'Fjalla One', sans-serif;"><?php echo htmlentities($result->MenuName);?></h4></a>
+  <a href="product-dessert.php?mid=<?php echo htmlentities($result->mid);?>" style="color: black" ><h4 style="text-align:center;font-family: 'Fjalla One', sans-serif;"><?php echo htmlentities($result->MenuName);?></h4></a>
   <p style="text-align:center;"><?php echo htmlentities($result->Description);?></p>
   <p class="price" style="text-align:center;"><?php echo htmlentities($result->Price);?>฿ </p>
 
@@ -184,14 +186,13 @@ foreach($results as $result)
 <?php }} ?>   
 </div>
 
-
         <!------FOOTER SECTION START-->
         <?php include('includes/footer.php');?>
 
 
+
 </body>
 </html>
-
 <script>
 //Get the button
 var mybutton = document.getElementById("myBtn");
@@ -213,3 +214,6 @@ function topFunction() {
   document.documentElement.scrollTop = 0;
 }
 </script>
+
+
+

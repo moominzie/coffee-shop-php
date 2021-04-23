@@ -55,6 +55,9 @@ foreach($results as $result)
     <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=Asap:wght@400&display=swap" rel="stylesheet">
 
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+
   <style>
   /* Make the image fully responsive */
   footer {
@@ -78,6 +81,8 @@ foreach($results as $result)
         position: relative;
         margin: auto;
         overflow: hidden;
+        border-radius: 10px;
+        box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
     }
     .image-box img {
         max-width: 100%;
@@ -117,13 +122,13 @@ foreach($results as $result)
       width: 300px;
       height: 275px;
       margin-top:20px;
-      margin-left: -35px;
+      margin-left: -25px;
     }
     .img5{
       width: 300px;
       height: 275px;
       margin-top:20px;
-      margin-left: -35px;
+      margin-left: -25px;
     }
     #myBtn {
     display: none;
@@ -177,6 +182,7 @@ foreach($results as $result)
 <body>
 <button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
 
+
     <!------MENU SECTION START-->
     <?php include('includes/header.php');?>
 <!-- MENU SECTION END-->
@@ -185,15 +191,17 @@ foreach($results as $result)
     <?php include('includes/carousel.php');?>
 <!-- MENU SECTION END-->
 
+
+
 <!--REGISTER PANEL START-->     
 
   <div class="container-fluid">
-  <h3>Today’s good mood is sponsored by coffee</h3>
+  <h3 class="header-shop">Today’s good mood is sponsored by coffee</h3>
     <div class="row">
 
       <div class="col-md-6">
       <div class="image-box img1">
-      <a href="beverage.php" > 
+      <a>
       <?php
     $sql = "SELECT Images from thumbnail where PositionId = 1";
     $query = $dbh -> prepare($sql);
@@ -212,7 +220,7 @@ foreach($results as $result)
 
       <div class="col-md-3">
       <div class="image-box img2">
-      <a href="fresh-bread.php" > 
+      <a href="cake.php" > 
       <?php
      $sql = "SELECT Images from thumbnail where PositionId = 2";
     $query = $dbh -> prepare($sql);
@@ -247,7 +255,7 @@ foreach($results as $result)
 
       <div class="col-md-3">
       <div class="image-box img4">
-      <a href="food.php" > 
+      <a href="bakery.php" > 
       <?php
      $sql = "SELECT Images from thumbnail where PositionId = 4";
     $query = $dbh -> prepare($sql);
@@ -263,7 +271,7 @@ foreach($results as $result)
       </div>
 
       <div class="image-box img5">
-      <a href="toast.php" > 
+      <a href="dessert.php" > 
       <?php
      $sql = "SELECT Images from thumbnail where PositionId = 5";
     $query = $dbh -> prepare($sql);
