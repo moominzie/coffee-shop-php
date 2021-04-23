@@ -49,7 +49,6 @@ $msg="Your Shop information has been update";
 
 <body>
 
-<form name="update" method="post" enctype="multipart/form-data">
 <?php
 $sql="SELECT ShopName,Address,MobileNumber,ShopEmail,Logo from  shop  ";
 $query = $dbh -> prepare($sql);
@@ -99,20 +98,70 @@ foreach($results as $result)
                   </button> </div><?php }?>
 </div>
 
-<div class="col-md-12">                    
-<button class="create-account" data-toggle="collapse" href="#editshop" role="button" aria-expanded="false" aria-controls="editshop">
-    Edit shop
-    </button>&nbsp&nbsp&nbsp<a href="add-admin.php" style="color: black;">New staff here</a>
+<div class="col-md-12">            
+<a href="#demo" data-toggle="collapse"><button class="create-account" >
+    Edit shop 
+  </button></a>&nbsp&nbsp&nbsp<a href="add-admin.php" style="color: black;">New staff here</a>
 </div>
 
-  <div class="collapse" id="editshop">
-  <div style="margin-top: 50px;">
-      <!------MENU SECTION START-->
-	  <?php include('edit-shop.php');?>
-  </div>
-</div>
 
+<div id="demo" class="collapse">
+<form name="update" method="post" enctype="multipart/form-data">
+<?php
+$sql="SELECT ShopName,Address,MobileNumber,ShopEmail,Logo from  shop  ";
+$query = $dbh -> prepare($sql);
+$query-> bindParam(':id', $id, PDO::PARAM_STR);
+$query->execute();
+$results=$query->fetchAll(PDO::FETCH_OBJ);
+$cnt=1;
+if($query->rowCount() > 0)
+{
+foreach($results as $result)
+{               ?>  
+
+<div class="col-md-12">
+<div class="form-group">
+Your shop name 
+<input class="form-control" type="text" name="shopname" id="" value="<?php echo htmlentities($result->ShopName);?>"  autocomplete="off" required />
+</div></div>
+
+<div class="col-md-12">
+<div class="form-group">
+Your shop address 
+<textarea class="form-control" type="text" name="address" id="" value="<?php echo htmlentities($result->Address);?>"  autocomplete="off" required><?php echo htmlentities($result->Address);?></textarea>
+</div></div>
+
+<div class="col-md-12">
+<div class="form-group">
+Your shop mobile number 
+<input class="form-control" type="text" name="mobileno" value="<?php echo htmlentities($result->MobileNumber);?>" autocomplete="off" required />
+</div></div>
+
+<div class="col-md-12">
+<div class="form-group">
+ Your shop email 
+<input class="form-control" type="text" name="shopemail" value="<?php echo htmlentities($result->ShopEmail);?>" autocomplete="off" required />
+</div></div>
+
+<div class="col-md-12">
+<div class="form-group">
+<img src="uploads/logo/<?php echo htmlentities($result->Logo);?>" width="100" height="100" >
+    </div></div>
+
+    <div class="col-md-12">
+<div class="form-group">
+        Picture : &nbsp;<label for="" style="color: red;">* Please use image scale 100x100 px.  
+        <input class="form-control" type="file" name="img1" autocomplete="off" required />
+        </div>    </div>
+
+<?php }} ?>
+
+<div class="col-md-12">
+    <button type="submit" name="update" class="create-account" id="submit" > Update profile </button>
+</div>
                                     </form>
+  </div>
+
                             </div>
                         </div>
                             </div>
