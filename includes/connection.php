@@ -1,9 +1,9 @@
 <?php 
 // DB credentials.
-define('DB_HOST','us-cdbr-east-03.cleardb.com');
-define('DB_USER','b7dbe0e0571407');
-define('DB_PASS','acbc5361');
-define('DB_NAME','heroku_d9b71055f5566a8');
+define('DB_HOST','localhost');
+define('DB_USER','root');
+define('DB_PASS','');
+define('DB_NAME','coffee_shop');
 // Establish database connection.'/;::;::;;;
 try
 {
