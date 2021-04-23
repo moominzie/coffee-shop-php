@@ -82,6 +82,7 @@ foreach($results as $result)
 
 </head>
 
+<body>
 
 <div class="modal fade" id="addcart">
   <div class="modal-dialog" role="document">
@@ -154,3 +155,4 @@ foreach($results as $result)
   </div>
 </div>
 <?php } ?>
+</body>

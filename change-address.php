@@ -87,6 +87,8 @@ foreach($results as $result)
 
 
 <body>
+
+
     <!------MENU SECTION START-->
 <?php include('includes/header.php');?>
 <!-- MENU SECTION END-->

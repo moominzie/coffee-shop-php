@@ -1,3 +1,5 @@
+
+
 <?php 
 session_start();
 include('includes/connection.php');
@@ -150,6 +152,7 @@ foreach($results as $result)
 </head>
 
 <body>
+
 <button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
 
     <!------MENU SECTION START-->
