@@ -1,3 +1,10 @@
+<?php 
+session_start();
+include('includes/connection.php');
+error_reporting(0);
+  
+
+?>
 <body>
 <!-- Site footer -->
   <footer class="site-footer">

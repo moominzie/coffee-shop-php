@@ -159,7 +159,7 @@ Your shop mobile number
 <div class="col-md-12">
     <button type="submit" name="update" class="create-account" id="submit" > Update profile </button>
 </div>
-                                    </form>
+</form>
   </div>
 
                             </div>
