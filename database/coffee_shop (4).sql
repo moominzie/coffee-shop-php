@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Apr 23, 2021 at 11:13 AM
+-- Generation Time: Apr 23, 2021 at 05:27 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.4
 
@@ -45,25 +45,6 @@ INSERT INTO `address` (`id`, `Address`, `ProvinceId`, `AmphureId`, `DistrictId`,
 (3, '433/7 หมู่ 2', 19, 233, 301901, '30000', 'jennie'),
 (5, '433/7 moo 4', 1, 40, 104002, '11111', 'taeyeon'),
 (6, '3435/22', 28, 415, 402303, '11111', 'stevekung');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `adstype`
---
-
-CREATE TABLE `adstype` (
-  `id` int(11) UNSIGNED NOT NULL,
-  `TypeAddress` varchar(150) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `adstype`
---
-
-INSERT INTO `adstype` (`id`, `TypeAddress`) VALUES
-(1, 'Current Address'),
-(2, 'Delivery Address');
 
 -- --------------------------------------------------------
 
@@ -1155,10 +1136,10 @@ CREATE TABLE `category` (
 --
 
 INSERT INTO `category` (`id`, `Category`) VALUES
-(1, 'Food'),
+(1, 'Cake'),
 (2, 'Beverage'),
-(3, 'Fresh Bread'),
-(4, 'Toast');
+(3, 'Bakery'),
+(4, 'Dessert and Ice Cream');
 
 -- --------------------------------------------------------
 
@@ -1181,7 +1162,8 @@ CREATE TABLE `cforder` (
 --
 
 INSERT INTO `cforder` (`id`, `OrderId`, `ProductTotalPrice`, `Quantity`, `CustomerName`, `CustomerTel`, `CustomerUname`) VALUES
-(1, '2', 290, 2, 'Taeyeon Kim', '0876768599', 'taeyeon');
+(1, '2', 290, 2, 'Taeyeon Kim', '0876768599', 'taeyeon'),
+(2, '3', 435, 3, 'Taeyeon Kim', '0876768599', 'taeyeon');
 
 -- --------------------------------------------------------
 
@@ -10099,7 +10081,7 @@ CREATE TABLE `employee` (
 --
 
 INSERT INTO `employee` (`id`, `FirstName`, `LastName`, `AdminEmail`, `MobileNumber`, `UserName`, `Password`, `Status`, `updationDate`) VALUES
-(3, 'Jennieuniie', 'Kim', 'jenniekimkim@gmail.com', '0876572769', 'admin333', '827ccb0eea8a706c4c34a16891f84e7b', 1, '2021-04-09 19:22:04'),
+(3, 'Jennie', 'Kim', 'jenniekimkim@gmail.com', '0876572769', 'admin333', '827ccb0eea8a706c4c34a16891f84e7b', 1, '2021-04-09 19:22:04'),
 (4, 'Kim', 'Jennie', 'jenniekim1@gmail.com', '0876572769', 'admin444', '81dc9bdb52d04dc20036dbd8313ed055', 1, '2021-04-10 13:28:38'),
 (5, 'Steve', 'Roger', 'rogerkung@gmail.com', '0765432465', 'admin555', '81dc9bdb52d04dc20036dbd8313ed055', 1, '2021-04-10 13:29:20'),
 (6, 'Steve', 'Roger', 'rogerkung1@gmail.com', '0765432465', 'admin666', '81dc9bdb52d04dc20036dbd8313ed055', 1, '2021-04-10 13:39:50'),
@@ -10231,12 +10213,12 @@ CREATE TABLE `menu` (
 --
 
 INSERT INTO `menu` (`id`, `MenuName`, `Description`, `Price`, `Image1`, `CategoryId`, `SubCategoryId`, `SizeId`, `TypeId`, `ProductCode`) VALUES
-(1, 'Spaghetti Bolognese<3', 'Bolognese sauce is a meat-based sauce in Italian cuisine, typical of the city of Bologna. It is customarily used to dress tagliatelle al ragù and to prepare lasagne alla bolognese. Yahoo!', 125, 'Spaghetti.jpg', 1, 6, 0, 0, 'GH456789'),
+(1, 'Cinnamon Coffee Cake', 'Our ever-popular coffee cake—with its swirled cinnamon-sugar blend and finished with a crunchy streusel topping—pairs well with your favorite beverage and a few quiet moments. We\'re big fans!', 60, 'cinnamon.png', 1, 6, 0, 0, 'GH456780'),
 (2, 'Chocolate Frappuccino', 'Nutrition information is calculated based on our standard recipes. Only changing drink size will update this information. Other customizations will not. Yahoo!', 115, 'Choc-Frappe.png', 2, 2, 2, 1, 'BDF82630'),
 (3, 'Chocolate Frappuccino', 'Nutrition information is calculated based on our standard recipes. Only changing drink size will update this information. Other customizations will not.', 145, 'Choc-Frappe.png', 2, 2, 3, 1, 'BH678900'),
 (4, 'Honey Toast !', 'One of the latest dessert crazes in Taipei right now would be for an item called honey toast.  It comes in different flavors and from my understanding, is made popular by Dazzling Cafe.  ', 120, 'honey-toast.jpg', 4, 7, 0, 0, 'GF456788'),
-(5, 'GRANDMA’S BREAD PUDDING', 'This bread pudding recipe is easy to make with just a few simple ingredients. This is one of our family’s favorite recipes and is perfect served with a big scoop of ice cream!', 100, 'Bread-Pudding-10s-new.jpg', 4, 7, 0, 0, 'GF456781'),
-(6, 'Bread Pudding II', 'My family LOVES bread pudding, and this recipe is one that I have fine tuned to their taste. I have to double this recipe, and bake it in a 9x13 inch pan for my family! It\'s great for breakfast or dessert and is delicious with milk poured on top! Enjoy!', 95, '20HIT_BREADPUDD-articleLarge.jpg', 3, 7, 0, 0, 'DF456788'),
+(5, 'GRANDMA’S BREAD PUDDING', 'This bread pudding recipe is easy to make with just a few simple ingredients. This is one of our family’s favorite recipes and is perfect served with a big scoop of ice cream!', 125, 'Bread-Pudding-10s-new.jpg', 4, 7, 0, 0, 'GF456781'),
+(6, 'Bread Pudding II', 'My family LOVES bread pudding, and this recipe is one that I have fine tuned to their taste. I have to double this recipe, and bake it in a 9x13 inch pan for my family! It\'s great for breakfast or dessert and is delicious with milk poured on top! Enjoy!', 95, '20HIT_BREADPUDD-articleLarge.jpg', 3, 8, 0, 0, 'DF456788'),
 (7, 'Mocha Frappuccino', 'Starbucks usually adds some kind of milk to their Frappuccinos and in my recipe, I chose to use almond butter and water instead. Combining these two ingredients is like adding homemade almond milk to your coffee!', 125, 'Healthy-Paleo-Starbucks-Mocha-Frappuccino-Recipe-dairyfree-glutenfree-sugarfree2.jpg', 2, 1, 2, 1, 'BH678903'),
 (8, 'Dalgona Coffee', 'Dalgona Coffee Recipe or Whipped Coffee is a frothy 3 ingredient coffee prepared using instant coffee powder.', 90, 'Dalgona-Coffee-Recipe-V1.jpg', 2, 1, 3, 2, 'BH678905'),
 (9, 'Dalgona Coffee', 'Dalgona Coffee Recipe or Whipped Coffee is a frothy 3 ingredient coffee prepared using instant coffee powder.', 90, 'Dalgona-Coffee-Recipe-V1.jpg', 2, 1, 3, 2, 'BH678906'),
@@ -10247,7 +10229,9 @@ INSERT INTO `menu` (`id`, `MenuName`, `Description`, `Price`, `Image1`, `Categor
 (14, 'ICED MATCHA LATTE', 'Make this easy Iced Matcha Latte just like your favorite coffee shop. Matcha is mixed together with cold milk, served over ice.', 45, 'IcedMatchaLatte-7.jpg', 2, 2, 2, 2, 'BH678953'),
 (15, 'Choco-choco Nutty Frappuccino', 'Roast and rich chocolatey hazelnut sauce, topped with mocha whipped cream and a generous heap of almond crunch for a satisfying finish.', 145, 'Chocochoco-Nutty-Frappuccino.png', 2, 2, 3, 1, 'ADF82637'),
 (16, 'Choco-choco Nutty Frappuccino', 'Roast and rich chocolatey hazelnut sauce, topped with mocha whipped cream and a generous heap of almond crunch for a satisfying finish.', 145, 'Chocochoco-Nutty-Frappuccino.png', 2, 2, 3, 1, 'ADF82637'),
-(17, 'Better No-Knead Bread', 'You can modify this recipe easily to bake loaves of any size. The important thing to note is the ratio of ingredients: 100 parts flour, 1.5 parts salt, 1 part instant yeast, and 70 parts water.', 50, '20200419-no-knead-bread-vicky-wasik2.jpg', 3, 7, 0, 0, 'DC34567899');
+(17, 'Better No-Knead Bread', 'You can modify this recipe easily to bake loaves of any size. The important thing to note is the ratio of ingredients: 100 parts flour, 1.5 parts salt, 1 part instant yeast, and 70 parts water.', 50, '20200419-no-knead-bread-vicky-wasik2.jpg', 3, 8, 0, 0, 'DC34567899'),
+(18, 'Bread Pudding', 'My family LOVES bread pudding, and this recipe is one that I have fine tuned to their taste. I have to double this recipe, and bake it in a 9x13 inch pan for my family! It\'s great for breakfast or dessert and is delicious with milk poured on top! Enjoy!', 108, '20HIT_BREADPUDD-articleLarge.jpg', 3, 9, 0, 0, 'BK57667677'),
+(19, 'Espresso Choc Chip Brownie', 'Espresso brownie serve with ice cream.', 175, 'Screen Shot 2564-04-23 at 22.02.58.png', 4, 7, 0, 0, 'HT99998778');
 
 -- --------------------------------------------------------
 
@@ -10366,7 +10350,7 @@ CREATE TABLE `shop` (
 --
 
 INSERT INTO `shop` (`id`, `ShopName`, `Address`, `MobileNumber`, `ShopEmail`, `Logo`) VALUES
-(1, 'Coffee Shop', '112 Suranaree University of Technology, Suranaree Sub-district, Muang Nakhon Ratchasima District, Nakhon Ratchasima, \r\n30000 Thailand', '0299000001', 'coffeeshop@gmail.com', 'starbucks_PNG11.png');
+(1, 'Coffee Shop and Coffee Store', '112 Suranaree University of Technology, Suranaree Sub-district, Muang Nakhon Ratchasima District, Nakhon Ratchasima, \r\n30000 Thailand', '0299000001', 'coffeeshop@gmail.com', 'starbucks_PNG11.png');
 
 -- --------------------------------------------------------
 
@@ -10423,10 +10407,9 @@ INSERT INTO `subcategory` (`id`, `SubCategory`) VALUES
 (3, 'Appetizer'),
 (4, 'Snack'),
 (5, 'Soda'),
-(6, 'Spaghetti!'),
-(7, 'Dessert'),
-(9, 'Pizza'),
-(10, 'Cat');
+(6, 'Cake'),
+(7, 'Honey toast'),
+(9, 'Bread');
 
 -- --------------------------------------------------------
 
@@ -10447,10 +10430,10 @@ CREATE TABLE `thumbnail` (
 
 INSERT INTO `thumbnail` (`id`, `Name`, `Images`, `PositionId`) VALUES
 (1, 'Beverage-Thumbnail', 'Thumbnail-Spring-LTO-1.jpg', 1),
-(2, 'Dessert-Thumbnail', 'Food_Spring21_Web1080x1080.jpg', 2),
-(3, 'Caramel-Thumbnail', 'image.jpeg', 3),
-(4, 'Pasta-Thumbnail', 'beef-pasta-bake-2-1.jpg', 4),
-(5, 'Toast-Thumbnail', 'Bread-Pudding-10s-new.jpg', 5);
+(2, 'Cake-Thumbnail', 'Food_Summer2021_Web_thumnail.png', 2),
+(3, 'Baverage-Thumbnail', 'Chocochoco-Nutty-Frappuccino.png', 3),
+(4, 'Bakery-Thumbnail', 'Food_Spring21_Web1080x1080.jpg', 4),
+(5, 'Dessert-Thumbnail', 'Screen Shot 2564-04-23 at 22.02.58.png', 5);
 
 -- --------------------------------------------------------
 
@@ -10502,12 +10485,6 @@ INSERT INTO `type` (`id`, `TypeName`) VALUES
 -- Indexes for table `address`
 --
 ALTER TABLE `address`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `adstype`
---
-ALTER TABLE `adstype`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -10655,12 +10632,6 @@ ALTER TABLE `address`
   MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
--- AUTO_INCREMENT for table `adstype`
---
-ALTER TABLE `adstype`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
---
 -- AUTO_INCREMENT for table `amphures`
 --
 ALTER TABLE `amphures`
@@ -10682,25 +10653,25 @@ ALTER TABLE `breadbanner`
 -- AUTO_INCREMENT for table `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `category`
 --
 ALTER TABLE `category`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `cforder`
 --
 ALTER TABLE `cforder`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `checkout`
 --
 ALTER TABLE `checkout`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `employee`
@@ -10736,7 +10707,7 @@ ALTER TABLE `member`
 -- AUTO_INCREMENT for table `menu`
 --
 ALTER TABLE `menu`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT for table `provinces`

@@ -175,7 +175,7 @@ if($query->rowCount() > 0)
 foreach($results as $result)
 {               ?>  
 
-<?php include('bread-cart.php');?>
+<?php include('bakery-cart.php');?>
 <a href="#addcart" data-toggle="modal" data-target="#addcart" style="color:white;">
 <p><button class="add-cart" style="margin-left:20px;" >Add to Cart <i class="fa fa-shopping-cart" aria-hidden="true"></i></button></p></a>
 

@@ -15,7 +15,7 @@ $amphure=$_POST['amphure'];
 $district=$_POST['district'];
 $province=$_POST['province'];
 $postalcode=$_POST['postalcode'];
-$sql="INSERT INTO  address (Address,Province,Amphure,District,PostalCode,Username) VALUES(:address,:province,:amphure,:district,:postalcode,:username)";
+$sql="INSERT INTO  address (Address,ProvinceId,AmphureId,DistrictId,PostalCode,Username) VALUES(:address,:province,:amphure,:district,:postalcode,:username)";
 $query = $dbh->prepare($sql);
 $query->bindParam(':username',$username,PDO::PARAM_STR);
 $query->bindParam(':address',$address,PDO::PARAM_STR);
