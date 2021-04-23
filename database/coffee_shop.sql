@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Apr 23, 2021 at 07:15 AM
+-- Generation Time: Apr 23, 2021 at 11:13 AM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.4
 
@@ -43,7 +43,7 @@ CREATE TABLE `address` (
 
 INSERT INTO `address` (`id`, `Address`, `ProvinceId`, `AmphureId`, `DistrictId`, `PostalCode`, `Username`) VALUES
 (3, '433/7 หมู่ 2', 19, 233, 301901, '30000', 'jennie'),
-(5, '433/7 moo 3', 19, 215, 300125, '56879', 'taeyeon'),
+(5, '433/7 moo 4', 1, 40, 104002, '11111', 'taeyeon'),
 (6, '3435/22', 28, 415, 402303, '11111', 'stevekung');
 
 -- --------------------------------------------------------
@@ -1125,6 +1125,23 @@ INSERT INTO `breadbanner` (`id`, `Images`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `cart`
+--
+
+CREATE TABLE `cart` (
+  `id` int(11) UNSIGNED NOT NULL,
+  `ProductCode` varchar(100) DEFAULT NULL,
+  `ProductName` varchar(100) DEFAULT NULL,
+  `ProductImage` varchar(100) DEFAULT NULL,
+  `ProductPrice` int(11) DEFAULT NULL,
+  `Quantity` int(11) DEFAULT NULL,
+  `TotalPrice` varchar(100) DEFAULT NULL,
+  `Username` varchar(100) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `category`
 --
 
@@ -1142,6 +1159,45 @@ INSERT INTO `category` (`id`, `Category`) VALUES
 (2, 'Beverage'),
 (3, 'Fresh Bread'),
 (4, 'Toast');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `cforder`
+--
+
+CREATE TABLE `cforder` (
+  `id` int(11) UNSIGNED NOT NULL,
+  `OrderId` varchar(100) DEFAULT NULL,
+  `ProductTotalPrice` int(11) DEFAULT NULL,
+  `Quantity` int(11) DEFAULT NULL,
+  `CustomerName` varchar(100) DEFAULT NULL,
+  `CustomerTel` varchar(100) DEFAULT NULL,
+  `CustomerUname` varchar(100) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `cforder`
+--
+
+INSERT INTO `cforder` (`id`, `OrderId`, `ProductTotalPrice`, `Quantity`, `CustomerName`, `CustomerTel`, `CustomerUname`) VALUES
+(1, '2', 290, 2, 'Taeyeon Kim', '0876768599', 'taeyeon');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `checkout`
+--
+
+CREATE TABLE `checkout` (
+  `id` int(11) UNSIGNED NOT NULL,
+  `CustomerName` varchar(100) DEFAULT NULL,
+  `CustomerLname` varchar(100) DEFAULT NULL,
+  `CustomerTel` varchar(10) DEFAULT NULL,
+  `Quantity` int(11) DEFAULT NULL,
+  `Total` int(11) DEFAULT NULL,
+  `Username` varchar(100) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -10473,9 +10529,27 @@ ALTER TABLE `breadbanner`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `cart`
+--
+ALTER TABLE `cart`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `category`
 --
 ALTER TABLE `category`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `cforder`
+--
+ALTER TABLE `cforder`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `checkout`
+--
+ALTER TABLE `checkout`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -10605,10 +10679,28 @@ ALTER TABLE `breadbanner`
   MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
+-- AUTO_INCREMENT for table `cart`
+--
+ALTER TABLE `cart`
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT for table `category`
 --
 ALTER TABLE `category`
   MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
+--
+-- AUTO_INCREMENT for table `cforder`
+--
+ALTER TABLE `cforder`
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `checkout`
+--
+ALTER TABLE `checkout`
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `employee`
