@@ -296,9 +296,8 @@ foreach($results as $result)
 
 <?php
 $username=$_SESSION['username'];  
-$sql="SELECT * FROM checkout WHERE Username=:username";
+$sql="SELECT * FROM checkout";
 $query = $dbh -> prepare($sql);
-$query-> bindParam(':username', $username, PDO::PARAM_STR);
 $query->execute();
 $results=$query->fetchAll(PDO::FETCH_OBJ);
 $cnt=1;
@@ -309,7 +308,7 @@ foreach($results as $result)
 
   <form name="update" method="post">     
 
-<input class="form-control" type="" name="orderid" value="<?php echo htmlentities($result->id);?>" required autocomplete="off"  />           
+<input class="form-control" type="hidden" name="orderid" value="<?php echo htmlentities($result->id);?>" required autocomplete="off"  />           
 <input class="form-control" type="hidden" name="quantity" value="<?php echo htmlentities($result->Quantity);?>" required autocomplete="off"  />         
 <input class="form-control" type="hidden" name="total" value="<?php echo htmlentities($result->Total);?>" required autocomplete="off"  />
 <input class="form-control" type="hidden" name="customername" value="<?php echo htmlentities($result->CustomerName);?> <?php echo htmlentities($result->CustomerLname);?>" required autocomplete="off"  />
@@ -317,7 +316,7 @@ foreach($results as $result)
 <input class="form-control" type="hidden" name="username" value="<?php echo htmlentities($result->Username);?>" required autocomplete="off"  />
 
 
-<button name="confirm" class="create-account" type="submit" onclick="emptyCart()">
+<button name="confirm" class="create-account" type="submit" onClick="emptyCart()">
     Confirm order
   </button>&nbsp&nbsp&nbsp<a href="change-address.php" style="color: black;">Change address</a>
 </div>
@@ -343,14 +342,3 @@ foreach($results as $result)
 </body>
 </html>
 
-
-<script>
-function emptyCart() {
-  <?php 
-    $username=$_SESSION['username'];  
-    $sql="DELETE FROM checkout WHERE Username=:username";
-    $query = $dbh->prepare($sql);
-    $query->bindParam(':username',$username,PDO::PARAM_STR);
-    $query->execute();?>
-}
-</script>

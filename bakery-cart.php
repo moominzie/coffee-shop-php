@@ -140,6 +140,7 @@ if($query->rowCount() > 0)
 {
 foreach($results as $result)
 {               ?>  
+<input class="form-control" type="hidden" name="username" value="<?php echo htmlentities($result->Username);?>" required autocomplete="off"  />
                     <button class="create-account" name="addcart">Add Cart &nbsp<i class="fas fa-cart-plus"></i></button>
                      <?php }} ?>
                      </div>

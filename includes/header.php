@@ -169,10 +169,10 @@ foreach($results as $result)
           Menu
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-          <a class="dropdown-item" href="beverage.php">Beverage</a>
-          <a class="dropdown-item" href="fresh-bread.php">Fresh Bread</a>
-          <a class="dropdown-item" href="toast.php">Toast</a>
-          <a class="dropdown-item" href="food.php">Food</a>
+        <a class="dropdown-item" href="beverage.php">Beverage</a>
+          <a class="dropdown-item" href="bakery.php">Bakery</a>
+          <a class="dropdown-item" href="dessert.php">Dessert and Ice cream</a>
+          <a class="dropdown-item" href="cake.php">Cake</a>
         </div>
       </li>
     </ul>

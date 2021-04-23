@@ -15,7 +15,7 @@ $customerlname=$_POST['customerlname'];
 $customertel=$_POST['customertel'];
 $quantity=$_POST['quantity'];
 $total=$_POST['total'];
-$sql="INSERT INTO  checkout (CustomerName,CustomerLname,CustomerTel,Quantity,Total,Username) VALUES(:customername,:customerlname,:customertel,:quantity,:total,:username)";
+$sql="update checkout set CustomerName=:customername,CustomerLname=:customerlname,CustomerTel=:customertel,Quantity=:quantity,Total=:total,Username=:username";
 $query = $dbh->prepare($sql);
 $query->bindParam(':username',$username,PDO::PARAM_STR);
 $query->bindParam(':customername',$customername,PDO::PARAM_STR);
@@ -185,7 +185,6 @@ foreach($results as $result)
 <div class="alert alert-success" role="alert" >
  <?php echo htmlentities($_SESSION['msg']);?>
 <?php echo htmlentities($_SESSION['msg']="");?>
-&nbsp<a href="" class="alert-link"></a>
 <button type="button" class="close" data-dismiss="alert" aria-label="Close" onClick="emptyCart()">
     <span aria-hidden="true">&times;</span>
   </button>
@@ -210,7 +209,7 @@ function emptyCart() {
 <div class="alert alert-success" role="alert" >
  <?php echo htmlentities($_SESSION['edit']);?>
 <?php echo htmlentities($_SESSION['edit']="");?>
-&nbsp<a href="" class="alert-link"></a>
+&nbsp<a href="checkout.php" class="alert-link">Checkout order now</a>
 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
     <span aria-hidden="true">&times;</span>
   </button>
@@ -358,7 +357,7 @@ foreach($results as $result)
              <?php }} ?>
              <input class="form-control" type="hidden" name="username" value="<?php echo htmlentities($result->Username);?>" required autocomplete="off"  />
   
-             <a href=""><button name="checkout" type="submit" class="create-account" style="margin-left:380px;margin-bottom:10px;" > Checkout! </button></a>
+             <a href=""><button name="checkout" type="submit" class="create-account" style="margin-left:220px;margin-bottom:10px;" > Checkout! </button></a>&nbsp&nbsp&nbsp<a href="checkout.php" style="color: black;">Continue checkout here</a>
              
 </form>
 

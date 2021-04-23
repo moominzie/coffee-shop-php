@@ -112,6 +112,7 @@ foreach($results as $result)
         width: 270px;
         height: 270px;
         border-radius: 5%;
+        box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
     }
     .image-box img {
         max-width: 100%;
