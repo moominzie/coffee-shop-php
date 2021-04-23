@@ -15,9 +15,10 @@ $total=$_POST['total'];
 $quantity=$_POST['quantity'];
 $customername=$_POST['customername'];
 $customertel=$_POST['customertel'];
-$sql="INSERT INTO  cforder (ProductTotalPrice,Quantity,CustomerName,CustomerTel,CustomerUname) VALUES(total,:quantity,:customername,:customertel,:username)";
+$sql="INSERT INTO  cforder (OrderId,ProductTotalPrice,Quantity,CustomerName,CustomerTel,CustomerUname) VALUES(:orderid,:total,:quantity,:customername,:customertel,:username)";
 $query = $dbh->prepare($sql);
 $query->bindParam(':username',$username,PDO::PARAM_STR);
+$query->bindParam(':orderid',$orderid,PDO::PARAM_STR);
 $query->bindParam(':total',$total,PDO::PARAM_STR);
 $query->bindParam(':quantity',$quantity,PDO::PARAM_STR);
 $query->bindParam(':customername',$customername,PDO::PARAM_STR);
@@ -308,7 +309,7 @@ foreach($results as $result)
 
   <form name="update" method="post">     
 
-<input class="form-control" type="hidden" name="orderid" value="" required autocomplete="off"  />           
+<input class="form-control" type="" name="orderid" value="<?php echo htmlentities($result->id);?>" required autocomplete="off"  />           
 <input class="form-control" type="hidden" name="quantity" value="<?php echo htmlentities($result->Quantity);?>" required autocomplete="off"  />         
 <input class="form-control" type="hidden" name="total" value="<?php echo htmlentities($result->Total);?>" required autocomplete="off"  />
 <input class="form-control" type="hidden" name="customername" value="<?php echo htmlentities($result->CustomerName);?> <?php echo htmlentities($result->CustomerLname);?>" required autocomplete="off"  />
