@@ -200,7 +200,7 @@ foreach($results as $result)
 <div class="col-md-3">
 <div class="form-group">
 <label>Postal code</label>
-<input class="form-control" type="text" name="postalcode" id="" value="<?php echo htmlentities($result->PostalCode);?>"  autocomplete="off" required />
+<input class="form-control" type="text" name="postalcode" id="" maxlength="5" value="<?php echo htmlentities($result->PostalCode);?>"  autocomplete="off" required />
 </div>
 </div>
 
