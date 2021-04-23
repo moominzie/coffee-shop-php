@@ -1,3 +1,4 @@
+<body>
 <!-- Site footer -->
   <footer class="site-footer">
       <div class="container">
@@ -85,3 +86,4 @@ foreach($results as $result)
         </div>
       </div>
 </footer>
+</body>
