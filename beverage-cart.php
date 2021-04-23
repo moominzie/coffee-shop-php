@@ -123,14 +123,10 @@ foreach($results as $result)
                         <input class="form-control" type="hidden" name="productimage" value="<?php echo htmlentities($result->Image1);?>" required autocomplete="off"  />
                         <input class="form-control" type="hidden" name="productprice" value="<?php echo htmlentities($result->Price);?>" required autocomplete="off"  />
                         <input class="form-control" type="hidden" name="total"  required autocomplete="off"  />
-                    
-                    <div class="modal-footer text-center">
-                    <div class="col-sm-3">
-                    <input style="item-align:center;" class="form-control" type="number" name="quantity" value="1" required autocomplete="off"  />
-                    </div>
-                    <?php 
+
+<?php 
 $username=$_SESSION['username'];
-$sql="SELECT id,Username,FirstName,LastName,EmailId,MobileNumber,RegDate,UpdationDate,Status from  member  where Username=:username ";
+$sql = "SELECT Username FROM member WHERE Username=:username";
 $query = $dbh -> prepare($sql);
 $query-> bindParam(':username', $username, PDO::PARAM_STR);
 $query->execute();
@@ -140,12 +136,20 @@ if($query->rowCount() > 0)
 {
 foreach($results as $result)
 {               ?>  
+
+                        <input class="form-control" type="hidden" name="username" value="<?php echo htmlentities($result->Username);?>" required autocomplete="off"  />
+                        <?php }} ?>
+                    <div class="modal-footer text-center">
+                    <div class="col-sm-3">
+                    <input style="item-align:center;" class="form-control" type="number" name="quantity" value="1" required autocomplete="off"  />
+                    </div>
+
                     <button class="create-account" name="addcart">Add Cart &nbsp<i class="fas fa-cart-plus"></i></button>
                      <?php }} ?>
                      </div>
                     </div>
               </form>
-            <?php }} ?>     
+
             </div>
           </div>
         </div>
