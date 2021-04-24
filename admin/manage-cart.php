@@ -77,7 +77,7 @@ foreach($results as $result)
 <div class="container">
     <div class="row pad-botm">
             <div class="col-md-12">
-            <h4 class="header-line" style="text-align:none; font-family: 'Noto Sans JP', sans-serif; font-size: 22px;">Manage beverage &nbsp<i class="fas fa-mug-hot"></i></h4>
+            <h4 class="header-line" style="text-align:none; font-family: 'Noto Sans JP', sans-serif; font-size: 22px;">Order</h4>
     </div>
     <?php if($_SESSION['msg']!="")
 {?>

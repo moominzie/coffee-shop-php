@@ -7,25 +7,26 @@ if(strlen($_SESSION['login'])==0)
 header('location:loginmember.php');
 }
 else{ 
-if(isset($_POST['updateadd']))
+if(isset($_POST['addpayment']))
 {    
 $username=$_SESSION['username'];  
-$address=$_POST['address'];
-$amphure=$_POST['amphure'];
-$district=$_POST['district'];
-$province=$_POST['province'];
-$postalcode=$_POST['postalcode'];
-$sql="update address set Address=:address,ProvinceId=:province,AmphureId=:amphure,DistrictId=:district,PostalCode=:postalcode where Username=:username";
+$cardnumber=$_POST['cardnumber'];
+$expiration=$_POST['expiration'];
+$cvv=$_POST['cvv'];
+$firstname=$_POST['firstname'];
+$lastname=$_POST['lastname'];
+$sql="INSERT INTO credit (CardNumber,Expiration,CVV,FirstName,LastName,Username) VALUE(:cardnumber,:expiration,:cvv,:firstname,:lastname,:username)";
 $query = $dbh->prepare($sql);
 $query->bindParam(':username',$username,PDO::PARAM_STR);
-$query->bindParam(':address',$address,PDO::PARAM_STR);
-$query->bindParam(':amphure',$amphure,PDO::PARAM_STR);
-$query->bindParam(':district',$district,PDO::PARAM_STR);
-$query->bindParam(':province',$province,PDO::PARAM_STR);
-$query->bindParam(':postalcode',$postalcode,PDO::PARAM_STR);
+$query->bindParam(':cardnumber',$cardnumber,PDO::PARAM_STR);
+$query->bindParam(':expiration',$expiration,PDO::PARAM_STR);
+$query->bindParam(':cvv',$cvv,PDO::PARAM_STR);
+$query->bindParam(':firstname',$firstname,PDO::PARAM_STR);
+$query->bindParam(':lastname',$lastname,PDO::PARAM_STR);
 
 $query->execute();
 
+$_SESSION['addcard']="Add payment method completely";
 header('location:mycart.php');
 }
 
@@ -96,7 +97,7 @@ foreach($results as $result)
          <div class="container">
         <div class="row pad-botm">
             <div class="col-md-12">
-                <h4 class="header-line">Add address</h4>
+                <h4 class="header-line">Credit card &nbsp<i class="far fa-credit-card"></i></h4>
                 
                             </div>
 
@@ -107,135 +108,46 @@ foreach($results as $result)
                <div class="card">
                <div class="panel-body" style="margin:20px">
 
-               <form action="" method="post" role="form" enctype="multipart/form-data">
-<div class="col-md-12">
+<form action="" method="post" role="form" enctype="multipart/form-data">
+
+<div class="col-md-6">
 <div class="form-group">
-<label>Address</label>&nbsp;<label for="" style="font-family: 'Oswald', sans-serif; color: red;">* </label>
-<textarea class="form-control" type="text" name="address" id="" value="<?php echo htmlentities($result->Address);?>"  autocomplete="off" required><?php echo htmlentities($result->Address);?></textarea>
+<label>Card number</label>
+<input class="form-control" type="text" name="cardnumber" maxlength="16" id="" autocomplete="off" required />
 </div>
 </div>
 
 <div class="col-md-3">
 <div class="form-group">
-<label>District</label>
-<select name="district" id="district_id" class="form-control form-control-lg">
-<option value='0'> Select district</option>
-</select>
+<label>Expiration</label>
+<input class="form-control" type="text" name="expiration" id="" autocomplete="off" required />
 </div>
 </div>
 
-<div class="col-md-3">
+<div class="col-md-2">
 <div class="form-group">
-<label>Amphures</label>
-<select name="amphure" id="amphure_id" class="form-control form-control-lg">
-<option value='0'> Select amphure </option>
-</select>
+<label>CVV</label>
+<input class="form-control" type="text" name="cvv" id="" autocomplete="off" required />
 </div>
 </div>
 
-<div class="col-md-3">
+<div class="col-md-6">
 <div class="form-group">
-<label>Provine</label>
-<label>Province</label>&nbsp;<label for="" style="font-family: 'Oswald', sans-serif; color: red;">* </label>
-        <!-- END TITLE -->
-    
-    <select name="province" id="province_id" class="form-control form-control-lg" onBlur="getAmphure()" required>
-<option value='0'> Select province </option>
-<?php 
-          ## Fetch amphures
-          $query = $dbh->prepare("SELECT * FROM provinces ORDER BY name_en");
-          $query->execute();
-          $provinceList = $query->fetchAll();
-
-          foreach($provinceList as $province){
-             echo "<option value='".$province['id']."'>".$province['name_en']."</option>";
-          }
-          ?>
-</select>
+<label>Firstname</label>
+<input class="form-control" type="text" name="firstname" id="" autocomplete="off" required />
 </div>
 </div>
 
-	<!-- Script -->
-	<script type="text/javascript">
-	$(document).ready(function(){
-
-		// Province
-		$('#province_id').change(function(){
-
-			var provinceid = $(this).val();
-			
-			// Empty state and city dropdown
-			$('#amphure_id').find('option').not(':first').remove();
-			$('#district_id').find('option').not(':first').remove();
-            $('#zipcode_id').find('option').not(':first').remove();
-
-			// AJAX request
-			$.ajax({
-				url: 'ajaxfile.php',
-				type: 'post',
-				data: {request: 1, provinceid: provinceid},
-				dataType: 'json',
-				success: function(response){
-					
-					var len = response.length;
-
-		            for( var i = 0; i<len; i++){
-		                var id = response[i]['id'];
-		                var name_en = response[i]['name_en'];
-		                    
-		                $("#amphure_id").append("<option value='"+id+"'>"+name_en+"</option>");
-
-		            }
-				}
-			});
-			
-		});
-
-
-		// Amphure
-		$('#amphure_id').change(function(){
-			var amphureid = $(this).val();
-			
-			// Empty district dropdown
-			$('#district_id').find('option').not(':first').remove();
-
-			// AJAX request
-			$.ajax({
-				url: 'ajaxfile.php',
-				type: 'post',
-				data: {request: 2, amphureid: amphureid},
-				dataType: 'json',
-				success: function(response){
-					
-					var len = response.length;
-
-		            for( var i = 0; i<len; i++){
-		                var id = response[i]['id'];
-		                var name_en = response[i]['name_en'];
-
-		                    
-		                $("#district_id").append("<option value='"+id+"'>"+name_en+"</option>");
-                        
-		            }
-				}
-			});
-		});
-
-    
-	});
-	</script>
-
-
-
-<div class="col-md-3">
+<div class="col-md-6">
 <div class="form-group">
-<label>Postal code</label>
-<input class="form-control" type="text" name="postalcode" id="" value="<?php echo htmlentities($result->PostalCode);?>" maxlength="5" autocomplete="off" required />
+<label>Lastname</label>
+<input class="form-control" type="text" name="lastname" id="" autocomplete="off" required />
 </div>
 </div>
+
 
 <div class="col-md-12">                             
-<button type="submit" name="updateadd" class="create-account" >Update address </button>
+<button type="submit" name="addpayment" class="create-account" >Add credit card </button>
 </div>
 </form>
 <?php } ?>

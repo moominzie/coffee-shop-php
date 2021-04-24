@@ -163,9 +163,11 @@ foreach($results as $result)
             <div class="col-md-10">
             <?php
 $username=$_SESSION['username'];  
-$sql="SELECT Quantity as NumberCart FROM checkout WHERE Username=:username";
+$status=1;
+$sql="SELECT Quantity as NumberCart FROM checkout WHERE Username=:username AND Status=:status;";
 $query = $dbh -> prepare($sql);
 $query-> bindParam(':username', $username, PDO::PARAM_STR);
+$query-> bindParam(':status', $status, PDO::PARAM_STR);
 $query->execute();
 $results=$query->fetchAll(PDO::FETCH_OBJ);
 $cnt=1;
@@ -178,9 +180,11 @@ foreach($results as $result)
                    </div>
 <?php
 $username=$_SESSION['username'];  
-$sql="SELECT Total as Total FROM checkout WHERE Username=:username";
+$status=1;
+$sql="SELECT Total as Total FROM checkout WHERE Username=:username AND Status=:status";
 $query = $dbh -> prepare($sql);
 $query-> bindParam(':username', $username, PDO::PARAM_STR);
+$query-> bindParam(':status', $status, PDO::PARAM_STR);
 $query->execute();
 $results=$query->fetchAll(PDO::FETCH_OBJ);
 $cnt=1;
@@ -198,9 +202,11 @@ foreach($results as $result)
                         
 <?php
 $username=$_SESSION['username'];  
-$sql="SELECT * FROM checkout WHERE Username=:username";
+$status=1;
+$sql="SELECT * FROM checkout WHERE Username=:username AND Status=:status";
 $query = $dbh -> prepare($sql);
 $query-> bindParam(':username', $username, PDO::PARAM_STR);
+$query-> bindParam(':status', $status, PDO::PARAM_STR);
 $query->execute();
 $results=$query->fetchAll(PDO::FETCH_OBJ);
 $cnt=1;
@@ -296,8 +302,11 @@ foreach($results as $result)
 
 <?php
 $username=$_SESSION['username'];  
-$sql="SELECT * FROM checkout";
+$status=1;
+$sql="SELECT * FROM checkout WHERE Username=:username AND Status=:status";
 $query = $dbh -> prepare($sql);
+$query-> bindParam(':username', $username, PDO::PARAM_STR);
+$query-> bindParam(':status', $status, PDO::PARAM_STR);
 $query->execute();
 $results=$query->fetchAll(PDO::FETCH_OBJ);
 $cnt=1;
@@ -305,6 +314,7 @@ if($query->rowCount() > 0)
 {
 foreach($results as $result)
 {               ?>  
+
 
   <form name="update" method="post">     
 
@@ -339,6 +349,8 @@ foreach($results as $result)
      <?php include('includes/footer.php');?>
 
      <?php } ?>
+
+
 </body>
 </html>
 

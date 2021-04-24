@@ -131,6 +131,9 @@ foreach($results as $result)
         <a class="nav-link" href="account.php"><p class="account"><i class="fas fa-user-circle"></i>&nbsp Account</p><span class="sr-only" >(current)</span></a>
       </li>
       <li class="nav-item active">
+        <a class="nav-link" href="billing.php"><p class="account"><i class="far fa-credit-card"></i>&nbsp Billing</p><span class="sr-only" >(current)</span></a>
+      </li>
+      <li class="nav-item active">
       <?php
 $username=$_SESSION['username'];  
 $sql="SELECT SUM(Quantity) as NumberCart FROM cart WHERE Username=:username";

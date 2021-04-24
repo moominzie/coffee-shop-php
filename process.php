@@ -4,7 +4,7 @@ include('includes/connection.php');
 error_reporting(0);
 if(strlen($_SESSION['login'])==0)
     {   
-header('location:loginmember.php');
+header('location:mycart.php');
 }
 else{ 
 if(isset($_POST['checkout']))
@@ -27,31 +27,22 @@ $query->bindParam(':total',$total,PDO::PARAM_STR);
 $query->bindParam(':status',$status,PDO::PARAM_STR);
 $query->execute();
 
-header('location:checkout.php');
-}
-
-if(isset($_POST['cancel']))
-{    
-$username=$_SESSION['username'];  
-$status=2;
-$sql="update checkout set Status=:status where username=:username";
-$query = $dbh->prepare($sql);
-$query->bindParam(':username',$username,PDO::PARAM_STR);
-$query->bindParam(':status',$status,PDO::PARAM_STR);
-$query->execute();
-
-$_SESSION['cancel']="Your order has been cancel";
-}
-
-if(isset($_POST['continue']))
-{    
-$_SESSION['continue']="Your already checkout";
+header('location:process.php');
 }
 
 if(isset($_GET['del']))
 {
 $id=$_GET['del'];
 $sql = "delete from cart  WHERE id=:id";
+$query = $dbh->prepare($sql);
+$query -> bindParam(':id',$id, PDO::PARAM_STR);
+$query -> execute();
+}
+
+if(isset($_GET['clear']))
+{
+$id=$_GET['clear'];
+$sql = "delete from cart";
 $query = $dbh->prepare($sql);
 $query -> bindParam(':id',$id, PDO::PARAM_STR);
 $query -> execute();
@@ -198,15 +189,14 @@ foreach($results as $result)
 
     <div class="content-wrapper">
    <div class="container">
-            <h4 class="header-line" ><i class="fas fa-shopping-cart"></i>&nbsp My Cart </h4>
-
+            <h4 class="header-left" style="text-align:none; font-family: 'Noto Sans JP', sans-serif; font-size: 22px;"><i class="fas fa-shopping-cart"></i>&nbsp My Cart </h4>
 
 <div class="row">
 
   <div class="col-md-6">
     <div class="">
       <div class="card-body">
-
+ 
       <table class="table">
                                     <thead>
                                         <tr>
@@ -241,8 +231,29 @@ foreach($results as $result)
                                                  <br><label>Price: </label> &nbsp<?php echo htmlentities($result->ProductPrice);?>  ฿ 
                                                  <br><label>Quantity: </label> &nbsp<?php echo htmlentities($result->Quantity);?>
                                                  <br><label>Total price: </label> &nbsp<?php echo htmlentities($result->Total);?>  ฿ 
-                                                 <br><br><a href="mycart.php?del=<?php echo htmlentities($result->id);?>" onclick="return confirm('Are you sure you want to delete?');"" style="color:#585858;"><i class="fas fa-trash-alt"></i>&nbsp REMOVE ITEM</a> 
+                                               
+                                                  <?php
+                                                  $username=$_SESSION['username'];  
+                                                  $sql="SELECT Status FROM checkout WHERE Username=:username";
+                                                  $query = $dbh -> prepare($sql);
+                                                  $query-> bindParam(':username', $username, PDO::PARAM_STR);
+                                                  $query->execute();
+                                                  $results=$query->fetchAll(PDO::FETCH_OBJ);
+                                                  $cnt=1;
+                                                  if($query->rowCount() > 0)
+                                                  {
+                                                  foreach($results as $result)
+                                                  {               ?>  
+                                                
+                                                  <?php }} ?> 
+                                            
+
+                                                 <?php if($result->Status==1){?>
+                                                  <br><span style="color: green ">In process</span>
+                                                  <?php } else { ?>
+                                                    <br><br><a href="mycart.php?del=<?php echo htmlentities($result->id);?>" onclick="return confirm('Are you sure you want to delete?');"" style="color:#585858;"><i class="fas fa-trash-alt"></i>&nbsp REMOVE ITEM</a> 
                                                  &nbsp<a href="edit-order.php?edit=<?php echo htmlentities($result->id);?>" style="color:#585858;"><i class="fas fa-edit"></i>&nbsp EDIT ITEM</a> 
+                                                  <?php }?>
                                             </td>
                                         </tr>
 
@@ -276,71 +287,23 @@ foreach($results as $result)
 <div class="col-md-12">  
 <div class="form-group">
 <label>Product quantity : </label>
-<?php echo htmlentities($result->Quantity);?> item            
+<?php echo htmlentities($result->Quantity);?> item
+</div>
+</div>             
 <input class="form-control" type="hidden" name="quantity" value="<?php echo htmlentities($result->Quantity);?>" required autocomplete="off"  />
 
+<div class="col-md-12">  
 <div class="form-group">
 <label>Total price : </label>
-<?php echo htmlentities($result->Total);?> ฿           
+<?php echo htmlentities($result->Total);?> ฿ 
+           
 <input class="form-control" type="hidden" name="total" value="<?php echo htmlentities($result->Total);?>" required autocomplete="off"  />
-
+</div>  
 <?php }} ?> 
 
-<?php if($_SESSION['msg']!="")
-{?>
-<div class="alert alert-success" role="alert" >
-<?php echo htmlentities($_SESSION['msg']);?>
-<?php echo htmlentities($_SESSION['msg']="");?>
-<button type="button" class="close" data-dismiss="alert" aria-label="Close" onClick="emptyCart()">
-<span aria-hidden="true">&times;</span>
-</button>
-</div>
 
-<script>
-function emptyCart() {
-  <?php 
-    $username=$_SESSION['username'];  
-    $status=0;
-    $sql="UPDATE checkout SET Status=:status WHERE Username=:username";
-    $query = $dbh->prepare($sql);
-    $query->bindParam(':username',$username,PDO::PARAM_STR);
-    $query->bindParam(':status',$status,PDO::PARAM_STR);
-    $query->execute();?>
-}
-</script>
-
-<?php } ?>
-
-<?php if($_SESSION['cancel']!="")
-{?>
-<div class="alert alert-success" role="alert" >
-<?php echo htmlentities($_SESSION['cancel']);?>
-<?php echo htmlentities($_SESSION['cancel']="");?>
-<button type="button" class="close" data-dismiss="alert" aria-label="Close" onClick="emptyCart()">
-<span aria-hidden="true">&times;</span>
-</button>
-</div>
-
-<?php } ?>
-
-<?php if($_SESSION['edit']!="")
-{?>
-
-<div class="alert alert-success" role="alert" >
- <?php echo htmlentities($_SESSION['edit']);?>
-<?php echo htmlentities($_SESSION['edit']="");?>
-&nbsp<a href="checkout.php" class="alert-link">Checkout order now</a>
-<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-    <span aria-hidden="true">&times;</span>
-  </button>
-</div>
-</div>
-</div>
-
-<?php } ?>
-
-<form name="update" method="post">     
-
+<form name="update" method="post">   
+  
 
 <?php
 $username=$_SESSION['username'];  
@@ -376,11 +339,6 @@ foreach($results as $result)
              <?php }} ?>
              <input class="form-control" type="hidden" name="username" value="<?php echo htmlentities($result->Username);?>" required autocomplete="off"  />
   
-            
-
-</div>
-<div class="col-md-12">  
-<div class="form-group">
 
 <?php if($_SESSION['edit']!="")
 {?>
@@ -394,40 +352,11 @@ foreach($results as $result)
 </div>
 
 <?php } ?>
-
-<?php if($_SESSION['msg']!="")
-{  ?>
-
-<div class="alert alert-success" role="alert" >
-<?php echo htmlentities($_SESSION['msg']);?>
-<?php echo htmlentities($_SESSION['msg']="");?>
-<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-<span aria-hidden="true">&times;</span>
-</button>
-</div>
-
-<?php } ?>
-
-<?php if($_SESSION['continue']!="")
-{  ?>
-
-<div class="alert alert-warning" role="alert" >
-<?php echo htmlentities($_SESSION['continue']);?>
-<?php echo htmlentities($_SESSION['continue']="");?>
-&nbsp<a href="checkout.php" class="alert-link">Continue checkout here</a>
-<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-<span aria-hidden="true">&times;</span>
-</button>
-</div>
-
-<?php } ?>
-
 <?php
 $username=$_SESSION['username'];  
-$sql="SELECT Status FROM checkout";
+$sql="SELECT Status FROM checkout WHERE Username=:username";
 $query = $dbh -> prepare($sql);
 $query-> bindParam(':username', $username, PDO::PARAM_STR);
-$query-> bindParam(':status', $status, PDO::PARAM_STR);
 $query->execute();
 $results=$query->fetchAll(PDO::FETCH_OBJ);
 $cnt=1;
@@ -435,31 +364,47 @@ if($query->rowCount() > 0)
 {
 foreach($results as $result)
 {               ?>  
+<label>Delivery status : </label>
 <?php if($result->Status==1){?>
-<a href="checkout.php"><button name="continue" type="submit" class="create-account" style="margin-bottom:10px;" > Checkout now </button></a>
+<span style="color: #C0392B ">Waiting for purchase</span>
 <?php } else { ?>
-  <a href=""><button name="checkout" type="submit" class="create-account" style="margin-bottom:10px;" > Checkout now </button></a>
-  <?php }?>
-<?php }} ?>
-&nbsp&nbsp&nbsp<a href=""><button name="cancel" type="submit" class="sign-in" style="margin-bottom:10px;" > Cancel order </button></a>
-&nbsp&nbsp&nbsp<a href="checkout.php" style="color: black;">Continue checkout here</a>
-</div> 
-</div>  
+<span style="color: green">Delivery now<i class="fas fa-truck"></i></span>
+<?php }?>
+</div>
+</div>
+<?php }} ?> 
 
+<div class="col-md-12">  
+<div class="form-group">
+<?php if($_SESSION['checkout']!="")
+{  ?>
+
+<div class="alert alert-success" role="alert" >
+<?php echo htmlentities($_SESSION['checkout']);?>
+<?php echo htmlentities($_SESSION['checkout']="");?>
+<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+<span aria-hidden="true">&times;</span>
+</button>
+</div>
+
+<?php } ?>
+
+<a href="payment.php"><button name="payment" type="submit" class="create-account" style="margin-bottom:10px;" > Pay bill </button></a>
+</div>  
+</div> 
 </form>
 
-</div>  
-
-</div>  
-
-</div>  
-</div>  
-</div>  
-</div>  
-</div>  
-</div>  
 
 
+
+      </div>
+    </div>
+  </div>
+</div>
+
+</div>
+
+</div>
 
       <!------MENU SECTION START-->
       <?php include('includes/footer.php');?>

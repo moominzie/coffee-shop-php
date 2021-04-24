@@ -16,7 +16,8 @@ if(isset($_POST['addcart']))
   $productimage=$_POST['productimage'];
   $productname=$_POST['productname'];
   $productprice=$_POST['productprice'];
-  $sql="INSERT INTO  cart (ProductCode,ProductName,ProductImage,ProductPrice,Quantity,TotalPrice,Username) VALUES(:productcode,:productname,:productimage,:productprice,:quantity,:total,:username)";
+  $status=1;
+  $sql="INSERT INTO  cart (ProductCode,ProductName,ProductImage,ProductPrice,Quantity,TotalPrice,Username,Status) VALUES(:productcode,:productname,:productimage,:productprice,:quantity,:total,:username,:status)";
   $query = $dbh->prepare($sql);
   $query->bindParam(':username',$username,PDO::PARAM_STR);
   $query->bindParam(':productcode',$productcode,PDO::PARAM_STR);
@@ -25,6 +26,7 @@ if(isset($_POST['addcart']))
   $query->bindParam(':productimage',$productimage,PDO::PARAM_STR);
   $query->bindParam(':productname',$productname,PDO::PARAM_STR);
   $query->bindParam(':productprice',$productprice,PDO::PARAM_STR);
+  $query->bindParam(':status',$status,PDO::PARAM_STR);
   $query->execute();
 
 }

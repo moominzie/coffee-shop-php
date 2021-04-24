@@ -78,14 +78,12 @@ foreach($results as $result)
     <div class="list-group" id="list-tab" role="tablist">
       <a class="list-group-item list-group-item-action active " id="list-profile-list" data-toggle="list" href="#list-profile" role="tab" aria-controls="profile">Your profile</a>
       <a class="list-group-item list-group-item-action" id="list-address-list" data-toggle="list" href="#list-address" role="tab" aria-controls="address">Your address</a>
-      <a class="list-group-item list-group-item-action" id="list-editprofile" data-toggle="list" href="#editprofile" role="tab" aria-controls="profile">Edit your profile</a>
     </div>
   </div>
   <div class="col-9">
     <div class="tab-content" id="nav-tabContent">
       <div class="tab-pane fade show active" id="list-profile" role="tabpanel" aria-labelledby="list-profile-list"><?php include('my-account.php');?></div>
       <div class="tab-pane fade" id="list-address" role="tabpanel" aria-labelledby="list-address-list"><?php include('my-address.php');?></div>
-      <div class="tab-pane fade" id="editprofile" role="tabpanel" aria-labelledby="list-editprofile"><?php include('my-profile.php');?></div>
     </div>
   </div>
 
