@@ -157,6 +157,9 @@ foreach($results as $result)
 </div>
     </div>
     </div>
+          <!------MENU SECTION START-->
+          <?php include('includes/footer.php');?>
+<!-- MENU SECTION END-->
      <!-- CONTENT-WRAPPER SECTION END-->
     <script src="assets/js/jquery-1.10.2.js"></script>
     <!-- BOOTSTRAP SCRIPTS  -->

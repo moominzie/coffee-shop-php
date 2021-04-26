@@ -25,7 +25,7 @@ $query->bindParam(':customername',$customername,PDO::PARAM_STR);
 $query->bindParam(':customertel',$customertel,PDO::PARAM_STR);
 $query->execute();
 
-$_SESSION['msg']="Your order has been purchase";
+$_SESSION['purchase']="Your order has been purchase";
 header('location:mycart.php');
 }
 
@@ -161,7 +161,7 @@ foreach($results as $result)
     <div class="container">
     <div class="row pad-botm">
             <div class="col-md-10">
-            <?php
+<?php
 $username=$_SESSION['username'];  
 $status=1;
 $sql="SELECT Quantity as NumberCart FROM checkout WHERE Username=:username AND Status=:status;";
@@ -178,6 +178,32 @@ foreach($results as $result)
                    <h4 class="header-left">Checkout &nbsp(<?php echo htmlentities($result->NumberCart);?>)</h4>
         <?php }} ?>
                    </div>
+
+
+<?php
+$username=$_SESSION['username'];  
+$sql="SELECT * FROM checkout WHERE Username=:username";
+$query = $dbh -> prepare($sql);
+$query-> bindParam(':username', $username, PDO::PARAM_STR);
+$query->execute();
+$results=$query->fetchAll(PDO::FETCH_OBJ);
+$cnt=1;
+if($query->rowCount() > 0)
+{
+foreach($results as $result)
+{               ?>   
+<?php if(($result->Status==0)||($result->Status==2)){?>
+<?php if($_SESSION['noproduct']!="")
+{?>
+<div class="alert alert-light" role="alert" >
+<?php echo htmlentities($_SESSION['noproduct']);?>
+<?php echo htmlentities($_SESSION['noproduct']="");?>
+&nbsp<a href="index.php" class="alert-link">Continue shopping</a>
+</div>
+<?php } ?>
+<?php }?>
+<?php }} ?>
+
 <?php
 $username=$_SESSION['username'];  
 $status=1;
@@ -259,6 +285,28 @@ foreach($results as $result)
 </div>
 
 <input class="form-control" type="hidden" name="username" value="<?php echo htmlentities($result->Username);?>" required autocomplete="off"  />
+
+
+<?php
+$username=$_SESSION['username'];  
+$sql="SELECT * FROM credit WHERE Username=:username";
+$query = $dbh -> prepare($sql);
+$query-> bindParam(':username', $username, PDO::PARAM_STR);
+$query->execute();
+$results=$query->fetchAll(PDO::FETCH_OBJ);
+$cnt=1;
+if($query->rowCount() > 0)
+{
+foreach($results as $result)
+{               ?>  
+
+<div class="col-md-12">  
+<div class="form-group">
+<label>Card number</label>
+<?php echo htmlentities($result->CardNumber);?> &nbsp&nbsp&nbsp<a href="change-credit.php" style="color: #006400;">Change credit card</a>
+</div>
+</div> 
+<?php }} ?>
 
 
 <h5 class="header-line">Address</h5>

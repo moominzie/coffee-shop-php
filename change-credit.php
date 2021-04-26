@@ -7,26 +7,27 @@ if(strlen($_SESSION['login'])==0)
 header('location:loginmember.php');
 }
 else{ 
-if(isset($_POST['update']))
+if(isset($_POST['change']))
 {    
-$username=$_SESSION['username'];  
-$cardnumber=$_POST['cardnumber'];
-$expiration=$_POST['expiration'];
-$cvv=$_POST['cvv'];
-$firstname=$_POST['firstname'];
-$lastname=$_POST['lastname'];
-$sql="update credit set CardNumber=:cardnumber,Expiration=:expiration,CVV=:cvv,FirstName=:firstname,LastName=:lastname where Username=:username";
-$query = $dbh->prepare($sql);
-$query->bindParam(':username',$username,PDO::PARAM_STR);
-$query->bindParam(':cardnumber',$cardnumber,PDO::PARAM_STR);
-$query->bindParam(':expiration',$expiration,PDO::PARAM_STR);
-$query->bindParam(':cvv',$cvv,PDO::PARAM_STR);
-$query->bindParam(':firstname',$firstname,PDO::PARAM_STR);
-$query->bindParam(':lastname',$lastname,PDO::PARAM_STR);
-
+    $username=$_SESSION['username'];  
+    $cardnumber=$_POST['cardnumber'];
+    $expiration=$_POST['expiration'];
+    $cvv=$_POST['cvv'];
+    $firstname=$_POST['firstname'];
+    $lastname=$_POST['lastname'];
+    $sql="update credit set CardNumber=:cardnumber,Expiration=:expiration,CVV=:cvv,FirstName=:firstname,LastName=:lastname where Username=:username";
+    $query = $dbh->prepare($sql);
+    $query->bindParam(':username',$username,PDO::PARAM_STR);
+    $query->bindParam(':cardnumber',$cardnumber,PDO::PARAM_STR);
+    $query->bindParam(':expiration',$expiration,PDO::PARAM_STR);
+    $query->bindParam(':cvv',$cvv,PDO::PARAM_STR);
+    $query->bindParam(':firstname',$firstname,PDO::PARAM_STR);
+    $query->bindParam(':lastname',$lastname,PDO::PARAM_STR);
+    
 $query->execute();
 
-$_SESSION['changecard']="Change credit card completely";
+$_SESSION['addcard']="Add payment method completely";
+header('location:checkout.php');
 }
 
 ?>
@@ -96,10 +97,9 @@ foreach($results as $result)
          <div class="container">
         <div class="row pad-botm">
             <div class="col-md-12">
-                <h4 class="header-line">Credit card &nbsp<i class="far fa-credit-card"></i></h4>
+                <h4 class="header-line">Change credit card &nbsp<i class="far fa-credit-card"></i></h4>
                 
                             </div>
-
 
         </div>
              <div class="row">
@@ -108,81 +108,7 @@ foreach($results as $result)
                <div class="card">
                <div class="panel-body" style="margin:20px">
 
-<?php
-$username=$_SESSION['username'];  
-$sql="SELECT * FROM credit WHERE Username=:username";
-$query = $dbh -> prepare($sql);
-$query-> bindParam(':username', $username, PDO::PARAM_STR);
-$query->execute();
-$results=$query->fetchAll(PDO::FETCH_OBJ);
-$cnt=1;
-if($query->rowCount() > 0)
-{
-foreach($results as $result)
-{               ?> 
-
-<div class="col-md-12">
-<div class="form-group">
-<label><i class="far fa-credit-card"></i>&nbsp Card number : </label>
-<?php echo htmlentities($result->CardNumber);?>
-</div>
-</div>
-
-<div class="col-md-12">
-<div class="form-group">
-<label> Expiration : </label>
-<?php echo htmlentities($result->Expiration);?>
-</div>
-</div>
-
-<div class="col-md-12">
-<div class="form-group">
-<label> CVV : </label>
-<?php echo htmlentities($result->CVV);?>
-</div>
-</div>
-
-<div class="col-md-6">
-<div class="form-group">
-<label> Name-Surname : </label>
-<?php echo htmlentities($result->FirstName);?> &nbsp<?php echo htmlentities($result->LastName);?>
-</div>
-</div>
-
-<?php }} ?>
-
-<div class="col-md-12">            
-<a data-toggle="collapse" href="#editprofile" role="button" aria-expanded="false" aria-controls="editprofile">
-  <button class="create-account" >
-    Change credit card</button>
-  </a>&nbsp&nbsp&nbsp<a href="add-payment.php" style="color: black;">Add credit card*</a>
-</div>
-
-<div class="col-md-12" style="margin-top:20px;">
-<?php if($_SESSION['changecard']!="")
-{?>
-
-<div class="alert alert-success" role="alert" >
- <?php echo htmlentities($_SESSION['changecard']);?>
-<?php echo htmlentities($_SESSION['changecard']="");?>
-<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-    <span aria-hidden="true">&times;</span>
-  </button>
-</div>
-<?php } ?>
-</div>
-
-<?php } ?>
-</div>
-</div>
-
-
-
-
-<div class="collapse" id="editprofile">
-  <div class="card" >
-  <div class="panel-body" style="margin:20px">
-  <form name="update" method="post">
+<form action="" method="post" role="form" enctype="multipart/form-data">
 <?php 
 $username=$_SESSION['username'];
 $sql="SELECT * from  credit  where UserName=:username";
@@ -234,15 +160,12 @@ foreach($results as $result)
 
 <?php }} ?>
 
-
-<div class="col-md-12">
-    <button type="submit" name="update" class="create-account" id="submit" > Update credit card </button>
+<div class="col-md-12">                             
+<button type="submit" name="change" class="create-account" >Update credit card </button>
 </div>
-
-
 </form>
+<?php } ?>
 </div>
-  </div>
 </div>
 </div>
 </div>

@@ -4,7 +4,7 @@ include('includes/connection.php');
 error_reporting(0);
 if(strlen($_SESSION['login'])==0)
     {   
-header('location:mycart.php');
+header('location:loginmember.php');
 }
 else{ 
 if(isset($_POST['checkout']))
@@ -27,22 +27,39 @@ $query->bindParam(':total',$total,PDO::PARAM_STR);
 $query->bindParam(':status',$status,PDO::PARAM_STR);
 $query->execute();
 
-header('location:process.php');
+  $_SESSION['noproduct']="There are no products in your cart";
+  header('location:checkout.php');
 }
+
+if(isset($_POST['cancel']))
+{    
+$username=$_SESSION['username'];  
+$status=2;
+$sql="update checkout set Status=:status where username=:username";
+$query = $dbh->prepare($sql);
+$query->bindParam(':username',$username,PDO::PARAM_STR);
+$query->bindParam(':status',$status,PDO::PARAM_STR);
+$query->execute();
+
+$_SESSION['cancel']="Your order has been cancel";
+}
+
+if(isset($_POST['continue']))
+{    
+$_SESSION['continue']="Your already checkout";
+}
+
+if(isset($_POST['canceled']))
+{    
+$_SESSION['canceled']="You haven't checked out yet";
+}
+
+
 
 if(isset($_GET['del']))
 {
 $id=$_GET['del'];
 $sql = "delete from cart  WHERE id=:id";
-$query = $dbh->prepare($sql);
-$query -> bindParam(':id',$id, PDO::PARAM_STR);
-$query -> execute();
-}
-
-if(isset($_GET['clear']))
-{
-$id=$_GET['clear'];
-$sql = "delete from cart";
 $query = $dbh->prepare($sql);
 $query -> bindParam(':id',$id, PDO::PARAM_STR);
 $query -> execute();
@@ -139,9 +156,8 @@ foreach($results as $result)
     width: 200px;
     height: 200px;
     border-radius: 5%;
-    margin-top:10px;
-    margin-bottom:20px;
-    margin-left:10px;
+    margin-left: auto;
+    margin-right: auto;
 }
 .image-box img {
     max-width: 100%;
@@ -189,14 +205,15 @@ foreach($results as $result)
 
     <div class="content-wrapper">
    <div class="container">
-            <h4 class="header-left" style="text-align:none; font-family: 'Noto Sans JP', sans-serif; font-size: 22px;"><i class="fas fa-shopping-cart"></i>&nbsp My Cart </h4>
+            <h4 class="header-line" >Order in process </h4>
+
 
 <div class="row">
 
-  <div class="col-md-6">
+  <div class="col-md-12">
     <div class="">
       <div class="card-body">
- 
+
       <table class="table">
                                     <thead>
                                         <tr>
@@ -208,11 +225,15 @@ foreach($results as $result)
                                         </tr>
                                     </thead>
                                     <tbody>
-<?php
+
+                                    
+                                    <?php
 $username=$_SESSION['username'];  
-$sql="SELECT id,ProductCode,ProductName,ProductImage,ProductPrice,Quantity,TotalPrice,Username,ProductPrice*Quantity as Total FROM cart WHERE Username=:username";
+$status=2;
+$sql="SELECT id,ProductCode,ProductName,ProductImage,ProductPrice,Quantity,TotalPrice,Username,ProductPrice*Quantity as Total,Status FROM cart WHERE Username=:username AND Status=:status";
 $query = $dbh -> prepare($sql);
 $query-> bindParam(':username', $username, PDO::PARAM_STR);
+$query-> bindParam(':status', $status, PDO::PARAM_STR);
 $query->execute();
 $results=$query->fetchAll(PDO::FETCH_OBJ);
 $cnt=1;
@@ -231,29 +252,7 @@ foreach($results as $result)
                                                  <br><label>Price: </label> &nbsp<?php echo htmlentities($result->ProductPrice);?>  ฿ 
                                                  <br><label>Quantity: </label> &nbsp<?php echo htmlentities($result->Quantity);?>
                                                  <br><label>Total price: </label> &nbsp<?php echo htmlentities($result->Total);?>  ฿ 
-                                               
-                                                  <?php
-                                                  $username=$_SESSION['username'];  
-                                                  $sql="SELECT Status FROM checkout WHERE Username=:username";
-                                                  $query = $dbh -> prepare($sql);
-                                                  $query-> bindParam(':username', $username, PDO::PARAM_STR);
-                                                  $query->execute();
-                                                  $results=$query->fetchAll(PDO::FETCH_OBJ);
-                                                  $cnt=1;
-                                                  if($query->rowCount() > 0)
-                                                  {
-                                                  foreach($results as $result)
-                                                  {               ?>  
-                                                
-                                                  <?php }} ?> 
-                                            
-
-                                                 <?php if($result->Status==1){?>
                                                   <br><span style="color: green ">In process</span>
-                                                  <?php } else { ?>
-                                                    <br><br><a href="mycart.php?del=<?php echo htmlentities($result->id);?>" onclick="return confirm('Are you sure you want to delete?');"" style="color:#585858;"><i class="fas fa-trash-alt"></i>&nbsp REMOVE ITEM</a> 
-                                                 &nbsp<a href="edit-order.php?edit=<?php echo htmlentities($result->id);?>" style="color:#585858;"><i class="fas fa-edit"></i>&nbsp EDIT ITEM</a> 
-                                                  <?php }?>
                                             </td>
                                         </tr>
 
@@ -268,143 +267,13 @@ foreach($results as $result)
   </div>
 
 
-  <div class="col-md-6">
-    <div class="card">
-      <div class="card-body">
-      <?php
-$username=$_SESSION['username'];  
-$sql="SELECT SUM(ProductPrice*Quantity) as Total,SUM(Quantity) as Quantity FROM cart WHERE Username=:username";
-$query = $dbh -> prepare($sql);
-$query-> bindParam(':username', $username, PDO::PARAM_STR);
-$query->execute();
-$results=$query->fetchAll(PDO::FETCH_OBJ);
-$cnt=1;
-if($query->rowCount() > 0)
-{
-foreach($results as $result)
-{               ?>  
-
-<div class="col-md-12">  
-<div class="form-group">
-<label>Product quantity : </label>
-<?php echo htmlentities($result->Quantity);?> item
-</div>
-</div>             
-<input class="form-control" type="hidden" name="quantity" value="<?php echo htmlentities($result->Quantity);?>" required autocomplete="off"  />
-
-<div class="col-md-12">  
-<div class="form-group">
-<label>Total price : </label>
-<?php echo htmlentities($result->Total);?> ฿ 
-           
-<input class="form-control" type="hidden" name="total" value="<?php echo htmlentities($result->Total);?>" required autocomplete="off"  />
 </div>  
-<?php }} ?> 
-
-
-<form name="update" method="post">   
-  
-
-<?php
-$username=$_SESSION['username'];  
-$sql="SELECT * FROM member WHERE Username=:username";
-$query = $dbh -> prepare($sql);
-$query-> bindParam(':username', $username, PDO::PARAM_STR);
-$query->execute();
-$results=$query->fetchAll(PDO::FETCH_OBJ);
-$cnt=1;
-if($query->rowCount() > 0)
-{
-foreach($results as $result)
-{               ?>  
-             <input class="form-control" type="hidden" name="customername" value="<?php echo htmlentities($result->FirstName);?>" required autocomplete="off"  />
-             <input class="form-control" type="hidden" name="customerlname" value="<?php echo htmlentities($result->LastName);?>" required autocomplete="off"  />
-             <input class="form-control" type="hidden" name="customertel" value="<?php echo htmlentities($result->MobileNumber);?>" required autocomplete="off"  />
-             <?php }} ?> 
-             
-             <?php
-$username=$_SESSION['username'];  
-$sql="SELECT ProductPrice*Quantity as Total,SUM(Quantity) as Quantity,Username,SUM(ProductPrice*Quantity) as ProductSum FROM cart WHERE Username=:username";
-$query = $dbh -> prepare($sql);
-$query-> bindParam(':username', $username, PDO::PARAM_STR);
-$query->execute();
-$results=$query->fetchAll(PDO::FETCH_OBJ);
-$cnt=1;
-if($query->rowCount() > 0)
-{
-foreach($results as $result)
-{               ?>  
-            <input class="form-control" type="hidden" name="quantity" value="<?php echo htmlentities($result->Quantity);?>" required autocomplete="off"  />
-             <input class="form-control" type="hidden" name="total" value="<?php echo htmlentities($result->ProductSum);?>" required autocomplete="off"  />
-             <?php }} ?>
-             <input class="form-control" type="hidden" name="username" value="<?php echo htmlentities($result->Username);?>" required autocomplete="off"  />
-  
-
-<?php if($_SESSION['edit']!="")
-{?>
-
-<div class="alert alert-success" role="alert" >
- <?php echo htmlentities($_SESSION['edit']);?>
-<?php echo htmlentities($_SESSION['edit']="");?>
-<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-    <span aria-hidden="true">&times;</span>
-  </button>
-</div>
-
-<?php } ?>
-<?php
-$username=$_SESSION['username'];  
-$sql="SELECT Status FROM checkout WHERE Username=:username";
-$query = $dbh -> prepare($sql);
-$query-> bindParam(':username', $username, PDO::PARAM_STR);
-$query->execute();
-$results=$query->fetchAll(PDO::FETCH_OBJ);
-$cnt=1;
-if($query->rowCount() > 0)
-{
-foreach($results as $result)
-{               ?>  
-<label>Delivery status : </label>
-<?php if($result->Status==1){?>
-<span style="color: #C0392B ">Waiting for purchase</span>
-<?php } else { ?>
-<span style="color: green">Delivery now<i class="fas fa-truck"></i></span>
-<?php }?>
-</div>
-</div>
-<?php }} ?> 
-
-<div class="col-md-12">  
-<div class="form-group">
-<?php if($_SESSION['checkout']!="")
-{  ?>
-
-<div class="alert alert-success" role="alert" >
-<?php echo htmlentities($_SESSION['checkout']);?>
-<?php echo htmlentities($_SESSION['checkout']="");?>
-<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-<span aria-hidden="true">&times;</span>
-</button>
-</div>
-
-<?php } ?>
-
-<a href="payment.php"><button name="payment" type="submit" class="create-account" style="margin-bottom:10px;" > Pay bill </button></a>
 </div>  
-</div> 
-</form>
+</div>  
+
+</div>  </div>  
 
 
-
-
-      </div>
-    </div>
-  </div>
-</div>
-
-</div>
-
-</div>
 
       <!------MENU SECTION START-->
       <?php include('includes/footer.php');?>

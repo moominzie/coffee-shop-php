@@ -19,7 +19,7 @@ foreach($results as $result)
 {               ?>  
 
 <p class="text-justify"><?php echo htmlentities($result->ShopName);?></p>
-<p class="text-justify"><?php echo htmlentities($result->Address);?></p>
+<p class="text-justify"><i class="fas fa-map-marker-alt"></i> <?php echo htmlentities($result->Address);?></p>
 <p class="text-justify"> <i class="fa fa-phone" aria-hidden="true"></i> <?php echo htmlentities($result->MobileNumber);?> </p>
 <p class="text-justify"> <i class="fa fa-envelope" aria-hidden="true"></i> <?php echo htmlentities($result->ShopEmail);?></p>
 
@@ -46,6 +46,7 @@ foreach($results as $result)
             <ul class="footer-links">
               <li><a href="index.php">Home</a></li>
               <li><a href="account.php">Profile</a></li>
+              <li><a href="billing.php">Billing</a></li>
               <li><a href="logout.php">Sing out</a></li>
               <li><a href="mycart.php">My Cart &nbsp<i class="fa fa-shopping-cart" aria-hidden="true"></i></a></li>
             </ul>

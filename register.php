@@ -31,6 +31,23 @@ $lastInsertId = $dbh->lastInsertId();
 if($lastInsertId)
 {
     $_SESSION['msg']="Registeration succesfully";
+    $username=$_POST['username'];  
+    $customername=$_POST['firstname'];
+    $customerlname=$_POST['lastname'];
+    $customertel=$_POST['mobileno'];
+    $quantity=0;
+    $total=0;
+    $status=0;
+    $sql="INSERT INTO  checkout (CustomerName,CustomerLname,CustomerTel,Quantity,Total,Username,Status) VALUES(:fname,:lname,:mobileno,:quantity,:total,:username,:status)";
+    $query = $dbh->prepare($sql);
+    $query->bindParam(':fname',$fname,PDO::PARAM_STR);
+    $query->bindParam(':lname',$lname,PDO::PARAM_STR);
+    $query->bindParam(':username',$username,PDO::PARAM_STR);
+    $query->bindParam(':mobileno',$mobileno,PDO::PARAM_STR);
+    $query->bindParam(':quantity',$quantity,PDO::PARAM_STR);
+    $query->bindParam(':total',$total,PDO::PARAM_STR);
+    $query->bindParam(':status',$status,PDO::PARAM_STR);
+    $query->execute();
 header('location:loginmember.php');
       }
       else {

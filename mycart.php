@@ -16,7 +16,7 @@ $customertel=$_POST['customertel'];
 $quantity=$_POST['quantity'];
 $total=$_POST['total'];
 $status=1;
-$sql="update checkout set CustomerName=:customername,CustomerLname=:customerlname,CustomerTel=:customertel,Quantity=:quantity,Total=:total,Username=:username,Status=:status";
+$sql="update checkout set CustomerName=:customername,CustomerLname=:customerlname,CustomerTel=:customertel,Quantity=:quantity,Total=:total,Username=:username,Status=:status where Username=:username";
 $query = $dbh->prepare($sql);
 $query->bindParam(':username',$username,PDO::PARAM_STR);
 $query->bindParam(':customername',$customername,PDO::PARAM_STR);
@@ -27,13 +27,14 @@ $query->bindParam(':total',$total,PDO::PARAM_STR);
 $query->bindParam(':status',$status,PDO::PARAM_STR);
 $query->execute();
 
-header('location:checkout.php');
+  $_SESSION['noproduct']="There are no products in your cart";
+  header('location:checkout.php');
 }
 
 if(isset($_POST['cancel']))
 {    
 $username=$_SESSION['username'];  
-$status=2;
+$status=0;
 $sql="update checkout set Status=:status where username=:username";
 $query = $dbh->prepare($sql);
 $query->bindParam(':username',$username,PDO::PARAM_STR);
@@ -47,6 +48,13 @@ if(isset($_POST['continue']))
 {    
 $_SESSION['continue']="Your already checkout";
 }
+
+if(isset($_POST['canceled']))
+{    
+$_SESSION['canceled']="You haven't checked out yet";
+}
+
+
 
 if(isset($_GET['del']))
 {
@@ -220,9 +228,11 @@ foreach($results as $result)
                                     <tbody>
 <?php
 $username=$_SESSION['username'];  
-$sql="SELECT id,ProductCode,ProductName,ProductImage,ProductPrice,Quantity,TotalPrice,Username,ProductPrice*Quantity as Total FROM cart WHERE Username=:username";
+$status=1;
+$sql="SELECT id,ProductCode,ProductName,ProductImage,ProductPrice,Quantity,TotalPrice,Username,ProductPrice*Quantity as Total,Status FROM cart WHERE Username=:username AND Status=:status";
 $query = $dbh -> prepare($sql);
 $query-> bindParam(':username', $username, PDO::PARAM_STR);
+$query-> bindParam(':status', $status, PDO::PARAM_STR);
 $query->execute();
 $results=$query->fetchAll(PDO::FETCH_OBJ);
 $cnt=1;
@@ -243,6 +253,7 @@ foreach($results as $result)
                                                  <br><label>Total price: </label> &nbsp<?php echo htmlentities($result->Total);?>  ฿ 
                                                  <br><br><a href="mycart.php?del=<?php echo htmlentities($result->id);?>" onclick="return confirm('Are you sure you want to delete?');"" style="color:#585858;"><i class="fas fa-trash-alt"></i>&nbsp REMOVE ITEM</a> 
                                                  &nbsp<a href="edit-order.php?edit=<?php echo htmlentities($result->id);?>" style="color:#585858;"><i class="fas fa-edit"></i>&nbsp EDIT ITEM</a> 
+                                                 
                                             </td>
                                         </tr>
 
@@ -260,11 +271,13 @@ foreach($results as $result)
   <div class="col-md-6">
     <div class="card">
       <div class="card-body">
-      <?php
+<?php
 $username=$_SESSION['username'];  
-$sql="SELECT SUM(ProductPrice*Quantity) as Total,SUM(Quantity) as Quantity FROM cart WHERE Username=:username";
+$status=1;
+$sql="SELECT SUM(ProductPrice*Quantity) as Total,SUM(Quantity) as Quantity FROM cart WHERE Username=:username AND Status=:status";
 $query = $dbh -> prepare($sql);
 $query-> bindParam(':username', $username, PDO::PARAM_STR);
+$query-> bindParam(':status', $status, PDO::PARAM_STR);
 $query->execute();
 $results=$query->fetchAll(PDO::FETCH_OBJ);
 $cnt=1;
@@ -286,12 +299,12 @@ foreach($results as $result)
 
 <?php }} ?> 
 
-<?php if($_SESSION['msg']!="")
+<?php if($_SESSION['purchase']!="")
 {?>
 <div class="alert alert-success" role="alert" >
-<?php echo htmlentities($_SESSION['msg']);?>
-<?php echo htmlentities($_SESSION['msg']="");?>
-<button type="button" class="close" data-dismiss="alert" aria-label="Close" onClick="emptyCart()">
+<?php echo htmlentities($_SESSION['purchase']);?>
+<?php echo htmlentities($_SESSION['purchase']="");?>
+<button type="button" class="close" data-dismiss="alert" aria-label="Close">
 <span aria-hidden="true">&times;</span>
 </button>
 </div>
@@ -302,6 +315,19 @@ function emptyCart() {
     $username=$_SESSION['username'];  
     $status=0;
     $sql="UPDATE checkout SET Status=:status WHERE Username=:username";
+    $query = $dbh->prepare($sql);
+    $query->bindParam(':username',$username,PDO::PARAM_STR);
+    $query->bindParam(':status',$status,PDO::PARAM_STR);
+    $query->execute();?>
+}
+</script>
+
+<script>
+function emptyCart() {
+  <?php 
+    $username=$_SESSION['username'];  
+    $status=2;
+    $sql="UPDATE cart SET Status=:status WHERE Username=:username";
     $query = $dbh->prepare($sql);
     $query->bindParam(':username',$username,PDO::PARAM_STR);
     $query->bindParam(':status',$status,PDO::PARAM_STR);
@@ -321,6 +347,30 @@ function emptyCart() {
 </button>
 </div>
 
+<script>
+function emptyCart() {
+  <?php 
+    $username=$_SESSION['username'];  
+    $status=2;
+    $sql="UPDATE checkout SET Status=:status WHERE Username=:username";
+    $query = $dbh->prepare($sql);
+    $query->bindParam(':username',$username,PDO::PARAM_STR);
+    $query->bindParam(':status',$status,PDO::PARAM_STR);
+    $query->execute();?>
+}
+</script>
+<?php } ?>
+
+<?php if($_SESSION['canceled']!="")
+{?>
+<div class="alert alert-warning" role="alert" >
+<?php echo htmlentities($_SESSION['canceled']);?>
+<?php echo htmlentities($_SESSION['canceled']="");?>
+<button type="button" class="close" data-dismiss="alert" aria-label="Close" onClick="emptyCart()">
+<span aria-hidden="true">&times;</span>
+</button>
+</div>
+
 <?php } ?>
 
 <?php if($_SESSION['edit']!="")
@@ -329,7 +379,6 @@ function emptyCart() {
 <div class="alert alert-success" role="alert" >
  <?php echo htmlentities($_SESSION['edit']);?>
 <?php echo htmlentities($_SESSION['edit']="");?>
-&nbsp<a href="checkout.php" class="alert-link">Checkout order now</a>
 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
     <span aria-hidden="true">&times;</span>
   </button>
@@ -361,9 +410,11 @@ foreach($results as $result)
              
              <?php
 $username=$_SESSION['username'];  
-$sql="SELECT ProductPrice*Quantity as Total,SUM(Quantity) as Quantity,Username,SUM(ProductPrice*Quantity) as ProductSum FROM cart WHERE Username=:username";
+$status=1;
+$sql="SELECT ProductPrice*Quantity as Total,SUM(Quantity) as Quantity,Username,SUM(ProductPrice*Quantity) as ProductSum,Status FROM cart WHERE Username=:username AND Status=:status";
 $query = $dbh -> prepare($sql);
 $query-> bindParam(':username', $username, PDO::PARAM_STR);
+$query-> bindParam(':status', $status, PDO::PARAM_STR);
 $query->execute();
 $results=$query->fetchAll(PDO::FETCH_OBJ);
 $cnt=1;
@@ -376,7 +427,7 @@ foreach($results as $result)
              <?php }} ?>
              <input class="form-control" type="hidden" name="username" value="<?php echo htmlentities($result->Username);?>" required autocomplete="off"  />
   
-            
+
 
 </div>
 <div class="col-md-12">  
@@ -424,10 +475,9 @@ foreach($results as $result)
 
 <?php
 $username=$_SESSION['username'];  
-$sql="SELECT Status FROM checkout";
+$sql="SELECT * FROM checkout WHERE Username=:username";
 $query = $dbh -> prepare($sql);
 $query-> bindParam(':username', $username, PDO::PARAM_STR);
-$query-> bindParam(':status', $status, PDO::PARAM_STR);
 $query->execute();
 $results=$query->fetchAll(PDO::FETCH_OBJ);
 $cnt=1;
@@ -435,14 +485,24 @@ if($query->rowCount() > 0)
 {
 foreach($results as $result)
 {               ?>  
+
+
 <?php if($result->Status==1){?>
 <a href="checkout.php"><button name="continue" type="submit" class="create-account" style="margin-bottom:10px;" > Checkout now </button></a>
 <?php } else { ?>
   <a href=""><button name="checkout" type="submit" class="create-account" style="margin-bottom:10px;" > Checkout now </button></a>
   <?php }?>
-<?php }} ?>
+
+<?php if(($result->Status==0)||($result->Status==2)){?>
+&nbsp&nbsp&nbsp<a href=""><button name="canceled" type="submit" class="sign-in" style="margin-bottom:10px;" > Cancel order </button></a>
+<?php } else { ?>
 &nbsp&nbsp&nbsp<a href=""><button name="cancel" type="submit" class="sign-in" style="margin-bottom:10px;" > Cancel order </button></a>
+<?php }?>
 &nbsp&nbsp&nbsp<a href="checkout.php" style="color: black;">Continue checkout here</a>
+
+<?php }} ?>   
+
+
 </div> 
 </div>  
 
