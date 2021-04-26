@@ -67,8 +67,6 @@ foreach($results as $result)
 
 
 </head>
-<style>
-    </style>
 
 <body>
       <!------MENU SECTION START-->
@@ -117,7 +115,7 @@ if($query->rowCount() > 0)
 foreach($results as $result)
 {               ?>                                     
                                         <tr class="odd gradeX">
-                                             <td class="center""><?php echo htmlentities($cnt);?></td>
+                                             <td class="center"">ORD<?php echo htmlentities($cnt);?></td>
                                              <td class="center"><?php echo htmlentities($result->ProductTotalPrice);?></td>
                                              <td class="center"><?php echo htmlentities($result->Quantity);?></td>
                                              <td class="center"><?php echo htmlentities($result->CustomerName);?></td>

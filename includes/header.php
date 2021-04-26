@@ -66,7 +66,7 @@ include('includes/connection.php');
         padding: 60px 70px;
         text-align: right;
         background-image: url("assets/img/coffee.jpg");
-        background-size: 1400px 550px;
+        background-size: 1440px 480px;
         color: white;
         font-size: 30px;
     }

@@ -136,7 +136,7 @@ foreach($results as $result)
 
 <div class="col-md-8">
     <div class="form-group">
-        <label>Upload new beverage banner</label>&nbsp;<label for="" style="color: red;">* </label>&nbsp;<label for="" style="color: red"> Please use picture scale 1366x384 px. </label>
+        <label>Upload new beverage banner</label>&nbsp;<label for="" style="color: red;">* </label>&nbsp;<label for="" style="color: red"> Please use picture scale 1440x384 px. </label>
         <input class="form-control" type="file" name="img1" autocomplete="off" required />
     </div>
     </div>
@@ -150,7 +150,7 @@ foreach($results as $result)
 </div>
 
 <div class="col-md-12">                             
-<button type="submit" name="update" class="create-account" > Update banner </button> | <a href="edit-banner.php" style="color: #006400" > Edit Promotion Banner 1</a> | <a href="edit-bread-banner.php" style="color: #006400" > Edit Promotion Banner 3</a>
+<button type="submit" name="update" class="create-account" > Update banner </button> | <a href="edit-banner.php" style="color: #006400" > Edit Promotion Banner 1</a> | <a href="edit-banner2.php" style="color: #006400" > Edit Promotion Banner 2</a>
 </div>
 
                                     </form>

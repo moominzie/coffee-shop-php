@@ -88,7 +88,7 @@ foreach($results as $result)
 <div class="container">
     <div class="row pad-botm">
             <div class="col-md-12">
-            <h4 class="header-line" style="text-align:none; font-family: 'Noto Sans JP', sans-serif; font-size: 22px;">Manage order &nbsp&nbsp&nbsp<a href="order.php" style="color: black;">Order billing &nbsp<i class="fas fa-file-invoice-dollar"></i></a></h4>
+            <h4 class="header-line" style="text-align:none; font-family: 'Noto Sans JP', sans-serif; font-size: 22px;">Manage order &nbsp&nbsp&nbsp<a href="order.php" style="color: black;">Billing history &nbsp<i class="fas fa-file-invoice-dollar"></i></a></h4>
     </div>
     <?php if($_SESSION['msg']!="")
 {?>

@@ -151,10 +151,19 @@ foreach($results as $result)
 <div class="card-data">
         <div class="panel-body">
 
-<div class="col-md-12">
+        <div class="col-md-12">
+<input type="hidden"/>
+</div>
+
+<div class="col-md-3">
 <div class="form-group">
 <img src="uploads/img/<?php echo htmlentities($result->Image1);?>" width="200" height="200" style="border-radius:10px;">
+<input class="form-control" type="file" name="img1" style="margin-top:20px;" autocomplete="off" required />
 </div>
+</div>
+
+<div class="col-md-12">
+<input type="hidden"/>
 </div>
 
 <div class="col-md-4">
