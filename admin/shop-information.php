@@ -158,7 +158,7 @@ Your shop mobile number
 <?php }} ?>
 
 <div class="col-md-12">
-    <button type="submit" name="update" class="create-account" id="submit" > Update profile </button>
+    <button type="submit" name="update" class="create-account" id="submit" > Update shop info </button>
 </div>
 </form>
   </div>
