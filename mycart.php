@@ -331,7 +331,19 @@ function emptyCart() {
     $query = $dbh->prepare($sql);
     $query->bindParam(':username',$username,PDO::PARAM_STR);
     $query->bindParam(':status',$status,PDO::PARAM_STR);
+    $query->execute();
+    
+    $username=$_SESSION['username'];  
+    $status=2;
+    $sql="UPDATE history SET Status=:status WHERE Username=:username";
+    $query = $dbh->prepare($sql);
+    $query->bindParam(':username',$username,PDO::PARAM_STR);
+    $query->bindParam(':status',$status,PDO::PARAM_STR);
     $query->execute();?>
+    
+    ?>
+
+    
 }
 </script>
 
@@ -498,9 +510,9 @@ foreach($results as $result)
 <?php } else { ?>
 &nbsp&nbsp&nbsp<a href=""><button name="cancel" type="submit" class="sign-in" style="margin-bottom:10px;" > Cancel order </button></a>
 <?php }?>
-&nbsp&nbsp&nbsp<a href="checkout.php" style="color: black;">Continue checkout here</a>
+<?php }} ?>  
 
-<?php }} ?>   
+&nbsp&nbsp&nbsp<a href="history.php" style="color: black;">Checkout item history &nbsp<i class="fas fa-history"></i></a>
 
 
 </div> 

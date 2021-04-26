@@ -27,7 +27,7 @@ $query->bindParam(':lastname',$lastname,PDO::PARAM_STR);
 $query->execute();
 
 $_SESSION['addcard']="Add payment method completely";
-header('location:mycart.php');
+header('location:billing.php');
 }
 
 ?>
@@ -98,7 +98,6 @@ foreach($results as $result)
         <div class="row pad-botm">
             <div class="col-md-12">
                 <h4 class="header-line">Credit card &nbsp<i class="far fa-credit-card"></i></h4>
-                
                             </div>
 
         </div>

@@ -34,6 +34,32 @@ else{
 
 <h4 class="header-line">Your address</h4>
 
+<?php
+$username=$_SESSION['username'];  
+$addressstatus=1;
+$sql="SELECT * FROM member WHERE Username=:username AND AddressStatus=:addressstatus";
+$query = $dbh -> prepare($sql);
+$query-> bindParam(':username', $username, PDO::PARAM_STR);
+$query-> bindParam(':addressstatus', $addressstatus, PDO::PARAM_STR);
+$query->execute();
+$results=$query->fetchAll(PDO::FETCH_OBJ);
+$cnt=1;
+if($query->rowCount() > 0)
+{
+foreach($results as $result)
+{               ?>  
+<?php if($result->AddressStatus==1){?>
+<div class="alert alert-light" role="alert" >
+You are not add your address
+&nbsp&nbsp<a href="add-address.php" style="color: black;">Add your address here</a>
+</div>
+<?php } else { ?>
+
+<?php } ?>
+<?php }} ?>
+
+
+ 
 <?php 
 $username=$_SESSION['username'];
 $sql="SELECT Address,Username,PostalCode,districts.name_en as Districts,amphures.name_en as Amphures,provinces.name_en as Provinces from  address join districts on address.DistrictId=districts.id join amphures on address.AmphureId=amphures.id join provinces on address.ProvinceId=provinces.id  where Username=:username";
@@ -66,14 +92,16 @@ foreach($results as $result)
 </div>
 </div>
 
-
-<?php }} ?>
-
 <div class="col-md-12">            
 <a href="#demo" data-toggle="collapse"><button class="create-account" >
     Edit address 
-  </button></a>&nbsp&nbsp&nbsp<a href="add-address.php" style="color: black;">Add your address here</a>
+  </button></a>
 </div>
+<?php }} ?>
+
+
+
+
 
   <div id="demo" class="collapse">
  

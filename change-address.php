@@ -26,7 +26,7 @@ $query->bindParam(':postalcode',$postalcode,PDO::PARAM_STR);
 
 $query->execute();
 
-header('location:mycart.php');
+header('location:checkout.php');
 }
 
 ?>
@@ -85,6 +85,19 @@ foreach($results as $result)
 
 </head>
 
+<style>
+
+.card-data {
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+            max-width:700px;
+            margin: auto;
+            text-align: none;
+            align: center;
+            border-radius: 15px;
+            border: 0px solid white;
+            margin-bottom: 50px;
+          }
+</style>
 
 <body>
 
@@ -96,16 +109,16 @@ foreach($results as $result)
          <div class="container">
         <div class="row pad-botm">
             <div class="col-md-12">
-                <h4 class="header-line">Add address</h4>
+                <h4 class="header-line">Change address</h4>
                 
                             </div>
 
         </div>
              <div class="row">
            
-<div class="col-md-9 col-md-offset-1">
-               <div class="card">
-               <div class="panel-body" style="margin:20px">
+<div class="col-md-12">
+               <div class="card-data">
+               <div class="panel-body">
 
                <form action="" method="post" role="form" enctype="multipart/form-data">
 <div class="col-md-12">
@@ -245,6 +258,9 @@ foreach($results as $result)
 </div>
     </div>
     </div>
+     <!------MENU SECTION START-->
+     <?php include('includes/footer.php');?>
+<!-- MENU SECTION END-->
      <!-- CONTENT-WRAPPER SECTION END-->
     <script src="assets/js/jquery-1.10.2.js"></script>
     <!-- BOOTSTRAP SCRIPTS  -->

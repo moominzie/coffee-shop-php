@@ -187,6 +187,55 @@ foreach($results as $result)
     <?php include('includes/header.php');?>
 <!-- MENU SECTION END-->
 
+<?php
+$username=$_SESSION['username'];  
+$sql="SELECT * FROM member WHERE Username=:username";
+$query = $dbh -> prepare($sql);
+$query-> bindParam(':username', $username, PDO::PARAM_STR);
+$query->execute();
+$results=$query->fetchAll(PDO::FETCH_OBJ);
+$cnt=1;
+if($query->rowCount() > 0)
+{
+foreach($results as $result)
+{               ?> 
+<?php if(($result->AddressStatus==1)&&($result->PaymentStatus==1)) { ?>
+  <?php ($_SESSION['alertlogin']!="")
+?>
+<div class="alert alert-light" role="alert" >
+ <?php echo htmlentities($_SESSION['alertlogin']);?>
+<?php echo htmlentities($_SESSION['alertlogin']="");?>
+&nbsp<a href="add-address.php" class="alert-link">Add your address</a> and <a href="add-payment.php" class="alert-link">Add your credit card information</a>&nbsp here
+</div>
+
+<?php } else if($result->AddressStatus==1) { ?>
+  <?php ($_SESSION['alertlogin']!="")
+?>
+<div class="alert alert-light" role="alert" >
+ <?php echo htmlentities($_SESSION['alertlogin']);?>
+<?php echo htmlentities($_SESSION['alertlogin']="");?>
+&nbsp<a href="add-address.php" class="alert-link">Add your address</a>&nbsp here
+</div>
+
+  <?php } else if($result->PaymentStatus==1)  { ?>
+    <?php ($_SESSION['alertlogin']!="")
+?>
+<div class="alert alert-light" role="alert" >
+ <?php echo htmlentities($_SESSION['alertlogin']);?>
+<?php echo htmlentities($_SESSION['alertlogin']="");?>
+&nbsp<a href="add-payment.php" class="alert-link">Add your credit card information</a>&nbsp here
+</div>
+
+    <?php } ?>
+
+
+
+
+
+
+<?php }} ?>
+
+
     <!------MENU SECTION START-->
     <?php include('includes/carousel.php');?>
 <!-- MENU SECTION END-->
@@ -197,6 +246,7 @@ foreach($results as $result)
 
   <div class="container-fluid">
   <h3 class="header-shop">Today’s good mood is sponsored by coffee</h3>
+
     <div class="row">
 
       <div class="col-md-6">

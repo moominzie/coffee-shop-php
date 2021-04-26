@@ -140,20 +140,16 @@ foreach($results as $result)
                                              <td class="center"><a style="color:black;" href="view-user.php?mid=<?php echo htmlentities($result->mid);?>"><?php echo htmlentities($result->Username);?></a></td>
                                              <td class="center">
                                              <?php if($result->Status==2) {?>
-                                            <a class="btn btn-success" style="border-radius:15px;background-color: #00A862; color:white;">In process</a>
+                                            <a class="btn btn-success" style="border-radius:15px;background-color: #00A862; color:white;">Customer confirmed</a>
                                             <?php } else if($result->Status==1)  {?>
                                             <a class="btn btn-warning" style="border-radius:15px;background-color: white;color: black">Waiting confirmation</a>
-                                            <?php } else if($result->Status==3)  {?>
-                                            <a class="btn btn-success" style="border-radius:15px;background-color: #00A862;color:white;">In delivery now</a>
                                             <?php } ?>
                                             </td>
                                             <td class="center">
                                             <?php if($result->Status==2) {?>
                                                 <a style="color: #006400;" href="manage-order.php?delivery=<?php echo htmlentities($result->cid);?>" onclick="return confirm('Confirm delivery?');""><button class="btn btn-success" style="border-radius:15px;background-color: white;color:black;"> Delivery now</button> </td>
                                             <?php } else if($result->Status==1)  {?>
-                                                <a style="color: #006400;"><button class="btn btn-success" style="border-radius:15px;background-color: white;color:black;" disabled> Update to In delivery process</button> </td>
-                                            <?php } else if($result->Status==3)  {?>
-                                            <a  class="btn btn-success" style="border-radius:15px;background-color: #00A862;color:white;">In delivery now</a>
+                                                <a style="color: #006400;"><button class="btn btn-success" style="border-radius:15px;background-color: white;color:black;" disabled> Delivery now</button> </td>
                                             <?php } ?>
                                             </td>
                                         </tr>

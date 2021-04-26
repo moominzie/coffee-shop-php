@@ -286,7 +286,6 @@ foreach($results as $result)
 
 <input class="form-control" type="hidden" name="username" value="<?php echo htmlentities($result->Username);?>" required autocomplete="off"  />
 
-
 <?php
 $username=$_SESSION['username'];  
 $sql="SELECT * FROM credit WHERE Username=:username";
@@ -307,7 +306,6 @@ foreach($results as $result)
 </div>
 </div> 
 <?php }} ?>
-
 
 <h5 class="header-line">Address</h5>
 <?php 
@@ -373,10 +371,45 @@ foreach($results as $result)
 <input class="form-control" type="hidden" name="customertel" value="<?php echo htmlentities($result->CustomerTel);?>" required autocomplete="off"  />
 <input class="form-control" type="hidden" name="username" value="<?php echo htmlentities($result->Username);?>" required autocomplete="off"  />
 
+<?php
+$username=$_SESSION['username'];  
+$sql="SELECT * FROM member WHERE Username=:username";
+$query = $dbh -> prepare($sql);
+$query-> bindParam(':username', $username, PDO::PARAM_STR);
+$query->execute();
+$results=$query->fetchAll(PDO::FETCH_OBJ);
+$cnt=1;
+if($query->rowCount() > 0)
+{
+foreach($results as $result)
+{               ?> 
+<?php if(($result->AddressStatus==1)&&($result->PaymentStatus==1)) { ?>
+  <?php ($_SESSION['alertlogin']!="")
+?>
+<button name="confirm" class="create-account" type="submit" onClick="emptyCart()" disabled>
+    Confirm order
+  </button>&nbsp Can't confirm please &nbsp<a href="add-address.php" style="color: #006400;" >Add your address</a> and <a href="add-payment.php">Add your credit card information</a>&nbsp here
 
-<button name="confirm" class="create-account" type="submit" onClick="emptyCart()">
+<?php } else if($result->AddressStatus==1) { ?>
+  <?php ($_SESSION['alertlogin']!="")
+?>
+<button name="confirm" class="create-account" type="submit" onClick="emptyCart()" disabled>
+    Confirm order
+  </button>&nbsp Can't confirm please &nbsp<a href="add-address.php" style="color: #006400;">Add your address</a>&nbsp here
+
+  <?php } else if($result->PaymentStatus==1)  { ?>
+    <?php ($_SESSION['alertlogin']!="")
+?>
+<button name="confirm" class="create-account" type="submit" onClick="emptyCart()" disabled>
+    Confirm order
+  </button>&nbsp Can't confirm please &nbsp<a href="add-payment.php" style="color: #006400;">Add your credit card information</a>&nbsp here
+
+    <?php } else {?>
+      <button name="confirm" class="create-account" type="submit" onClick="emptyCart()" >
     Confirm order
   </button>&nbsp&nbsp&nbsp<a href="change-address.php" style="color: black;">Change address</a>
+<?php }}} ?>
+
 </div>
 </form>
 <?php }} ?>   

@@ -141,3 +141,40 @@
           background-color: Black;
           
         }
+
+           /* --- card*/
+
+           .card-table {
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+            max-width:1200px;
+            margin: auto;
+            text-align: none;
+            align: center;
+            border-radius: 15px;
+            border: 0px solid white;
+            margin-bottom: 50px;
+          }
+  
+          .card-data {
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+            max-width:1200px;
+            margin: auto;
+            text-align: none;
+            align: center;
+            border-radius: 15px;
+            border: 0px solid white;
+            margin-bottom: 50px;
+          }
+  
+          .card-cart {
+            box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1);
+            max-width:800px;
+            margin: auto;
+            text-align: none;
+            align: center;
+            border: 0px solid white;
+            margin-bottom: 50px;
+            margin-top: 0px;
+          }
+  
+    

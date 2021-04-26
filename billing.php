@@ -99,14 +99,75 @@ foreach($results as $result)
                 <h4 class="header-line">Credit card &nbsp<i class="far fa-credit-card"></i></h4>
                 
                             </div>
-
-
+                          
         </div>
              <div class="row">
            
 <div class="col-md-9 col-md-offset-1">
                <div class="card">
                <div class="panel-body" style="margin:20px">
+<?php if($_SESSION['addcard']!="")
+{?>
+
+<div class="alert alert-success" role="alert" >
+ <?php echo htmlentities($_SESSION['addcard']);?>
+<?php echo htmlentities($_SESSION['addcard']="");?>
+<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+
+<script>
+function emptyCart() {
+  <?php 
+    $username=$_SESSION['username'];  
+    $paymentstatus=2;
+    $sql="UPDATE member SET PaymentStatus=:paymentstatus WHERE Username=:username";
+    $query = $dbh->prepare($sql);
+    $query->bindParam(':username',$username,PDO::PARAM_STR);
+    $query->bindParam(':paymentstatus',$paymentstatus,PDO::PARAM_STR);
+    $query->execute();?>
+}
+</script>
+<?php } ?>
+
+
+<div class="col-md-12">
+<?php if($_SESSION['changecard']!="")
+{?>
+
+<div class="alert alert-success" role="alert" >
+ <?php echo htmlentities($_SESSION['changecard']);?>
+<?php echo htmlentities($_SESSION['changecard']="");?>
+<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<?php } ?>
+</div>
+
+<?php
+$username=$_SESSION['username'];  
+$paymentstatus=1;
+$sql="SELECT * FROM member WHERE Username=:username AND PaymentStatus=:paymentstatus";
+$query = $dbh -> prepare($sql);
+$query-> bindParam(':username', $username, PDO::PARAM_STR);
+$query-> bindParam(':paymentstatus', $paymentstatus, PDO::PARAM_STR);
+$query->execute();
+$results=$query->fetchAll(PDO::FETCH_OBJ);
+$cnt=1;
+if($query->rowCount() > 0)
+{
+foreach($results as $result)
+{               ?>  
+<?php if($result->PaymentStatus==1){?>
+<div class="alert alert-light" role="alert" >
+You are not add your credit
+&nbsp&nbsp<a href="add-payment.php" style="color: black;">Add your credit here</a>
+</div>
+
+  <?php } ?>
+<?php }} ?>
 
 <?php
 $username=$_SESSION['username'];  
@@ -149,37 +210,21 @@ foreach($results as $result)
 </div>
 </div>
 
-<?php }} ?>
-
 <div class="col-md-12">            
-<a data-toggle="collapse" href="#editprofile" role="button" aria-expanded="false" aria-controls="editprofile">
+<a data-toggle="collapse" href="#editcredit" role="button" aria-expanded="false" aria-controls="editprofile">
   <button class="create-account" >
     Change credit card</button>
   </a>&nbsp&nbsp&nbsp<a href="add-payment.php" style="color: black;">Add credit card*</a>
 </div>
+<?php }} ?>
 
-<div class="col-md-12" style="margin-top:20px;">
-<?php if($_SESSION['changecard']!="")
-{?>
-
-<div class="alert alert-success" role="alert" >
- <?php echo htmlentities($_SESSION['changecard']);?>
-<?php echo htmlentities($_SESSION['changecard']="");?>
-<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-    <span aria-hidden="true">&times;</span>
-  </button>
-</div>
-<?php } ?>
-</div>
 
 <?php } ?>
 </div>
 </div>
 
 
-
-
-<div class="collapse" id="editprofile">
+<div class="collapse" id="editcredit">
   <div class="card" >
   <div class="panel-body" style="margin:20px">
   <form name="update" method="post">

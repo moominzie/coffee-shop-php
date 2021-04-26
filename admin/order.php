@@ -97,8 +97,7 @@ foreach($results as $result)
                             <table class="table">
                                     <thead>
                                         <tr>
-                                            <th style="display:none;">ID</th>
-                                            <th>Order number</th>
+                                            <th>ID</th>
                                             <th>Income</th>
                                             <th>Quantity</th>
                                             <th>Customer</th>
@@ -118,8 +117,7 @@ if($query->rowCount() > 0)
 foreach($results as $result)
 {               ?>                                     
                                         <tr class="odd gradeX">
-                                             <td class="center" style="display:none;"><?php echo htmlentities($cnt);?></td>
-                                             <td class="center"><?php echo htmlentities($result->OrderId);?></td>
+                                             <td class="center""><?php echo htmlentities($cnt);?></td>
                                              <td class="center"><?php echo htmlentities($result->ProductTotalPrice);?></td>
                                              <td class="center"><?php echo htmlentities($result->Quantity);?></td>
                                              <td class="center"><?php echo htmlentities($result->CustomerName);?></td>

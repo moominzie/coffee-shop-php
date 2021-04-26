@@ -24,7 +24,9 @@ if($query->rowCount() > 0)
 if($result->Status==1)
 {
 $_SESSION['login']=$_POST['emailid'];
-echo "<script type='text/javascript'> document.location ='index.php'; </script>";
+
+$_SESSION['alertlogin']="You have been logged in.";
+header('location:index.php');
 } else {
 
 }

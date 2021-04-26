@@ -235,6 +235,20 @@ foreach($results as $result)
     <span aria-hidden="true">&times;</span>
   </button>
 </div>
+
+<script>
+function emptyCart() {
+  <?php 
+    $username=$_SESSION['username'];  
+    $addressstatus=2;
+    $sql="UPDATE member SET AddressStatus=:addressstatus WHERE Username=:username";
+    $query = $dbh->prepare($sql);
+    $query->bindParam(':username',$username,PDO::PARAM_STR);
+    $query->bindParam(':addressstatus',$addressstatus,PDO::PARAM_STR);
+    $query->execute();?>
+}
+</script>
+
 <?php } ?>
 </div>
 

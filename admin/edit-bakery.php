@@ -164,7 +164,7 @@ foreach($results as $result)
 <div class="col-md-4">
 <div class="form-group">
 <label>Product code</label>
-<input class="form-control" type="text" name="productcode" id="productid" onBlur="checkProductcode()" value="<?php echo htmlentities($result->ProductCode);?>"  autocomplete="off" required />
+<input class="form-control" type="text" name="productcode" id="productid" maxlength="10" onBlur="checkProductcode()" value="<?php echo htmlentities($result->ProductCode);?>"  autocomplete="off" required />
 <span id="product-code-status" style="font-size:12px;"></span> 
 </div>
 </div>
