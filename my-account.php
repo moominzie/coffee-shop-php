@@ -119,6 +119,7 @@ echo htmlentities($result->RegDate);?>
   </a>&nbsp&nbsp&nbsp<a href="change-password.php" style="color: black;">Change password here</a>
 </div>
 
+
 <div class="collapse" id="editprofile">
   <div>
 
@@ -137,7 +138,6 @@ foreach($results as $result)
 {               ?>  
 
 <div class="col-md-6">
-
 <div class="form-group">
 First name
 <input class="form-control" type="text" name="firstname" value="<?php echo htmlentities($result->FirstName);?>" autocomplete="off" required />
@@ -165,6 +165,7 @@ Your email
 
 </div>
 </div>
+
 <div class="col-md-3">
 <div class="form-group">
 Username

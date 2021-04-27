@@ -101,11 +101,12 @@ foreach($results as $result)
                                             <th>Customer</th>
                                             <th>Mobile</th>
                                             <th>Username</th>
+                                            <th>Delivery</th>
                                         </tr>
                                     </thead>
                                     <tbody>
 <?php 
-$sql="SELECT OrderId,ProductTotalPrice,Quantity,CustomerName,CustomerTel,CustomerUname,member.id as mid FROM cforder join member on member.Username=cforder.CustomerUname";
+$sql="SELECT OrderId,ProductTotalPrice,Quantity,CustomerName,CustomerTel,CustomerUname,DeliveryType,member.id as mid FROM cforder join member on member.Username=cforder.CustomerUname";
 $query = $dbh -> prepare($sql);
 $query->execute();
 $results=$query->fetchAll(PDO::FETCH_OBJ);
@@ -121,6 +122,7 @@ foreach($results as $result)
                                              <td class="center"><?php echo htmlentities($result->CustomerName);?></td>
                                              <td class="center"><?php echo htmlentities($result->CustomerTel);?></td>
                                              <td class="center"><a style="color:black;" href="view-user.php?mid=<?php echo htmlentities($result->mid);?>"><?php echo htmlentities($result->CustomerUname);?></a></td>
+                                             <td class="center"><?php echo htmlentities($result->DeliveryType);?></td>
                                         </tr>
  <?php $cnt=$cnt+1;}} ?>                                      
                                     </tbody>

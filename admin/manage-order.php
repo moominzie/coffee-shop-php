@@ -147,9 +147,9 @@ foreach($results as $result)
                                             </td>
                                             <td class="center">
                                             <?php if($result->Status==2) {?>
-                                                <a style="color: #006400;" href="manage-order.php?delivery=<?php echo htmlentities($result->cid);?>" onclick="return confirm('Confirm delivery?');""><button class="btn btn-success" style="border-radius:15px;background-color: white;color:black;"> Delivery now</button> </td>
+                                                <a style="color: #006400;" href="manage-order.php?delivery=<?php echo htmlentities($result->cid);?>" onclick="return confirm('Confirm delivery?');""><button class="btn btn-success" style="border-radius:15px;background-color: white;color:black;">This order is cooked</button> </td>
                                             <?php } else if($result->Status==1)  {?>
-                                                <a style="color: #006400;"><button class="btn btn-success" style="border-radius:15px;background-color: white;color:black;" disabled> Delivery now</button> </td>
+                                                <a style="color: #006400;"><button class="btn btn-success" style="border-radius:15px;background-color: white;color:black;" disabled>This order is cooked</button> </td>
                                             <?php } ?>
                                             </td>
                                         </tr>

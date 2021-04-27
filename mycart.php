@@ -291,14 +291,19 @@ foreach($results as $result)
 <label>Product quantity : </label>
 <?php echo htmlentities($result->Quantity);?> item            
 <input class="form-control" type="hidden" name="quantity" value="<?php echo htmlentities($result->Quantity);?>" required autocomplete="off"  />
+</div>
 
 <div class="form-group">
 <label>Total price : </label>
 <?php echo htmlentities($result->Total);?> ฿           
 <input class="form-control" type="hidden" name="total" value="<?php echo htmlentities($result->Total);?>" required autocomplete="off"  />
+</div>
+</div>
 
 <?php }} ?> 
 
+
+<div class="col-md-7">  
 <?php if($_SESSION['purchase']!="")
 {?>
 <div class="alert alert-success" role="alert" >
@@ -375,14 +380,13 @@ function emptyCart() {
 
 <?php if($_SESSION['canceled']!="")
 {?>
-<div class="alert alert-warning" role="alert" >
+<div class="alert alert-secondary" role="alert" >
 <?php echo htmlentities($_SESSION['canceled']);?>
 <?php echo htmlentities($_SESSION['canceled']="");?>
 <button type="button" class="close" data-dismiss="alert" aria-label="Close" onClick="emptyCart()">
 <span aria-hidden="true">&times;</span>
 </button>
 </div>
-
 <?php } ?>
 
 <?php if($_SESSION['edit']!="")
@@ -395,14 +399,31 @@ function emptyCart() {
     <span aria-hidden="true">&times;</span>
   </button>
 </div>
-</div>
+
+<?php } ?>
+
+<?php if($_SESSION['continue']!="")
+{  ?>
+
+<div class="alert alert-secondary" role="alert" >
+<?php echo htmlentities($_SESSION['continue']);?>
+<?php echo htmlentities($_SESSION['continue']="");?>
+&nbsp<a href="checkout.php" class="alert-link">Continue checkout here</a>
+<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+<span aria-hidden="true">&times;</span>
+</button>
 </div>
 
 <?php } ?>
 
+
+</div>
+
+
 <form name="update" method="post">     
 
-
+<div class="col-md-12">  
+<div class="form-group">
 <?php
 $username=$_SESSION['username'];  
 $sql="SELECT * FROM member WHERE Username=:username";
@@ -439,51 +460,6 @@ foreach($results as $result)
              <?php }} ?>
              <input class="form-control" type="hidden" name="username" value="<?php echo htmlentities($result->Username);?>" required autocomplete="off"  />
   
-
-
-</div>
-<div class="col-md-12">  
-<div class="form-group">
-
-<?php if($_SESSION['edit']!="")
-{?>
-
-<div class="alert alert-success" role="alert" >
- <?php echo htmlentities($_SESSION['edit']);?>
-<?php echo htmlentities($_SESSION['edit']="");?>
-<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-    <span aria-hidden="true">&times;</span>
-  </button>
-</div>
-
-<?php } ?>
-
-<?php if($_SESSION['msg']!="")
-{  ?>
-
-<div class="alert alert-success" role="alert" >
-<?php echo htmlentities($_SESSION['msg']);?>
-<?php echo htmlentities($_SESSION['msg']="");?>
-<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-<span aria-hidden="true">&times;</span>
-</button>
-</div>
-
-<?php } ?>
-
-<?php if($_SESSION['continue']!="")
-{  ?>
-
-<div class="alert alert-warning" role="alert" >
-<?php echo htmlentities($_SESSION['continue']);?>
-<?php echo htmlentities($_SESSION['continue']="");?>
-&nbsp<a href="checkout.php" class="alert-link">Continue checkout here</a>
-<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-<span aria-hidden="true">&times;</span>
-</button>
-</div>
-
-<?php } ?>
 
 <?php
 $username=$_SESSION['username'];  

@@ -15,14 +15,18 @@ $total=$_POST['total'];
 $quantity=$_POST['quantity'];
 $customername=$_POST['customername'];
 $customertel=$_POST['customertel'];
-$sql="INSERT INTO  cforder (OrderId,ProductTotalPrice,Quantity,CustomerName,CustomerTel,CustomerUname) VALUES(:orderid,:total,:quantity,:customername,:customertel,:username)";
+$deliverytype=$_POST['deliverytype'];
+$status=1;
+$sql="INSERT INTO  cforder (OrderId,ProductTotalPrice,Quantity,CustomerName,CustomerTel,Status,CustomerUname,DeliveryType) VALUES(:orderid,:total,:quantity,:customername,:customertel,:status,:username,:deliverytype)";
 $query = $dbh->prepare($sql);
 $query->bindParam(':username',$username,PDO::PARAM_STR);
 $query->bindParam(':orderid',$orderid,PDO::PARAM_STR);
 $query->bindParam(':total',$total,PDO::PARAM_STR);
 $query->bindParam(':quantity',$quantity,PDO::PARAM_STR);
+$query->bindParam(':status',$status,PDO::PARAM_STR);
 $query->bindParam(':customername',$customername,PDO::PARAM_STR);
 $query->bindParam(':customertel',$customertel,PDO::PARAM_STR);
+$query->bindParam(':deliverytype',$deliverytype,PDO::PARAM_STR);
 $query->execute();
 
 $_SESSION['purchase']="Your order has been purchase";
@@ -145,7 +149,6 @@ foreach($results as $result)
   #myBtn:hover {
     background-color: #555;
   }
-
   
 </style>
 
@@ -161,6 +164,7 @@ foreach($results as $result)
     <div class="container">
     <div class="row pad-botm">
             <div class="col-md-10">
+
 <?php
 $username=$_SESSION['username'];  
 $status=1;
@@ -221,7 +225,7 @@ foreach($results as $result)
                    <h5 class="header-right">Total price: <?php echo htmlentities($result->Total);?>  ฿ </h5>
                    <?php }} ?>
                         </div>
-                        
+
 
                         <div class="card" >
                             
@@ -342,10 +346,7 @@ foreach($results as $result)
 
 
 <?php }} ?>
-
-<div class="col-md-12">  
-          
-
+<div class="col-md-12"> 
 <?php
 $username=$_SESSION['username'];  
 $status=1;
@@ -362,7 +363,21 @@ foreach($results as $result)
 {               ?>  
 
 
-  <form name="update" method="post">     
+  <form name="update" method="post"> 
+    
+
+<div class="form-group">
+<div class="custom-control custom-radio">
+        <input type="radio" id="deliverytype1" name="deliverytype" value="Delivery" class="custom-control-input" checked>
+        <label class="custom-control-label" for="deliverytype1">I want to deliver the goods I ordered &nbsp<i class="fas fa-box"></i></label>
+      </div>
+      <div class="custom-control custom-radio">
+        <input type="radio" id="deliverytype2" name="deliverytype" value="Pick up" class="custom-control-input">
+        <label class="custom-control-label" for="deliverytype2">I'll pick you up by myself &nbsp<i class="fas fa-shopping-bag"></i></label>
+      </div>
+      </div>
+
+
 
 <input class="form-control" type="hidden" name="orderid" value="<?php echo htmlentities($result->id);?>" required autocomplete="off"  />           
 <input class="form-control" type="hidden" name="quantity" value="<?php echo htmlentities($result->Quantity);?>" required autocomplete="off"  />         
