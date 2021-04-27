@@ -106,6 +106,8 @@ foreach($results as $result)
 <div class="col-md-9 col-md-offset-1">
                <div class="card">
                <div class="panel-body" style="margin:20px">
+
+<div class="col-md-12">
 <?php if($_SESSION['addcard']!="")
 {?>
 
@@ -130,7 +132,7 @@ function emptyCart() {
 }
 </script>
 <?php } ?>
-
+</div>
 
 <div class="col-md-12">
 <?php if($_SESSION['changecard']!="")
@@ -214,7 +216,7 @@ foreach($results as $result)
 <a data-toggle="collapse" href="#editcredit" role="button" aria-expanded="false" aria-controls="editprofile">
   <button class="create-account" >
     Change credit card</button>
-  </a>&nbsp&nbsp&nbsp<a href="add-payment.php" style="color: black;">Add credit card*</a>
+  </a>
 </div>
 <?php }} ?>
 

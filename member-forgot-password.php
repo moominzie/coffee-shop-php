@@ -87,7 +87,7 @@ function valid()
 {
 if(document.change.newpassword.value!= document.change.confirmpassword.value)
   {
-      alert("Password and Confirm Password Field do not match  !!");
+      alert("New password and Confirm new password do not match");
       document.change.confirmpassword.focus();
   return false;
     }
@@ -123,12 +123,12 @@ if(document.change.newpassword.value!= document.change.confirmpassword.value)
 
     
     <div class="form-group">
-    <label >Password</label>
+    <label >New password</label>
     <input class="form-control" type="password" name="newpassword" required autocomplete="off"  />
     </div>
 
     <div class="form-group">
-    <label>Confirm password</label>
+    <label>Confirm new password</label>
     <input class="form-control" type="password" name="confirmpassword" required autocomplete="off"  />
     </div>
 

@@ -303,7 +303,7 @@ foreach($results as $result)
 <?php }} ?> 
 
 
-<div class="col-md-7">  
+<div class="col-md-9">  
 <?php if($_SESSION['purchase']!="")
 {?>
 <div class="alert alert-success" role="alert" >

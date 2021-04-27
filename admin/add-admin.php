@@ -100,7 +100,7 @@ function valid()
 {
 if(document.regadmin.password.value!= document.regadmin.confirmpassword.value)
   {
-      alert("Password and Confirm Password Field do not match  !!");
+      alert("Password and Confirm Password do not match");
       document.regadmin.confirmpassword.focus();
   return false;
     }

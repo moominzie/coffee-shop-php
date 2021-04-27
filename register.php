@@ -120,7 +120,7 @@ function valid()
 {
 if(document.signup.password.value!= document.signup.confirmpassword.value)
   {
-      alert("Password and Confirm Password Field do not match  !!");
+      alert("Password and Confirm password do not match");
       document.signup.confirmpassword.focus();
   return false;
     }
