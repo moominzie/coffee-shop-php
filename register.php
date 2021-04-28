@@ -155,6 +155,20 @@ function checkUsernameAvailability() {
       error:function (){}
     });
 }
+
+function checkPasswordAvailability() {
+    $("#loaderIcon").show();
+        jQuery.ajax({
+        url: "check_availability.php",
+        data:'password='+$("#password").val(),
+        type: "POST",
+    success:function(data){
+        $("#password-availability-status").html(data);
+        $("#loaderIcon").hide();
+    },
+      error:function (){}
+    });
+}
 </script>   
 
 <style>
@@ -205,6 +219,32 @@ function checkUsernameAvailability() {
     <div class="card">
         <div class="panel-body" style="margin:50px">
 
+<div class="col-md-12">
+<?php if($_SESSION['error']!="")
+{?>
+
+<div class="alert alert-danger" role="alert" >
+ <?php echo htmlentities($_SESSION['error']);?>
+<?php echo htmlentities($_SESSION['error']="");?>
+<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<?php } ?>
+
+<?php if($_SESSION['errorusername']!="")
+{?>
+
+<div class="alert alert-warning" role="alert" >
+ <?php echo htmlentities($_SESSION['errorusername']);?>
+<?php echo htmlentities($_SESSION['errorusername']="");?>
+<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<?php } ?>
+</div>
+
 <div class="col-md-6">
     <div class="form-group">
         <label>Firstname</label>&nbsp;<label style="color:red;">*</label>
@@ -245,14 +285,21 @@ function checkUsernameAvailability() {
 <div class="col-md-6">
     <div class="form-group">
         <label>Password</label>&nbsp;<label style="color:red;">*</label>
-        <input class="form-control" type="password" name="password" autocomplete="off" required />
+        <input class="form-control" type="password" name="password" id="password" autocomplete="off" onBlur="checkPasswordAvailability()" required />
+        <span id="password-availability-status" style="font-size:12px;"></span> 
     </div>
 </div>
+
 
 <div class="col-md-6">
     <div class="form-group">
       <label>Confirm password </label>&nbsp;<label style="color:red;">*</label>
       <input class="form-control"  type="password" name="confirmpassword" autocomplete="off" required  />
+    </div>
+</div>
+
+<div class="col-md-12">
+    <div class="form-group">
     </div>
 </div>
 

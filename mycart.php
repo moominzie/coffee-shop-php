@@ -304,56 +304,6 @@ foreach($results as $result)
 
 
 <div class="col-md-9">  
-<?php if($_SESSION['purchase']!="")
-{?>
-<div class="alert alert-success" role="alert" >
-<?php echo htmlentities($_SESSION['purchase']);?>
-<?php echo htmlentities($_SESSION['purchase']="");?>
-<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-<span aria-hidden="true">&times;</span>
-</button>
-</div>
-
-<script>
-function emptyCart() {
-  <?php 
-    $username=$_SESSION['username'];  
-    $status=0;
-    $sql="UPDATE checkout SET Status=:status WHERE Username=:username";
-    $query = $dbh->prepare($sql);
-    $query->bindParam(':username',$username,PDO::PARAM_STR);
-    $query->bindParam(':status',$status,PDO::PARAM_STR);
-    $query->execute();?>
-}
-</script>
-
-<script>
-function emptyCart() {
-  <?php 
-    $username=$_SESSION['username'];  
-    $status=2;
-    $sql="UPDATE cart SET Status=:status WHERE Username=:username";
-    $query = $dbh->prepare($sql);
-    $query->bindParam(':username',$username,PDO::PARAM_STR);
-    $query->bindParam(':status',$status,PDO::PARAM_STR);
-    $query->execute();
-    
-    $username=$_SESSION['username'];  
-    $status=2;
-    $sql="UPDATE history SET Status=:status WHERE Username=:username";
-    $query = $dbh->prepare($sql);
-    $query->bindParam(':username',$username,PDO::PARAM_STR);
-    $query->bindParam(':status',$status,PDO::PARAM_STR);
-    $query->execute();?>
-    
-    ?>
-
-    
-}
-</script>
-
-<?php } ?>
-
 <?php if($_SESSION['cancel']!="")
 {?>
 <div class="alert alert-success" role="alert" >
@@ -380,7 +330,7 @@ function emptyCart() {
 
 <?php if($_SESSION['canceled']!="")
 {?>
-<div class="alert alert-secondary" role="alert" >
+<div class="alert alert-warning" role="alert" >
 <?php echo htmlentities($_SESSION['canceled']);?>
 <?php echo htmlentities($_SESSION['canceled']="");?>
 <button type="button" class="close" data-dismiss="alert" aria-label="Close" onClick="emptyCart()">
@@ -405,7 +355,7 @@ function emptyCart() {
 <?php if($_SESSION['continue']!="")
 {  ?>
 
-<div class="alert alert-secondary" role="alert" >
+<div class="alert alert-warning" role="alert" >
 <?php echo htmlentities($_SESSION['continue']);?>
 <?php echo htmlentities($_SESSION['continue']="");?>
 &nbsp<a href="checkout.php" class="alert-link">Continue checkout here</a>

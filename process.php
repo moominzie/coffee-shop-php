@@ -208,6 +208,51 @@ foreach($results as $result)
             <h4 class="header-line" >Order in process </h4>
 
 
+
+<?php if($_SESSION['purchase']!="")
+{?>
+
+<script>
+function emptyCart() {
+  <?php 
+    $username=$_SESSION['username'];  
+    $status=0;
+    $sql="UPDATE checkout SET Status=:status WHERE Username=:username";
+    $query = $dbh->prepare($sql);
+    $query->bindParam(':username',$username,PDO::PARAM_STR);
+    $query->bindParam(':status',$status,PDO::PARAM_STR);
+    $query->execute();?>
+}
+</script>
+
+<script>
+function emptyCart() {
+  <?php 
+    $username=$_SESSION['username'];  
+    $status=2;
+    $sql="UPDATE cart SET Status=:status WHERE Username=:username";
+    $query = $dbh->prepare($sql);
+    $query->bindParam(':username',$username,PDO::PARAM_STR);
+    $query->bindParam(':status',$status,PDO::PARAM_STR);
+    $query->execute();
+    
+    $username=$_SESSION['username'];  
+    $status=2;
+    $sql="UPDATE history SET Status=:status WHERE Username=:username";
+    $query = $dbh->prepare($sql);
+    $query->bindParam(':username',$username,PDO::PARAM_STR);
+    $query->bindParam(':status',$status,PDO::PARAM_STR);
+    $query->execute();?>
+    
+    ?>
+
+    
+}
+</script>
+
+<?php } ?>
+
+
 <div class="row">
 
   <div class="col-md-12">

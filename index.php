@@ -218,6 +218,7 @@ foreach($results as $result)
   <?php ($_SESSION['alertlogin']!="")
 ?>
 <div class="alert alert-light" role="alert" >
+<strong>Hi! &nbsp<?php echo htmlentities($result->FirstName);?>&nbsp<?php echo htmlentities($result->LastName);?></strong>,&nbsp
  <?php echo htmlentities($_SESSION['alertlogin']);?>
 <?php echo htmlentities($_SESSION['alertlogin']="");?>
 &nbsp<a href="add-address.php" class="alert-link">Add your address</a> and <a href="add-payment.php" class="alert-link">Add your credit card information</a>&nbsp here
@@ -227,6 +228,7 @@ foreach($results as $result)
   <?php ($_SESSION['alertlogin']!="")
 ?>
 <div class="alert alert-light" role="alert" >
+<strong>Hi! &nbsp<?php echo htmlentities($result->FirstName);?>&nbsp<?php echo htmlentities($result->LastName);?></strong>,&nbsp
  <?php echo htmlentities($_SESSION['alertlogin']);?>
 <?php echo htmlentities($_SESSION['alertlogin']="");?>
 &nbsp<a href="add-address.php" class="alert-link">Add your address</a>&nbsp here
@@ -236,6 +238,7 @@ foreach($results as $result)
     <?php ($_SESSION['alertlogin']!="")
 ?>
 <div class="alert alert-light" role="alert" >
+<strong>Hi! &nbsp<?php echo htmlentities($result->FirstName);?>&nbsp<?php echo htmlentities($result->LastName);?></strong>,&nbsp
  <?php echo htmlentities($_SESSION['alertlogin']);?>
 <?php echo htmlentities($_SESSION['alertlogin']="");?>
 &nbsp<a href="add-payment.php" class="alert-link">Add your credit card information</a>&nbsp here

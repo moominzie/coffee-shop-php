@@ -30,7 +30,7 @@ $query->bindParam(':deliverytype',$deliverytype,PDO::PARAM_STR);
 $query->execute();
 
 $_SESSION['purchase']="Your order has been purchase";
-header('location:mycart.php');
+header('location:process.php');
 }
 
 ?>

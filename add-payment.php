@@ -15,6 +15,10 @@ $expiration=$_POST['expiration'];
 $cvv=$_POST['cvv'];
 $firstname=$_POST['firstname'];
 $lastname=$_POST['lastname'];
+if(strlen($_POST['cardnumber']) <16){
+    $somethingwrong="Add payment method unsuccess, Check your credit card number";
+    
+}else{
 $sql="INSERT INTO credit (CardNumber,Expiration,CVV,FirstName,LastName,Username) VALUE(:cardnumber,:expiration,:cvv,:firstname,:lastname,:username)";
 $query = $dbh->prepare($sql);
 $query->bindParam(':username',$username,PDO::PARAM_STR);
@@ -23,12 +27,13 @@ $query->bindParam(':expiration',$expiration,PDO::PARAM_STR);
 $query->bindParam(':cvv',$cvv,PDO::PARAM_STR);
 $query->bindParam(':firstname',$firstname,PDO::PARAM_STR);
 $query->bindParam(':lastname',$lastname,PDO::PARAM_STR);
-
 $query->execute();
 
 $_SESSION['addcard']="Add payment method completely";
 header('location:billing.php');
 }
+}
+
 
 ?>
 <!DOCTYPE html>
@@ -85,6 +90,22 @@ foreach($results as $result)
 <link href="https://fonts.googleapis.com/css2?family=Asap:wght@400&display=swap" rel="stylesheet">
 
 </head>
+<script>
+function checkCardnumberAvailability() {
+    $("#loaderIcon").show();
+        jQuery.ajax({
+        url: "check_availability.php",
+        data:'cardnumber='+$("#cardnumber").val(),
+        type: "POST",
+    success:function(data){
+        $("#cardnumber-availability-status").html(data);
+        $("#loaderIcon").hide();
+    },
+      error:function (){}
+    });
+}
+
+</script>  
 
 
 <body>
@@ -98,8 +119,7 @@ foreach($results as $result)
         <div class="row pad-botm">
             <div class="col-md-12">
                 <h4 class="header-line">Credit card &nbsp<i class="far fa-credit-card"></i></h4>
-                            </div>
-
+                            </div>                  
         </div>
              <div class="row">
            
@@ -109,10 +129,24 @@ foreach($results as $result)
 
 <form action="" method="post" role="form" enctype="multipart/form-data">
 
+<div class="col-md-12">
+<?php if($somethingwrong)
+{?>
+
+<div class="alert alert-warning" role="alert" >
+ <?php echo htmlentities($somethingwrong);?>
+<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<?php } ?>
+</div>
+
 <div class="col-md-6">
 <div class="form-group">
 <label>Card number</label>
-<input class="form-control" type="text" name="cardnumber" maxlength="16" id="" autocomplete="off" required />
+<input class="form-control" type="text" name="cardnumber" maxlength="16" id="cardnumber" onBlur="checkCardnumberAvailability()"  autocomplete="off" required />
+<span id="cardnumber-availability-status" style="font-size:12px;"></span> 
 </div>
 </div>
 
@@ -128,6 +162,11 @@ foreach($results as $result)
 <label>CVV</label>
 <input class="form-control" type="text" name="cvv" id="" autocomplete="off" required />
 </div>
+</div>
+
+<div class="col-md-12">
+    <div class="form-group">
+    </div>
 </div>
 
 <div class="col-md-6">

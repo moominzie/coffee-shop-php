@@ -132,6 +132,7 @@ function emptyCart() {
 }
 </script>
 <?php } ?>
+
 </div>
 
 <div class="col-md-12">
