@@ -211,6 +211,13 @@ foreach($results as $result)
 
 <?php if($_SESSION['purchase']!="")
 {?>
+<div class="alert alert-success" role="alert" >
+<?php echo htmlentities($_SESSION['purchase']);?>
+<?php echo htmlentities($_SESSION['purchase']="");?>
+<button type="button" class="close" data-dismiss="alert" aria-label="Close" onClick="emptyCart()">
+<span aria-hidden="true">&times;</span>
+</button>
+</div>
 
 <script>
 function emptyCart() {

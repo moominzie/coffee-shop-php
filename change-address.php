@@ -180,7 +180,6 @@ foreach($results as $result)
 			// Empty state and city dropdown
 			$('#amphure_id').find('option').not(':first').remove();
 			$('#district_id').find('option').not(':first').remove();
-            $('#zipcode_id').find('option').not(':first').remove();
 
 			// AJAX request
 			$.ajax({
