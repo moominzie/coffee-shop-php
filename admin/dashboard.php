@@ -6,12 +6,15 @@ if(strlen($_SESSION['alogin'])==0)
     {   
 header('location:../loginadmin.php');
 }
+
 if(isset($_GET['delivery']))
 {
 $cid=$_GET['delivery'];
-$sql="delete from cart where id=:cid";
+$status=3;
+$sql="update cart set Status=:status where id=:cid";
 $query = $dbh->prepare($sql);
 $query->bindParam(':cid',$cid,PDO::PARAM_STR);
+$query->bindParam(':status',$status,PDO::PARAM_STR);
 $query->execute();
 
 $_SESSION['msg']="Update process successfully";
@@ -143,13 +146,17 @@ foreach($results as $result)
                                             <a class="btn btn-success" style="border-radius:15px;background-color: #00A862; color:white;">Customer confirmed</a>
                                             <?php } else if($result->Status==1)  {?>
                                             <a class="btn btn-warning" style="border-radius:15px;background-color: white;color: black">Waiting confirmation</a>
+                                            <?php } else if($result->Status==3)  {?>
+                                            <a class="btn btn-warning" style="border-radius:15px;background-color: #FFAC1C;color: white">Waiting pick up</a>
                                             <?php } ?>
                                             </td>
                                             <td class="center">
                                             <?php if($result->Status==2) {?>
-                                                <a style="color: #006400;" href="manage-order.php?delivery=<?php echo htmlentities($result->cid);?>" onclick="return confirm('Confirm delivery?');""><button class="btn btn-success" style="border-radius:15px;background-color: white;color:black;"> Delivery now</button> </td>
+                                                <a style="color: #006400;" href="manage-order.php?delivery=<?php echo htmlentities($result->cid);?>" onclick="return confirm('Serve order now');""><button class="btn btn-success" style="border-radius:15px;background-color: white;color:black;"> Already to serve </button> </td>
                                             <?php } else if($result->Status==1)  {?>
-                                                <a style="color: #006400;"><button class="btn btn-success" style="border-radius:15px;background-color: white;color:black;" disabled> Delivery now</button> </td>
+                                                <a style="color: #006400;"><button class="btn btn-success" style="border-radius:15px;background-color: white;color:black;" disabled> Already to serve </button> </td>
+                                            <?php } else if($result->Status==3)  {?>
+                                            <a class="btn btn-info" style="border-radius:15px;background-color: white;color: black">Served this order</a>
                                             <?php } ?>
                                             </td>
                                         </tr>

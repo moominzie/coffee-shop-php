@@ -95,6 +95,23 @@ if(document.change.newpassword.value!= document.change.confirmpassword.value)
     }
 </script>
 
+<script>
+function checkEmailRegAvailability() {
+    $("#loaderIcon").show();
+        jQuery.ajax({
+        url: "check_availability.php",
+        data:'emailreg='+$("#emailreg").val(),
+        type: "POST",
+    success:function(data){
+        $("#emailreg-availability-status").html(data);
+        $("#loaderIcon").hide();
+    },
+      error:function (){}
+    });
+}
+</script>   
+
+
 </head>
 <body>
     <!------MENU SECTION START-->
@@ -114,7 +131,8 @@ if(document.change.newpassword.value!= document.change.confirmpassword.value)
  
     <div class="form-group">
         <label>Your register email</label>
-        <input class="form-control" type="text" name="email" autocomplete="off" required />
+        <input class="form-control" type="text" name="email" id="emailreg" onBlur="checkEmailRegAvailability()" autocomplete="off" required />
+        <span id="emailreg-availability-status" style="font-size:12px;"></span> 
     </div>
     <div class="form-group">
         <label>Your register mobile number</label>

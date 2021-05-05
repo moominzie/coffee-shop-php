@@ -119,7 +119,7 @@ foreach($results as $result)
     <label>Province</label>&nbsp;<label for="" style="font-family: 'Oswald', sans-serif; color: red;">* </label>
         <!-- END TITLE -->
     
-    <select name="province" id="province_id" class="form-control form-control-lg" onBlur="getAmphure()" required>
+<select name="province" id="province_id" class="form-control form-control-lg" onBlur="getAmphure()" required>
 <option value='0'> Select province </option>
 <?php 
           ## Fetch amphures

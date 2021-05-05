@@ -202,6 +202,7 @@ foreach($results as $result)
     <?php include('includes/header.php');?>
 <!-- MENU SECTION END-->
 
+
 <?php
 $username=$_SESSION['username'];  
 $sql="SELECT * FROM member WHERE Username=:username";
@@ -214,6 +215,7 @@ if($query->rowCount() > 0)
 {
 foreach($results as $result)
 {               ?> 
+
 <?php if(($result->AddressStatus==1)&&($result->PaymentStatus==1)) { ?>
   <?php ($_SESSION['alertlogin']!="")
 ?>
@@ -242,6 +244,15 @@ foreach($results as $result)
  <?php echo htmlentities($_SESSION['alertlogin']);?>
 <?php echo htmlentities($_SESSION['alertlogin']="");?>
 &nbsp<a href="add-payment.php" class="alert-link">Add your credit card information</a>&nbsp here
+</div>
+
+<?php } else{ ?>
+    <?php ($_SESSION['alertlogin']!="")
+?>
+<div class="alert alert-light" role="alert" >
+<strong>Hi! &nbsp<?php echo htmlentities($result->FirstName);?>&nbsp<?php echo htmlentities($result->LastName);?></strong>
+ <?php echo htmlentities($_SESSION['alertlogin']);?>
+<?php echo htmlentities($_SESSION['alertlogin']="");?>
 </div>
 
     <?php } ?>

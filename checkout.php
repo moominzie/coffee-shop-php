@@ -403,7 +403,7 @@ foreach($results as $result)
 ?>
 <button name="confirm" class="create-account" type="submit" onClick="emptyCart()" disabled>
     Confirm order
-  </button>&nbsp Can't confirm please &nbsp<a href="add-address.php" style="color: #006400;" >Add your address</a> and <a href="add-payment.php">Add your credit card information</a>&nbsp here
+  </button>&nbsp Can't confirm please &nbsp<a href="add-address.php" style="color: #006400;" >Add your address</a> and <a href="add-payment.php" style="color: #006400;" >Add your credit card information</a>&nbsp here
 
 <?php } else if($result->AddressStatus==1) { ?>
   <?php ($_SESSION['alertlogin']!="")
