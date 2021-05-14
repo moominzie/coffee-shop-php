@@ -91,78 +91,8 @@ foreach($results as $result)
 <div class="container">
     <div class="row pad-botm">
             <div class="col-md-12">
-            <h4 class="header-line" style="text-align:none; font-family: 'Noto Sans JP', sans-serif; font-size: 22px;">Order income &nbsp<i class="fas fa-shopping-basket"></i> </h4>
+            <h4 class="header-line" style="text-align:none; font-family: 'Noto Sans JP', sans-serif; font-size: 22px;">Dashboard</h4>
     </div>
-    <?php if($_SESSION['msg']!="")
-{?>
-
-<div class="alert alert-success" role="alert" >
- <?php echo htmlentities($_SESSION['msg']);?>
-<?php echo htmlentities($_SESSION['msg']="");?>
-<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-    <span aria-hidden="true">&times;</span>
-  </button>
-</div>
-<?php } ?>
-            <!-- Advanced Tables -->
-            <div class="card-table">
-                        <div class="panel-body" style="">
-                            <div class="table-responsive">
-                            <table class="table">
-                                    <thead>
-                                        <tr>
-                                            <th style="display:none;">ID</th>
-                                            <th>Product code</th>
-                                            <th>Product</th>
-                                            <th>Image</th>
-                                            <th>Total</th>
-                                            <th>Quantity</th>
-                                            <th>Username</th>
-                                            <th>Status</th>
-                                            <th>Action</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-<?php 
-$sql="SELECT cart.id as cid,cart.Status as Status,ProductCode,ProductName,ProductImage,ProductPrice*Quantity as Total,Quantity,member.Username,member.id as mid FROM cart join member on member.Username=cart.Username";
-$query = $dbh -> prepare($sql);
-$query->execute();
-$results=$query->fetchAll(PDO::FETCH_OBJ);
-$cnt=1;
-if($query->rowCount() > 0)
-{
-foreach($results as $result)
-{               ?>                                     
-                                        <tr class="odd gradeX">
-                                             <td class="center" style="display:none;"><?php echo htmlentities($cnt);?></td>
-                                             <td class="center"><?php echo htmlentities($result->ProductCode);?></td>
-                                             <td class="center"><?php echo htmlentities($result->ProductName);?></td>
-                                             <td class="center"><img src="uploads/img/<?php echo htmlentities($result->ProductImage);?>" width="100" height="100" style="border-radius:10px;"></td>
-                                             <td class="center"><?php echo htmlentities($result->Total);?></td>
-                                             <td class="center"><?php echo htmlentities($result->Quantity);?></td>
-                                             <td class="center"><a style="color:black;" href="view-user.php?mid=<?php echo htmlentities($result->mid);?>"><?php echo htmlentities($result->Username);?></a></td>
-                                             <td class="center">
-                                             <?php if($result->Status==2) {?>
-                                            <a class="btn btn-success" style="border-radius:15px;background-color: #00A862; color:white;">Customer confirmed</a>
-                                            <?php } else if($result->Status==1)  {?>
-                                            <a class="btn btn-warning" style="border-radius:15px;background-color: white;color: black">Waiting confirmation</a>
-                                            <?php } else if($result->Status==3)  {?>
-                                            <a class="btn btn-warning" style="border-radius:15px;background-color: #FFAC1C;color: white">Waiting pick up</a>
-                                            <?php } ?>
-                                            </td>
-                                            <td class="center">
-                                            <?php if($result->Status==2) {?>
-                                                <a style="color: #006400;" href="manage-order.php?delivery=<?php echo htmlentities($result->cid);?>" onclick="return confirm('Serve order now');""><button class="btn btn-success" style="border-radius:15px;background-color: white;color:black;"> Already to serve </button> </td>
-                                            <?php } else if($result->Status==1)  {?>
-                                                <a style="color: #006400;"><button class="btn btn-success" style="border-radius:15px;background-color: white;color:black;" disabled> Already to serve </button> </td>
-                                            <?php } else if($result->Status==3)  {?>
-                                            <a class="btn btn-info" style="border-radius:15px;background-color: white;color: black">Served this order</a>
-                                            <?php } ?>
-                                            </td>
-                                        </tr>
- <?php $cnt=$cnt+1;}} ?>                                      
-                                    </tbody>
-                                </table>
                                 </div>
                             </div>
                             

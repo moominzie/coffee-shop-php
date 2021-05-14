@@ -29,8 +29,15 @@ $query->bindParam(':customertel',$customertel,PDO::PARAM_STR);
 $query->bindParam(':deliverytype',$deliverytype,PDO::PARAM_STR);
 $query->execute();
 
+$username=$_SESSION['username'];  
+$sql="UPDATE cart SET Status='2' WHERE Username=:username AND Status=:statusหฟฟกผ";
+$query = $dbh->prepare($sql);
+$query->bindParam(':username',$username,PDO::PARAM_STR);
+$query->bindParam(':status',$status,PDO::PARAM_STR);
+$query->execute();
+
 $_SESSION['purchase']="Your order has been purchase";
-header('location:process.php');
+header('location:pickup.php');
 }
 
 ?>

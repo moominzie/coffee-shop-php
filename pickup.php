@@ -228,13 +228,6 @@ function emptyCart() {
 <script>
 function emptyCart() {
   <?php 
-    $username=$_SESSION['username'];  
-    $status=2;
-    $sql="UPDATE cart SET Status=:status WHERE Username=:username";
-    $query = $dbh->prepare($sql);
-    $query->bindParam(':username',$username,PDO::PARAM_STR);
-    $query->bindParam(':status',$status,PDO::PARAM_STR);
-    $query->execute();
     
     $username=$_SESSION['username'];  
     $status=2;
@@ -274,11 +267,9 @@ function emptyCart() {
                                     
                                     <?php
 $username=$_SESSION['username'];  
-$status=2;
-$sql="SELECT id,ProductCode,ProductName,ProductImage,ProductPrice,Quantity,TotalPrice,Username,ProductPrice*Quantity as Total,Status FROM cart WHERE Username=:username AND Status=:status";
+$sql="SELECT id,ProductCode,ProductName,ProductImage,ProductPrice,Quantity,TotalPrice,Username,ProductPrice*Quantity as Total,Status FROM cart WHERE Username=:username";
 $query = $dbh -> prepare($sql);
 $query-> bindParam(':username', $username, PDO::PARAM_STR);
-$query-> bindParam(':status', $status, PDO::PARAM_STR);
 $query->execute();
 $results=$query->fetchAll(PDO::FETCH_OBJ);
 $cnt=1;
@@ -297,7 +288,14 @@ foreach($results as $result)
                                                  <br><label>Price: </label> &nbsp<?php echo htmlentities($result->ProductPrice);?>  ฿ 
                                                  <br><label>Quantity: </label> &nbsp<?php echo htmlentities($result->Quantity);?>
                                                  <br><label>Total price: </label> &nbsp<?php echo htmlentities($result->Total);?>  ฿ 
-                                                  <br><span style="color: green ">In process</span>
+                                                  <br>
+                                                  <?php if($result->Status==2) {?>
+                                                    <span style="color: green ">In process</span>
+                                                  <?php } else if($result->Status==1)  {?>
+                                                  <span style="color: #FFAC1C ">Waiting for confirmation</span>
+                                                  <?php } else if($result->Status==3)  {?>
+                                                  <span style="color: green ">Order ready to serve</span>
+                                                  <?php } ?>
                                             </td>
                                         </tr>
 

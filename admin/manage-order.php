@@ -21,6 +21,18 @@ $_SESSION['msg']="Update process successfully";
 header('location:manage-order.php');
 }
 
+if(isset($_GET['pickedup']))
+{
+$cid=$_GET['pickedup'];
+$sql = "delete from cart  WHERE id=:cid";
+$query = $dbh->prepare($sql);
+$query -> bindParam(':cid',$cid, PDO::PARAM_STR);
+$query -> execute();
+
+$_SESSION['msg']="Update process successfully";
+header('location:manage-order.php');
+}
+
   
 ?>
 
@@ -91,7 +103,7 @@ foreach($results as $result)
 <div class="container">
     <div class="row pad-botm">
             <div class="col-md-12">
-            <h4 class="header-line" style="text-align:none; font-family: 'Noto Sans JP', sans-serif; font-size: 22px;">Order income &nbsp<i class="fas fa-shopping-basket"></i> </h4>
+            <h4 class="header-line" style="text-align:none; font-family: 'Noto Sans JP', sans-serif; font-size: 22px;">Order income &nbsp<i class="fas fa-shopping-basket"></i>&nbsp&nbsp&nbsp<a href="order.php" style="color: black;">All order</a> </h4>
     </div>
     <?php if($_SESSION['msg']!="")
 {?>
@@ -156,7 +168,7 @@ foreach($results as $result)
                                             <?php } else if($result->Status==1)  {?>
                                                 <a style="color: #006400;"><button class="btn btn-success" style="border-radius:15px;background-color: white;color:black;" disabled> Already to serve </button> </td>
                                             <?php } else if($result->Status==3)  {?>
-                                            <a class="btn btn-info" style="border-radius:15px;background-color: white;color: black">Served this order</a>
+                                            <a class="btn btn-info" href="manage-order.php?pickedup=<?php echo htmlentities($result->cid);?>" style="border-radius:15px;background-color: white;color: black">Picked up</a>
                                             <?php } ?>
                                             </td>
                                         </tr>

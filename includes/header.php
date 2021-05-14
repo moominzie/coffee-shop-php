@@ -128,19 +128,11 @@ foreach($results as $result)
 
     <ul class="navbar-nav navbar-right">
     <li class="nav-item active">
-        <a class="nav-link" href="account.php"><p class="account"><i class="fas fa-user-circle"></i>&nbsp Account</p><span class="sr-only" >(current)</span></a>
-      </li>
-      <li class="nav-item active">
-        <a class="nav-link" href="billing.php"><p class="account"><i class="far fa-credit-card"></i>&nbsp Billing</p><span class="sr-only" >(current)</span></a>
-      </li>
-      <li class="nav-item active">
-      <?php
-$username=$_SESSION['username'];  
-$status=2;
-$sql="SELECT SUM(Quantity) as NumberProcess FROM cart WHERE Username=:username AND Status=:status";
+    <?php
+$username=$_SESSION['username']; 
+$sql="SELECT FirstName,LastName FROM member WHERE Username=:username";
 $query = $dbh -> prepare($sql);
 $query-> bindParam(':username', $username, PDO::PARAM_STR);
-$query-> bindParam(':status', $status, PDO::PARAM_STR);
 $query->execute();
 $results=$query->fetchAll(PDO::FETCH_OBJ);
 $cnt=1;
@@ -148,7 +140,26 @@ if($query->rowCount() > 0)
 {
 foreach($results as $result)
 {               ?> 
-        <a class="nav-link" href="process.php"><p class="account"><i class="fas fa-truck"></i>&nbsp In process  <span class="count"><?php echo htmlentities($result->NumberProcess);?></span></p><span class="sr-only" >(current)</span></a>
+        <a class="nav-link" href="account.php"><p class="account"><i class="fas fa-user-circle"></i>&nbsp <?php echo htmlentities($result->FirstName);?> <?php echo htmlentities($result->LastName);?></p><span class="sr-only" >(current)</span></a>
+        <?php }} ?>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="billing.php"><p class="account"><i class="far fa-credit-card"></i>&nbsp Credit</p><span class="sr-only" >(current)</span></a>
+      </li>
+      <li class="nav-item active">
+      <?php
+$username=$_SESSION['username'];  
+$sql="SELECT SUM(Quantity) as NumberProcess FROM cart WHERE Username=:username";
+$query = $dbh -> prepare($sql);
+$query-> bindParam(':username', $username, PDO::PARAM_STR);
+$query->execute();
+$results=$query->fetchAll(PDO::FETCH_OBJ);
+$cnt=1;
+if($query->rowCount() > 0)
+{
+foreach($results as $result)
+{               ?> 
+        <a class="nav-link" href="pickup.php"><p class="account"><i class="fas fa-box"></i>&nbsp Pick Up  <span class="count"><?php echo htmlentities($result->NumberProcess);?></span></p><span class="sr-only" >(current)</span></a>
         <?php }} ?>
       </li>
       <li class="nav-item active">
