@@ -1,13 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.2
+-- version 5.0.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Apr 26, 2021 at 01:48 PM
+-- Generation Time: Jul 04, 2021 at 09:55 AM
 -- Server version: 10.4.11-MariaDB
--- PHP Version: 7.4.4
+-- PHP Version: 7.4.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -42,12 +43,7 @@ CREATE TABLE `address` (
 --
 
 INSERT INTO `address` (`id`, `Address`, `ProvinceId`, `AmphureId`, `DistrictId`, `PostalCode`, `Username`) VALUES
-(3, '433/7 หมู่ 2', 19, 233, 301901, '30000', 'jennie'),
-(5, '433/7 moo 7', 1, 21, 102106, '11111', 'taeyeon'),
-(6, '3435/22', 28, 415, 402303, '11111', 'stevekung'),
-(8, '433/78', 1, 40, 104002, '10000', 'taeyeon_ss'),
-(9, '987/08', 1, 21, 102107, '10000', 'jennierubyjane'),
-(11, '345/65', 1, 5, 100507, '10000', 'natasha_');
+(1, '555/43', 19, 215, 300113, '30000', 'taeyeon_ss');
 
 -- --------------------------------------------------------
 
@@ -1159,29 +1155,16 @@ CREATE TABLE `cforder` (
   `CustomerName` varchar(100) DEFAULT NULL,
   `CustomerTel` varchar(100) DEFAULT NULL,
   `Status` int(1) DEFAULT NULL,
-  `CustomerUname` varchar(100) DEFAULT NULL
+  `CustomerUname` varchar(100) DEFAULT NULL,
+  `DeliveryType` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `cforder`
 --
 
-INSERT INTO `cforder` (`id`, `OrderId`, `ProductTotalPrice`, `Quantity`, `CustomerName`, `CustomerTel`, `Status`, `CustomerUname`) VALUES
-(1, '1', 320, 2, 'Jennie Kim', '0876572769', NULL, 'jennierubyjane'),
-(2, '2', 435, 3, 'Taeyeon Kim', '0918347871', NULL, 'taeyeon_ss'),
-(3, '1', 960, 6, 'Jennie Kim', '0876572769', NULL, 'jennierubyjane'),
-(4, '1', 175, 1, 'Jennie Kim', '0876572769', NULL, 'jennierubyjane'),
-(5, '1', 125, 1, 'Jennie Kim', '0876572769', NULL, 'jennierubyjane'),
-(6, '1', 265, 3, 'Jennie Kim', '0876572769', NULL, 'jennierubyjane'),
-(7, '2', 175, 1, 'Taeyeon Kim', '0918347871', NULL, 'taeyeon_ss'),
-(8, '2', 85, 1, 'Taeyeon Kim', '0918347871', NULL, 'taeyeon_ss'),
-(9, '3', 515, 5, 'Natasha Romanoff', '0976545432', NULL, 'natasha_'),
-(10, '3', 175, 1, 'Natasha Romanoff', '0976545432', NULL, 'natasha_'),
-(11, '3', 145, 1, 'Natasha Romanoff', '0976545432', NULL, 'natasha_'),
-(12, '2', 145, 1, 'Taeyeon Kim', '0918347871', NULL, 'taeyeon_ss'),
-(13, '2', 350, 2, 'Taeyeon Kim', '0918347871', NULL, 'taeyeon_ss'),
-(14, '3', 145, 1, 'Natasha Romanoff', '0976545432', NULL, 'natasha_'),
-(15, '3', 195, 3, 'Natasha Romanoff', '0976545432', NULL, 'natasha_');
+INSERT INTO `cforder` (`id`, `OrderId`, `ProductTotalPrice`, `Quantity`, `CustomerName`, `CustomerTel`, `Status`, `CustomerUname`, `DeliveryType`) VALUES
+(1, '1', 130, 2, 'Taeyeon Kim', '0918347871', 1, 'taeyeon_ss', 'Pick up');
 
 -- --------------------------------------------------------
 
@@ -1205,9 +1188,7 @@ CREATE TABLE `checkout` (
 --
 
 INSERT INTO `checkout` (`id`, `CustomerName`, `CustomerLname`, `CustomerTel`, `Quantity`, `Total`, `Username`, `Status`) VALUES
-(1, 'Jennie', 'Kim', '0876572769', 3, 265, 'jennierubyjane', 0),
-(2, 'Taeyeon', 'Kim', '0918347871', 2, 350, 'taeyeon_ss', 0),
-(3, 'Natasha', 'Romanoff', '0976545432', 3, 195, 'natasha_', 0);
+(1, 'Taeyeon', 'Kim', '0918347871', 2, 130, 'taeyeon_ss', 0);
 
 -- --------------------------------------------------------
 
@@ -1230,9 +1211,7 @@ CREATE TABLE `credit` (
 --
 
 INSERT INTO `credit` (`id`, `CardNumber`, `Expiration`, `CVV`, `FirstName`, `LastName`, `Username`) VALUES
-(1, '1111222233334444', '22/06', '211', 'Taeyeon', 'Kim', 'taeyeon'),
-(3, '5554432531763581', '12/02', '124', 'Taeyeon', 'Kim', 'taeyeon_ss'),
-(4, '9999384837463766', '31/05', '233', 'Jennie', 'Kim', 'jennierubyjane');
+(1, '4328342874367635', '23/07', '123', 'Taeyeon', 'Kim', 'taeyeon_ss');
 
 -- --------------------------------------------------------
 
@@ -10134,7 +10113,7 @@ CREATE TABLE `employee` (
 --
 
 INSERT INTO `employee` (`id`, `FirstName`, `LastName`, `AdminEmail`, `MobileNumber`, `UserName`, `Password`, `Status`, `updationDate`) VALUES
-(3, 'Jennie', 'Kimmie', 'jenniekimkim@gmail.com', '0876572769', 'admin333', '827ccb0eea8a706c4c34a16891f84e7b', 1, '2021-04-09 19:22:04'),
+(3, 'Jennie', 'Kimmie', 'jenniekimkim@gmail.com', '0876572769', 'admin_shop', '827ccb0eea8a706c4c34a16891f84e7b', 1, '2021-04-09 19:22:04'),
 (4, 'Kim', 'Jennie', 'jenniekim1@gmail.com', '0876572769', 'admin444', '81dc9bdb52d04dc20036dbd8313ed055', 1, '2021-04-10 13:28:38'),
 (5, 'Steve', 'Roger', 'rogerkung@gmail.com', '0765432465', 'admin555', '81dc9bdb52d04dc20036dbd8313ed055', 1, '2021-04-10 13:29:20'),
 (6, 'Steve', 'Roger', 'rogerkung1@gmail.com', '0765432465', 'admin666', '81dc9bdb52d04dc20036dbd8313ed055', 1, '2021-04-10 13:39:50'),
@@ -10244,7 +10223,13 @@ INSERT INTO `history` (`id`, `ProductCode`, `ProductName`, `ProductImage`, `Prod
 (10, 'HT99998778', 'Espresso Choc Chip Brownie', 'Screen Shot 2564-04-23 at 22.02.58.png', 175, 1, '', 'taeyeon_ss', 2),
 (11, 'BK00056456', 'Jumbo Sausage Bite', 'Screen Shot 2564-04-26 at 14.36.15.png', 85, 1, '', 'taeyeon_ss', 2),
 (12, 'BK00000111', 'Soft Chocolate Chip Cookie', 'Screen Shot 2564-04-26 at 14.32.00.png', 65, 3, '', 'natasha_', 2),
-(13, 'BK00000111', 'Soft Chocolate Chip Cookie', 'Screen Shot 2564-04-26 at 14.32.00.png', 65, 3, '', 'natasha_', 2);
+(13, 'BK00000111', 'Soft Chocolate Chip Cookie', 'Screen Shot 2564-04-26 at 14.32.00.png', 65, 3, '', 'natasha_', 2),
+(14, 'GH456780', 'Cinnamon Coffee Cake', 'cinnamon.png', 60, 1, '', 'B6019938', 2),
+(15, 'BDF82630', 'Chocolate Frappuccino', 'Choc-Frappe.png', 115, 1, '', 'B6019938', 2),
+(16, 'GH456780', 'Cinnamon Coffee Cake', 'cinnamon.png', 60, 1, '', 'B6019938', 2),
+(17, 'BK00056456', 'Jumbo Sausage Bite', 'Screen Shot 2564-04-26 at 14.36.15.png', 85, 1, '', 'B6019938', 2),
+(18, 'BK00056456', 'Jumbo Sausage Bite', 'Screen Shot 2564-04-26 at 14.36.15.png', 85, 1, '', 'winter', 1),
+(19, 'BK00000111', 'Soft Chocolate Chip Cookie', 'Screen Shot 2564-04-26 at 14.32.00.png', 65, 2, '', 'taeyeon_ss', 2);
 
 -- --------------------------------------------------------
 
@@ -10272,9 +10257,7 @@ CREATE TABLE `member` (
 --
 
 INSERT INTO `member` (`id`, `Username`, `FirstName`, `LastName`, `EmailId`, `MobileNumber`, `Password`, `Status`, `PaymentStatus`, `AddressStatus`, `RegDate`, `UpdationDate`) VALUES
-(1, 'jennierubyjane', 'Jennie', 'Kim', 'jenniekim@gmail.com', '0876572769', '81dc9bdb52d04dc20036dbd8313ed055', 1, 2, 2, '2021-04-25 14:11:24', '2021-04-26 10:37:19'),
-(2, 'taeyeon_ss', 'Taeyeon', 'Kim', 'taeyeon@gmail.com', '0918347871', '81dc9bdb52d04dc20036dbd8313ed055', 1, 2, 2, '2021-04-25 14:12:10', '2021-04-26 10:47:42'),
-(3, 'natasha_', 'Natasha', 'Romanoff', 'natasha@gmail.com', '0976545432', '81dc9bdb52d04dc20036dbd8313ed055', 1, 2, 2, '2021-04-26 08:16:22', '2021-04-26 10:16:09');
+(1, 'taeyeon_ss', 'Taeyeon', 'Kim', 'taeyeon@gmail.com', '0918347871', '25d55ad283aa400af464c76d713c07ad', 1, 2, 2, '2021-07-04 07:52:08', '2021-07-04 07:53:00');
 
 -- --------------------------------------------------------
 
@@ -10336,18 +10319,6 @@ CREATE TABLE `process` (
   `Status` int(1) DEFAULT NULL,
   `Username` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `process`
---
-
-INSERT INTO `process` (`id`, `ProductCode`, `ProductName`, `ProductPrice`, `Quantity`, `Status`, `Username`) VALUES
-(1, NULL, NULL, NULL, NULL, NULL, 'taeyeon'),
-(2, NULL, NULL, NULL, NULL, NULL, 'taeyeon'),
-(3, NULL, NULL, NULL, NULL, NULL, 'taeyeon'),
-(4, NULL, NULL, NULL, NULL, NULL, 'taeyeon'),
-(5, NULL, NULL, NULL, NULL, NULL, 'taeyeon'),
-(6, 'BDF82630', 'Chocolate Frappuccino', 115, 12, NULL, 'taeyeon');
 
 -- --------------------------------------------------------
 
@@ -10764,7 +10735,7 @@ ALTER TABLE `type`
 -- AUTO_INCREMENT for table `address`
 --
 ALTER TABLE `address`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `amphures`
@@ -10788,7 +10759,7 @@ ALTER TABLE `breadbanner`
 -- AUTO_INCREMENT for table `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `category`
@@ -10800,19 +10771,19 @@ ALTER TABLE `category`
 -- AUTO_INCREMENT for table `cforder`
 --
 ALTER TABLE `cforder`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `checkout`
 --
 ALTER TABLE `checkout`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `credit`
 --
 ALTER TABLE `credit`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `employee`
@@ -10842,13 +10813,13 @@ ALTER TABLE `guest`
 -- AUTO_INCREMENT for table `history`
 --
 ALTER TABLE `history`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT for table `member`
 --
 ALTER TABLE `member`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `menu`
@@ -10860,7 +10831,7 @@ ALTER TABLE `menu`
 -- AUTO_INCREMENT for table `process`
 --
 ALTER TABLE `process`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `provinces`

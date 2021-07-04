@@ -23,7 +23,7 @@ if(isset($_POST['login']))
            if($result->Status==1)
            {
            $_SESSION['alogin']=$_POST['username'];
-           echo "<script type='text/javascript'> document.location ='admin/dashboard.php'; </script>";
+           echo "<script type='text/javascript'> document.location ='admin/manage-order.php'; </script>";
            } else {
             $error="Your Account Has been blocked";
            

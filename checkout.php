@@ -30,7 +30,7 @@ $query->bindParam(':deliverytype',$deliverytype,PDO::PARAM_STR);
 $query->execute();
 
 $username=$_SESSION['username'];  
-$sql="UPDATE cart SET Status='2' WHERE Username=:username AND Status=:statusหฟฟกผ";
+$sql="UPDATE cart SET Status='2' WHERE Username=:username AND Status=:status";
 $query = $dbh->prepare($sql);
 $query->bindParam(':username',$username,PDO::PARAM_STR);
 $query->bindParam(':status',$status,PDO::PARAM_STR);
