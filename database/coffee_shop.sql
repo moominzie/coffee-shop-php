@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Jul 04, 2021 at 09:55 AM
+-- Generation Time: Jul 20, 2021 at 02:33 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.1
 
@@ -43,7 +43,9 @@ CREATE TABLE `address` (
 --
 
 INSERT INTO `address` (`id`, `Address`, `ProvinceId`, `AmphureId`, `DistrictId`, `PostalCode`, `Username`) VALUES
-(1, '555/43', 19, 215, 300113, '30000', 'taeyeon_ss');
+(1, '555/43', 19, 215, 300113, '30000', 'taeyeon_ss'),
+(2, '533/34', 19, 215, 300113, '30000', 'yammy'),
+(3, '555/32', 19, 215, 300113, '30000', 'B6019938');
 
 -- --------------------------------------------------------
 
@@ -1120,6 +1122,14 @@ CREATE TABLE `cart` (
   `Status` int(1) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `cart`
+--
+
+INSERT INTO `cart` (`id`, `ProductCode`, `ProductName`, `ProductImage`, `ProductPrice`, `Quantity`, `TotalPrice`, `Username`, `Status`) VALUES
+(3, 'BK00000111', 'Soft Chocolate Chip Cookie', 'Screen Shot 2564-04-26 at 14.32.00.png', 65, 1, '', 'yammy', 3),
+(5, 'BH678900', 'Chocolate Frappuccino', 'Choc-Frappe.png', 145, 1, '', 'B6019938', 2);
+
 -- --------------------------------------------------------
 
 --
@@ -1164,7 +1174,11 @@ CREATE TABLE `cforder` (
 --
 
 INSERT INTO `cforder` (`id`, `OrderId`, `ProductTotalPrice`, `Quantity`, `CustomerName`, `CustomerTel`, `Status`, `CustomerUname`, `DeliveryType`) VALUES
-(1, '1', 130, 2, 'Taeyeon Kim', '0918347871', 1, 'taeyeon_ss', 'Pick up');
+(1, '1', 130, 2, 'Taeyeon Kim', '0918347871', 1, 'taeyeon_ss', 'Pick up'),
+(2, '1', 290, 2, 'Taeyeon Kim', '0918347871', 1, 'taeyeon_ss', 'Pick up'),
+(3, '2', 65, 1, 'Methawee Atthawan', '0918347826', 1, 'yammy', 'Pick up'),
+(4, '3', 130, 2, 'Methawee Atthawan', '0918347871', 1, 'B6019938', 'Pick up'),
+(5, '3', 145, 1, 'Methawee Atthawan', '0918347871', 1, 'B6019938', 'Delivery');
 
 -- --------------------------------------------------------
 
@@ -1188,7 +1202,9 @@ CREATE TABLE `checkout` (
 --
 
 INSERT INTO `checkout` (`id`, `CustomerName`, `CustomerLname`, `CustomerTel`, `Quantity`, `Total`, `Username`, `Status`) VALUES
-(1, 'Taeyeon', 'Kim', '0918347871', 2, 130, 'taeyeon_ss', 0);
+(1, 'Taeyeon', 'Kim', '0918347871', 2, 290, 'taeyeon_ss', 0),
+(2, 'Methawee', 'Atthawan', '0918347826', 1, 65, 'yammy', 0),
+(3, 'Methawee', 'Atthawan', '0918347871', 1, 145, 'B6019938', 0);
 
 -- --------------------------------------------------------
 
@@ -1211,7 +1227,9 @@ CREATE TABLE `credit` (
 --
 
 INSERT INTO `credit` (`id`, `CardNumber`, `Expiration`, `CVV`, `FirstName`, `LastName`, `Username`) VALUES
-(1, '4328342874367635', '23/07', '123', 'Taeyeon', 'Kim', 'taeyeon_ss');
+(1, '4328342874367635', '23/07', '123', 'Taeyeon', 'Kim', 'taeyeon_ss'),
+(2, '1234123413445556', '23/08', '123', 'Methawee', 'Atthawan', 'yammy'),
+(3, '4541273427125436', '23/09', '123', 'Metawee', 'Atthawan', 'B6019938');
 
 -- --------------------------------------------------------
 
@@ -10229,7 +10247,11 @@ INSERT INTO `history` (`id`, `ProductCode`, `ProductName`, `ProductImage`, `Prod
 (16, 'GH456780', 'Cinnamon Coffee Cake', 'cinnamon.png', 60, 1, '', 'B6019938', 2),
 (17, 'BK00056456', 'Jumbo Sausage Bite', 'Screen Shot 2564-04-26 at 14.36.15.png', 85, 1, '', 'B6019938', 2),
 (18, 'BK00056456', 'Jumbo Sausage Bite', 'Screen Shot 2564-04-26 at 14.36.15.png', 85, 1, '', 'winter', 1),
-(19, 'BK00000111', 'Soft Chocolate Chip Cookie', 'Screen Shot 2564-04-26 at 14.32.00.png', 65, 2, '', 'taeyeon_ss', 2);
+(19, 'BK00000111', 'Soft Chocolate Chip Cookie', 'Screen Shot 2564-04-26 at 14.32.00.png', 65, 2, '', 'taeyeon_ss', 2),
+(20, 'ADF82637', 'Choco-choco Nutty Frappuccino', 'Chocochoco-Nutty-Frappuccino.png', 145, 2, '', 'taeyeon_ss', 2),
+(21, 'BK00000111', 'Soft Chocolate Chip Cookie', 'Screen Shot 2564-04-26 at 14.32.00.png', 65, 2, '', 'yammy', 2),
+(22, 'BK00000111', 'Soft Chocolate Chip Cookie', 'Screen Shot 2564-04-26 at 14.32.00.png', 65, 1, '', 'B6019938', 2),
+(23, 'BH678900', 'Chocolate Frappuccino', 'Choc-Frappe.png', 145, 1, '', 'B6019938', 2);
 
 -- --------------------------------------------------------
 
@@ -10257,7 +10279,9 @@ CREATE TABLE `member` (
 --
 
 INSERT INTO `member` (`id`, `Username`, `FirstName`, `LastName`, `EmailId`, `MobileNumber`, `Password`, `Status`, `PaymentStatus`, `AddressStatus`, `RegDate`, `UpdationDate`) VALUES
-(1, 'taeyeon_ss', 'Taeyeon', 'Kim', 'taeyeon@gmail.com', '0918347871', '25d55ad283aa400af464c76d713c07ad', 1, 2, 2, '2021-07-04 07:52:08', '2021-07-04 07:53:00');
+(1, 'taeyeon_ss', 'Taeyeon', 'Kim', 'taeyeon@gmail.com', '0918347871', '25d55ad283aa400af464c76d713c07ad', 1, 2, 2, '2021-07-04 07:52:08', '2021-07-04 07:53:00'),
+(2, 'yammy', 'Methawee', 'Atthawan', 'yam@gmail.com', '0918347821', '25d55ad283aa400af464c76d713c07ad', 0, 2, 2, '2021-07-09 03:07:17', '2021-07-09 07:43:51'),
+(3, 'B6019938', 'Methawee', 'Atthawan', 'B6019938@gmail.com', '0918347871', '25f9e794323b453885f5181f1b624d0b', 1, 2, 2, '2021-07-09 07:33:21', '2021-07-09 07:36:24');
 
 -- --------------------------------------------------------
 
@@ -10284,7 +10308,7 @@ CREATE TABLE `menu` (
 
 INSERT INTO `menu` (`id`, `MenuName`, `Description`, `Price`, `Image1`, `CategoryId`, `SubCategoryId`, `SizeId`, `TypeId`, `ProductCode`) VALUES
 (1, 'Cinnamon Coffee Cake', 'Our ever-popular coffee cake—with its swirled cinnamon-sugar blend and finished with a crunchy streusel topping—pairs well with your favorite beverage and a few quiet moments. We\'re big fans!', 60, 'cinnamon.png', 1, 6, 0, 0, 'GH456780'),
-(2, 'Chocolate Frappuccino', 'Nutrition information is calculated based on our standard recipes. Only changing drink size will update this information. Other customizations will not. Yahoo!', 115, 'Choc-Frappe.png', 2, 2, 2, 1, 'BDF82630'),
+(2, 'Chocolate Frappuccino', 'Nutrition information is calculated based on our standard recipes. Only changing drink size will update this information. Other customizations will not. Yahoo!', 115, 'Choc-Frappe.png', 2, 2, 2, 1, 'BDF82631'),
 (3, 'Chocolate Frappuccino', 'Nutrition information is calculated based on our standard recipes. Only changing drink size will update this information. Other customizations will not.', 145, 'Choc-Frappe.png', 2, 2, 3, 1, 'BH678900'),
 (4, 'Honey Toast !', 'One of the latest dessert crazes in Taipei right now would be for an item called honey toast.  It comes in different flavors and from my understanding, is made popular by Dazzling Cafe.  ', 120, 'honey-toast.jpg', 4, 7, 0, 0, 'GF456788'),
 (5, 'GRANDMA’S BREAD PUDDING', 'This bread pudding recipe is easy to make with just a few simple ingredients. This is one of our family’s favorite recipes and is perfect served with a big scoop of ice cream!', 125, 'Bread-Pudding-10s-new.jpg', 4, 7, 0, 0, 'GF456781'),
@@ -10735,7 +10759,7 @@ ALTER TABLE `type`
 -- AUTO_INCREMENT for table `address`
 --
 ALTER TABLE `address`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `amphures`
@@ -10759,7 +10783,7 @@ ALTER TABLE `breadbanner`
 -- AUTO_INCREMENT for table `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `category`
@@ -10771,19 +10795,19 @@ ALTER TABLE `category`
 -- AUTO_INCREMENT for table `cforder`
 --
 ALTER TABLE `cforder`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `checkout`
 --
 ALTER TABLE `checkout`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `credit`
 --
 ALTER TABLE `credit`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `employee`
@@ -10813,13 +10837,13 @@ ALTER TABLE `guest`
 -- AUTO_INCREMENT for table `history`
 --
 ALTER TABLE `history`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT for table `member`
 --
 ALTER TABLE `member`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `menu`
