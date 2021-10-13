@@ -1,5 +1,5 @@
 # coffee-shop-php
-Coffee Shop Online e-commerce website [Final Project]
+Coffee Shop Online e-commerce website [Graduate Project]
 
 - HTML
 - Bootstrap3
